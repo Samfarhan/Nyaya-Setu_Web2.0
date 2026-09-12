@@ -1,1 +1,1 @@
-# Nyaya-Setu_Web2.0
+# Nyayi_Web2.0
