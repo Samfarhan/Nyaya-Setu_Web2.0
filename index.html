@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NYAYA-SETU | India's #1 Legal AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* ---- PREMIUM CONFIGURATION ---- */
+        :root {
+            --primary: #00C853;       
+            --primary-dark: #009624;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --bg-light: #f4f7f6;
+            --glass: rgba(255, 255, 255, 0.95);
+            --blur: blur(20px);
+            --shadow: 0 20px 60px rgba(0, 200, 83, 0.08);
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none; }
+        
+        html, body { overflow-x: hidden; width: 100%; }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        /* ---- CUSTOM CURSOR ---- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid var(--primary);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        body.hovering .cursor-outline {
+            width: 60px; height: 60px; background-color: rgba(0, 200, 83, 0.1); border-color: transparent;
+        }
+
+        /* ---- FLOATING NAVBAR ---- */
+        header {
+            position: fixed; top: 20px; left: 0; right: 0; z-index: 1000;
+            display: flex; justify-content: center; padding: 0 20px;
+            transition: 0.3s;
+        }
+        .nav-capsule {
+            background: var(--glass); backdrop-filter: var(--blur);
+            padding: 10px 30px; border-radius: 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1150px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6);
+        }
+        
+        /* LOGO */
+        .logo { 
+            font-size: 22px; font-weight: 900; color: var(--dark); 
+            display: flex; align-items: center; gap: 8px; text-decoration: none; white-space: nowrap; 
+        }
+        .logo i { color: var(--primary); font-size: 26px; } 
+        
+        .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 700; font-size: 15px; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        
+        /* PREMIUM LAUNCH BUTTON */
+        .btn-launch {
+            background: linear-gradient(135deg, #00C853 0%, #009624 100%);
+            color: white; padding: 12px 30px; border-radius: 50px; 
+            text-decoration: none; font-weight: 800; transition: 0.3s; font-size: 14px;
+            box-shadow: 0 8px 20px rgba(0,200,83,0.3); display: flex; align-items: center; gap: 8px; white-space: nowrap;
+        }
+        .btn-launch:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 30px rgba(0,200,83,0.4); 
+            background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+        }
+
+        .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--dark); margin-left: 15px; padding: 5px; }
+
+        /* ---- HERO SECTION ---- */
+        .hero {
+            padding: 180px 0 100px; position: relative; overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 70%);
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        .hero-content { text-align: center; max-width: 950px; margin: 0 auto; position: relative; z-index: 2; }
+
+        .hero h1 { font-size: 4.8rem; line-height: 1.1; font-weight: 900; margin-bottom: 25px; color: #111; letter-spacing: -2px; }
+        .hero h1 span { 
+            background: linear-gradient(135deg, var(--primary), #009624); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.4rem; color: #555; max-width: 750px; margin: 0 auto 40px; line-height: 1.6; }
+        
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 50px; }
+        
+        .btn-ai {
+            background: #0a0a0a; color: white; padding: 16px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px;
+            transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.2); font-size: 18px;
+        }
+        .btn-ai:hover { transform: translateY(-3px); background: var(--primary); box-shadow: 0 15px 40px rgba(0,200,83,0.3); }
+
+        .btn-outline {
+            padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px;
+            border: 2px solid #eee; color: #333; transition: 0.3s; background: white; white-space: nowrap;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+        /* ---- CHAT UI DEMO ---- */
+        .chat-ui-link { text-decoration: none; display: block; max-width: 750px; margin: 0 auto; color: inherit; }
+        .chat-ui {
+            background: white; border-radius: 25px; padding: 30px;
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; transition: 0.3s;
+        }
+        .chat-ui:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .chat-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f5f5f5; padding-bottom: 15px; margin-bottom: 20px; }
+        .bot-img { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+        .msg { padding: 12px 20px; border-radius: 15px; margin-bottom: 12px; font-size: 16px; width: fit-content; max-width: 90%; text-align: left; }
+        .msg-user { background: #111; color: white; margin-left: auto; border-radius: 15px 15px 4px 15px; }
+        .msg-ai { background: #f0fdf4; color: #004d20; border: 1px solid #dcfce7; border-radius: 15px 15px 15px 4px; }
+
+        /* ---- STATS ---- */
+        .stats-strip { 
+            background: radial-gradient(circle at center, #111 0%, #000 100%); 
+            padding: 100px 0; color: white; margin-top: 100px; border-top: 1px solid #222; border-bottom: 1px solid #222;
+        }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 40px; }
+        .stat-num { font-size: 55px; font-weight: 900; margin-bottom: 10px; color: var(--primary); letter-spacing: -2px; }
+        .stat-label { font-size: 16px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-badge {
+            background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px;
+            font-size: 12px; margin-bottom: 15px; display: inline-block; color: white; border: 1px solid #333;
+        }
+
+        /* ---- BENTO GRID ---- */
+        .bento-section { padding: 120px 0; background: #fcfcfc; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; color: #111; }
+        .section-header p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; }
+
+        .bento-grid { display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: auto auto; gap: 30px; }
+        .b-card {
+            border-radius: 35px; padding: 50px; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between;
+            background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.03); min-height: 350px;
+        }
+        .b-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,200,83,0.15); border-color: var(--primary); }
+
+        .b-dark { grid-column: 1 / 2; grid-row: 1 / 3; background: #000; color: white; border: 1px solid #222; justify-content: center; }
+        .b-dark h3 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
+        .b-dark p { color: #888; font-size: 1.2rem; line-height: 1.8; max-width: 90%; }
+        .b-dark .b-icon { background: rgba(255,255,255,0.1); color: var(--primary); width: 80px; height: 80px; font-size: 32px; }
+
+        .b-icon {
+            width: 70px; height: 70px; background: #e8f5e9; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; font-size: 28px;
+            color: var(--primary); margin-bottom: 25px;
+        }
+        .b-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        .b-card p { font-size: 1.05rem; color: #666; line-height: 1.6; }
+
+        /* ---- CREATORS SECTION ---- */
+        .creators-section { padding: 100px 0; background: white; text-align: center; overflow: hidden; }
+        .creators-grid { display: grid; grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+
+        .creator-profile {
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);
+            padding: 50px; border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;
+            transition: all 0.5s; position: relative; overflow: hidden; z-index: 1;
+        }
+        .creator-profile:hover { transform: translateY(-15px); box-shadow: 0 30px 80px rgba(0, 200, 83, 0.2); border-color: var(--primary); }
+
+        .cp-icon {
+            width: 110px; height: 110px; margin: 0 auto 25px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 40px; color: var(--primary); border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.5s;
+        }
+        .creator-profile:hover .cp-icon { transform: scale(1.1) rotate(5deg); background: var(--primary); color: white; border-color: transparent; }
+        .creator-profile h3 { font-size: 30px; font-weight: 900; margin-bottom: 10px; }
+        .cp-role { display: inline-block; background: #0a0a0a; color: white; padding: 8px 20px; border-radius: 30px; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 35px; }
+        
+        .cp-actions { display: flex; flex-direction: column; gap: 12px; }
+        .cp-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 15px; background: var(--primary); color: white; text-decoration: none; font-weight: 800; transition: 0.3s; }
+        .cp-btn:hover { background: #009624; transform: translateY(-3px); }
+        .cp-btn.secondary { background: #f8f9fa; color: #333; border: 1px solid #eee; box-shadow: none; }
+        .cp-btn.secondary:hover { background: #fff; border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+        /* ---- CLICKABLE FAQ SECTION ---- */
+        .faq-section { padding: 100px 0; background: var(--bg-light); }
+        .faq-grid { max-width: 900px; margin: 0 auto; display: grid; gap: 15px; }
+        
+        .faq-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.03); transition: 0.3s; border: 1px solid transparent; }
+        .faq-item:hover { border-color: #ddd; }
+        .faq-item.active { border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,200,83,0.1); }
+        .faq-header { padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; transition: 0.3s; }
+        .faq-header h3 { font-size: 18px; font-weight: 700; margin: 0; color: #333; }
+        .faq-item.active .faq-header { background: #f0fdf4; }
+        .faq-item.active .faq-header h3 { color: var(--primary-dark); }
+        .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: white; color: #555; line-height: 1.6; }
+        .faq-body p { padding: 0 25px 25px; margin: 0; font-size: 16px; }
+
+        /* ---- FOOTER ---- */
+        footer { background: #050505; color: white; padding: 100px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer-brand h2 { font-size: 28px; font-weight: 900; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .footer-brand p { color: #888; font-size: 15px; max-width: 320px; line-height: 1.8; }
+        .footer-col h4 { font-size: 16px; font-weight: 800; color: white; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col li { margin-bottom: 15px; }
+        .footer-col a { color: #999; text-decoration: none; font-size: 15px; transition: 0.3s; font-weight: 500; }
+        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
+        .copyright { text-align: center; border-top: 1px solid #222; margin-top: 80px; padding-top: 30px; color: #666; font-size: 14px; }
+
+        /* Scroll to Top */
+        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: white; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--dark); cursor: pointer; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1000; }
+        .scroll-top.active { opacity: 1; visibility: visible; }
+        .scroll-top:hover { background: var(--primary); color: white; }
+
+        /* FIXED MOBILE MENU */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: white;
+            z-index: 2000; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transform: translateY(-100%); transition: 0.4s ease-in-out; opacity: 0; visibility: hidden;
+        }
+        .mobile-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
+        .mobile-menu a { font-size: 20px; font-weight: 800; color: #111; margin: 15px 0; text-decoration: none; }
+        .close-menu { position: absolute; top: 30px; right: 30px; font-size: 30px; cursor: pointer; }
+
+        /* ---- MOBILE RESPONSIVENESS ---- */
+        @media (max-width: 900px) {
+            header { top: 10px; padding: 0 15px; }
+            .nav-capsule { border-radius: 15px; padding: 15px 20px; width: 100%; justify-content: space-between; }
+            .nav-links, .btn-webapp, .btn-launch { display: none; } 
+            .menu-toggle { display: block; }
+            .hero { padding-top: 140px; }
+            .hero h1 { font-size: 2.8rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .creators-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 10px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .footer-brand { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <a href="features.html" onclick="toggleMenu()">Features</a>
+        <a href="dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="contact.html" onclick="toggleMenu()">Contact</a>
+        <a href="app.html" style="color:var(--primary);">Mobile App</a>
+        <a href="https://nyaya-setu-4xid.onrender.com" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
+    </div>
+
+    <header>
+        <div class="nav-capsule">
+            <a href="index.html" class="logo">
+                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYA<span>SETU.</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="dictionary.html">Dictionary</a></li>
+                <li><a href="rights.html">Know Rights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="app.html" style="color:var(--primary);">Mobile App</a></li>
+            </ul>
+
+            <div style="display:flex; align-items:center;">
+                <a href="https://nyaya-setu-4xid.onrender.com" target="_blank" class="btn-launch">
+                    <i class="fas fa-rocket"></i> Launch Web AI
+                </a>
+                <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content" data-aos="zoom-in">
+            <h1>Legal Intelligence <br> <span>Reimagined.</span></h1>
+            <p>Explore cutting-edge AI tools engineered to simplify the complex matrix of the Indian legal system. From context-aware research to dynamic document workflows—get precise, fast, and secure guidance instantly.</p>
+            
+            <div class="hero-btns">
+                <a href="https://nyaya-setu-4xid.onrender.com" target="_blank" class="btn-ai">
+                    <i class="fas fa-robot"></i> Start AI Chat
+                </a>
+                <a href="features.html" class="btn-outline">
+                    <i class="fas fa-layer-group"></i> Explore Features
+                </a>
+            </div>
+
+            <a href="https://nyaya-setu-4xid.onrender.com" target="_blank" class="chat-ui-link">
+                <div class="chat-ui" data-aos="fade-up" data-aos-delay="200">
+                    <div class="chat-header">
+                        <div class="bot-img"><i class="fas fa-robot"></i></div>
+                        <div style="text-align:left;"><strong>Nyaya Neural Engine</strong><br><span style="font-size:12px; color:green;">● Online • Click to Chat</span></div>
+                    </div>
+                    <div class="msg msg-user">How do I map an old crime to the new laws?</div>
+                    <div class="msg msg-ai">
+                        You can use our integrated <strong>IPC & BNS Converter</strong> to map any old section directly to its active counterpart in the new Bharatiya Nyaya Sanhita instantly.
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="stats-strip">
+        <div class="container stats-grid">
+            <div data-aos="fade-up"><span class="stat-badge">#1 IN INDIA</span><div class="stat-num">511+</div><div class="stat-label">IPC & BNS Sections Covered</div></div>
+            <div data-aos="fade-up" data-aos-delay="100"><span class="stat-badge">MULTILINGUAL</span><div class="stat-num">22+</div><div class="stat-label">Indian Languages</div></div>
+            <div data-aos="fade-up" data-aos-delay="200"><span class="stat-badge">SECURE</span><div class="stat-num">100%</div><div class="stat-label">Data Privacy Guard</div></div>
+            <div data-aos="fade-up" data-aos-delay="300"><span class="stat-badge">AI DRIVEN</span><div class="stat-num">24/7</div><div class="stat-label">Instant Solution Delivery</div></div>
+        </div>
+    </section>
+
+    <section class="bento-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Powerful <span>Legal Tools</span></h2>
+                <p>Advanced computational engines designed to empower the modern citizen.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="b-card b-dark" data-aos="fade-right">
+                    <div class="b-icon"><i class="fas fa-search-location"></i></div>
+                    <h3>Smart Case Search</h3>
+                    <p>Describe your situation in simple stories or casual phrases. Our custom neural network scans the entire Indian Penal Code (IPC), Constitution, and active court precedents to reveal the exact legal sections and penalties relevant to you.</p>
+                </div>
+                <div class="b-card" data-aos="fade-left">
+                    <div class="b-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>Dynamic Document Drafting</h3>
+                    <p>Create legally tight documents instantly. Generate a formal Draft FIR or customized Rent Agreements tailored to your specific inputs inside 30 seconds.</p>
+                </div>
+                <div class="b-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="b-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Challan & Code Utilities</h3>
+                    <p>Calculate road liabilities instantly with our Traffic Fine Calculator, or cross-check statutory transformations smoothly through the active IPC & BNS Converter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="creators-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>The <span>Architect</span></h2>
+                <p>Connect with the mind behind the technological revolution.</p>
+            </div>
+            
+            <div class="creators-grid">
+                <div class="creator-profile" data-aos="fade-up">
+                    <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Farhan Khan</h3>
+                    <span class="cp-role">Founder & Lead Developer</span>
+                    <div class="cp-actions">
+                        <a href="https://samvortex.in" class="cp-btn"><i class="fas fa-globe"></i> Visit Website</a>
+                        <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header"><h2>Frequently Asked <span>Questions</span></h2></div>
+            <div class="faq-grid">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header"><h3>Is Nyaya-Setu free for citizens?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes, our core mission is accessibility. Features like Case Search, Dictionary, Converter utilities, and Basic Drafting are completely free for public use.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header"><h3>Is my data secure and private?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>We prioritize absolute privacy. We use industry-standard encryption protocols for all data operations. Your queries are processed dynamically but never personally linked, stored, or distributed.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header"><h3>Does this platform replace an advocate?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p><strong>No.</strong> Nyaya-Setu is an informational tool built for research and legal literacy. For formal court representations, active litigation advice, or official filings, you can browse verified advocates through our dedicated lawyer portal.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header"><h3>What languages are supported?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Currently, the platform seamlessly processes natural queries across 22+ official Indian languages including Hindi, English, and regional dialects, integrated with voice processing support.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-header"><h3>Can I use voice commands to search?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes! Just click the voice microphone icon inside the web terminal and state your legal situation naturally. The AI translates, processes the structural codes, and returns your answers.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYA<span>SETU.</span></h2>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="app.html">Mobile App</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul><li><a href="dictionary.html">Dictionary</a></li><li><a href="rights.html">Know Rights</a></li><li><a href="contact.html">Support</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li></ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Nyaya-Setu AI. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+            else scrollTopBtn.classList.remove('active');
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleFaq(element) {
+            const allFaqs = document.querySelectorAll('.faq-item');
+            allFaqs.forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-body').style.maxHeight = null;
+                }
+            });
+            element.classList.toggle('active');
+            const body = element.querySelector('.faq-body');
+            if (element.classList.contains('active')) {
+                body.style.maxHeight = body.scrollHeight + "px";
+            } else {
+                body.style.maxHeight = null;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us | NYAYA-SETU</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Motion Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* ---- PREMIUM CONFIGURATION ---- */
+        :root {
+            --primary: #00C853;       
+            --primary-dark: #009624;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --bg-light: #f4f7f6;
+            --glass: rgba(255, 255, 255, 0.95);
+            --blur: blur(20px);
+            --shadow: 0 20px 60px rgba(0, 200, 83, 0.08);
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none; }
+        
+        html, body { overflow-x: hidden; width: 100%; }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        /* ---- CUSTOM CURSOR ---- */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid var(--primary); transition: width 0.2s, height 0.2s, background-color 0.2s; }
+        body.hovering .cursor-outline { width: 60px; height: 60px; background-color: rgba(0, 200, 83, 0.1); border-color: transparent; }
+
+        /* ---- FLOATING NAVBAR ---- */
+        header { position: fixed; top: 20px; left: 0; right: 0; z-index: 3000; display: flex; justify-content: center; padding: 0 20px; transition: 0.3s; }
+        .nav-capsule { background: var(--glass); backdrop-filter: var(--blur); padding: 10px 30px; border-radius: 50px; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1150px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6); }
+        
+        .logo { font-size: 22px; font-weight: 900; color: var(--dark); display: flex; align-items: center; gap: 8px; text-decoration: none; white-space: nowrap; }
+        .logo i { color: var(--primary); font-size: 26px; } 
+        
+        .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 700; font-size: 15px; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        
+        .btn-launch { background: linear-gradient(135deg, #00C853 0%, #009624 100%); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 800; transition: 0.3s; font-size: 14px; box-shadow: 0 8px 20px rgba(0,200,83,0.3); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+        .btn-launch:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,200,83,0.5); }
+        
+        .menu-toggle { display: none; font-size: 26px; cursor: pointer; color: var(--dark); margin-left: 15px; padding: 5px; }
+
+        /* ---- CONTACT HERO ---- */
+        .contact-hero { padding: 180px 0 80px; text-align: center; background: radial-gradient(circle at 50% 10%, #e8f5e9 0%, #ffffff 80%); }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .contact-hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; color: #111; letter-spacing: -2px; line-height: 1.1; }
+        .contact-hero h1 span { color: var(--primary); }
+        .contact-hero p { font-size: 1.25rem; color: #666; max-width: 650px; margin: 0 auto; }
+
+        /* ---- CONTACT SECTION WRAPPER ---- */
+        .contact-section { padding: 40px 0 100px; background: #ffffff; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+
+        /* LEFT: INFO CARDS */
+        .contact-info { display: flex; flex-direction: column; gap: 25px; }
+        .info-card { background: #fafafa; border-radius: 25px; padding: 35px; border: 1px solid #eee; transition: 0.3s; display: flex; gap: 20px; align-items: flex-start; }
+        .info-card:hover { border-color: var(--primary); background: white; box-shadow: var(--shadow); transform: translateY(-3px); }
+        .info-icon { width: 60px; height: 60px; background: #e8f5e9; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); flex-shrink: 0; }
+        .info-content h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--dark); }
+        .info-content p { color: #666; font-size: 15px; line-height: 1.6; }
+        .info-content a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+        /* RIGHT: FORM */
+        .contact-form-box { background: #0a0a0a; color: white; border-radius: 35px; padding: 50px; border: 1px solid #222; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+        .contact-form-box h2 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; color: white; }
+        .contact-form-box p { color: #888; margin-bottom: 30px; font-size: 15px; }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 14px; font-weight: 700; color: #ccc; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-control { width: 100%; background: #151515; border: 1px solid #2A2A2A; border-radius: 15px; padding: 16px 20px; color: white; font-family: 'Urbanist', sans-serif; font-size: 15px; transition: 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--primary); background: #1a1a1a; box-shadow: 0 0 15px rgba(0,200,83,0.2); }
+        textarea.form-control { resize: none; height: 130px; }
+
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
+        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,200,83,0.4); }
+
+        /* ---- FOOTER ---- */
+        footer { background: #050505; color: white; padding: 80px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .footer-brand h2 { font-size: 24px; font-weight: 900; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .footer-brand p { color: #888; font-size: 14px; max-width: 300px; line-height: 1.8; }
+        .footer-col h4 { font-size: 16px; font-weight: 800; color: white; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: #999; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: 500; }
+        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
+        .copyright { text-align: center; border-top: 1px solid #222; margin-top: 60px; padding-top: 30px; color: #555; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .powered-tag { font-size: 12px; color: var(--primary); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: white; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--dark); cursor: pointer; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1000; }
+        .scroll-top.active { opacity: 1; visibility: visible; }
+        .scroll-top:hover { background: var(--primary); color: white; }
+
+        /* MOBILE MENU */
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: white; z-index: 4000; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: translateY(-100%); transition: 0.4s ease-in-out; opacity: 0; visibility: hidden; }
+        .mobile-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
+        .mobile-menu a { font-size: 20px; font-weight: 800; color: #111; margin: 15px 0; text-decoration: none; }
+        .close-menu { position: absolute; top: 25px; right: 25px; font-size: 30px; cursor: pointer; }
+
+        @media(max-width: 900px) {
+            header { top: 10px; padding: 0 15px; }
+            .nav-capsule { border-radius: 15px; padding: 15px 20px; width: 100%; justify-content: space-between; }
+            .nav-links, .btn-launch { display: none; }
+            .menu-toggle { display: block; }
+            .contact-hero h1 { font-size: 3rem; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .contact-form-box { padding: 35px 25px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .footer-brand { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <a href="features.html" onclick="toggleMenu()">Features</a>
+        <a href="dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="contact.html" class="active" onclick="toggleMenu()">Contact</a>
+        <a href="app.html">Mobile App</a>
+        <a href="https://nyaya-setu-4xid.onrender.com" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
+    </div>
+
+    <header>
+        <div class="nav-capsule">
+            <a href="index.html" class="logo">
+                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYA<span>SETU.</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="dictionary.html">Dictionary</a></li>
+                <li><a href="rights.html">Know Rights</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="app.html" style="color:var(--primary);">Mobile App</a></li>
+            </ul>
+            <div style="display:flex; align-items:center;">
+                <a href="https://nyaya-setu-4xid.onrender.com" target="_blank" class="btn-launch"><i class="fas fa-rocket"></i> Launch Web AI</a>
+                <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact-hero">
+        <div class="container" data-aos="zoom-in">
+            <h1>Get in <span>Touch</span></h1>
+            <p>Have questions, feedback, or need developer assistance? Reach out to Farhan Khan or our dev team for smooth legal tech assistance.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                
+                <!-- LEFT: CONTACT DETAILS -->
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-code"></i></div>
+                        <div class="info-content">
+                            <h3>Lead Developer</h3>
+                            <p><strong>Farhan Khan</strong> — Lead UI/UX & Web Architect</p>
+                            <a href="mailto:farhankhan@nyayasetu.org">farhankhan@nyayasetu.org</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info-content">
+                            <h3>Email Support</h3>
+                            <p>Send us your general inquiries and feedback anytime.</p>
+                            <a href="mailto:support@nyayasetu.org">support@nyayasetu.org</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-robot"></i></div>
+                        <div class="info-content">
+                            <h3>Instant Legal AI</h3>
+                            <p>For immediate legal queries, interact directly with our AI portal.</p>
+                            <a href="https://nyaya-setu-4xid.onrender.com" target="_blank">Open Web AI Portal &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: CONTACT FORM -->
+                <div class="contact-form-box" data-aos="fade-left">
+                    <h2>Send a Message</h2>
+                    <p>Fill out the form below and Farhan Khan & the team will get back to you promptly.</p>
+                    
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="name@domain.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" placeholder="How can we help?" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" placeholder="Write your message here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYA<span>SETU.</span></h2>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="app.html">Mobile App</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="dictionary.html">Dictionary</a></li>
+                    <li><a href="rights.html">Know Rights</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div>&copy; 2026 Nyaya-Setu AI. Designed & Developed by Farhan Khan.</div>
+            <div class="powered-tag">Powered by WebGlut</div>
+        </div>
+    </footer>
+
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        const hoverElements = document.querySelectorAll('a, button, input, textarea');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+            else scrollTopBtn.classList.remove('active');
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out! Your message has been sent successfully.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
