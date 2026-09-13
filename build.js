@@ -93,7 +93,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=3.5">
     
     ${schemaScripts}
 </head>
@@ -2550,7 +2550,26 @@ function buildRights() {
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'rights.html'), hubHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'rights/index.html'), hubHtml, 'utf8');
+    let rightsSubfolderHub = hubHtml
+        .replace(/href="\.\/css\//g, 'href="../css/')
+        .replace(/href="\.\/favicon/g, 'href="../favicon')
+        .replace(/href="\.\/apple/g, 'href="../apple')
+        .replace(/href="\.\/features\.html"/g, 'href="../features.html"')
+        .replace(/href="\.\/dictionary\.html"/g, 'href="../dictionary.html"')
+        .replace(/href="\.\/rights\.html"/g, 'href="../rights.html"')
+        .replace(/href="\.\/laws\.html"/g, 'href="../laws.html"')
+        .replace(/href="\.\/guides\.html"/g, 'href="../guides.html"')
+        .replace(/href="\.\/articles\.html"/g, 'href="../articles.html"')
+        .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
+        .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
+        .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
+        .replace(/href="laws\.html/g, 'href="../laws.html')
+        .replace(/href="guides\.html/g, 'href="../guides.html')
+        .replace(/href="features\.html/g, 'href="../features.html')
+        .replace(/href="know-your-rights\//g, 'href="../know-your-rights/');
+    fs.writeFileSync(path.join(ROOT_DIR, 'rights/index.html'), rightsSubfolderHub, 'utf8');
 
     // Individual rights guides
     rights.forEach(item => {
@@ -4475,10 +4494,37 @@ function buildFeaturesAndOther() {
         }
     </script>
 
+    <!-- LAW EXPLORER MODAL OVERLAY -->
+    <div class="law-modal-overlay" id="lawModalOverlay" onclick="if(event.target === this) closeLawModal()">
+        <div class="law-modal-box">
+            <button class="law-modal-close" onclick="closeLawModal()"><i class="fas fa-times"></i></button>
+            <div id="lawModalBody">
+                <!-- Dynamically populated by openLawModal(slug) -->
+            </div>
+        </div>
+    </div>
+
     ${renderFooter(0)}
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'laws.html'), lawsHub, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsHub.replace(/laws\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
+    let lawsSubfolderHub = lawsHub
+        .replace(/href="\.\/css\//g, 'href="../css/')
+        .replace(/href="\.\/favicon/g, 'href="../favicon')
+        .replace(/href="\.\/apple/g, 'href="../apple')
+        .replace(/href="\.\/features\.html"/g, 'href="../features.html"')
+        .replace(/href="\.\/dictionary\.html"/g, 'href="../dictionary.html"')
+        .replace(/href="\.\/rights\.html"/g, 'href="../rights.html"')
+        .replace(/href="\.\/laws\.html"/g, 'href="../laws.html"')
+        .replace(/href="\.\/guides\.html"/g, 'href="../guides.html"')
+        .replace(/href="\.\/articles\.html"/g, 'href="../articles.html"')
+        .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
+        .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
+        .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="rights\.html/g, 'href="../rights.html')
+        .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
+        .replace(/href="laws\//g, 'href="');
+    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsSubfolderHub, 'utf8');
 
     expandedLawsList.forEach(item => {
         const pageHtml = `
@@ -6087,7 +6133,26 @@ function buildFeaturesAndOther() {
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'guides.html'), guidesHub, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub.replace(/legal-guides\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
+    let guidesSubfolderHub = guidesHub
+        .replace(/href="\.\/css\//g, 'href="../css/')
+        .replace(/href="\.\/favicon/g, 'href="../favicon')
+        .replace(/href="\.\/apple/g, 'href="../apple')
+        .replace(/href="\.\/features\.html"/g, 'href="../features.html"')
+        .replace(/href="\.\/dictionary\.html"/g, 'href="../dictionary.html"')
+        .replace(/href="\.\/rights\.html"/g, 'href="../rights.html"')
+        .replace(/href="\.\/laws\.html"/g, 'href="../laws.html"')
+        .replace(/href="\.\/guides\.html"/g, 'href="../guides.html"')
+        .replace(/href="\.\/articles\.html"/g, 'href="../articles.html"')
+        .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
+        .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
+        .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
+        .replace(/href="laws\.html/g, 'href="../laws.html')
+        .replace(/href="rights\.html/g, 'href="../rights.html')
+        .replace(/href="articles\.html/g, 'href="../articles.html')
+        .replace(/href="legal-guides\//g, 'href="');
+    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesSubfolderHub, 'utf8');
 
 
     expandedGuides.forEach(item => {
@@ -7545,7 +7610,22 @@ function buildFeaturesAndOther() {
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), articlesHub, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), articlesHub.replace(/articles\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
+    let blogSubfolderHub = articlesHub
+        .replace(/href="\.\/css\//g, 'href="../css/')
+        .replace(/href="\.\/favicon/g, 'href="../favicon')
+        .replace(/href="\.\/apple/g, 'href="../apple')
+        .replace(/href="\.\/features\.html"/g, 'href="../features.html"')
+        .replace(/href="\.\/dictionary\.html"/g, 'href="../dictionary.html"')
+        .replace(/href="\.\/rights\.html"/g, 'href="../rights.html"')
+        .replace(/href="\.\/laws\.html"/g, 'href="../laws.html"')
+        .replace(/href="\.\/guides\.html"/g, 'href="../guides.html"')
+        .replace(/href="\.\/articles\.html"/g, 'href="../articles.html"')
+        .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
+        .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
+        .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="articles\//g, 'href="');
+    fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogSubfolderHub, 'utf8');
 
             // Individual Article Subpages Generator (24+ HTML Files)
     if (!fs.existsSync(path.join(ROOT_DIR, 'articles'))) fs.mkdirSync(path.join(ROOT_DIR, 'articles'), { recursive: true });
