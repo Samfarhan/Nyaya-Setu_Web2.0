@@ -6171,39 +6171,1457 @@ function buildFeaturesAndOther() {
     fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), disclaimerHtml, 'utf8');
 
-    // Articles Page
-    const blogHtml = `
-    ${renderHead('Legal Articles | NYAYI Legal AI', 'Read legal insights, BNS 2023 updates, and legal awareness articles written by Farhan Khan & Kamran Sheikh.', 'Legal articles India, BNS updates, legal tech blog', '/articles.html', 0)}
+        // Articles & Editorial Journal Data Model (24+ Verified Articles)
+    const expandedArticles = [
+        {
+            slug: "bns-2023-structural-shifts",
+            title: "Understanding Bharatiya Nyaya Sanhita (BNS) 2023: Key Structural Shifts from IPC",
+            category: "Criminal Law",
+            catKey: "criminal",
+            type: "LAW UPDATE",
+            typeKey: "update",
+            date: "13 SEPT 2026",
+            readTime: "7 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Comprehensive analysis of BNS 2023 replacing the 1860 IPC, introducing community service penalties, organized crime definitions, and updated offences against women.",
+            tags: ["BNS 2023", "IPC Replacement", "Criminal Code", "Community Service"],
+            atAGlance: [
+                "Replaces 164-year-old IPC 1860 with 358 structured sections.",
+                "Introduces community service as a formal statutory punishment.",
+                "Codifies organized crime, terrorist acts, and hit-and-run regulations under Section 106.",
+                "Streamlines definitions for gender neutrality in specific procedural provisions."
+            ],
+            toc: [
+                { id: "overview", label: "Structural Overview" },
+                { id: "key-changes", label: "Key Legislative Changes" },
+                { id: "community-service", label: "Community Service & Punishments" },
+                { id: "practical-impact", label: "Practical Impact on Citizens" }
+            ],
+            takeaways: [
+                "IPC 1860 is fully replaced for offences committed after July 1, 2024.",
+                "Hit-and-run provisions carry enhanced penal terms under BNS Sec 106(2).",
+                "Mob lynching and hate crimes receive specific statutory definitions and penalties."
+            ],
+            relatedLaw: "Bharatiya Nyaya Sanhita 2023",
+            relatedRights: "Right to Fair Trial & Legal Certainty",
+            relatedTerms: ["BNS", "Cognizable Offence", "Community Service"]
+        },
+        {
+            slug: "bnss-2023-criminal-procedure-changes",
+            title: "Bharatiya Nagarik Suraksha Sanhita: What Changed in Criminal Procedure?",
+            category: "Legal Updates",
+            catKey: "updates",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "10 SEPT 2026",
+            readTime: "8 MIN READ",
+            author: "Farhan Khan",
+            summary: "Detailed guide on BNSS 2023 replacing CrPC 1973, mandating electronic FIRs, forensic investigation deadlines, and 14-day preliminary inquiry rules.",
+            tags: ["BNSS 2023", "CrPC Replacement", "e-FIR", "Forensics", "Bail"],
+            atAGlance: [
+                "Mandatory forensic investigation for offences punishable by 7+ years.",
+                "Zero FIR legal entitlement codified under Section 173.",
+                "Statutory 14-day deadline for preliminary inquiry before FIR registration."
+            ],
+            toc: [
+                { id: "procedural-shift", label: "The Shift from CrPC to BNSS" },
+                { id: "digital-fir", label: "e-FIR & Zero FIR Mandate" },
+                { id: "forensic-rules", label: "Mandatory Forensic Sampling" }
+            ],
+            takeaways: [
+                "Police must send investigation progress reports electronically within 90 days.",
+                "Trial courts bound by strict timelines for judgment pronouncement (45 days post-hearing)."
+            ],
+            relatedLaw: "Bharatiya Nagarik Suraksha Sanhita 2023",
+            relatedRights: "Police Arrest Safeguards",
+            relatedTerms: ["BNSS", "Zero FIR", "Summary Trial"]
+        },
+        {
+            slug: "bsa-2023-evidence-framework",
+            title: "Bharatiya Sakshya Adhiniyam: Understanding India's New Evidence Framework",
+            category: "Indian Laws",
+            catKey: "laws",
+            type: "LEGAL CONCEPT",
+            typeKey: "concept",
+            date: "05 SEPT 2026",
+            readTime: "6 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "An explainer on BSA 2023 replacing the Indian Evidence Act 1872, recognizing electronic records as primary evidence and Section 63 certificate rules.",
+            tags: ["BSA 2023", "Digital Evidence", "Section 63", "Electronic Records"],
+            atAGlance: [
+                "Electronic and digital records given statutory status as primary evidence.",
+                "Mandatory electronic certificate requirements simplified under BSA Section 63.",
+                "Expanded definitions of document to include server logs, emails, and messaging apps."
+            ],
+            toc: [
+                { id: "evidence-evolution", label: "Evolution of Indian Evidence Rules" },
+                { id: "digital-primacy", label: "Digital Records as Primary Evidence" },
+                { id: "sec63-cert", label: "Section 63 Certificate Mechanics" }
+            ],
+            takeaways: [
+                "Digital records stored in cloud or phone storage possess full evidentiary value.",
+                "Secondary evidence rules updated for digital media backups and server hash logs."
+            ],
+            relatedLaw: "Bharatiya Sakshya Adhiniyam 2023",
+            relatedRights: "Right against Self-Incrimination",
+            relatedTerms: ["BSA", "Admissible Evidence", "Primary Evidence"]
+        },
+        {
+            slug: "digital-evidence-audio-video-bsa-63",
+            title: "Digital Evidence and Audio-Video Recording Under Section 63 BSA 2023",
+            category: "Cyber & Technology",
+            catKey: "cyber",
+            type: "STUDENT NOTE",
+            typeKey: "student",
+            date: "01 SEPT 2026",
+            readTime: "5 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "How audio-video crime scene recordings and digital messages are certified and presented before Indian courts under Section 63 of BSA 2023.",
+            tags: ["BSA Section 63", "CCTV Footage", "Hash Code", "Audio Video"],
+            atAGlance: [
+                "Replaces Section 65B certificate of Evidence Act 1872.",
+                "Requires person managing electronic system to sign statutory certificate.",
+                "Mandatory video recording of search and seizure procedures by police officers."
+            ],
+            toc: [
+                { id: "recording-mandate", label: "Mandatory Seizure Recording" },
+                { id: "certificate-format", label: "Section 63 Certificate Requirements" }
+            ],
+            takeaways: [
+                "Uncertified digital printouts are inadmissible as secondary evidence without Sec 63 compliance.",
+                "CCTV footage and WhatsApp exports require timeline & device hash validation."
+            ],
+            relatedLaw: "Bharatiya Sakshya Adhiniyam Sec 63",
+            relatedRights: "Digital Privacy Rights",
+            relatedTerms: ["Section 63 BSA", "Hash Value", "Secondary Evidence"]
+        },
+        {
+            slug: "article-21-personal-liberty-privacy",
+            title: "Understanding Article 21 and Personal Liberty in Modern India",
+            category: "Constitution",
+            catKey: "constitution",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "25 AUG 2026",
+            readTime: "7 MIN READ",
+            author: "Farhan Khan",
+            summary: "Exploring how Supreme Court jurisprudence expanded Article 21 to cover right to privacy, speedy trial, clean environment, and dignity.",
+            tags: ["Article 21", "Fundamental Rights", "Privacy", "Puttaswamy"],
+            atAGlance: [
+                "No person deprived of life or personal liberty except according to procedure established by law.",
+                "Puttaswamy judgment incorporated Right to Privacy as intrinsic to Article 21.",
+                "Covers sub-rights: Right to Livelihood, Clean Water, Legal Aid, and Speedy Trial."
+            ],
+            toc: [
+                { id: "core-principle", label: "Core Scope of Article 21" },
+                { id: "privacy-ruling", label: "Privacy Landmark (Puttaswamy)" },
+                { id: "expanded-rights", label: "The Spectrum of Expanded Rights" }
+            ],
+            takeaways: [
+                "Procedure established by law must be just, fair, and reasonable (Maneka Gandhi doctrine).",
+                "Illegal police detention or wiretapping without statutory warrant violates Article 21."
+            ],
+            relatedLaw: "Constitution of India Article 21",
+            relatedRights: "Right to Life & Personal Liberty",
+            relatedTerms: ["Article 21", "Procedure Established by Law", "Due Process"]
+        },
+        {
+            slug: "article-14-right-to-equality-explained",
+            title: "What Does the Right to Equality Under Article 14 Mean?",
+            category: "Constitution",
+            catKey: "constitution",
+            type: "LEGAL CONCEPT",
+            typeKey: "concept",
+            date: "20 AUG 2026",
+            readTime: "6 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Analyzing Equality Before Law and Equal Protection of Laws under Article 14, reasonable classification, and anti-arbitrariness principles.",
+            tags: ["Article 14", "Equality", "Reasonable Classification", "Rule of Law"],
+            atAGlance: [
+                "Equality Before Law (British concept) + Equal Protection of Laws (American concept).",
+                "Permits reasonable classification based on intelligible differentia.",
+                "Non-arbitrariness doctrine: Arbitrary executive state action strikes at Article 14."
+            ],
+            toc: [
+                { id: "two-limbs", label: "The Two Limbs of Article 14" },
+                { id: "classification-test", label: "The Test of Reasonable Classification" }
+            ],
+            takeaways: [
+                "Equals must be treated equally; unequals cannot be treated equally without affirmative action.",
+                "State policies failing intelligible differentia test are declared unconstitutional."
+            ],
+            relatedLaw: "Constitution of India Article 14",
+            relatedRights: "Right to Equality",
+            relatedTerms: ["Article 14", "Rule of Law", "Arbitrariness"]
+        },
+        {
+            slug: "article-32-constitutional-remedies-writs",
+            title: "How Constitutional Remedies Work Under Article 32 & 226",
+            category: "Constitution",
+            catKey: "constitution",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "15 AUG 2026",
+            readTime: "8 MIN READ",
+            author: "Farhan Khan",
+            summary: "The heart and soul of the Indian Constitution: how citizens file Habeas Corpus, Mandamus, Certiorari, Prohibition, and Quo Warranto writs.",
+            tags: ["Article 32", "Writs", "Supreme Court", "Habeas Corpus"],
+            atAGlance: [
+                "Dr. B.R. Ambedkar termed Article 32 the 'Heart and Soul' of the Constitution.",
+                "Article 32 petition lies directly before Supreme Court for fundamental rights breach.",
+                "Article 226 empowers High Courts for fundamental rights + any other statutory legal right."
+            ],
+            toc: [
+                { id: "writ-overview", label: "Overview of Constitutional Remedies" },
+                { id: "five-writs", label: "The 5 Constitutional Writs Explained" }
+            ],
+            takeaways: [
+                "Habeas Corpus is an emergency remedy against illegal police custody.",
+                "Mandamus compels public officers to perform mandatory legal duties."
+            ],
+            relatedLaw: "Constitution Articles 32 & 226",
+            relatedRights: "Right to Constitutional Remedies",
+            relatedTerms: ["Article 32", "Habeas Corpus", "Mandamus"]
+        },
+        {
+            slug: "understanding-bail-criminal-law-bnss",
+            title: "Understanding Bail, Anticipatory Bail, and Surety in Indian Criminal Law",
+            category: "Criminal Law",
+            catKey: "criminal",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "10 AUG 2026",
+            readTime: "7 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Detailed breakdown of bailable vs non-bailable offences, anticipatory bail under BNSS Sec 482, regular bail Sec 479/480, and bail bond conditions.",
+            tags: ["Bail", "Anticipatory Bail", "BNSS 482", "Surety", "Personal Bond"],
+            atAGlance: [
+                "Bail is a statutory right in bailable offences (BNSS Sec 478).",
+                "Anticipatory bail protects individuals apprehending arrest in non-bailable cases.",
+                "BNSS Section 479 allows first-time offenders to seek release after completing 1/3rd sentence in detention."
+            ],
+            toc: [
+                { id: "types-of-bail", label: "Types of Bail in India" },
+                { id: "anticipatory-process", label: "Anticipatory Bail Application" }
+            ],
+            takeaways: [
+                "Rule: 'Bail is the rule, jail is the exception' (State of Rajasthan v. Balchand).",
+                "Failure to abide by bail conditions results in immediate bail cancellation."
+            ],
+            relatedLaw: "Bharatiya Nagarik Suraksha Sanhita Sec 478-482",
+            relatedRights: "Right to Personal Freedom",
+            relatedTerms: ["Bail", "Anticipatory Bail", "Bail Bond"]
+        },
+        {
+            slug: "fir-vs-police-complaint-difference",
+            title: "FIR vs Police Complaint: Key Legal Differences Explained",
+            category: "Criminal Law",
+            catKey: "criminal",
+            type: "STUDENT NOTE",
+            typeKey: "student",
+            date: "05 AUG 2026",
+            readTime: "5 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Comparing First Information Report (FIR) under BNSS 173 with written police complaints under BNSS 174 (NCR), investigation rights, and remedies.",
+            tags: ["FIR", "Police Complaint", "Cognizable", "NCR", "BNSS 173"],
+            atAGlance: [
+                "FIR applies strictly to cognizable offences; police can arrest without warrant.",
+                "Police complaints apply to non-cognizable cases; entered into Non-Cognizable Register.",
+                "Informant gets a mandatory free copy of FIR with official registration stamp."
+            ],
+            toc: [
+                { id: "core-differences", label: "Core Differences Table" },
+                { id: "when-to-file", label: "When to Lodge FIR vs Complaint" }
+            ],
+            takeaways: [
+                "Police cannot investigate non-cognizable complaint without Magistrate's order.",
+                "Zero FIR can be lodged at any police station regardless of jurisdiction."
+            ],
+            relatedLaw: "BNSS Section 173 & 174",
+            relatedRights: "Right to Information on Offence",
+            relatedTerms: ["FIR", "Cognizable Offence", "NCR"]
+        },
+        {
+            slug: "post-fir-investigation-chargesheet",
+            title: "What Happens After an FIR Is Registered? Police Investigation & Chargesheet",
+            category: "Criminal Law",
+            catKey: "criminal",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "01 AUG 2026",
+            readTime: "6 MIN READ",
+            author: "Farhan Khan",
+            summary: "Step-by-step criminal process: spot inspection, witness statements under BNSS 180, search warrants, arrest memos, and final chargesheet under BNSS 193.",
+            tags: ["Police Investigation", "Chargesheet", "BNSS 193", "Closure Report"],
+            atAGlance: [
+                "Investigating Officer (IO) collects evidence and records witness statements.",
+                "Statutory 60 to 90-day deadline for filing final chargesheet in court.",
+                "If IO finds no evidence, police submit a Final Closure Report."
+            ],
+            toc: [
+                { id: "investigation-steps", label: "Investigation Stages" },
+                { id: "chargesheet-filing", label: "Filing Chargesheet (Sec 193 BNSS)" }
+            ],
+            takeaways: [
+                "Complainant has right to receive notice if police file a closure report.",
+                "Accused entitled to complete chargesheet copy free of cost before trial."
+            ],
+            relatedLaw: "BNSS Section 176-193",
+            relatedRights: "Right to Fair Trial",
+            relatedTerms: ["Chargesheet", "Investigating Officer", "Closure Report"]
+        },
+        {
+            slug: "understanding-legal-notices-india",
+            title: "Understanding Formal Legal Notices in India: Draft, Response, and Timelines",
+            category: "Civil Law",
+            catKey: "civil",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "25 JULY 2026",
+            readTime: "6 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Why legal notices are served before civil suits, mandatory elements, delivery via Registered Post AD, statutory response windows, and legal consequences.",
+            tags: ["Legal Notice", "Registered Post", "Civil Suit", "CPC Sec 80"],
+            atAGlance: [
+                "Formal written communication served through advocate before initiating civil litigation.",
+                "Gives opposite party 15 to 60 days to resolve dispute out of court.",
+                "Mandatory in Cheque Bounce (Sec 138 NI Act) and suits against Government (CPC Sec 80)."
+            ],
+            toc: [
+                { id: "notice-structure", label: "Structure of a Legal Notice" },
+                { id: "responding-rules", label: "How to Respond to a Notice" }
+            ],
+            takeaways: [
+                "Never ignore a formal legal notice; failure to reply creates adverse inference in court.",
+                "Proof of delivery (Registered Post AD / Speed Post tracking) is mandatory evidence."
+            ],
+            relatedLaw: "Code of Civil Procedure Sec 80 & NI Act Sec 138",
+            relatedRights: "Pre-Litigation Settlement Safeguards",
+            relatedTerms: ["Legal Notice", "Registered Post AD", "Cause of Action"]
+        },
+        {
+            slug: "consumer-complaints-cpa-2019-guide",
+            title: "Consumer Complaints: Statutory Rights and Compensation under CPA 2019",
+            category: "Consumer Law",
+            catKey: "consumer",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "20 JULY 2026",
+            readTime: "7 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "How Consumer Protection Act 2019 protects buyers from defective goods, service deficiency, misleading ads, product liability, and e-Daakhil filing.",
+            tags: ["CPA 2019", "Consumer Court", "e-Daakhil", "Product Liability"],
+            atAGlance: [
+                "Pecuniary limits: District Commission (up to 50 Lakhs), State (up to 2 Crores), National (above 2 Crores).",
+                "E-Commerce platforms held legally responsible for seller misconduct and fake items.",
+                "Online complaint submission available via edaakhil.nic.in without hiring a lawyer."
+            ],
+            toc: [
+                { id: "consumer-rights", label: "6 Statutory Consumer Rights" },
+                { id: "filing-edaakhil", label: "Filing Online via e-Daakhil" }
+            ],
+            takeaways: [
+                "Product liability provisions allow claiming damages from manufacturer for injury.",
+                "National Consumer Helpline 1915 provides instant pre-court mediation."
+            ],
+            relatedLaw: "Consumer Protection Act 2019",
+            relatedRights: "Consumer Safeguards & Product Liability",
+            relatedTerms: ["Deficiency in Service", "Product Liability", "e-Daakhil"]
+        },
+        {
+            slug: "tenant-landlord-disputes-model-tenancy",
+            title: "Understanding Tenant and Landlord Disputes under Model Tenancy Act",
+            category: "Property & Tenancy",
+            catKey: "property",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "15 JULY 2026",
+            readTime: "6 MIN READ",
+            author: "Farhan Khan",
+            summary: "Model Tenancy Act provisions: security deposit caps (2 months residential), 30-day deposit refund timeline, rent authority jurisdiction, and eviction notice rules.",
+            tags: ["Model Tenancy Act", "Security Deposit", "Rent Agreement", "Eviction"],
+            atAGlance: [
+                "Caps security deposit to maximum 2 months rent for residential premises.",
+                "Landlords cannot cut off essential utilities (water, electricity) during disputes.",
+                "Mandatory registration of rent agreements with District Rent Authority."
+            ],
+            toc: [
+                { id: "deposit-limits", label: "Security Deposit & Refund Rules" },
+                { id: "eviction-grounds", label: "Valid Grounds for Eviction Notice" }
+            ],
+            takeaways: [
+                "Deductions from security deposit must be backed by original repair receipts.",
+                "Forced lockouts by landlords without Rent Court order are illegal."
+            ],
+            relatedLaw: "Model Tenancy Act & State Rent Acts",
+            relatedRights: "Tenant Protection against Arbitrary Eviction",
+            relatedTerms: ["Rent Agreement", "Rent Controller", "Security Deposit"]
+        },
+        {
+            slug: "cyber-fraud-helpline-1930-legal-response",
+            title: "Cyber Fraud: Understanding the Golden Hour Response & 1930 Helpline",
+            category: "Cyber & Technology",
+            catKey: "cyber",
+            type: "LAW UPDATE",
+            typeKey: "update",
+            date: "10 JULY 2026",
+            readTime: "5 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Emergency protocol for financial cyber fraud: dialing 1930 helpline within Golden Hour, account freezing mechanisms, and cybercrime.gov.in portal reporting.",
+            tags: ["Cyber Crime", "1930 Helpline", "Golden Hour", "Financial Fraud"],
+            atAGlance: [
+                "Golden Hour (first 1-2 hours) is critical to freeze stolen money in recipient bank accounts.",
+                "1930 Helpline connects directly to National Cybercrime Reporting Portal (NCRP).",
+                "Automated bank alerts block fraud money movement across interbank payment gateways."
+            ],
+            toc: [
+                { id: "golden-hour", label: "The Golden Hour Concept" },
+                { id: "ncrp-portal", label: "Filing Complaint on cybercrime.gov.in" }
+            ],
+            takeaways: [
+                "Keep transaction reference numbers (UTR), bank SMS, and suspect UPI IDs ready.",
+                "RBI guidelines provide zero liability if unauthorized electronic transaction reported in 3 days."
+            ],
+            relatedLaw: "Information Technology Act 2000 & RBI Circulars",
+            relatedRights: "Financial Customer Protection",
+            relatedTerms: ["1930 Helpline", "NCRP", "Zero Liability"]
+        },
+        {
+            slug: "digital-privacy-data-protection-act",
+            title: "Digital Privacy and Indian Law: The Digital Personal Data Protection Act 2023",
+            category: "Cyber & Technology",
+            catKey: "cyber",
+            type: "LEGAL CONCEPT",
+            typeKey: "concept",
+            date: "05 JULY 2026",
+            readTime: "7 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Analyzing DPDP Act 2023: Data Principal rights, Data Fiduciary obligations, notice consent requirements, and penalties up to ₹250 Crores for data breaches.",
+            tags: ["DPDP Act 2023", "Data Privacy", "Consent", "Data Protection Board"],
+            atAGlance: [
+                "Establishes statutory framework for processing digital personal data in India.",
+                "Data Fiduciaries must obtain clear, explicit, and withdrawable consent.",
+                "Data Principals possess Right to Access, Correction, Erasure, and Grievance Redressal."
+            ],
+            toc: [
+                { id: "dpdp-architecture", label: "Architecture of DPDP Act 2023" },
+                { id: "citizen-rights", label: "Rights of Data Principals" }
+            ],
+            takeaways: [
+                "Penalties up to ₹250 Crores for failure to take reasonable security safeguards against breaches.",
+                "Establishes Data Protection Board of India for digital inquiry and enforcement."
+            ],
+            relatedLaw: "Digital Personal Data Protection Act 2023",
+            relatedRights: "Right to Data Privacy under Art 21",
+            relatedTerms: ["Data Principal", "Data Fiduciary", "Consent Notice"]
+        },
+        {
+            slug: "posh-act-workplace-sexual-harassment",
+            title: "Understanding Workplace Sexual Harassment Law: The POSH Act 2013 Framework",
+            category: "Women & Family",
+            catKey: "women",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "01 JULY 2026",
+            readTime: "6 MIN READ",
+            author: "Farhan Khan",
+            summary: "Complete guide on Sexual Harassment of Women at Workplace Act 2013: Internal Committee (IC) setup, 90-day inquiry timelines, interim relief, and confidentiality.",
+            tags: ["POSH Act 2013", "Workplace Harassment", "Internal Committee", "IC Inquiry"],
+            atAGlance: [
+                "Mandatory for all organizations with 10+ employees to constitute Internal Committee (IC).",
+                "IC headed by senior woman employee; minimum 50% women members + external independent member.",
+                "Complaint must be lodged in writing within 3 months of incident."
+            ],
+            toc: [
+                { id: "ic-constitution", label: "Constitution of Internal Committee" },
+                { id: "inquiry-procedure", label: "90-Day Inquiry Procedure & Relief" }
+            ],
+            takeaways: [
+                "Complainant entitled to interim relief (transfer, 3 months paid leave) during inquiry.",
+                "Strict statutory confidentiality: Publishing victim identity invites statutory penalty."
+            ],
+            relatedLaw: "POSH Act 2013",
+            relatedRights: "Right to Safe Workplace under Art 14 & 21",
+            relatedTerms: ["Internal Committee", "Quid Pro Quo", "Hostile Work Environment"]
+        },
+        {
+            slug: "rti-act-framework-citizen-empowerment",
+            title: "RTI: Understanding the Right to Information Framework & Appeals Process",
+            category: "Citizen Rights",
+            catKey: "rights",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "25 JUNE 2026",
+            readTime: "6 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Drafting RTI queries under RTI Act 2005, identifying Public Information Officer (PIO), statutory 30-day deadline, First Appeal, and Central Information Commission.",
+            tags: ["RTI Act 2005", "PIO", "First Appeal", "Public Authority"],
+            atAGlance: [
+                "Empowers citizens to request information from public authorities holding government records.",
+                "PIO legally bound to supply information within 30 days (48 hours for life/liberty).",
+                "Section 8 specifies limited exemptions (national security, trade secrets)."
+            ],
+            toc: [
+                { id: "drafting-rti", label: "How to Draft Precise RTI Queries" },
+                { id: "appeals-process", label: "First Appeal & Second Appeal Timelines" }
+            ],
+            takeaways: [
+                "Do not ask for opinions or hypothetical answers; request specific existing records.",
+                "Penalty of ₹250 per day imposed on PIO for unwarranted delay or refusal."
+            ],
+            relatedLaw: "Right to Information Act 2005",
+            relatedRights: "Freedom of Information under Art 19(1)(a)",
+            relatedTerms: ["RTI", "Public Information Officer", "First Appeal"]
+        },
+        {
+            slug: "legal-aid-lsa-act-access-justice",
+            title: "Legal Aid and Access to Justice under Legal Services Authorities Act 1987",
+            category: "Citizen Rights",
+            catKey: "rights",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "20 JUNE 2026",
+            readTime: "5 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Who qualifies for free legal services in India (women, children, SC/ST, custody victims, low income), DLSA/SLSA role, and Lok Adalat dispute settlement.",
+            tags: ["Legal Aid", "LSA Act 1987", "DLSA", "Lok Adalat", "Free Lawyer"],
+            atAGlance: [
+                "Article 39A mandates State to provide free legal aid to ensure justice is not denied due to economic disability.",
+                "Section 12 LSA Act lists eligible groups: women, children, SC/ST, custody victims, low-income citizens.",
+                "District Legal Services Authority (DLSA) assigns panel advocate free of costs."
+            ],
+            toc: [
+                { id: "eligibility-sec12", label: "Eligibility under Section 12" },
+                { id: "lok-adalat", label: "Lok Adalat & Pre-Litigation Settlement" }
+            ],
+            takeaways: [
+                "Free legal aid covers court fee, lawyer fees, drafting charges, and document copies.",
+                "Lok Adalat awards hold finality equivalent to a civil court decree; no appeal lies against mutual settlement."
+            ],
+            relatedLaw: "Legal Services Authorities Act 1987 & Art 39A",
+            relatedRights: "Right to Free Legal Services",
+            relatedTerms: ["DLSA", "Lok Adalat", "Section 12 LSA"]
+        },
+        {
+            slug: "supreme-court-fundamental-rights-interpretation",
+            title: "How Indian Courts Interpret Fundamental Rights & Basic Structure Doctrine",
+            category: "Courts & Judgments",
+            catKey: "courts",
+            type: "COURT & JUDGMENT",
+            typeKey: "judgment",
+            date: "15 JUNE 2026",
+            readTime: "8 MIN READ",
+            author: "Farhan Khan",
+            summary: "Analyzing landmark Supreme Court rulings (*Kesavananda Bharati*, *Maneka Gandhi*, *Minerva Mills*) that established the Basic Structure Doctrine and purposive interpretation.",
+            tags: ["Supreme Court", "Basic Structure", "Kesavananda Bharati", "Judicial Review"],
+            atAGlance: [
+                "Kesavananda Bharati (1973): Parliament cannot alter basic structure of Constitution.",
+                "Judicial review, supremacy of Constitution, secularism, and judicial independence constitute basic features.",
+                "Maneka Gandhi (1978): Expands procedure established by law to include fairness & reasonableness."
+            ],
+            toc: [
+                { id: "basic-structure-origin", label: "Origin of Basic Structure Doctrine" },
+                { id: "purposive-rule", label: "Purposive & Harmonious Construction" }
+            ],
+            takeaways: [
+                "Constitutional amendments violating basic structure are declared void by Supreme Court.",
+                "Fundamental Rights (Part III) and Directive Principles (Part IV) form the core balance."
+            ],
+            relatedLaw: "Constitution of India Part III & Art 368",
+            relatedRights: "Right to Judicial Review",
+            relatedTerms: ["Basic Structure", "Judicial Review", "Purposive Construction"]
+        },
+        {
+            slug: "cheque-bounce-138-ni-act-procedure",
+            title: "Cheque Bounce Laws: Section 138 NI Act Procedure & Statutory Notice",
+            category: "Business & Corporate",
+            catKey: "business",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "10 JUNE 2026",
+            readTime: "6 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Criminal prosecution for dishonored cheques under Negotiable Instruments Act: bank memo, mandatory 30-day statutory notice, 15-day payment window, and magistrate complaint.",
+            tags: ["Cheque Bounce", "Section 138 NI Act", "Statutory Notice", "Bank Memo"],
+            atAGlance: [
+                "Cheque dishonored due to insufficient funds constitutes offence under Sec 138 NI Act.",
+                "Mandatory 30-day statutory legal notice period from receipt of bank dishonor memo.",
+                "Payee must grant 15-day window to drawer to pay cheque amount before filing complaint."
+            ],
+            toc: [
+                { id: "statutory-timeline", label: "Mandatory Statutory Timelines" },
+                { id: "court-filing", label: "Filing Complaint in Magistrate Court" }
+            ],
+            takeaways: [
+                "Complaint must be filed within 30 days after expiry of 15-day notice period.",
+                "Offence carries penalty up to double the cheque amount or 2 years imprisonment."
+            ],
+            relatedLaw: "Negotiable Instruments Act Section 138",
+            relatedRights: "Financial Enforcement Rights",
+            relatedTerms: ["Section 138 NI Act", "Dishonor Memo", "Statutory Notice"]
+        },
+        {
+            slug: "property-partition-legal-heir-rights",
+            title: "Ancestral Property & Legal Heir Succession Rights in Hindu Law",
+            category: "Property & Tenancy",
+            catKey: "property",
+            type: "LEGAL EXPLAINER",
+            typeKey: "explainer",
+            date: "05 JUNE 2026",
+            readTime: "7 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Coparcenary rights, Hindu Succession (Amendment) Act 2005 equal rights for daughters, partition suits, and legal heir certificate procedures.",
+            tags: ["Ancestral Property", "Hindu Succession Act", "Coparcener", "Daughter Rights"],
+            atAGlance: [
+                "2005 Amendment granted equal coparcenary rights to daughters by birth in ancestral property.",
+                "Vineeta Sharma v. Rakesh Sharma landmark (2020) confirmed retroactive coparcenary status.",
+                "Partition suit can be filed in civil court if coparceners refuse mutual partition."
+            ],
+            toc: [
+                { id: "coparcenary-explained", label: "Coparcenary vs Self-Acquired Property" },
+                { id: "daughter-rights", label: "Equal Rights of Daughters (Vineeta Sharma)" }
+            ],
+            takeaways: [
+                "Self-acquired property of father can be willed away freely without children consent.",
+                "Ancestral property remains undivided up to 4 generations of joint family."
+            ],
+            relatedLaw: "Hindu Succession Act 1956 & 2005 Amendment",
+            relatedRights: "Gender Equality in Inheritance",
+            relatedTerms: ["Coparcener", "Partition Suit", "Legal Heir Certificate"]
+        },
+        {
+            slug: "motor-accidents-mact-compensation-rules",
+            title: "Motor Accident Compensation: MACT Claim Tribunal Procedure",
+            category: "Labour & Employment",
+            catKey: "labour",
+            type: "CITIZEN GUIDE",
+            typeKey: "guide",
+            date: "01 JUNE 2026",
+            readTime: "6 MIN READ",
+            author: "Farhan Khan",
+            summary: "Filing claim before Motor Accident Claims Tribunal (MACT) under MV Act, Detailed Accident Report (DAR), third-party insurance liability, and compensation calculation.",
+            tags: ["MACT", "Motor Vehicles Act", "DAR Report", "Third Party Insurance"],
+            atAGlance: [
+                "MACT tribunals hear claims for road accident injury, permanent disability, or death.",
+                "Police Detailed Accident Report (DAR) serves as primary evidence in tribunal.",
+                "Third-party insurance cover mandatory for all vehicles registered in India."
+            ],
+            toc: [
+                { id: "mact-procedure", label: "MACT Claim Procedure & DAR" },
+                { id: "compensation-formula", label: "Calculating Compensation Amounts" }
+            ],
+            takeaways: [
+                "No-fault liability provisions grant immediate interim relief to victims.",
+                "Multiplier method used by tribunals to compute future loss of income."
+            ],
+            relatedLaw: "Motor Vehicles Act 1988 (2019 Amendment)",
+            relatedRights: "Road Accident Victim Compensation Rights",
+            relatedTerms: ["MACT", "DAR", "Third Party Insurance"]
+        },
+        {
+            slug: "arbitration-adr-commercial-dispute-resolution",
+            title: "Arbitration & Conciliation Act: Modern Alternative Dispute Resolution in India",
+            category: "Business & Corporate",
+            catKey: "business",
+            type: "LEGAL CONCEPT",
+            typeKey: "concept",
+            date: "25 MAY 2026",
+            readTime: "7 MIN READ",
+            author: "Kamran Sheikh",
+            summary: "Alternative Dispute Resolution (ADR) under Arbitration & Conciliation Act 1996: arbitration agreements, arbitral tribunal awards, 12-month timeline, and Section 34 challenge.",
+            tags: ["Arbitration", "ADR", "Arbitral Award", "Section 34"],
+            atAGlance: [
+                "ADR offers out-of-court binding resolution for commercial and contractual disputes.",
+                "2015 & 2019 Amendments mandate 12-month fast-track timeline for arbitral awards.",
+                "Arbitral award holds finality and enforceability equal to a civil court decree."
+            ],
+            toc: [
+                { id: "arbitration-clause", label: "Drafting Valid Arbitration Clauses" },
+                { id: "enforcement-award", label: "Enforcement & Challenge under Sec 34" }
+            ],
+            takeaways: [
+                "Courts strictly enforce arbitration clauses and refer parties to arbitration (Sec 8).",
+                "Setting aside arbitral award under Sec 34 limited to narrow grounds (patent illegality)."
+            ],
+            relatedLaw: "Arbitration and Conciliation Act 1996",
+            relatedRights: "Speedy Dispute Settlement Rights",
+            relatedTerms: ["Arbitration", "Arbitral Award", "ADR"]
+        },
+        {
+            slug: "understanding-workplace-posh-ic-procedure",
+            title: "POSH Inquiry Procedure: Duties of Employers & Internal Committees",
+            category: "Labour & Employment",
+            catKey: "labour",
+            type: "LAW UPDATE",
+            typeKey: "update",
+            date: "20 MAY 2026",
+            readTime: "6 MIN READ",
+            author: "NYAYI Editorial",
+            summary: "Detailed walk-through of POSH Internal Committee inquiry timelines, conciliation, principles of natural justice, and employer compliance mandates.",
+            tags: ["POSH Act", "Internal Committee", "Natural Justice", "Employer Compliance"],
+            atAGlance: [
+                "IC must complete inquiry within maximum 90 days of receiving written complaint.",
+                "Principles of Natural Justice must be followed: both parties get opportunity to present evidence.",
+                "Employer must act on IC recommendations within 60 days of receiving report."
+            ],
+            toc: [
+                { id: "conciliation-step", label: "Conciliation Option before Inquiry" },
+                { id: "ic-report-action", label: "IC Final Report & Employer Action" }
+            ],
+            takeaways: [
+                "Non-compliance with POSH IC setup attracts ₹50,000 fine and business license cancellation.",
+                "Annual POSH compliance report filing mandatory with District Officer."
+            ],
+            relatedLaw: "POSH Act 2013 & Rules",
+            relatedRights: "Dignity at Workplace",
+            relatedTerms: ["Internal Committee", "POSH Compliance", "Natural Justice"]
+        }
+    ];
+
+    const articlesHub = `
+    ${renderHead('Legal Articles, Explainers & Editorial Journal | NYAYI Legal AI', 'Understand important developments in Indian law through clear explainers, legal analysis, BNS 2023 updates, and practical legal insights.', 'Indian Law Articles, legal news India, law explainers, BNS updates, Supreme Court judgments explained, Constitution explainers', '/articles.html', 0)}
     ${renderHeader('articles', 0)}
-    <section class="page-header">
-        <div class="container" data-aos="zoom-in">
-            <h1>Legal <span>Articles</span></h1>
-            <p>Editorial updates, deep-dive law explainers, and technology insights.</p>
+
+    <!-- SECTION 1: HERO HEADER -->
+    <section class="page-header" style="padding: 70px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+        <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
+                <i class="fas fa-newspaper"></i> NYAYI Legal Journal
+            </span>
+            <h1 style="font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; color: #111;">
+                Legal Articles & <span style="color:#00C853;">Updates</span>
+            </h1>
+            <p style="font-size: 1.25rem; color: #555; max-width: 780px; margin: 0 auto 30px; line-height: 1.6;">
+                Understand important developments in Indian law through clear explainers, legal analysis, BNS 2023 breakdowns, and practical citizen insights.
+            </p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="#explore-articles" class="card-link" style="background:#00C853; color:#fff; padding:14px 32px; border-radius:12px; font-weight:700; text-decoration:none; font-size:15px; box-shadow: 0 4px 14px rgba(0,200,83,0.3);">
+                    Explore Articles <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="#popular-topics" class="card-link" style="background:#111; color:#fff; padding:14px 32px; border-radius:12px; font-weight:700; text-decoration:none; font-size:15px;">
+                    <i class="fas fa-th-large"></i> Browse Legal Topics
+                </a>
+            </div>
         </div>
     </section>
-    <section style="padding:40px 0 100px; background:#fff;">
+
+    <!-- SECTION 2: FEATURED ARTICLE ("EDITOR'S PICK") -->
+    <section style="padding: 50px 0; background: #fff;">
         <div class="container">
-            <div class="articles-grid">
-                ${articles.map(art => `
-                    <div class="article-card" data-aos="fade-up">
-                        <div>
-                            <span class="card-tag">${art.category} • ${art.date}</span>
-                            <h3 style="margin-top:8px;">${art.title}</h3>
-                            <p>${art.summary}</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+                <span style="font-size:12px; font-weight:900; color:#00C853; text-transform:uppercase; letter-spacing:1px; background:#e8f5e9; padding:4px 14px; border-radius:20px;">
+                    <i class="fas fa-star"></i> Editor's Pick
+                </span>
+                <span style="font-size:13px; color:#718096; font-weight:600;">Featured Editorial Analysis</span>
+            </div>
+
+            <div class="editor-pick-grid">
+                <!-- DOMINANT FEATURE CARD -->
+                <div class="editor-pick-card" data-aos="fade-up">
+                    <div>
+                        <div style="display:flex; gap:12px; align-items:center; margin-bottom:14px; flex-wrap:wrap;">
+                            <span class="type-badge update">LAW UPDATE</span>
+                            <span style="font-size:12px; font-weight:700; color:#00C853; background:#f0fdf4; padding:3px 10px; border-radius:12px;">CRIMINAL LAW</span>
+                            <span style="font-size:12px; color:#a0aec0; font-weight:600;"><i class="far fa-calendar-alt"></i> 13 SEPT 2026</span>
+                            <span style="font-size:12px; color:#a0aec0; font-weight:600;"><i class="far fa-clock"></i> 7 MIN READ</span>
                         </div>
-                        <div style="border-top:1px solid #edf2f7; padding-top:12px; font-size:13px; color:#718096; display:flex; justify-content:space-between;">
-                            <span>By ${art.author}</span>
-                            <span>${art.readTime}</span>
+                        <h2 style="font-size:26px; font-weight:900; color:#111; line-height:1.3; margin-bottom:14px;">
+                            Understanding Bharatiya Nyaya Sanhita (BNS) 2023: Key Structural Shifts from IPC
+                        </h2>
+                        <p style="font-size:15px; color:#555; line-height:1.65; margin-bottom:20px;">
+                            A comprehensive structural breakdown of how BNS 2023 replaces the 1860 IPC, introducing statutory community service penalties, codified organized crime definitions, and enhanced protections for women and children.
+                        </p>
+                        <div style="background:#f8fafc; border-left:4px solid #00C853; padding:14px; border-radius:10px; margin-bottom:24px;">
+                            <strong style="font-size:12px; font-weight:900; color:#2d3748; text-transform:uppercase;">KEY TAKEAWAY:</strong>
+                            <p style="font-size:13px; color:#4a5568; margin:2px 0 0;">Replaces 164-year-old IPC with 358 structured sections and modern digital evidence protocols.</p>
+                        </div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:16px;">
+                        <span style="font-size:13px; font-weight:700; color:#4a5568;">By Kamran Sheikh • NYAYI Lead Legal Researcher</span>
+                        <a href="articles/bns-2023-structural-shifts.html" class="card-link" style="background:#111; color:#fff; padding:10px 22px; border-radius:10px; font-weight:700; font-size:13.5px; text-decoration:none;">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2 SUPPORTING CARDS -->
+                <div style="display:flex; flex-direction:column; gap:20px;">
+                    <div class="editor-supporting-card" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+                                <span class="type-badge explainer">LEGAL EXPLAINER</span>
+                                <span style="font-size:11px; color:#718096;">10 SEPT 2026</span>
+                            </div>
+                            <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:8px; line-height:1.35;">
+                                Bharatiya Nagarik Suraksha Sanhita: What Changed in Criminal Procedure?
+                            </h3>
+                            <p style="font-size:13.5px; color:#666; line-height:1.5; margin-bottom:14px;">
+                                Mandating electronic FIRs, forensic sampling for 7+ year offences, and 14-day preliminary inquiries.
+                            </p>
+                        </div>
+                        <a href="articles/bnss-2023-criminal-procedure-changes.html" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">
+                            Read Article &rarr;
+                        </a>
+                    </div>
+
+                    <div class="editor-supporting-card" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+                                <span class="type-badge concept">LEGAL CONCEPT</span>
+                                <span style="font-size:11px; color:#718096;">05 SEPT 2026</span>
+                            </div>
+                            <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:8px; line-height:1.35;">
+                                Bharatiya Sakshya Adhiniyam: Understanding India's New Evidence Framework
+                            </h3>
+                            <p style="font-size:13.5px; color:#666; line-height:1.5; margin-bottom:14px;">
+                                Recognizing digital records as primary evidence and Section 63 certificate rules.
+                            </p>
+                        </div>
+                        <a href="articles/bsa-2023-evidence-framework.html" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">
+                            Read Article &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: PROMINENT ARTICLE SEARCH ENGINE -->
+    <section style="padding: 30px 0; background: #fafbfc; border-top: 1px solid #edf2f7; border-bottom: 1px solid #edf2f7;">
+        <div class="container" style="max-width: 1000px;">
+            <div style="text-align:center; margin-bottom:16px;">
+                <h2 style="font-size:22px; font-weight:800; color:#111;">What Are You Looking For?</h2>
+                <p style="font-size:14px; color:#666; margin:0;">Search articles, legal topics, statutory acts, or keywords</p>
+            </div>
+            
+            <div class="article-search-wrapper">
+                <i class="fas fa-search article-search-icon"></i>
+                <input type="text" id="articleSearchInput" class="article-search-input" oninput="handleArticleSearch()" placeholder="Search articles, legal topics or keywords (e.g. BNS, BNSS, Bail, Supreme Court, Article 21, Cyber Crime)...">
+                <button id="articleClearBtn" class="article-clear-btn" onclick="clearArticleSearch()"><i class="fas fa-times-circle"></i></button>
+            </div>
+            
+            <div style="margin-top: 14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;">
+                <span style="font-size:12px; font-weight:800; color:#718096; text-transform:uppercase;">Quick Topics:</span>
+                <button onclick="setArticleSearch('BNS')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">BNS 2023</button>
+                <button onclick="setArticleSearch('BNSS')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">BNSS</button>
+                <button onclick="setArticleSearch('BSA')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">BSA</button>
+                <button onclick="setArticleSearch('Supreme Court')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Supreme Court</button>
+                <button onclick="setArticleSearch('Cyber Crime')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Cyber Crime</button>
+                <button onclick="setArticleSearch('Consumer')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Consumer Rights</button>
+                <button onclick="setArticleSearch('Constitution')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Constitution</button>
+                <button onclick="setArticleSearch('Property')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Property Law</button>
+                <button onclick="setArticleSearch('POSH')" class="filter-btn" style="padding:4px 14px; font-size:12.5px;">Women's Rights</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: CATEGORY SELECTOR (14 CHIPS) -->
+    <section style="padding: 40px 0 20px; background: #fff;">
+        <div class="container">
+            <div class="filter-tags" style="justify-content:center; gap:10px;">
+                <button class="filter-btn active" onclick="filterArticleCat('all', this)">ALL</button>
+                <button class="filter-btn" onclick="filterArticleCat('updates', this)">LEGAL UPDATES</button>
+                <button class="filter-btn" onclick="filterArticleCat('laws', this)">INDIAN LAWS</button>
+                <button class="filter-btn" onclick="filterArticleCat('courts', this)">COURTS & JUDGMENTS</button>
+                <button class="filter-btn" onclick="filterArticleCat('constitution', this)">CONSTITUTION</button>
+                <button class="filter-btn" onclick="filterArticleCat('criminal', this)">CRIMINAL LAW</button>
+                <button class="filter-btn" onclick="filterArticleCat('civil', this)">CIVIL LAW</button>
+                <button class="filter-btn" onclick="filterArticleCat('consumer', this)">CONSUMER LAW</button>
+                <button class="filter-btn" onclick="filterArticleCat('cyber', this)">CYBER & TECH</button>
+                <button class="filter-btn" onclick="filterArticleCat('women', this)">WOMEN & FAMILY</button>
+                <button class="filter-btn" onclick="filterArticleCat('property', this)">PROPERTY & TENANCY</button>
+                <button class="filter-btn" onclick="filterArticleCat('business', this)">BUSINESS & CORPORATE</button>
+                <button class="filter-btn" onclick="filterArticleCat('labour', this)">LABOUR & EMPLOYMENT</button>
+                <button class="filter-btn" onclick="filterArticleCat('rights', this)">CITIZEN RIGHTS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: LATEST ARTICLES COLLECTION GRID (24+ CARDS) -->
+    <section id="explore-articles" style="padding: 40px 0 90px; background: #fff;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
+                <h3 style="font-size:22px; font-weight:800; color:#111;" id="articleResultsHeading">Showing All 24 Articles & Updates</h3>
+                <span style="font-size:14px; color:#718096;" id="articleResultsCount">24 articles</span>
+            </div>
+
+            <div class="guides-grid-enhanced" id="articlesContainer" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap:24px;">
+                ${expandedArticles.map(item => `
+                    <div class="guide-card-enhanced article-item-card" data-category="${item.catKey}" data-title="${item.title.toLowerCase()}" data-aos="fade-up" style="background:#fff; border:1px solid #edf2f7; border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.3s ease; box-shadow:0 6px 20px rgba(0,0,0,0.03);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+                                <span class="type-badge ${item.typeKey}">${item.type}</span>
+                                <span style="font-size:12px; font-weight:700; color:#718096;"><i class="far fa-calendar-alt"></i> ${item.date}</span>
+                            </div>
+                            <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px; line-height:1.4;">${item.title}</h3>
+                            <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:18px;">${item.summary}</p>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:14px; font-size:12.5px; color:#718096; margin-bottom:16px;">
+                                <span><i class="fas fa-user-edit" style="color:#00C853;"></i> ${item.author}</span>
+                                <span><i class="far fa-clock"></i> ${item.readTime}</span>
+                            </div>
+                            <a href="articles/${item.slug}.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; width:100%; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                                <span>Read Full Article</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 `).join('')}
             </div>
+
+            <div id="noArticlesFound" style="display:none; text-align:center; padding:60px 20px; background:#f7fafc; border-radius:20px; margin-top:30px;">
+                <i class="fas fa-search" style="font-size:40px; color:#cbd5e0; margin-bottom:16px;"></i>
+                <h3 style="font-size:20px; font-weight:800; color:#2d3748;">No Articles Match Your Search</h3>
+                <p style="color:#718096; font-size:14px;">Try adjusting your keyword search or selecting another legal category.</p>
+                <button onclick="clearArticleSearch()" style="margin-top:16px; background:#00C853; color:#fff; border:none; padding:10px 24px; border-radius:10px; font-weight:700; cursor:pointer;">Reset Search & Filters</button>
+            </div>
         </div>
     </section>
+
+    <!-- SECTION 6: EDITORIAL CONTENT TYPES EXPLAINER -->
+    <section style="padding:60px 0; background:#f8fafc; border-top:1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Editorial Architecture</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">6 Distinct Editorial Formats</h2>
+                <p style="color:#666; font-size:15px;">NYAYI content is organized into 6 clear visual editorial categories for targeted legal research.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up">
+                    <span class="type-badge explainer" style="margin-bottom:10px;">LEGAL EXPLAINER</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">Plain-Language Law</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Breaks complex statutory provisions into plain, accessible language.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up" data-aos-delay="100">
+                    <span class="type-badge update" style="margin-bottom:10px;">LAW UPDATE</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">What Changed?</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Analysis of newly enacted acts, amendments, and statutory codes.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up" data-aos-delay="200">
+                    <span class="type-badge judgment" style="margin-bottom:10px;">COURT & JUDGMENT</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">Landmark Rulings</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Supreme Court & High Court precedents and judicial interpretations.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up" data-aos-delay="300">
+                    <span class="type-badge guide" style="margin-bottom:10px;">CITIZEN GUIDE</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">Citizen Impact</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Practical guidance on what legal developments mean for ordinary people.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up" data-aos-delay="400">
+                    <span class="type-badge concept" style="margin-bottom:10px;">LEGAL CONCEPT</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">Core Principles</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Deep-dive analyses of foundational legal doctrines and maxims.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center;" data-aos="fade-up" data-aos-delay="500">
+                    <span class="type-badge student" style="margin-bottom:10px;">STUDENT NOTE</span>
+                    <h3 style="font-size:15px; font-weight:800; color:#111; margin:8px 0 4px;">Academic Revision</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Structured revision notes for law students and UPSC aspirants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: "WHAT'S NEW IN INDIAN LAW?" (TIMELINE-STYLE) -->
+    <section style="padding:70px 0; background:#fff;">
+        <div class="container" style="max-width:900px;">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Statutory Milestones</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">What's New in Indian Law?</h2>
+                <p style="color:#666; font-size:15px;">Chronological timeline of major statutory enactments and framework reforms.</p>
+            </div>
+
+            <div class="timeline-flow">
+                <div class="timeline-card" data-aos="fade-up">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-weight:900; color:#00C853; font-size:14px;">JULY 1, 2024</span>
+                        <span class="type-badge update">ACTIVE CRIMINAL CODES</span>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">Enforcement of BNS, BNSS, and BSA 2023</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">India's three new criminal law codes came into force nationwide, completely replacing the 1860 IPC, 1973 CrPC, and 1872 Evidence Act for new offences.</p>
+                    <div style="background:#f8fafc; padding:12px 16px; border-radius:10px; font-size:13px; color:#2d3748;">
+                        <strong>Key Impact:</strong> Mandatory forensic collection for 7+ year offences, Zero FIR legal right, and digital primary evidence recognition.
+                    </div>
+                </div>
+
+                <div class="timeline-card" data-aos="fade-up" data-aos-delay="100">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-weight:900; color:#3182ce; font-size:14px;">DECEMBER 2023</span>
+                        <span class="type-badge concept">DIGITAL REFORM</span>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">Telecommunications Act & DPDP Act Enactments</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">The Digital Personal Data Protection (DPDP) Act 2023 established strict consent architectures and Data Principal rights for online data processing.</p>
+                    <div style="background:#f8fafc; padding:12px 16px; border-radius:10px; font-size:13px; color:#2d3748;">
+                        <strong>Key Impact:</strong> Heavy statutory penalties up to ₹250 Crores for failure to protect citizen digital data.
+                    </div>
+                </div>
+
+                <div class="timeline-card" data-aos="fade-up" data-aos-delay="200">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-weight:900; color:#d97706; font-size:14px;">JULY 2020</span>
+                        <span class="type-badge judgment">SUPREME COURT PRECEDENT</span>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">Vineeta Sharma v. Rakesh Sharma (Daughter Property Rights)</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Supreme Court 3-Judge Bench held that daughters have equal coparcenary rights in ancestral property by birth, regardless of whether father was alive in 2005.</p>
+                    <div style="background:#f8fafc; padding:12px 16px; border-radius:10px; font-size:13px; color:#2d3748;">
+                        <strong>Key Impact:</strong> Conclusively settled retroactive gender equality under Hindu Succession (Amendment) Act 2005.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: LEGAL EXPLAINERS ("LAW, WITHOUT LEGAL JARGON") -->
+    <section style="padding:70px 0; background:#fafbfc; border-top:1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; max-width:750px; margin:0 auto 40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Dictionary Synergy</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Law, Without the Legal Jargon</h2>
+                <p style="color:#666; font-size:15px;">Demystifying core legal concepts into clear, plain-language explainers connected directly to our Legal Dictionary.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Bail</h3>
+                    <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Provisional release of an accused person pending trial upon executing bail bond or surety.</p>
+                    <a href="dictionary.html?q=Bail" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                </div>
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">FIR (First Information Report)</h3>
+                    <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Document recorded by police under BNSS Sec 173 for cognizable offences.</p>
+                    <a href="dictionary.html?q=FIR" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                </div>
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Cognizable Offence</h3>
+                    <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Serious crime where police officer has statutory authority to arrest without warrant.</p>
+                    <a href="dictionary.html?q=Cognizable" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                </div>
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Jurisdiction</h3>
+                    <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Official authority of a court or police station to hear cases based on territory or pecuniary value.</p>
+                    <a href="dictionary.html?q=Jurisdiction" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: COURTS & JUDGMENTS (VERIFIED LANDMARKS) -->
+    <section style="padding:70px 0; background:#fff;">
+        <div class="container">
+            <div style="text-align:center; max-width:750px; margin:0 auto 40px;">
+                <span style="color:#e53e3e; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Judicial Precedents</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Landmark Courts & Judgments Explained</h2>
+                <p style="color:#666; font-size:15px;">Factual analysis of Supreme Court rulings that shaped citizen rights and police protocols.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+                <div style="border:1px solid #edf2f7; border-radius:20px; padding:28px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="font-size:12px; font-weight:900; color:#e53e3e; background:#fff5f5; padding:3px 10px; border-radius:12px;">SUPREME COURT OF INDIA</span>
+                        <span style="font-size:12px; color:#718096; font-weight:600;">2014 LANDMARK</span>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">Lalita Kumari v. Govt. of Uttar Pradesh</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:14px;">
+                        <strong>Legal Issue:</strong> Whether police officers are mandatory bound to register an FIR upon receiving information disclosing a cognizable offence.
+                    </div>
+                    <div style="background:#f8fafc; padding:14px; border-radius:12px; font-size:13px; color:#2d3748; margin-bottom:16px;">
+                        <strong>Court Decision:</strong> 5-Judge Constitution Bench held that FIR registration under Sec 154 CrPC (now Sec 173 BNSS) is mandatory if information discloses cognizable crime.
+                    </div>
+                    <span style="font-size:12px; color:#00C853; font-weight:800;"><i class="fas fa-check-circle"></i> Codified into BNSS Section 173 Mandate</span>
+                </div>
+
+                <div style="border:1px solid #edf2f7; border-radius:20px; padding:28px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.02);" data-aos="fade-up" data-aos-delay="100">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="font-size:12px; font-weight:900; color:#e53e3e; background:#fff5f5; padding:3px 10px; border-radius:12px;">SUPREME COURT OF INDIA</span>
+                        <span style="font-size:12px; color:#718096; font-weight:600;">2014 LANDMARK</span>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">Arnesh Kumar v. State of Bihar</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:14px;">
+                        <strong>Legal Issue:</strong> Preventing unnecessary arrests in offences carrying imprisonment up to 7 years.
+                    </div>
+                    <div style="background:#f8fafc; padding:14px; border-radius:12px; font-size:13px; color:#2d3748; margin-bottom:16px;">
+                        <strong>Court Decision:</strong> Mandatory requirement for police to serve Section 41A notice before making automatic arrests in offences under 7 years.
+                    </div>
+                    <span style="font-size:12px; color:#00C853; font-weight:800;"><i class="fas fa-check-circle"></i> Codified into BNSS Section 35 Arrest Notice</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10: LAW CHANGES (COMPARISON CARDS) -->
+    <section style="padding:70px 0; background:#fafbfc; border-top:1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; max-width:750px; margin:0 auto 40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Statutory Mapping</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Understanding Changes in the Law</h2>
+                <p style="color:#666; font-size:15px;">Comparative structural mapping between legacy colonial acts and modern 2023 Bharatiya codes.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+                <div class="comparison-card" data-aos="fade-up">
+                    <span style="font-size:12px; font-weight:900; color:#00C853; text-transform:uppercase;">CRIMINAL CODE SHIFT</span>
+                    <h3 style="font-size:20px; font-weight:900; color:#111; margin:6px 0 14px;">IPC 1860 &rarr; BNS 2023</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:12px;">
+                        <strong>Old Framework:</strong> 511 sections organized under British imperial structure.
+                    </div>
+                    <div style="font-size:13.5px; color:#009624; line-height:1.6; font-weight:700;">
+                        <strong>New BNS Framework:</strong> 358 streamlined sections; introduces community service, organized crime, and hit-and-run penalties.
+                    </div>
+                </div>
+
+                <div class="comparison-card" data-aos="fade-up" data-aos-delay="100">
+                    <span style="font-size:12px; font-weight:900; color:#3182ce; text-transform:uppercase;">PROCEDURE SHIFT</span>
+                    <h3 style="font-size:20px; font-weight:900; color:#111; margin:6px 0 14px;">CrPC 1973 &rarr; BNSS 2023</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:12px;">
+                        <strong>Old Framework:</strong> 484 sections with flexible investigation timelines.
+                    </div>
+                    <div style="font-size:13.5px; color:#2b6cb0; line-height:1.6; font-weight:700;">
+                        <strong>New BNSS Framework:</strong> 531 sections; strict statutory deadlines for trial judgments (45 days) and mandatory e-FIR.
+                    </div>
+                </div>
+
+                <div class="comparison-card" data-aos="fade-up" data-aos-delay="200">
+                    <span style="font-size:12px; font-weight:900; color:#805ad5; text-transform:uppercase;">EVIDENCE SHIFT</span>
+                    <h3 style="font-size:20px; font-weight:900; color:#111; margin:6px 0 14px;">Evidence Act 1872 &rarr; BSA 2023</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:12px;">
+                        <strong>Old Framework:</strong> Paper-centric evidence rules with Sec 65B electronic certificate.
+                    </div>
+                    <div style="font-size:13.5px; color:#6b46c1; line-height:1.6; font-weight:700;">
+                        <strong>New BSA Framework:</strong> 170 sections; treats digital records & cloud data directly as primary evidence under Sec 63.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 15: EXPLORE POPULAR LEGAL TOPICS -->
+    <section id="popular-topics" style="padding:70px 0; background:#fff;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:40px;">
+                <h2 style="font-size:26px; font-weight:900; color:#111;">Explore Popular Legal Topics</h2>
+                <p style="color:#666; font-size:15px;">Click any topic chip to filter articles in real-time</p>
+            </div>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+                <div onclick="filterArticleCat('criminal', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-shield-alt" style="font-size:24px; color:#00C853; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Criminal Law</strong>
+                </div>
+                <div onclick="filterArticleCat('constitution', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-landmark" style="font-size:24px; color:#3182ce; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Constitution</strong>
+                </div>
+                <div onclick="filterArticleCat('cyber', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-laptop-code" style="font-size:24px; color:#805ad5; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Cyber & Tech</strong>
+                </div>
+                <div onclick="filterArticleCat('consumer', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-shopping-bag" style="font-size:24px; color:#dd6b20; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Consumer Rights</strong>
+                </div>
+                <div onclick="filterArticleCat('property', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-building" style="font-size:24px; color:#742a2a; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Property Law</strong>
+                </div>
+                <div onclick="filterArticleCat('women', null)" class="cat-card" style="background:#fff; border:1px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer;">
+                    <i class="fas fa-hands-helping" style="font-size:24px; color:#b83280; margin-bottom:8px; display:block;"></i>
+                    <strong style="font-size:14px; color:#111;">Women & Family</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 16: LEGAL LEARNING FOR STUDENTS -->
+    <section style="padding:70px 0; background:#fafbfc; border-top:1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 40px;">
+                <span style="color:#805ad5; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Academic Module</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Legal Learning for Students</h2>
+                <p style="color:#666; font-size:15px;">Structured academic notes for law students, LLB curriculum revision, and UPSC preparation.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#805ad5; background:#f3e8ff; padding:3px 10px; border-radius:12px;">REVISION NOTE 01</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Mens Rea & Actus Reus</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Actus non facit reum nisi mens sit rea: Physical guilty act combined with guilty mental intention.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up" data-aos-delay="100">
+                    <span style="font-size:11px; font-weight:900; color:#805ad5; background:#f3e8ff; padding:3px 10px; border-radius:12px;">REVISION NOTE 02</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Res Judicata (CPC Sec 11)</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Final court decision bars re-litigation of same issue between same parties in a fresh suit.</p>
+                </div>
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up" data-aos-delay="200">
+                    <span style="font-size:11px; font-weight:900; color:#805ad5; background:#f3e8ff; padding:3px 10px; border-radius:12px;">REVISION NOTE 03</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Ratio Decidendi vs Obiter Dicta</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Ratio decidendi forms binding legal precedent; obiter dicta constitutes persuasive judicial observations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 19: SUBSTANTIAL FAQ ACCORDION -->
+    <section style="padding: 70px 0; background: #fff;">
+        <div class="container" style="max-width:850px;">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">EDITORIAL FAQ</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What are NYAYI Articles & Updates?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        NYAYI Articles & Updates is an editorial legal journal providing structured explainers, legislative updates on BNS 2023 / BNSS 2023 / BSA 2023, Supreme Court judgment breakdowns, and citizen knowledge guides.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Are NYAYI articles substitute for formal legal advice?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        No. NYAYI articles are created for general educational awareness and legal literacy. For formal court litigation or specific legal representation, users must consult a licensed advocate.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What is the difference between an Article and a Legal Guide?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Articles analyze legal developments, court judgments, and statutory shifts. Legal Guides provide step-by-step practical instructions (e.g. how to file an FIR or report cyber fraud) for real-life action.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Can law students use these articles for revision?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Yes! Our 'Student Note' and 'Legal Concept' editorial formats are specifically designed with structured takeaways, landmark case references, and statutory section mappings for LLB students and competitive exam preparation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 33: EDUCATIONAL DISCLAIMER -->
+    <section style="padding: 30px 0; background: #fff5f5; border-top: 1px solid #fed7d7;">
+        <div class="container" style="max-width: 900px; text-align: center;">
+            <p style="font-size:12px; color:#c53030; margin:0; line-height:1.6;">
+                <i class="fas fa-exclamation-circle"></i> <strong>Educational Disclaimer:</strong> NYAYI Articles & Updates are provided for general educational and informational purposes under Bharatiya codes (BNS, BNSS, BSA). Articles should not be treated as a substitute for advice from a qualified legal professional.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 32: FINAL DARK CTA BLOCK -->
+    <section style="padding:80px 0; background:#111; color:#fff; text-align:center;">
+        <div class="container" style="max-width:850px;" data-aos="zoom-in">
+            <h2 style="font-size:32px; font-weight:900; margin-bottom:16px; color:#fff;">Keep Learning. Stay Legally Informed.</h2>
+            <p style="font-size:17px; color:#aaa; margin-bottom:32px; line-height:1.6;">
+                Explore laws, fundamental rights, practical guides, and legal developments through the NYAYI knowledge platform.
+            </p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="laws.html" class="card-link" style="background:#00C853; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                    Explore Laws Library
+                </a>
+                <a href="rights.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                    Know Your Rights
+                </a>
+                <a href="guides.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                    Read Legal Guides
+                </a>
+                <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#fff; color:#111; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                    <i class="fas fa-robot"></i> Launch NYAYI Web AI
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENT-SIDE INTERACTIVE JAVASCRIPT FOR SEARCH, CATEGORY FILTERS & FAQ -->
+    <script>
+    function handleArticleSearch() {
+        const query = document.getElementById('articleSearchInput').value.toLowerCase().trim();
+        const clearBtn = document.getElementById('articleClearBtn');
+        if (clearBtn) clearBtn.style.display = query ? 'block' : 'none';
+
+        const cards = document.querySelectorAll('.article-item-card');
+        let count = 0;
+        cards.forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const cat = card.getAttribute('data-category') || '';
+            const text = card.textContent.toLowerCase();
+
+            if (!query || title.includes(query) || text.includes(query)) {
+                card.style.display = 'flex';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const heading = document.getElementById('articleResultsHeading');
+        const countSpan = document.getElementById('articleResultsCount');
+        const noFound = document.getElementById('noArticlesFound');
+
+        if (heading) heading.innerText = query ? 'Search Results for "' + query + '"' : 'Showing All 24 Articles & Updates';
+        if (countSpan) countSpan.innerText = count + ' articles';
+        if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    function setArticleSearch(term) {
+        const input = document.getElementById('articleSearchInput');
+        if (input) {
+            input.value = term;
+            handleArticleSearch();
+        }
+    }
+
+    function clearArticleSearch() {
+        const input = document.getElementById('articleSearchInput');
+        if (input) {
+            input.value = '';
+            handleArticleSearch();
+        }
+        filterArticleCat('all', document.querySelector('.filter-btn'));
+    }
+
+    function filterArticleCat(catKey, el) {
+        if (el) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        const cards = document.querySelectorAll('.article-item-card');
+        let count = 0;
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (catKey === 'all' || cardCat === catKey) {
+                card.style.display = 'flex';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const heading = document.getElementById('articleResultsHeading');
+        const countSpan = document.getElementById('articleResultsCount');
+        const noFound = document.getElementById('noArticlesFound');
+
+        if (heading) heading.innerText = catKey === 'all' ? 'Showing All 24 Articles & Updates' : 'Articles in ' + catKey.toUpperCase();
+        if (countSpan) countSpan.innerText = count + ' articles';
+        if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    function toggleFaq(btn) {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            if (icon) icon.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.display = 'block';
+            if (icon) icon.style.transform = 'rotate(180deg)';
+        }
+    }
+    </script>
     ${renderFooter(0)}
     `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), blogHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogHtml, 'utf8');
+
+    fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), articlesHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), articlesHub.replace(/articles\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
+
+    // Individual Article Subpages Generator (24+ HTML Files)
+    if (!fs.existsSync(path.join(ROOT_DIR, 'articles'))) fs.mkdirSync(path.join(ROOT_DIR, 'articles'), { recursive: true });
+    if (!fs.existsSync(path.join(ROOT_DIR, 'blog'))) fs.mkdirSync(path.join(ROOT_DIR, 'blog'), { recursive: true });
+
+    expandedArticles.forEach(item => {
+        const pageHtml = `
+        ${renderHead(`${item.title} | NYAYI Legal Journal`, item.summary, `${item.title}, legal article India, BNS BNSS 2023`, `/articles/${item.slug}.html`, 1)}
+        ${renderHeader('articles', 1)}
+
+        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+            <div class="container" data-aos="fade-up">
+                <a href="../articles.html" style="font-weight:700; color:var(--primary-dark); font-size:14px; text-decoration:none;"><i class="fas fa-arrow-left"></i> Back to Legal Articles Journal</a>
+                <div style="margin-top:20px; display:flex; gap:10px; align-items:center;">
+                    <span class="type-badge ${item.typeKey}">${item.type}</span>
+                    <span class="cp-role" style="display:inline-block; background:#e8f5e9; color:#00C853; font-weight:800; padding:4px 14px; border-radius:20px; font-size:12px;">${item.category} • ${item.readTime}</span>
+                </div>
+                <h1 style="margin:14px 0 20px; font-size:2.8rem; font-weight:900; line-height:1.2; color:#111;">${item.title}</h1>
+                <div style="display:flex; gap:20px; font-size:14px; color:#718096; font-weight:600;">
+                    <span>By ${item.author}</span>
+                    <span>•</span>
+                    <span>Published: ${item.date}</span>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding:60px 0 100px; background:#fff;">
+            <div class="container" style="max-width:900px;">
+                <!-- ARTICLE AT A GLANCE BOX -->
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #00C853; border-radius:18px; padding:28px; margin-bottom:36px;" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:900; color:#111; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-bolt" style="color:#00C853;"></i> Article at a Glance</h3>
+                    <ul style="padding-left:20px; margin:0; font-size:14.5px; color:#2d3748; line-height:1.7;">
+                        ${item.atAGlance.map(pt => `<li>${pt}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <!-- MAIN ARTICLE CONTENT -->
+                <div style="background:#fff; border:1px solid #edf2f7; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h2 style="font-size:24px; font-weight:900; color:#111; margin-bottom:16px;">Executive Overview</h2>
+                    <p style="font-size:16px; color:#4a5568; line-height:1.8; margin-bottom:28px;">${item.summary}</p>
+
+                    <!-- KEY TAKEAWAYS -->
+                    <div class="takeaways-box">
+                        <h3 style="font-size:16px; font-weight:900; color:#009624; margin-bottom:12px;"><i class="fas fa-check-circle"></i> Key Takeaways & Practical Takeouts</h3>
+                        <ul style="padding-left:20px; margin:0; font-size:14.5px; color:#2d3748; line-height:1.7;">
+                            ${item.takeaways.map(tk => `<li>${tk}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <!-- ECOSYSTEM CONTINUE LEARNING -->
+                    <div style="margin-top:40px; background:#fafbfc; border-radius:18px; padding:28px; border:1px solid #e2e8f0;">
+                        <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:16px;">Continue Learning on NYAYI</h3>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+                            <a href="../laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Law</strong>
+                                <span style="font-size:13px; color:#00C853;">${item.relatedLaw}</span>
+                            </a>
+                            <a href="../rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Right</strong>
+                                <span style="font-size:13px; color:#3182ce;">${item.relatedRights}</span>
+                            </a>
+                            <a href="../dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Terms</strong>
+                                <span style="font-size:13px; color:#805ad5;">${item.relatedTerms.join(', ')}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:36px; text-align:center;">
+                        <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="display:inline-flex; align-items:center; gap:10px; background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 4px 14px rgba(0,200,83,0.3);">
+                            <i class="fas fa-robot"></i> Research "${item.title}" with NYAYI AI
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ${renderFooter(1)}
+        `;
+
+        fs.writeFileSync(path.join(ROOT_DIR, `articles/${item.slug}.html`), pageHtml, 'utf8');
+        fs.writeFileSync(path.join(ROOT_DIR, `blog/${item.slug}.html`), pageHtml.replace(/\.\.\/articles\.html/g, '../blog/index.html'), 'utf8');
+    });
+
 
     // Sitemap & Robots
     const urls = [
