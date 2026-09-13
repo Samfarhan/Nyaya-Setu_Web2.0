@@ -4522,39 +4522,1565 @@ function buildFeaturesAndOther() {
         fs.writeFileSync(path.join(ROOT_DIR, `laws/${item.slug}.html`), pageHtml, 'utf8');
     });
 
-    // Guides Hub
+        // Guides Hub - 27-Section Expanded Legal Guides & How-To Center
+    const expandedGuides = [
+        {
+            slug: "how-to-file-an-fir",
+            title: "How to File an FIR in India",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "6 MIN READ",
+            summary: "Step-by-step procedure for lodging a First Information Report (FIR) under Section 173 of Bharatiya Nagarik Suraksha Sanhita (BNSS 2023), including Zero FIR and e-FIR options.",
+            learn: [
+                "Immediate steps at police station",
+                "Difference between FIR and written complaint",
+                "What to do if station officer refuses registration"
+            ]
+        },
+        {
+            slug: "police-refused-fir-remedies",
+            title: "What to Do If Police Refuse to Register an FIR",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "5 MIN READ",
+            summary: "Legal remedies available under BNSS Section 173(4) and Section 175(3) when a police station officer refuses to record a cognizable crime FIR.",
+            learn: [
+                "Sending complaint to SP/DCP via Registered Post",
+                "Filing a Section 175(3) BNSS application before Magistrate",
+                "High Court writ petition for non-registration of FIR"
+            ]
+        },
+        {
+            slug: "zero-fir-guide",
+            title: "Zero FIR: Filing an FIR Anywhere in India",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "4 MIN READ",
+            summary: "How to lodge a Zero FIR at any police station regardless of jurisdiction, and how it is transferred to the jurisdictional police station.",
+            learn: [
+                "Legal mandate of Zero FIR across India",
+                "When and where to demand a Zero FIR",
+                "Transfer process to jurisdictional police station"
+            ]
+        },
+        {
+            slug: "efir-registration-guide",
+            title: "e-FIR Registration Guide",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "4 MIN READ",
+            summary: "Procedure for online FIR registration for stolen vehicles, lost documents, cyber crimes, and non-heinous offenses via state police portals.",
+            learn: [
+                "State police portal e-FIR requirements",
+                "Types of offenses eligible for online e-FIR",
+                "Verifying and tracking e-FIR status online"
+            ]
+        },
+        {
+            slug: "police-arrest-rights-guide",
+            title: "Police Arrest Procedure & Rights of Arrested Persons",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "7 MIN READ",
+            summary: "Constitutional and statutory rights under Article 22 and BNSS Section 35, including grounds of arrest, memo of arrest, medical examination, and bail rights.",
+            learn: [
+                "Mandatory arrest memo creation & family notification",
+                "Right to consult advocate and medical examination",
+                "24-hour magistrate production requirement"
+            ]
+        },
+        {
+            slug: "bail-procedure-guide",
+            title: "Regular Bail vs Anticipatory Bail",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "8 MIN READ",
+            summary: "Understanding bailable vs non-bailable offenses, filing anticipatory bail under BNSS Sec 482, regular bail under Sec 479/480, and interim bail conditions.",
+            learn: [
+                "Differences between bailable and non-bailable offenses",
+                "Anticipatory bail application in Sessions/High Court",
+                "Bail bond conditions, sureties, and cancellation rules"
+            ]
+        },
+        {
+            slug: "summons-vs-warrant-guide",
+            title: "Summons vs Warrant: Understanding Court Notices",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "5 MIN READ",
+            summary: "Explanation of court summons, bailable warrants, non-bailable warrants (NBW), and legal consequences of non-appearance in court.",
+            learn: [
+                "Distinction between summons and arrest warrants",
+                "How to respond when receiving court summons",
+                "Procedure for recalling or staying a Non-Bailable Warrant"
+            ]
+        },
+        {
+            slug: "online-police-complaint",
+            title: "How to File a Police Complaint Online",
+            category: "Police & Criminal Procedure",
+            catKey: "police",
+            readTime: "4 MIN READ",
+            summary: "Step-by-step guide to submitting written police complaints via digital portals, email, and tracking official acknowledgement numbers.",
+            learn: [
+                "State citizen portal registration steps",
+                "Attaching evidentiary documents & identity proof",
+                "Converting complaint into registered FIR"
+            ]
+        },
+        {
+            slug: "cyber-fraud-reporting-1930",
+            title: "Reporting Cyber Fraud on National Cybercrime Portal (1930)",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "5 MIN READ",
+            summary: "Immediate action guide for financial cyber fraud: calling 1930 helpline within the golden hour and registering on cybercrime.gov.in to freeze stolen funds.",
+            learn: [
+                "Crucial 'Golden Hour' response for financial cyber fraud",
+                "Lodging complaint on cybercrime.gov.in portal",
+                "Obtaining acknowledgment for bank account unfreezing"
+            ]
+        },
+        {
+            slug: "bank-financial-fraud-recovery",
+            title: "Reporting Financial Fraud & Bank Account Freezing",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "6 MIN READ",
+            summary: "RBI guidelines on zero liability in unauthorized electronic transactions, notifying banks within 3 days, and unfreezing legitimate accounts.",
+            learn: [
+                "RBI customer liability guidelines (3-day zero liability)",
+                "Filing complaint with Banking Ombudsman",
+                "Procedure to unfreeze bank account frozen by police"
+            ]
+        },
+        {
+            slug: "digital-arrest-scam-guide",
+            title: "Protecting Yourself Against Digital Arrest Scams",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "5 MIN READ",
+            summary: "How fraudsters impersonate CBI/ED/Customs officers over video calls, legal reality that Indian law has no 'digital arrest', and how to report immediately.",
+            learn: [
+                "Recognizing fake video calls claiming police/CBI arrest",
+                "Legal fact: No police agency conducts online digital arrests",
+                "Steps to block, report, and preserve call screenshots"
+            ]
+        },
+        {
+            slug: "cyberstalking-harassment-remedies",
+            title: "Social Media Harassment & Cyberstalking Legal Remedies",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "6 MIN READ",
+            summary: "Legal provisions under IT Act Section 66E, 67, and BNS Sections for stalking, non-consensual image sharing, fake profiles, and online harassment.",
+            learn: [
+                "Preserving digital evidence (URL, IP logs, screenshots)",
+                "Reporting content to social media platforms and Cyber Cell",
+                "Filing criminal complaint under IT Act and BNS"
+            ]
+        },
+        {
+            slug: "online-shopping-ecommerce-scam",
+            title: "How to File a Complaint Against Online Shopping Fraud",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "4 MIN READ",
+            summary: "Remedies for counterfeit products, non-delivery of items, fake sellers, and filing complaints on National Consumer Helpline (NCH) 1915.",
+            learn: [
+                "Registering complaint on National Consumer Helpline (1915)",
+                "Filing online grievance on e-Daakhil portal",
+                "Chargeback request through bank or credit card issuer"
+            ]
+        },
+        {
+            slug: "sextortion-loan-app-blackmail",
+            title: "Sextortion & Loan App Blackmail Immediate Action Guide",
+            category: "Cyber & Digital",
+            catKey: "cyber",
+            readTime: "5 MIN READ",
+            summary: "Emergency instructions for victims of illegal instant loan apps, video blackmail, unauthorized contacts harassment, and Cyber Crime Cell complaint.",
+            learn: [
+                "Immediate security steps: Revoke app permissions & block callers",
+                "Informing family/friends before blackmailers reach out",
+                "Filing urgent complaint with State Cyber Crime Cell"
+            ]
+        },
+        {
+            slug: "consumer-court-complaint-guide",
+            title: "How to File a Consumer Complaint in NCDRC / District Commission",
+            category: "Consumer & Markets",
+            catKey: "consumer",
+            readTime: "7 MIN READ",
+            summary: "Filing consumer complaints online via e-Daakhil, jurisdiction thresholds (District up to 50 Lakhs, State up to 2 Crores), and claiming compensation for deficiency in service.",
+            learn: [
+                "Pecuniary jurisdiction limits under Consumer Protection Act 2019",
+                "Drafting consumer petition without hiring a lawyer",
+                "Submitting complaint on e-Daakhil portal"
+            ]
+        },
+        {
+            slug: "defective-product-refund-claim",
+            title: "Claiming Refund for Defective Products under Consumer Protection Act 2019",
+            category: "Consumer & Markets",
+            catKey: "consumer",
+            readTime: "5 MIN READ",
+            summary: "Product liability, warranty enforcement, seller and manufacturer legal liability, and drafting pre-litigation legal notice.",
+            learn: [
+                "Product liability provisions under CPA 2019",
+                "Sending 15-day formal legal notice to manufacturer",
+                "Claiming replacement, full refund, plus compensation"
+            ]
+        },
+        {
+            slug: "rera-builder-delay-complaint",
+            title: "Legal Remedies for Builder Delays & RERA Complaints",
+            category: "Consumer & Markets",
+            catKey: "consumer",
+            readTime: "7 MIN READ",
+            summary: "How home buyers can claim interest on delayed possession, file complaints before State RERA Authority, and seek refund or compensation.",
+            learn: [
+                "Filing complaint under Section 31 of RERA Act",
+                "Claiming monthly interest for every month of delay",
+                "Execution of RERA orders for property possession"
+            ]
+        },
+        {
+            slug: "medical-negligence-remedies",
+            title: "Medical Negligence Legal Recourse",
+            category: "Consumer & Markets",
+            catKey: "consumer",
+            readTime: "6 MIN READ",
+            summary: "Legal remedies for medical malpractice: filing complaint with State Medical Council, Consumer Forum compensation, and criminal negligence under BNS.",
+            learn: [
+                "Collecting complete hospital medical records & bills",
+                "Filing complaint with State Medical Council",
+                "Approaching Consumer Court for medical compensation"
+            ]
+        },
+        {
+            slug: "airline-passenger-rights-guide",
+            title: "Airline Flight Cancellation & Baggage Loss Compensation",
+            category: "Consumer & Markets",
+            catKey: "consumer",
+            readTime: "4 MIN READ",
+            summary: "DGCA Civil Aviation Requirements (CAR) guidelines on flight delays, cancellations, denied boarding, lost baggage compensation, and AirSewa portal complaints.",
+            learn: [
+                "DGCA mandatory compensation amounts for flight delays",
+                "Lost/damaged baggage compensation rules",
+                "Lodging complaint on Ministry of Civil Aviation AirSewa portal"
+            ]
+        },
+        {
+            slug: "tenant-rights-security-deposit",
+            title: "Tenant Rights & Security Deposit Refund Guide",
+            category: "Rent & Housing",
+            catKey: "rent",
+            readTime: "5 MIN READ",
+            summary: "Model Tenancy Act provisions, allowable deposit deductions, 30-day refund timelines, and legal notice for landlord withholding security deposit.",
+            learn: [
+                "Security deposit limits under Model Tenancy Act",
+                "Legitimate vs illegal landlord deductions",
+                "Sending legal notice & approaching Rent Authority"
+            ]
+        },
+        {
+            slug: "tenant-eviction-legal-notice",
+            title: "Eviction Notice Procedure for Landlords & Tenants",
+            category: "Rent & Housing",
+            catKey: "rent",
+            readTime: "6 MIN READ",
+            summary: "Grounds for lawful eviction under State Rent Control Acts, mandatory notice period, illegal lockouts, and Rent Tribunal proceedings.",
+            learn: [
+                "Valid legal grounds for landlord eviction notice",
+                "Tenant remedies against forced or illegal eviction",
+                "Filing petition before Rent Controller / Tribunal"
+            ]
+        },
+        {
+            slug: "illegal-construction-encroachment",
+            title: "Illegal Construction & Encroachment Complaint",
+            category: "Rent & Housing",
+            catKey: "rent",
+            readTime: "5 MIN READ",
+            summary: "Reporting unauthorized building construction, encroachment on public land or neighbor property, and municipal authority complaint procedure.",
+            learn: [
+                "Submitting complaint to Municipal Corporation Town Planning Cell",
+                "Filing RTI to check approved building plan",
+                "Obtaining civil court injunction order against illegal construction"
+            ]
+        },
+        {
+            slug: "housing-society-dispute-resolution",
+            title: "Society Maintenance Disputes & Cooperative Housing Rights",
+            category: "Rent & Housing",
+            catKey: "rent",
+            readTime: "5 MIN READ",
+            summary: "Cooperative Housing Society bye-laws, maintenance fee disputes, parking allocation rights, and filing complaint with Registrar of Housing Societies.",
+            learn: [
+                "Rights of flat owners under Model Bye-laws",
+                "Challenging arbitrary maintenance charges",
+                "Filing complaint before Deputy Registrar of Cooperative Societies"
+            ]
+        },
+        {
+            slug: "mutual-consent-divorce-guide",
+            title: "Filing a Mutual Consent Divorce in India",
+            category: "Family & Matrimonial",
+            catKey: "family",
+            readTime: "6 MIN READ",
+            summary: "Procedure under Section 13B Hindu Marriage Act / Special Marriage Act: 6-month cooling period waiver, joint petition, terms of settlement, and final decree.",
+            learn: [
+                "Drafting joint divorce petition & Memorandum of Understanding (MOU)",
+                "First motion and second motion court hearings",
+                "Waiver of 6-month statutory waiting period precedents"
+            ]
+        },
+        {
+            slug: "child-custody-guardianship-guide",
+            title: "Child Custody & Guardianship Laws in India",
+            category: "Family & Matrimonial",
+            catKey: "family",
+            readTime: "7 MIN READ",
+            summary: "Physical vs legal custody, visitation rights, welfare of the child principle under Guardians and Wards Act, and interim custody orders.",
+            learn: [
+                "Paramount principle: Welfare of the minor child",
+                "Types of custody: Sole, Joint, and Visitation rights",
+                "Filing custody petition in Family Court"
+            ]
+        },
+        {
+            slug: "maintenance-claim-bnss-144",
+            title: "Claiming Maintenance under Section 144 BNSS",
+            category: "Family & Matrimonial",
+            catKey: "family",
+            readTime: "6 MIN READ",
+            summary: "Statutory rights of wives, children, and elderly parents to claim monthly maintenance under BNSS Sec 144 (formerly CrPC 125), interim maintenance, and enforcement.",
+            learn: [
+                "Eligibility criteria for wives, children, and parents",
+                "Filing application for interim maintenance",
+                "Enforcing court maintenance order against default"
+            ]
+        },
+        {
+            slug: "domestic-violence-protection-order",
+            title: "Domestic Violence Relief & Protection Order Guide",
+            category: "Family & Matrimonial",
+            catKey: "family",
+            readTime: "6 MIN READ",
+            summary: "Reliefs under Protection of Women from Domestic Violence Act 2005 (PWDVA): protection orders, shared household rights, monetary relief, and Protection Officer role.",
+            learn: [
+                "Forms of domestic violence recognized by law (Physical, Emotional, Financial)",
+                "Approaching Protection Officer or Service Provider",
+                "Obtaining ex-parte emergency protection orders"
+            ]
+        },
+        {
+            slug: "will-estate-planning-guide",
+            title: "Will Preparation & Estate Planning Basics",
+            category: "Family & Matrimonial",
+            catKey: "family",
+            readTime: "5 MIN READ",
+            summary: "How to draft a legally valid Will in India, registration requirements, attestation by 2 witnesses, executor appointment, and probate process.",
+            learn: [
+                "Essential clauses in a legal Will",
+                "Attestation by two independent witnesses",
+                "Benefits of Will registration and probate procedure"
+            ]
+        },
+        {
+            slug: "drafting-sending-legal-notice",
+            title: "Draft & Send a Legal Notice in India",
+            category: "Business & Contracts",
+            catKey: "business",
+            readTime: "5 MIN READ",
+            summary: "Format, mandatory legal elements, delivery via Registered Post AD, reply timelines, and why legal notice is required before civil suits.",
+            learn: [
+                "Core structure of formal legal notice",
+                "Serving via Registered Post AD / Speed Post with tracking",
+                "Handling response or failure to reply within stipulated period"
+            ]
+        },
+        {
+            slug: "breach-of-contract-remedies",
+            title: "Breach of Contract Remedies & Damages",
+            category: "Business & Contracts",
+            catKey: "business",
+            readTime: "6 MIN READ",
+            summary: "Contractual breach under Indian Contract Act 1872: liquidated damages, specific performance, injunctions, and commercial dispute arbitration.",
+            learn: [
+                "Types of contract breach: Material, Minor, Anticipatory",
+                "Calculating monetary damages & compensation",
+                "Filing commercial suit or invoking arbitration clause"
+            ]
+        },
+        {
+            slug: "cheque-bounce-138-ni-act",
+            title: "Cheque Bounce Notice under Section 138 NI Act",
+            category: "Business & Contracts",
+            catKey: "business",
+            readTime: "6 MIN READ",
+            summary: "Statutory 30-day legal notice period, cheque dishonor memo, 15-day payment window, and filing criminal complaint within 30 days under Section 138 NI Act.",
+            learn: [
+                "Mandatory 30-day statutory timeline for legal notice",
+                "Elements required in bank dishonor memo",
+                "Filing complaint before Judicial Magistrate Court"
+            ]
+        },
+        {
+            slug: "trademark-copyright-infringement",
+            title: "Trademark & Copyright Infringement Notice",
+            category: "Business & Contracts",
+            catKey: "business",
+            readTime: "5 MIN READ",
+            summary: "Protecting brand identity and original content: issuing cease and desist notice, domain takedowns, and court injunctions for IP infringement.",
+            learn: [
+                "Identifying trademark vs copyright violation",
+                "Drafting Cease and Desist (C&D) notice",
+                "Filing IP infringement suit in District Court"
+            ]
+        },
+        {
+            slug: "unpaid-salary-termination-remedies",
+            title: "Unpaid Salary & Wrongful Termination Legal Remedies",
+            category: "Employment & Labor",
+            catKey: "employment",
+            readTime: "6 MIN READ",
+            summary: "Employee rights under Industrial Disputes Act & Shops and Establishment Act: notice period pay, delayed salary recovery, and Labor Commissioner complaint.",
+            learn: [
+                "Notice pay & severance calculation rules",
+                "Filing complaint with Labor Commissioner",
+                "Sending legal notice to employer for unpaid salary"
+            ]
+        },
+        {
+            slug: "posh-act-workplace-complaint",
+            title: "Sexual Harassment at Workplace (POSH Act Complaint)",
+            category: "Employment & Labor",
+            catKey: "employment",
+            readTime: "6 MIN READ",
+            summary: "Rights under POSH Act 2013: lodging written complaint to Internal Committee (IC), 90-day inquiry procedure, interim relief, and confidentiality.",
+            learn: [
+                "Role and mandate of Internal Committee (IC)",
+                "Time limit for filing POSH complaint (3 months)",
+                "Interim relief rights (transfer, leave) during inquiry"
+            ]
+        },
+        {
+            slug: "provident-fund-pf-dispute",
+            title: "Provident Fund (PF) Withdrawal & Dispute Settlement",
+            category: "Employment & Labor",
+            catKey: "employment",
+            readTime: "4 MIN READ",
+            summary: "EPFO online portal withdrawal procedure, employer non-remittance of PF contributions, and filing grievance on EPFiGMS portal.",
+            learn: [
+                "EPFO UAN activation and online claim submission",
+                "Remedies if employer fails to deposit PF contributions",
+                "Filing grievance on EPFiGMS portal"
+            ]
+        },
+        {
+            slug: "gratuity-maternity-benefit-claim",
+            title: "Gratuity & Maternity Benefit Claim Procedure",
+            category: "Employment & Labor",
+            catKey: "employment",
+            readTime: "5 MIN READ",
+            summary: "Payment of Gratuity Act (5 years continuous service rule) and Maternity Benefit Act (26 weeks paid leave), eligibility, and enforcement.",
+            learn: [
+                "Gratuity formula calculation (15 days salary per year)",
+                "26 weeks paid maternity leave rights",
+                "Filing complaint before Controlling Authority"
+            ]
+        },
+        {
+            slug: "how-to-file-rti-application",
+            title: "How to File an RTI (Right to Information) Application",
+            category: "Fundamental Rights",
+            catKey: "rights",
+            readTime: "5 MIN READ",
+            summary: "Drafting RTI queries, identifying Public Information Officer (PIO), statutory 30-day response deadline, and filing First Appeal / Central Information Commission.",
+            learn: [
+                "Drafting precise RTI questions without asking for opinions",
+                "Submitting RTI online via rtionline.gov.in",
+                "Filing First Appeal when PIO rejects or fails to reply within 30 days"
+            ]
+        },
+        {
+            slug: "habeas-corpus-writ-petitions",
+            title: "Article 32 & 226 Writs in High Court / Supreme Court",
+            category: "Fundamental Rights",
+            catKey: "rights",
+            readTime: "7 MIN READ",
+            summary: "Constitutional remedies for fundamental rights violations: Habeas Corpus, Mandamus, Certiorari, Prohibition, and Quo Warranto writ petitions.",
+            learn: [
+                "Understanding the 5 Constitutional Writs",
+                "Filing Writ Petition under Article 226 (High Court) vs 32 (Supreme Court)",
+                "Urgent Habeas Corpus petition for illegal detention"
+            ]
+        },
+        {
+            slug: "free-legal-aid-lsa-act",
+            title: "Legal Aid & Free Lawyer Services under LSA Act 1987",
+            category: "Fundamental Rights",
+            catKey: "rights",
+            readTime: "5 MIN READ",
+            summary: "Who qualifies for free legal services (women, SC/ST, low income, custody victims), application procedure at DLSA/SLSA, and panel advocate assignment.",
+            learn: [
+                "Income limits & eligible categories under Section 12 LSA Act",
+                "Applying for free lawyer at District Court DLSA front office",
+                "Lok Adalat settlement mechanism for speedy disposal"
+            ]
+        },
+        {
+            slug: "traffic-challan-contest-virtual-court",
+            title: "Traffic Challan Contest & Virtual Court Settlement",
+            category: "Traffic & Vehicles",
+            catKey: "traffic",
+            readTime: "4 MIN READ",
+            summary: "Checking e-Challan status, contesting incorrect traffic fines online via Virtual Court portal, and rights during traffic police vehicle checks.",
+            learn: [
+                "Verifying e-Challan on vcourts.gov.in portal",
+                "Contesting wrongful challans before Virtual Judge",
+                "Rights during traffic stop: Officer rank requirements & document verification"
+            ]
+        },
+        {
+            slug: "motor-accident-mact-compensation",
+            title: "Motor Accident Claim Tribunal (MACT) Compensation Procedure",
+            category: "Traffic & Vehicles",
+            catKey: "traffic",
+            readTime: "6 MIN READ",
+            summary: "Filing claim before MACT for road accident injury or fatality, Detailed Accident Report (DAR), third-party insurance liability, and compensation calculation.",
+            learn: [
+                "Role of Police Detailed Accident Report (DAR)",
+                "Filing claim petition in MACT within jurisdiction",
+                "Calculating compensation based on age, income, and disability"
+            ]
+        },
+        {
+            slug: "vehicle-impoundment-license-rights",
+            title: "Vehicle Impoundment & License Suspension Legal Rights",
+            category: "Traffic & Vehicles",
+            catKey: "traffic",
+            readTime: "5 MIN READ",
+            summary: "Motor Vehicles Act rules on key seizure, vehicle impoundment, drunk driving penalties, and contesting driver's license suspension notice.",
+            learn: [
+                "Legal fact: Traffic officer cannot pull keys out of running ignition",
+                "Procedure for releasing impounded vehicle from RTO / Police station",
+                "Show cause notice & appeal against license suspension"
+            ]
+        },
+        {
+            slug: "ancestral-property-partition-guide",
+            title: "Ancestral Property Partition & Legal Heir Succession Certificate",
+            category: "Property & Land",
+            catKey: "property",
+            readTime: "7 MIN READ",
+            summary: "Rights of coparceners (daughters & sons), filing partition suit, obtaining Legal Heir Certificate, and Succession Certificate from District Court.",
+            learn: [
+                "Equal rights of daughters in ancestral property (2005 Amendment)",
+                "Difference between Legal Heir Certificate and Succession Certificate",
+                "Filing Partition Suit in Civil Court"
+            ]
+        },
+        {
+            slug: "land-title-verification-checklist",
+            title: "Land Title Verification & Due Diligence Checklist",
+            category: "Property & Land",
+            catKey: "property",
+            readTime: "6 MIN READ",
+            summary: "Essential due diligence before buying real estate: Title Deed search for 30 years, Encumbrance Certificate (EC), Mutation Entry, and RERA verification.",
+            learn: [
+                "Obtaining 30-year Encumbrance Certificate (EC)",
+                "Verifying Revenue Records (7/12 extract, Khata certificate)",
+                "Publishing public notice in newspapers before property purchase"
+            ]
+        },
+        {
+            slug: "property-registration-stamp-duty",
+            title: "Property Registration & Stamp Duty Procedure",
+            category: "Property & Land",
+            catKey: "property",
+            readTime: "5 MIN READ",
+            summary: "Registration Act 1908 requirements, calculating stamp duty, visiting Sub-Registrar Office (SRO), biome-tric verification, and registered Sale Deed.",
+            learn: [
+                "Stamp duty and registration fee calculations across states",
+                "Mandatory presence of buyer, seller, and 2 witnesses at SRO",
+                "Obtaining registered Sale Deed and post-registration mutation"
+            ]
+        },
+        {
+            slug: "senior-citizen-maintenance-claim",
+            title: "Senior Citizen Protection & Maintenance Claim",
+            category: "Women & Child Protection",
+            catKey: "women",
+            readTime: "5 MIN READ",
+            summary: "Maintenance and Welfare of Parents and Senior Citizens Act 2007: tribunal proceedings, reclaiming gifted property from ungrateful children, and eviction of abusive relatives.",
+            learn: [
+                "Filing summary application before Maintenance Tribunal (SDM court)",
+                "Cancelling property transfer gift deed under Section 23",
+                "Eviction orders against abusive children from parents' house"
+            ]
+        },
+        {
+            slug: "women-sakhi-one-stop-legal-aid",
+            title: "Free Legal Services & Sakhi One Stop Centers for Women",
+            category: "Women & Child Protection",
+            catKey: "women",
+            readTime: "5 MIN READ",
+            summary: "Directory of free legal services, DLSA legal aid clinics, One Stop Centers (Sakhi), and NCW helplines for women and vulnerable citizens.",
+            learn: [
+                "District Legal Services Authority (DLSA) legal aid",
+                "One Stop Centers (Sakhi 181)",
+                "National Commission for Women (NCW 7827170170)"
+            ]
+        }
+    ];
+
     const guidesHub = `
-    ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/guides.html', 0)}
+    ${renderHead('Legal Guides & Practical How-To Hub | NYAYI Legal AI', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, consumer complaints, and court procedures in India.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India, consumer complaint guide', '/guides.html', 0)}
     ${renderHeader('guides', 0)}
 
-    <section class="page-header">
-        <div class="container" data-aos="zoom-in">
-            <h1>Step-by-Step <span>Legal Guides</span></h1>
-            <p>Clear, practical instructions breaking down complex court and police procedures into understandable steps.</p>
-        </div>
-    </section>
-
-    <section style="padding:40px 0 100px; background:#fff;">
-        <div class="container">
-            <div class="guides-grid">
-                ${guides.map(item => `
-                    <div class="guide-card" data-aos="fade-up">
-                        <div>
-                            <span class="card-tag">${item.category} • ${item.readingTime}</span>
-                            <h3 style="margin-top:8px;">${item.title}</h3>
-                            <p>${item.summary}</p>
-                        </div>
-                        <a href="legal-guides/${item.slug}.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                `).join('')}
+    <!-- SECTION 1: HERO HEADER -->
+    <section class="page-header" style="padding: 70px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+        <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
+                <i class="fas fa-compass"></i> Practical Legal Knowledge
+            </span>
+            <h1 style="font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; color: #111;">
+                Step-by-Step <span style="color:#00C853;">Legal Guides</span> & How-To Center
+            </h1>
+            <p style="font-size: 1.25rem; color: #555; max-width: 780px; margin: 0 auto 30px; line-height: 1.6;">
+                Clear, actionable, step-by-step instructions breaking down complex Indian police, court, consumer, cyber, rent, property, and workplace procedures.
+            </p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="#browse-guides" class="card-link" style="background:#00C853; color:#fff; padding:14px 32px; border-radius:12px; font-weight:700; text-decoration:none; font-size:15px; box-shadow: 0 4px 14px rgba(0,200,83,0.3);">
+                    Browse All 47+ Guides <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#111; color:#fff; padding:14px 32px; border-radius:12px; font-weight:700; text-decoration:none; font-size:15px;">
+                    <i class="fas fa-robot"></i> Ask NYAYI Legal AI
+                </a>
             </div>
         </div>
     </section>
 
-    ${renderFooter(0)}
+    <!-- SECTION 2: INTERACTIVE GUIDE SEARCH ENGINE -->
+    <section style="padding: 30px 0; background: #fff; border-bottom: 1px solid #edf2f7;">
+        <div class="container" style="max-width: 1000px;">
+            <div class="guide-search-wrapper" style="position:relative;">
+                <i class="fas fa-search guide-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px;"></i>
+                <input type="text" id="guideSearchInput" oninput="handleGuideSearch()" placeholder="Search FIR, Bail, Cyber Crime, Consumer Complaint, Tenant Rights, RERA..." style="width:100%; padding:18px 50px 18px 60px; font-size:16px; border:2px solid #e2e8f0; border-radius:16px; outline:none; transition:all 0.3s ease; box-shadow:0 4px 20px rgba(0,0,0,0.04);">
+                <button id="guideClearBtn" onclick="clearGuideSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:18px; display:none;">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+            </div>
+            
+            <!-- POPULAR CHIPS -->
+            <div style="margin-top: 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span style="font-size:13px; font-weight:700; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">Popular:</span>
+                <button onclick="setGuideSearch('FIR')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">FIR</button>
+                <button onclick="setGuideSearch('Bail')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Bail</button>
+                <button onclick="setGuideSearch('Cyber Fraud')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Cyber Fraud</button>
+                <button onclick="setGuideSearch('Consumer Complaint')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Consumer Complaint</button>
+                <button onclick="setGuideSearch('Legal Notice')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Legal Notice</button>
+                <button onclick="setGuideSearch('Tenant Dispute')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Tenant Dispute</button>
+                <button onclick="setGuideSearch('RTI')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">RTI</button>
+                <button onclick="setGuideSearch('Traffic')" class="chip-btn" style="background:#f7fafc; border:1px solid #e2e8f0; padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-weight:600; color:#4a5568;">Traffic Challan</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: BROWSE BY CATEGORY -->
+    <section id="browse-guides" style="padding: 60px 0 30px; background: #fafbfc;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:40px;">
+                <h2 style="font-size:26px; font-weight:900; color:#111;">Explore Guides by Category</h2>
+                <p style="color:#666; font-size:15px;">Filter our practical guides based on legal domain</p>
+            </div>
+            
+            <div class="cat-card-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+                <div onclick="filterGuideCat('all', this)" class="cat-card active" style="background:#fff; border:2px solid #00C853; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+                    <i class="fas fa-th-large cat-card-icon" style="font-size:24px; color:#00C853; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">All Guides</div>
+                    <span style="font-size:12px; color:#718096;">47 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('police', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-shield-alt cat-card-icon" style="font-size:24px; color:#3182ce; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Police & Criminal</div>
+                    <span style="font-size:12px; color:#718096;">8 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('cyber', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-laptop-code cat-card-icon" style="font-size:24px; color:#805ad5; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Cyber & Digital</div>
+                    <span style="font-size:12px; color:#718096;">6 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('consumer', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-shopping-bag cat-card-icon" style="font-size:24px; color:#dd6b20; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Consumer & Markets</div>
+                    <span style="font-size:12px; color:#718096;">5 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('rent', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-home cat-card-icon" style="font-size:24px; color:#38a169; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Rent & Housing</div>
+                    <span style="font-size:12px; color:#718096;">4 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('family', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-users cat-card-icon" style="font-size:24px; color:#e53e3e; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Family & Matrimonial</div>
+                    <span style="font-size:12px; color:#718096;">5 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('business', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-file-contract cat-card-icon" style="font-size:24px; color:#319795; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Business & Contracts</div>
+                    <span style="font-size:12px; color:#718096;">4 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('employment', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-briefcase cat-card-icon" style="font-size:24px; color:#d69e2e; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Employment & Labor</div>
+                    <span style="font-size:12px; color:#718096;">4 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('rights', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-balance-scale cat-card-icon" style="font-size:24px; color:#00C853; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Fundamental Rights</div>
+                    <span style="font-size:12px; color:#718096;">3 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('traffic', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-car cat-card-icon" style="font-size:24px; color:#4a5568; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Traffic & Vehicles</div>
+                    <span style="font-size:12px; color:#718096;">3 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('property', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-building cat-card-icon" style="font-size:24px; color:#742a2a; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Property & Land</div>
+                    <span style="font-size:12px; color:#718096;">3 Guides</span>
+                </div>
+                <div onclick="filterGuideCat('women', this)" class="cat-card" style="background:#fff; border:2px solid #edf2f7; border-radius:16px; padding:20px; text-align:center; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-hands-helping cat-card-icon" style="font-size:24px; color:#b83280; margin-bottom:10px; display:block;"></i>
+                    <div style="font-weight:800; font-size:14px; color:#111;">Women & Children</div>
+                    <span style="font-size:12px; color:#718096;">2 Guides</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SUBSTANTIAL COLLECTION OF PRACTICAL GUIDES (47+ CARDS) -->
+    <section style="padding:50px 0 90px; background:#fff;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                <h3 style="font-size:22px; font-weight:800; color:#111;" id="guideResultsHeading">Showing All 47 Legal Guides</h3>
+                <span style="font-size:14px; color:#718096;" id="guideResultsCount">47 results</span>
+            </div>
+
+            <div class="guides-grid-enhanced" id="guidesContainer" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:24px;">
+                ${expandedGuides.map(item => `
+                    <div class="guide-card-enhanced" data-category="${item.catKey}" data-title="${item.title.toLowerCase()}" data-aos="fade-up" style="background:#fff; border:1px solid #edf2f7; border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.3s ease; box-shadow:0 6px 20px rgba(0,0,0,0.03);">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                <span class="card-tag" style="background:#f0fdf4; color:#00C853; font-weight:800; font-size:12px; padding:4px 12px; border-radius:20px; text-transform:uppercase;">${item.category}</span>
+                                <span style="font-size:12px; font-weight:700; color:#a0aec0;"><i class="far fa-clock"></i> ${item.readTime}</span>
+                            </div>
+                            <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:10px; line-height:1.35;">${item.title}</h3>
+                            <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:18px;">${item.summary}</p>
+                            
+                            <div style="background:#f8fafc; border-radius:12px; padding:14px; margin-bottom:20px;">
+                                <div style="font-size:11px; font-weight:900; color:#718096; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">WHAT YOU'LL LEARN:</div>
+                                <ul style="list-style:none; padding:0; margin:0;">
+                                    ${item.learn.map(l => `
+                                        <li style="font-size:13px; color:#2d3748; margin-bottom:6px; display:flex; align-items:flex-start; gap:8px;">
+                                            <i class="fas fa-check-circle" style="color:#00C853; font-size:12px; margin-top:3px;"></i>
+                                            <span>${l}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="legal-guides/${item.slug}.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                            <span>Read Full Guide</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div id="noGuidesFound" style="display:none; text-align:center; padding:60px 20px; background:#f7fafc; border-radius:20px; margin-top:30px;">
+                <i class="fas fa-search" style="font-size:40px; color:#cbd5e0; margin-bottom:16px;"></i>
+                <h3 style="font-size:20px; font-weight:800; color:#2d3748;">No Legal Guides Found</h3>
+                <p style="color:#718096; font-size:14px;">Try adjusting your search term or selecting another category.</p>
+                <button onclick="clearGuideSearch()" style="margin-top:16px; background:#00C853; color:#fff; border:none; padding:10px 24px; border-radius:10px; font-weight:700; cursor:pointer;">Reset Search & Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: HOW OUR GUIDES WORK (4-STAGE VISUAL PROCESS) -->
+    <section style="padding: 70px 0; background: #f8fafc; border-top: 1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 50px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Practical Framework</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">How NYAYI Guides Help You Act</h2>
+                <p style="color:#666; font-size:15px;">Every guide follows a structured 4-step actionable legal protocol.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:24px;">
+                <div style="background:#fff; border-radius:16px; padding:28px; border:1px solid #edf2f7; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.02);" data-aos="fade-up" data-aos-delay="100">
+                    <div style="width:48px; height:48px; background:#e8f5e9; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; margin:0 auto 16px;">01</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">UNDERSTAND</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.6;">Identify your statutory rights, applicable BNS/BNSS laws, and initial legal standing.</p>
+                </div>
+                <div style="background:#fff; border-radius:16px; padding:28px; border:1px solid #edf2f7; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.02);" data-aos="fade-up" data-aos-delay="200">
+                    <div style="width:48px; height:48px; background:#eef2ff; color:#4f46e5; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; margin:0 auto 16px;">02</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">PREPARE</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.6;">Gather mandatory documentary evidence, receipts, timeline, and identity documents.</p>
+                </div>
+                <div style="background:#fff; border-radius:16px; padding:28px; border:1px solid #edf2f7; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.02);" data-aos="fade-up" data-aos-delay="300">
+                    <div style="width:48px; height:48px; background:#fef3c7; color:#d97706; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; margin:0 auto 16px;">03</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">ACT</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.6;">Submit official complaints, send legal notices, or lodge digital portal complaints.</p>
+                </div>
+                <div style="background:#fff; border-radius:16px; padding:28px; border:1px solid #edf2f7; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.02);" data-aos="fade-up" data-aos-delay="400">
+                    <div style="width:48px; height:48px; background:#fee2e2; color:#dc2626; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; margin:0 auto 16px;">04</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:8px;">ESCALATE</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.6;">Escalate to Magistrates, Tribunals, Ombudsman, or High Court if initial recourse fails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: SIGNATURE FEATURE: "LEGAL SITUATION -> ACTION PLAN" -->
+    <section style="padding: 70px 0; background: #fff;">
+        <div class="container">
+            <div style="text-align:center; max-width:750px; margin:0 auto 50px;">
+                <span style="background:#111; color:#fff; font-weight:800; font-size:12px; padding:4px 14px; border-radius:20px; letter-spacing:1px; text-transform:uppercase;">SIGNATURE TOOL</span>
+                <h2 style="font-size:30px; font-weight:900; color:#111; margin-top:10px;">Legal Situation &rarr; Immediate Action Plan</h2>
+                <p style="color:#666; font-size:15px;">Facing a specific legal problem? Select your exact scenario for a 60-second immediate response plan.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-exclamation-triangle" style="color:#e53e3e; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">I think I have been scammed online</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Unauthorized bank debit, fake shopping website, or UPI QR code fraud.</p>
+                    <button onclick="openActionPlanModal('scammed-online')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-key" style="color:#dd6b20; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">My landlord isn't returning my deposit</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Vacated flat but landlord refusing to refund security deposit after 30 days.</p>
+                    <button onclick="openActionPlanModal('landlord-deposit')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-shield-alt" style="color:#3182ce; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">Police aren't registering my complaint</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Station duty officer refused to take written complaint or lodge FIR.</p>
+                    <button onclick="openActionPlanModal('police-refusal')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-envelope-open-text" style="color:#805ad5; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">I received a formal legal notice</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Received advocate notice demanding response within 15 days.</p>
+                    <button onclick="openActionPlanModal('received-notice')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-gavel" style="color:#742a2a; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">I received a court summons</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Court summons ordering mandatory appearance on specified date.</p>
+                    <button onclick="openActionPlanModal('court-summons')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-car-crash" style="color:#d69e2e; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">I was stopped by police / traffic officer</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Traffic check, document inspection, or vehicle seizure attempt.</p>
+                    <button onclick="openActionPlanModal('traffic-stop')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-box-open" style="color:#38a169; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">I bought a defective product</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Seller or brand refusing replacement or refund under warranty.</p>
+                    <button onclick="openActionPlanModal('defective-product')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:16px; padding:24px; background:#fff; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.02);" data-aos="fade-up">
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fas fa-briefcase" style="color:#b83280; font-size:20px;"></i>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0;">My employer has not paid my wages</h3>
+                    </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.5;">Overdue salary for months or full F&F settlement withheld after resignation.</p>
+                    <button onclick="openActionPlanModal('unpaid-salary')" style="width:100%; background:#f7fafc; border:1px solid #cbd5e0; color:#2d3748; padding:10px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">
+                        View Action Plan <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: "DON'T MAKE THESE COMMON MISTAKES" -->
+    <section style="padding: 70px 0; background: #fff5f5; border-top: 1px solid #fed7d7;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 50px;">
+                <span style="background:#e53e3e; color:#fff; font-weight:800; font-size:12px; padding:4px 14px; border-radius:20px; letter-spacing:1px; text-transform:uppercase;">CRITICAL ADVISORY</span>
+                <h2 style="font-size:28px; font-weight:900; color:#9b2c2c; margin-top:10px;">Don't Make These 6 Common Legal Mistakes</h2>
+                <p style="color:#742a2a; font-size:15px;">Mistakes made in the first 24 hours of a legal issue can permanently weaken your position.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-trash-alt"></i> 1. Deleting Messages & Evidence</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Never delete WhatsApp chats, call logs, emails, or payment screenshots out of panic. Under Bharatiya Sakshya Adhiniyam (BSA 2023), digital records serve as primary evidence when supported by Sec 63 certificate.</p>
+                </div>
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-comments"></i> 2. Relying Only on Verbal Assurances</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Verbal promises by landlords, employers, or sellers are difficult to prove in court. Always follow up verbal discussions with an immediate written email or WhatsApp summary ("As discussed today...").</p>
+                </div>
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-file-signature"></i> 3. Signing Documents Without Reading</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Never sign blank papers, police statements, or compromise deeds without reading every clause. You have the statutory right to request time to review documents with legal counsel.</p>
+                </div>
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-bell-slash"></i> 4. Ignoring Formal Notices or Summons</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Ignoring court summons or advocate notices leads to ex-parte orders or issuance of Non-Bailable Warrants (NBW). Always acknowledge and send a formal reply within the stipulated deadline.</p>
+                </div>
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-exchange-alt"></i> 5. Confusing Civil vs Criminal Remedies</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Filing police complaints for purely civil monetary disputes (like simple loan defaults) risks complaint rejection. Know whether your issue requires a civil suit, consumer filing, or criminal FIR.</p>
+                </div>
+                <div style="background:#fff; border-left:4px solid #e53e3e; border-radius:12px; padding:24px; box-shadow:0 4px 12px rgba(229,62,62,0.05);" data-aos="fade-up">
+                    <h3 style="font-size:16px; font-weight:800; color:#9b2c2c; margin-bottom:8px;"><i class="fas fa-hashtag"></i> 6. Social Media Defamation Postings</h3>
+                    <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Posting aggressive unverified allegations against individuals or companies on social media can invite criminal defamation suits under BNS Sec 356 and IT Act counter-charges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: DOCUMENT & EVIDENCE CHECKLIST ("BUILD YOUR LEGAL FILE") -->
+    <section style="padding: 70px 0; background: #fff;">
+        <div class="container" style="max-width:900px;">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Interactive Preparation</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Build Your Legal Case File</h2>
+                <p style="color:#666; font-size:15px;">Check off the evidence items you have compiled before taking formal action:</p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:20px; padding:32px;">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap:16px;">
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Government Photo ID (Aadhaar / PAN / Passport)</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Chronological Timeline of Incident Events</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Proof of Payment / Bank Statement / UPI Receipt</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Written Contracts / Agreements / Invoices</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Written Communications (Emails / WhatsApp PDF export)</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Photos / Video Recordings / CCTV Footage</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Copy of Police Acknowledgement Receipt / FIR</span>
+                    </label>
+                    <label class="checklist-item" style="display:flex; align-items:center; gap:14px; background:#fff; padding:16px; border-radius:12px; border:1px solid #edf2f7; cursor:pointer; transition:all 0.2s ease;">
+                        <input type="checkbox" onchange="toggleChecklistItem(this)" style="width:20px; height:20px; accent-color:#00C853; cursor:pointer;">
+                        <span style="font-size:14px; font-weight:600; color:#2d3748;">Witness Names and Contact Details</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: "BEFORE YOU TAKE THE NEXT STEP" -->
+    <section style="padding: 60px 0; background: #111; color: #fff;">
+        <div class="container" style="max-width: 900px; text-align: center;">
+            <span style="color:#00C853; font-weight:800; font-size:12px; letter-spacing:1px; text-transform:uppercase;">SELF-ASSESSMENT FRAMEWORK</span>
+            <h2 style="font-size: 28px; font-weight: 900; margin: 10px 0 30px;">3 Questions Before You Take Legal Action</h2>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:24px; text-align:left;">
+                <div style="background:#1a1a1a; border:1px solid #333; border-radius:16px; padding:24px;">
+                    <div style="color:#00C853; font-weight:900; font-size:20px; margin-bottom:10px;">01</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:8px;">What Specific Right Was Violated?</h3>
+                    <p style="font-size:13px; color:#aaa; margin:0; line-height:1.6;">Identify the specific statutory right, contract clause, or criminal provision that was breached.</p>
+                </div>
+                <div style="background:#1a1a1a; border:1px solid #333; border-radius:16px; padding:24px;">
+                    <div style="color:#00C853; font-weight:900; font-size:20px; margin-bottom:10px;">02</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:8px;">Do You Have Admissible Evidence?</h3>
+                    <p style="font-size:13px; color:#aaa; margin:0; line-height:1.6;">Ensure your receipts, screenshots, or witnesses conform to BSA 2023 evidence standards.</p>
+                </div>
+                <div style="background:#1a1a1a; border:1px solid #333; border-radius:16px; padding:24px;">
+                    <div style="color:#00C853; font-weight:900; font-size:20px; margin-bottom:10px;">03</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:8px;">What Outcome Are You Seeking?</h3>
+                    <p style="font-size:13px; color:#aaa; margin:0; line-height:1.6;">Define whether you require monetary refund, property possession, injunction, or criminal conviction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10: LEGAL GUIDES FOR STUDENTS ("STUDY LEGAL PROCEDURE") -->
+    <section style="padding: 70px 0; background: #fafbfc;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Academic Procedure Module</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Study Indian Legal Procedure</h2>
+                <p style="color:#666; font-size:15px;">Key procedural distinctions for law students, UPSC aspirants, and legal learners.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 01</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">FIR vs Police Complaint</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">FIR registered only for cognizable offenses (Sec 173 BNSS). Written complaint recorded for non-cognizable cases in NCR register (Sec 174 BNSS).</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 02</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Bail vs Anticipatory Bail</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Regular bail (Sec 479/480 BNSS) granted post-arrest. Anticipatory bail (Sec 482 BNSS) granted by Sessions/High Court before actual arrest occurs.</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 03</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Summons vs Warrant</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Summons is an authoritative judicial order to appear in court. Warrant is an order empowering police officers to arrest a specific accused person.</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 04</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Civil vs Criminal Procedure</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Civil suits (CPC 1908) resolve private rights disputes and monetary compensation. Criminal suits (BNSS 2023) punish offenses against society.</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 05</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Admissible Evidence (BSA 2023)</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Electronic records require Section 63 BSA certificate. Primary evidence includes original documents; secondary evidence accepted under specific exceptions.</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 06</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Jurisdiction Principles</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Territorial jurisdiction (where offense occurred) vs Pecuniary jurisdiction (monetary valuation of suit claims in civil courts).</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 07</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Legal Notice Dynamics</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Statutory notices require 15-to-60 day response windows depending on applicable statute (CPC Sec 80 requires 60 days against Government).</p>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
+                    <span style="font-size:11px; font-weight:900; color:#3182ce; background:#ebf8ff; padding:3px 10px; border-radius:12px;">PROCEDURAL REVISION 08</span>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin:10px 0 6px;">Appeals vs Revision Petitions</h3>
+                    <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Appeal re-examines both factual evidence and law points. Revision petition examines legal correctness and jurisdictional propriety of court orders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 11: BEGINNER TO ADVANCED LEARNING PATHWAY -->
+    <section style="padding: 70px 0; background: #fff;">
+        <div class="container">
+            <div style="text-align:center; max-width:700px; margin:0 auto 50px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Structured Progression</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Legal Awareness Pathway</h2>
+                <p style="color:#666; font-size:15px;">Build your practical legal literacy step by step:</p>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:16px; max-width:800px; margin:0 auto;">
+                <div style="display:flex; align-items:center; gap:20px; background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                    <div style="width:40px; height:40px; background:#00C853; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">1</div>
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0 0 4px;">Stage 1: Know Your Fundamental Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0;">Understand constitutional guarantees under Articles 14, 19, 21, and 22.</p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px; background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                    <div style="width:40px; height:40px; background:#00C853; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">2</div>
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0 0 4px;">Stage 2: Master Basic Police & Legal Interaction</h3>
+                        <p style="font-size:13px; color:#666; margin:0;">Learn FIR registration, police questioning rules, and zero-FIR rights.</p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px; background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                    <div style="width:40px; height:40px; background:#00C853; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">3</div>
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0 0 4px;">Stage 3: Cyber & Consumer Protection Literacy</h3>
+                        <p style="font-size:13px; color:#666; margin:0;">Know 1930 Cyber Helpline reporting, e-Daakhil consumer claims, and bank liability.</p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px; background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                    <div style="width:40px; height:40px; background:#00C853; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">4</div>
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0 0 4px;">Stage 4: Civil, Property & Housing Disclosures</h3>
+                        <p style="font-size:13px; color:#666; margin:0;">Understand Model Tenancy Act, RERA builder disputes, and legal notice drafting.</p>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px; background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                    <div style="width:40px; height:40px; background:#00C853; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">5</div>
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin:0 0 4px;">Stage 5: Court Procedures & Dispute Resolution</h3>
+                        <p style="font-size:13px; color:#666; margin:0;">Explore bail procedures, writ petitions, Lok Adalat, and legal aid rights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 12: RELATED NYAYI RESOURCES ("GO DEEPER") -->
+    <section style="padding: 60px 0; background: #fafbfc; border-top: 1px solid #edf2f7;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:40px;">
+                <h2 style="font-size:24px; font-weight:900; color:#111;">Explore More NYAYI Knowledge Resources</h2>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+                <a href="dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                    <i class="fas fa-book-open" style="font-size:28px; color:#00C853; margin-bottom:12px; display:block;"></i>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Dictionary</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Search 1,000+ Indian legal terms & definitions.</p>
+                </a>
+                <a href="laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                    <i class="fas fa-gavel" style="font-size:28px; color:#3182ce; margin-bottom:12px; display:block;"></i>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Indian Laws Library</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Browse BNS 2023, BNSS 2023, BSA 2023 codes.</p>
+                </a>
+                <a href="rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                    <i class="fas fa-shield-alt" style="font-size:28px; color:#e53e3e; margin-bottom:12px; display:block;"></i>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Know Your Rights</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Citizen rights guide for police, workplace, & family.</p>
+                </a>
+                <a href="articles.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                    <i class="fas fa-newspaper" style="font-size:28px; color:#805ad5; margin-bottom:12px; display:block;"></i>
+                    <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Articles</h3>
+                    <p style="font-size:13px; color:#666; margin:0;">Editorial updates and legal analysis.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 13: SUBSTANTIAL FAQ ACCORDION -->
+    <section style="padding: 70px 0; background: #fff;">
+        <div class="container" style="max-width:850px;">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span style="color:#00C853; font-weight:900; font-size:13px; text-transform:uppercase; letter-spacing:1px;">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Legal Guides & Procedures FAQ</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What is the difference between an FIR and a written police complaint?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        An FIR (First Information Report) is registered under Section 173 of BNSS 2023 exclusively for cognizable offenses (serious crimes where police can arrest without a warrant). A police complaint is a written report of any incident (cognizable or non-cognizable) submitted to a station officer. Non-cognizable complaints are entered in the Non-Cognizable Register (NCR) and require a magistrate's order for investigation.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Can police refuse to register an FIR for a serious crime?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        No. Legally, under Section 173 of BNSS 2023 and Supreme Court ruling in <em>Lalita Kumari v. Govt of UP</em>, police are mandatory bound to register an FIR upon receiving information disclosing a cognizable offense. If refused, you can send your complaint to Superintendent of Police (SP) by registered post under BNSS 173(4) or file a application before Magistrate under BNSS 175(3).
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What is a Zero FIR and how does it work?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        A Zero FIR allows a victim to lodge an FIR at ANY police station in India, regardless of territorial jurisdiction where the crime took place. It receives the number '00' and is immediately transferred to the jurisdictional police station for formal investigation after initial emergency steps are taken.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>How quickly should financial cyber fraud be reported?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Financial cyber fraud should be reported within the 'Golden Hour' (first 1 to 2 hours) by calling <strong>1930 Cyber Helpline</strong> or lodging a complaint on <code>cybercrime.gov.in</code>. Immediate reporting enables the National Cybercrime Reporting Portal to issue freeze alerts directly to recipient bank accounts before funds are withdrawn.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What should I do if I receive a formal legal notice?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Do not ignore a legal notice. Read it carefully, note the deadline for response (usually 15 days), collect relevant documents/evidence, and consult an advocate to send a formal written reply refuting baseless claims or negotiating a settlement before court litigation begins.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>How can I file a complaint in Consumer Court without a lawyer?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Under Consumer Protection Act 2019, consumers can file complaints online via <code>edaakhil.nic.in</code> or directly at District Consumer Commission without hiring an advocate. You need to attach purchase receipts, proof of deficiency in service, copy of legal notice sent to seller, and affidavit.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Can a landlord withhold a security deposit without providing bills?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        No. Deductions from security deposits must be backed by actual bills for damages beyond normal wear and tear. Under Model Tenancy Act provisions, landlords must refund security deposit within 30 days of flat handover after valid deductions.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What is the statutory response period for an RTI application?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        The Public Information Officer (PIO) is legally required to respond within <strong>30 days</strong> of receiving an RTI application. If information concerns life or liberty of a person, response must be provided within <strong>48 hours</strong>.
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Who qualifies for free legal services in India?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Under Section 12 of Legal Services Authorities Act 1987, free legal assistance (lawyer fees & court expenses) is available to women, children, SC/ST members, industrial workmen, custody victims, disaster victims, and persons with annual income below specified state thresholds (usually 3 Lakhs).
+                    </div>
+                </div>
+
+                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
+                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                        <span>What are the new criminal law codes in India?</span>
+                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
+                    </button>
+                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
+                        Effective July 1, 2024, India's key criminal codes were updated: Bharatiya Nyaya Sanhita (BNS 2023) replaced IPC, Bharatiya Nagarik Suraksha Sanhita (BNSS 2023) replaced CrPC, and Bharatiya Sakshya Adhiniyam (BSA 2023) replaced Indian Evidence Act.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 14: EDUCATIONAL DISCLAIMER -->
+    <section style="padding: 30px 0; background: #fff5f5; border-top: 1px solid #fed7d7;">
+        <div class="container" style="max-width: 900px; text-align: center;">
+            <p style="font-size:12px; color:#c53030; margin:0; line-height:1.6;">
+                <i class="fas fa-exclamation-circle"></i> <strong>Educational Disclaimer:</strong> NYAYI guides are created for general legal awareness and educational purposes under Bharatiya codes (BNS, BNSS, BSA). Procedures may vary based on local state rules and case facts. For formal legal representation or litigation advice, consult a licensed advocate.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 15: FINAL CTA BLOCK -->
+    <section style="padding:80px 0; background:#111; color:#fff; text-align:center;">
+        <div class="container" style="max-width:800px;" data-aos="zoom-in">
+            <h2 style="font-size:32px; font-weight:900; margin-bottom:16px; color:#fff;">Need Instant Answers for Your Specific Legal Case?</h2>
+            <p style="font-size:17px; color:#aaa; margin-bottom:32px; line-height:1.6;">
+                Get real-time AI legal assistance, BNS section mappings, and procedure guidance in plain language on NYAYI AI.
+            </p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:16px; box-shadow:0 4px 20px rgba(0,200,83,0.4);">
+                    <i class="fas fa-robot"></i> Ask NYAYI AI Assistant
+                </a>
+                <a href="rights.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 30px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                    Explore Citizen Rights
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTION PLAN MODAL OVERLAY -->
+    <div id="actionPlanModal" class="action-modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); z-index:99999; justify-content:center; align-items:center; padding:20px;">
+        <div class="action-modal-content" style="background:#fff; border-radius:24px; max-width:700px; width:100%; max-height:85vh; overflow-y:auto; padding:32px; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.3);">
+            <button onclick="closeActionPlanModal()" style="position:absolute; right:24px; top:24px; background:#f7fafc; border:none; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:18px; color:#4a5568; display:flex; align-items:center; justify-content:center;">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="actionModalBody">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT-SIDE INTERACTIVE JAVASCRIPT FOR SEARCH, FILTERS, MODAL & FAQ -->
+    <script>
+    const expandedGuidesData = ${JSON.stringify(expandedGuides)};
+
+    function handleGuideSearch() {
+        const query = document.getElementById('guideSearchInput').value.toLowerCase().trim();
+        const clearBtn = document.getElementById('guideClearBtn');
+        if (clearBtn) clearBtn.style.display = query ? 'block' : 'none';
+
+        const cards = document.querySelectorAll('.guide-card-enhanced');
+        let count = 0;
+        cards.forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const cat = card.getAttribute('data-category') || '';
+            const text = card.textContent.toLowerCase();
+
+            if (!query || title.includes(query) || text.includes(query)) {
+                card.style.display = 'flex';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const heading = document.getElementById('guideResultsHeading');
+        const countSpan = document.getElementById('guideResultsCount');
+        const noFound = document.getElementById('noGuidesFound');
+
+        if (heading) heading.innerText = query ? 'Search Results for "' + query + '"' : 'Showing All 47 Legal Guides';
+        if (countSpan) countSpan.innerText = count + ' results';
+        if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    function setGuideSearch(term) {
+        const input = document.getElementById('guideSearchInput');
+        if (input) {
+            input.value = term;
+            handleGuideSearch();
+        }
+    }
+
+    function clearGuideSearch() {
+        const input = document.getElementById('guideSearchInput');
+        if (input) {
+            input.value = '';
+            handleGuideSearch();
+        }
+        filterGuideCat('all', document.querySelector('.cat-card'));
+    }
+
+    function filterGuideCat(catKey, el) {
+        document.querySelectorAll('.cat-card').forEach(c => {
+            c.style.borderColor = '#edf2f7';
+            c.classList.remove('active');
+        });
+        if (el) {
+            el.style.borderColor = '#00C853';
+            el.classList.add('active');
+        }
+
+        const cards = document.querySelectorAll('.guide-card-enhanced');
+        let count = 0;
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (catKey === 'all' || cardCat === catKey) {
+                card.style.display = 'flex';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const heading = document.getElementById('guideResultsHeading');
+        const countSpan = document.getElementById('guideResultsCount');
+        const noFound = document.getElementById('noGuidesFound');
+
+        if (heading) heading.innerText = catKey === 'all' ? 'Showing All 47 Legal Guides' : 'Guides in ' + catKey.toUpperCase();
+        if (countSpan) countSpan.innerText = count + ' results';
+        if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    function toggleChecklistItem(cb) {
+        const label = cb.closest('label');
+        if (label) {
+            if (cb.checked) {
+                label.style.borderColor = '#00C853';
+                label.style.background = '#f0fdf4';
+            } else {
+                label.style.borderColor = '#edf2f7';
+                label.style.background = '#fff';
+            }
+        }
+    }
+
+    function toggleFaq(btn) {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            if (icon) icon.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.display = 'block';
+            if (icon) icon.style.transform = 'rotate(180deg)';
+        }
+    }
+
+    const actionPlans = {
+        'scammed-online': {
+            title: 'Online Scam / Financial Fraud Action Plan',
+            what: 'Unauthorized money deducted from bank account, UPI QR scam, or fraudulent online transaction.',
+            firstSteps: ['Call Cyber Crime Helpline 1930 immediately within Golden Hour', 'Call your bank customer care to block debit cards & UPI ID'],
+            evidence: ['Transaction UTR numbers, bank SMS screenshots, scammer UPI ID & phone number'],
+            nextSteps: ['File online complaint at cybercrime.gov.in', 'Submit written dispute form at home bank branch'],
+            seekHelp: 'If bank refuses zero-liability claim after 3 days, file Banking Ombudsman complaint.'
+        },
+        'landlord-deposit': {
+            title: 'Security Deposit Non-Refund Action Plan',
+            what: 'Landlord withholding security deposit without providing valid repair bills.',
+            firstSteps: ['Send formal written email & WhatsApp summary requesting deposit refund', 'Gather flat handover photos & rent receipts'],
+            evidence: ['Rent agreement copy, rent payment receipts, handover chat logs, inspection photos'],
+            nextSteps: ['Draft and serve 15-day formal legal notice via advocate or registered post', 'Approach Rent Controller / Rent Tribunal'],
+            seekHelp: 'If deposit amount exceeds 1 Lakh, approach civil court or Rent Authority.'
+        },
+        'police-refusal': {
+            title: 'Police Refused FIR Action Plan',
+            what: 'Station duty officer refused to record written FIR for cognizable offense.',
+            firstSteps: ['Note station officer name & badge number', 'Send written complaint copy to District SP / DCP via Registered Post AD (Sec 173(4) BNSS)'],
+            evidence: ['Postal receipt of complaint sent to SP, copy of written complaint, witness details'],
+            nextSteps: ['File Section 175(3) BNSS application before Judicial Magistrate Court', 'Magistrate orders police to register FIR'],
+            seekHelp: 'Consult a criminal advocate to draft Magistrate application under BNSS 175(3).'
+        },
+        'received-notice': {
+            title: 'Received Legal Notice Action Plan',
+            what: 'Advocate notice received demanding response or legal action within 15 days.',
+            firstSteps: ['Note date of receipt and statutory deadline', 'Do not ignore or throw away notice'],
+            evidence: ['Original notice envelope with postal stamp, transaction receipts, agreements'],
+            nextSteps: ['Consult advocate immediately to draft formal reply refuting allegations', 'Send reply by Registered Post AD within 15 days'],
+            seekHelp: 'Always consult an advocate to avoid admitting liability in notice replies.'
+        },
+        'court-summons': {
+            title: 'Received Court Summons Action Plan',
+            what: 'Judicial summons ordering appearance in civil or criminal court.',
+            firstSteps: ['Check court name, case number, section, and appearance date', 'Engage advocate to inspect court file'],
+            evidence: ['Original summons copy, identity documents, case-related evidence'],
+            nextSteps: ['Appear through advocate on scheduled date or file vakalatnama', 'File written statement / bail application'],
+            seekHelp: 'Failure to appear can result in Ex-Parte order or Non-Bailable Warrant (NBW).'
+        },
+        'traffic-stop': {
+            title: 'Traffic Stop & Vehicle Check Action Plan',
+            what: 'Stopped by traffic police officer for document verification or suspected violation.',
+            firstSteps: ['Remain calm & polite; request officer name and rank (Sub-Inspector minimum for challans)', 'Show digital documents via DigiLocker / mParivahan app'],
+            evidence: ['Challan slip copy, video recording if officer misbehaves'],
+            nextSteps: ['Pay e-challan online or contest wrongful fine on Virtual Court portal (vcourts.gov.in)'],
+            seekHelp: 'Traffic officer cannot forcefully remove ignition key from running vehicle.'
+        },
+        'defective-product': {
+            title: 'Defective Product / Service Failure Action Plan',
+            what: 'Seller or manufacturer refusing refund/replacement under warranty.',
+            firstSteps: ['Send formal email complaint to customer support & nodalofficer', 'Register complaint on National Consumer Helpline (1915)'],
+            evidence: ['Purchase invoice, warranty card, photos/videos of defect, email thread'],
+            nextSteps: ['Send 15-day formal notice to seller & manufacturer', 'File online petition on e-Daakhil consumer portal'],
+            seekHelp: 'Claim full purchase price refund, interest, and compensation for mental agony.'
+        },
+        'unpaid-salary': {
+            title: 'Unpaid Salary / Illegal Termination Action Plan',
+            what: 'Employer withholding monthly wages or full & final settlement.',
+            firstSteps: ['Send formal demand email to HR & Managing Director specifying unpaid amount', 'Preserve appointment letter & payslips'],
+            evidence: ['Offer letter, monthly payslips, bank statements, work emails, resignation acknowledgment'],
+            nextSteps: ['Send formal legal notice demanding payment within 15 days', 'File complaint with State Labor Commissioner under Payment of Wages Act'],
+            seekHelp: 'Labor court / Labor Commissioner provides fast-track remedy for wage recovery.'
+        }
+    };
+
+    function openActionPlanModal(planKey) {
+        var plan = actionPlans[planKey];
+        if (!plan) return;
+        var modal = document.getElementById('actionPlanModal');
+        var body = document.getElementById('actionModalBody');
+        if (!modal || !body) return;
+
+        var firstStepsHtml = '';
+        for (var i = 0; i < plan.firstSteps.length; i++) {
+            firstStepsHtml += '<li>' + plan.firstSteps[i] + '</li>';
+        }
+        var evidenceHtml = '';
+        for (var i = 0; i < plan.evidence.length; i++) {
+            evidenceHtml += '<li>' + plan.evidence[i] + '</li>';
+        }
+        var nextStepsHtml = '';
+        for (var i = 0; i < plan.nextSteps.length; i++) {
+            nextStepsHtml += '<li>' + plan.nextSteps[i] + '</li>';
+        }
+
+        body.innerHTML = '<div style="text-align:left;">' +
+            '<span style="background:#e8f5e9; color:#00C853; font-weight:800; font-size:12px; padding:4px 12px; border-radius:20px; text-transform:uppercase;">60-SECOND IMMEDIATE ACTION PLAN</span>' +
+            '<h2 style="font-size:24px; font-weight:900; color:#111; margin:10px 0 16px;">' + plan.title + '</h2>' +
+            '<div style="background:#f8fafc; border-left:4px solid #00C853; padding:16px; border-radius:10px; margin-bottom:20px;">' +
+                '<strong style="color:#111; font-size:14px;">What Happened:</strong>' +
+                '<p style="font-size:13.5px; color:#555; margin:4px 0 0;">' + plan.what + '</p>' +
+            '</div>' +
+            '<div style="margin-bottom:20px;">' +
+                '<h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:8px;"><i class="fas fa-bolt" style="color:#00C853;"></i> Immediate First Steps:</h3>' +
+                '<ul style="padding-left:20px; font-size:14px; color:#2d3748; line-height:1.6;">' + firstStepsHtml + '</ul>' +
+            '</div>' +
+            '<div style="margin-bottom:20px;">' +
+                '<h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:8px;"><i class="fas fa-folder-open" style="color:#3182ce;"></i> Evidence to Preserve:</h3>' +
+                '<ul style="padding-left:20px; font-size:14px; color:#2d3748; line-height:1.6;">' + evidenceHtml + '</ul>' +
+            '</div>' +
+            '<div style="margin-bottom:20px;">' +
+                '<h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:8px;"><i class="fas fa-step-forward" style="color:#805ad5;"></i> Next Statutory Steps:</h3>' +
+                '<ul style="padding-left:20px; font-size:14px; color:#2d3748; line-height:1.6;">' + nextStepsHtml + '</ul>' +
+            '</div>' +
+            '<div style="background:#fff5f5; border-radius:12px; padding:16px; border:1px solid #fed7d7;">' +
+                '<strong style="color:#c53030; font-size:13px;"><i class="fas fa-user-shield"></i> When to Seek Advocate Assistance:</strong>' +
+                '<p style="font-size:13px; color:#9b2c2c; margin:4px 0 0;">' + plan.seekHelp + '</p>' +
+            '</div>' +
+        '</div>';
+
+        modal.style.display = 'flex';
+    }
+
+    function closeActionPlanModal() {
+        const modal = document.getElementById('actionPlanModal');
+        if (modal) modal.style.display = 'none';
+    }
+    </script>
     `;
+
     fs.writeFileSync(path.join(ROOT_DIR, 'guides.html'), guidesHub, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub.replace(/legal-guides\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
+
 
     guides.forEach(item => {
         const pageHtml = `
