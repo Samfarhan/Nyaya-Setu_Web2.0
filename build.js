@@ -3171,41 +3171,1375 @@ function buildFeaturesAndOther() {
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
 
-    // Laws Hub
+    // Expanded authentic Indian Laws dataset
+    const expandedLawsList = [
+        {
+            slug: "bns",
+            title: "Bharatiya Nyaya Sanhita (BNS), 2023",
+            shortName: "BNS 2023",
+            year: "2023 (Enforced July 1, 2024)",
+            category: "Criminal Law",
+            catKey: "criminal",
+            purpose: "Replaced the 163-year-old Indian Penal Code (IPC 1860) with a modern criminal legal code focused on justice rather than colonial punishment.",
+            coverage: "Offences against human body, property, public order, state sovereignty, organized crime, terror acts, and community service punishments.",
+            whyItMatters: "Every criminal complaint, FIR, and charge sheet filed after July 1, 2024 is registered under BNS section numbers instead of IPC sections.",
+            importantConcepts: [
+                "Introduction of Community Service as a statutory punishment for minor offences.",
+                "Categorization of Organized Crime (Sec 111), Mob Lynching (Sec 103), and Terrorist Acts (Sec 113).",
+                "Treasonous acts against Sovereignty (Sec 152) replacing colonial Sedition (Sec 124A IPC).",
+                "Gender-neutral provisions for offences against children and property."
+            ],
+            practicalRelevance: "Defines primary criminal liability, offences, and punishments applicable across India.",
+            officialRef: "Ministry of Law and Justice, Gazette Notification 2023",
+            relatedTerms: ["cognizable-offence", "non-cognizable-offence", "fir", "phishing"],
+            relatedGuides: ["how-to-file-an-fir", "what-happens-after-filing-an-fir"],
+            studyNotes: "BNS contains 358 Sections compared to 511 Sections in the old IPC 1860."
+        },
+        {
+            slug: "bnss",
+            title: "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+            shortName: "BNSS 2023",
+            year: "2023 (Enforced July 1, 2024)",
+            category: "Criminal Procedure",
+            catKey: "procedural",
+            purpose: "Governs the procedural framework for police investigations, arrests, bail, trials, and court administration in criminal matters.",
+            coverage: "Police arrest powers, Zero FIR, e-FIR, mandatory forensic collection, bail procedures, and strict trial time limits.",
+            whyItMatters: "Replaced CrPC 1973. Mandates strict timelines: charge sheets within 90 days, trial judgments within 45 days of trial conclusion.",
+            importantConcepts: [
+                "Mandatory forensic investigation for offences punishable by 7+ years imprisonment.",
+                "Statutory recognition of Zero FIR, e-FIR, and digital/audio-video recording of search and seizure.",
+                "Enhanced safeguards for arrests of elderly, infirm, and female citizens.",
+                "Bail provisions (Sec 478-496) and undertrial release limits."
+            ],
+            practicalRelevance: "Defines police powers, arrest safeguards (Sec 35, 36, 58), and court trial procedures.",
+            officialRef: "Ministry of Home Affairs Guidelines",
+            relatedTerms: ["fir", "zero-fir", "bail", "anticipatory-bail", "charge-sheet"],
+            relatedGuides: ["how-to-file-an-fir", "understanding-anticipatory-bail"],
+            studyNotes: "BNSS contains 531 Sections replacing the 484 Sections of CrPC 1973."
+        },
+        {
+            slug: "bsa",
+            title: "Bharatiya Sakshya Adhiniyam (BSA), 2023",
+            shortName: "BSA 2023",
+            year: "2023 (Enforced July 1, 2024)",
+            category: "Law of Evidence",
+            catKey: "evidence",
+            purpose: "Modernizes the rules of evidence admissibility, giving equal legal standing to electronic records, digital signatures, and server logs.",
+            coverage: "Rules of primary & secondary evidence, electronic evidence admissibility, expert opinions, and witness protection.",
+            whyItMatters: "Replaced Indian Evidence Act 1872. Establishes that digital/electronic records carry equal legal evidentiary weight as physical documents.",
+            importantConcepts: [
+                "Electronic & Digital Records recognized as primary evidence.",
+                "Standardized admissibility for cloud storage, emails, WhatsApp logs, and smartphone recordings.",
+                "Protection of spousal communication and legal professional privilege."
+            ],
+            practicalRelevance: "Crucial for establishing guilt or innocence in court trials through physical and digital evidence.",
+            officialRef: "Gazette of India 2023",
+            relatedTerms: ["charge-sheet", "phishing"],
+            relatedGuides: ["how-to-report-cyber-crime"],
+            studyNotes: "BSA contains 170 Sections replacing the 167 Sections of Indian Evidence Act 1872."
+        },
+        {
+            slug: "constitution",
+            title: "Constitution of India, 1950",
+            shortName: "Indian Constitution",
+            year: "1950",
+            category: "Constitutional Law",
+            catKey: "constitutional",
+            purpose: "The supreme legal document establishing the political structure, fundamental rights, directive principles, and duties of citizens and government.",
+            coverage: "Part III Fundamental Rights (Art 12-35), Part IV Directive Principles, Part IV-A Fundamental Duties, Union & State judiciary.",
+            whyItMatters: "Any statute, police action, or executive order that violates Constitutional Fundamental Rights can be struck down as unconstitutional.",
+            importantConcepts: [
+                "Preamble: Sovereign, Socialist, Secular, Democratic Republic.",
+                "Part III: Fundamental Rights (Articles 14, 19, 21, 22, 32).",
+                "Articles 32 & 226: Power of Supreme Court and High Courts to issue Writs."
+            ],
+            practicalRelevance: "The bedrock of all Indian statutes, civil liberties, and fundamental citizen protections.",
+            officialRef: "Constituent Assembly of India",
+            relatedTerms: ["habeas-corpus", "mandamus"],
+            relatedGuides: ["police-and-arrest-rights"],
+            studyNotes: "Contains 395 Articles in 22 Parts and 12 Schedules."
+        },
+        {
+            slug: "it-act",
+            title: "Information Technology Act, 2000",
+            shortName: "IT Act 2000",
+            year: "2000 (Amended 2008)",
+            category: "Cyber & Technology",
+            catKey: "cyber",
+            purpose: "Provides legal recognition for electronic commerce, digital signatures, cyber crimes, data privacy, and computer system security.",
+            coverage: "Cyber crimes, unauthorized computer access, identity theft, online fraud, cyber terrorism, and intermediary liability.",
+            whyItMatters: "Governs digital transactions, electronic records, and online offences across digital platforms in India.",
+            importantConcepts: [
+                "Section 66C: Punishment for Identity Theft.",
+                "Section 66D: Cheating by Personation using computer resources.",
+                "Section 43A & Data Protection rules for corporate data breaches.",
+                "Intermediary guidelines for social media platforms (Sec 79)."
+            ],
+            practicalRelevance: "Essential for reporting digital banking fraud, hacking, unauthorized data access, and online impersonation.",
+            officialRef: "Ministry of Electronics and Information Technology (MeitY)",
+            relatedTerms: ["phishing", "cyber-crime"],
+            relatedGuides: ["how-to-report-cyber-crime"],
+            studyNotes: "Read alongside BNS 2023 Section 318 and BSA 2023 digital evidence rules."
+        },
+        {
+            slug: "consumer-protection",
+            title: "Consumer Protection Act, 2019",
+            shortName: "CPA 2019",
+            year: "2019",
+            category: "Consumer Law",
+            catKey: "consumer",
+            purpose: "Protects consumer rights against defective goods, deficient services, unfair trade practices, misleading advertisements, and e-commerce fraud.",
+            coverage: "Central Consumer Protection Authority (CCPA), e-Daakhil filing, product liability, misleading ads, and Consumer Disputes Commissions.",
+            whyItMatters: "Replaced CPA 1986. Introduces statutory product liability holding manufacturers and sellers accountable for defective goods.",
+            importantConcepts: [
+                "Right to Refund, Replacement, or Compensation for defective goods/services.",
+                "Establishment of Central Consumer Protection Authority (CCPA).",
+                "Online e-Daakhil filing without requiring physical advocate presence.",
+                "Strict penalties for misleading celebrity endorsements & fake reviews."
+            ],
+            practicalRelevance: "Enables buyers to file complaints against e-commerce sellers, defective appliance brands, or delayed services.",
+            officialRef: "Department of Consumer Affairs (NCH 1915)",
+            relatedTerms: ["consumer-forum", "unfair-trade-practice"],
+            relatedGuides: ["consumer-rights-guide"],
+            studyNotes: "Pecuniary jurisdiction: District Commission up to ₹50 Lakhs; State up to ₹2 Crore."
+        },
+        {
+            slug: "motor-vehicles",
+            title: "Motor Vehicles Act, 1988",
+            shortName: "MV Act 1988",
+            year: "1988 (Amended 2019)",
+            category: "Motor Vehicles",
+            catKey: "motor",
+            purpose: "Regulates road transport, driver licensing, vehicle registration, traffic safety regulations, third-party insurance, and accident compensation.",
+            coverage: "Driving licences, traffic fines, DUI offences, third-party accident claims (MACT), and hit-and-run compensation.",
+            whyItMatters: "The 2019 amendment dramatically increased fines for dangerous driving, drunk driving, driving without insurance, and minor driving offences.",
+            importantConcepts: [
+                "Section 185: Drunk Driving penalties & breathalyzer limits.",
+                "Good Samaritan Protections: Citizens assisting crash victims face no police harassment.",
+                "Motor Accident Claims Tribunal (MACT) compensation framework.",
+                "mParivahan / DigiLocker digital DL/RC statutory validity."
+            ],
+            practicalRelevance: "Governs daily traffic rules, e-challans, vehicle checking guidelines, and accident claim rights.",
+            officialRef: "Ministry of Road Transport and Highways (MoRTH)",
+            relatedTerms: ["mact", "e-challan"],
+            relatedGuides: ["traffic-rights-guide"],
+            studyNotes: "Mandatory third-party insurance required for all vehicles under Section 146."
+        },
+        {
+            slug: "rti",
+            title: "Right to Information Act, 2005",
+            shortName: "RTI Act 2005",
+            year: "2005",
+            category: "Constitutional & Public",
+            catKey: "constitutional",
+            purpose: "Empowers citizens to request information from public authorities, promoting government transparency, accountability, and anti-corruption.",
+            coverage: "Public Information Officers (PIOs), 30-day response mandate, first and second appeals, and Information Commissions.",
+            whyItMatters: "Any Indian citizen can file an RTI query to inspect government records, project expenditures, exam answer sheets, or passport delays.",
+            importantConcepts: [
+                "Mandatory 30-day response timeline (48 hours if life or liberty is involved).",
+                "Exemption categories under Section 8 (National Security, Trade Secrets).",
+                "Penalty of ₹250/day on Public Information Officers for deliberate delays."
+            ],
+            practicalRelevance: "Essential tool for civic transparency, municipal accountability, and public scheme tracking.",
+            officialRef: "Central Information Commission (CIC)",
+            relatedTerms: ["public-authority", "information-officer"],
+            relatedGuides: ["how-to-file-rti"],
+            studyNotes: "Filing fee is ₹10 for central government authorities; free for BPL applicants."
+        },
+        {
+            slug: "domestic-violence",
+            title: "Protection of Women from Domestic Violence Act, 2005",
+            shortName: "PWDVA 2005",
+            year: "2005",
+            category: "Family & Women",
+            catKey: "family",
+            purpose: "Provides civil remedies and protection orders for women suffering physical, sexual, verbal, emotional, or economic abuse within domestic relationships.",
+            coverage: "Protection Orders, Residence Orders, Monetary Relief, Custody Orders, and Protection Officers.",
+            whyItMatters: "Extends protection beyond married women to domestic relationships (live-in relationships, mothers, sisters) living in a shared household.",
+            importantConcepts: [
+                "Right to Reside in Shared Household regardless of legal ownership title.",
+                "Immediate ex-parte Protection Orders prohibiting abuser entry or communication.",
+                "Monetary relief for medical expenses and loss of earnings."
+            ],
+            practicalRelevance: "Enables aggrieved women to approach Protection Officers or Magistrates for urgent protection and maintenance.",
+            officialRef: "Ministry of Women and Child Development",
+            relatedTerms: ["domestic-violence", "protection-order"],
+            relatedGuides: ["womens-rights-guide"],
+            studyNotes: "Proceedings are civil in nature; breach of protection order is a criminal offence under Sec 31."
+        },
+        {
+            slug: "posh",
+            title: "Sexual Harassment of Women at Workplace (POSH) Act, 2013",
+            shortName: "POSH Act 2013",
+            year: "2013",
+            category: "Labour & Workplace",
+            catKey: "labour",
+            purpose: "Mandates safe working environments for women by preventing, prohibiting, and redressing workplace sexual harassment across formal & informal sectors.",
+            coverage: "Internal Complaints Committee (ICC), Local Complaints Committee (LCC), inquiry timelines, and employer duties.",
+            whyItMatters: "Mandatory for all organizations with 10+ employees to constitute an Internal Complaints Committee (ICC) headed by a senior woman employee.",
+            importantConcepts: [
+                "Broad definition of Workplace including office premises, transport, and remote work.",
+                "90-day mandatory completion timeline for ICC inquiry reports.",
+                "Confidentiality safeguards protecting complainant and witness identity."
+            ],
+            practicalRelevance: "Guarantees formal internal redressal mechanism for working women experiencing unwanted sexual advances or hostile work environments.",
+            officialRef: "Vishaka Guidelines & Ministry of Women and Child Development",
+            relatedTerms: ["posh-icc", "workplace-harassment"],
+            relatedGuides: ["posh-complaint-guide"],
+            studyNotes: "Failure to constitute an ICC invites statutory fine of ₹50,000 on employers."
+        },
+        {
+            slug: "juvenile-justice",
+            title: "Juvenile Justice (Care and Protection of Children) Act, 2015",
+            shortName: "JJ Act 2015",
+            year: "2015",
+            category: "Family & Child Protection",
+            catKey: "family",
+            purpose: "Consolidates laws relating to children in conflict with law and children in need of care and protection through child-friendly adjudication.",
+            coverage: "Juvenile Justice Boards (JJB), Child Welfare Committees (CWC), adoption rules (CARA), and rehabilitation homes.",
+            whyItMatters: "Allows preliminary assessment for juveniles aged 16-18 accused of heinous offences to determine if they should be tried as adults.",
+            importantConcepts: [
+                "Child in Conflict with Law (CCL) vs Child in Need of Care and Protection (CNCP).",
+                "CARA statutory framework for legal domestic and inter-country adoptions.",
+                "Strict confidentiality prohibiting publishing juvenile identities."
+            ],
+            practicalRelevance: "Governs juvenile offender rehabilitation, child adoption processes, and child protection homes.",
+            officialRef: "Central Adoption Resource Authority (CARA)",
+            relatedTerms: ["juvenile-justice-board", "cara"],
+            relatedGuides: ["child-protection-guide"],
+            studyNotes: "Rehabilitative focus prioritizing education, counseling, and social reintegration."
+        },
+        {
+            slug: "pocso",
+            title: "Protection of Children from Sexual Offences (POCSO) Act, 2012",
+            shortName: "POCSO Act 2012",
+            year: "2012 (Amended 2019)",
+            category: "Child Protection",
+            catKey: "family",
+            purpose: "Special law enacted to protect children below 18 years from sexual assault, harassment, and pornography with child-friendly trial procedures.",
+            coverage: "Penalties for penetrative and non-penetrative sexual assault, mandatory reporting, Special Courts, and child recording safeguards.",
+            whyItMatters: "Mandatory reporting requirement: Any person, doctor, or institution aware of child sexual abuse must report it to police immediately.",
+            importantConcepts: [
+                "Gender-neutral protection for all children below 18 years.",
+                "Mandatory reporting under Section 19 (failure to report is a punishable offence).",
+                "Child-friendly trials: No cross-examination directly by accused; trials recorded on video."
+            ],
+            practicalRelevance: "Stringent penal law protecting minors with dedicated Special Courts ensuring 1-year trial completion.",
+            officialRef: "Ministry of Women and Child Development",
+            relatedTerms: ["pocso-special-court", "child-helpline-1098"],
+            relatedGuides: ["pocso-reporting-guide"],
+            studyNotes: "Presumption of culpable mental state (Sec 29 & 30) shifts burden of proof to accused."
+        },
+        {
+            slug: "companies-act",
+            title: "Companies Act, 2013",
+            shortName: "Companies Act 2013",
+            year: "2013",
+            category: "Corporate & Commercial",
+            catKey: "corporate",
+            purpose: "Regulates company formation, responsibilities of directors, corporate governance, auditing standards, CSR mandates, and company dissolution.",
+            coverage: "Incorporation, One Person Company (OPC), Director duties, NCLT / NCLAT, Independent Directors, and CSR mandates (Sec 135).",
+            whyItMatters: "The primary legislation governing corporate entities, startups, private limited companies, and public limited firms in India.",
+            importantConcepts: [
+                "Mandatory 2% Corporate Social Responsibility (CSR) spend for qualifying firms.",
+                "National Company Law Tribunal (NCLT) for corporate dispute resolution.",
+                "Strict penalties for corporate fraud under Section 447."
+            ],
+            practicalRelevance: "Essential for business founders, corporate directors, auditors, and investors in India.",
+            officialRef: "Ministry of Corporate Affairs (MCA)",
+            relatedTerms: ["nclt", "opc", "csr"],
+            relatedGuides: ["company-incorporation-guide"],
+            studyNotes: "Contains 470 Sections in 29 Chapters and 7 Schedules."
+        },
+        {
+            slug: "transfer-property",
+            title: "Transfer of Property Act, 1882",
+            shortName: "TPA 1882",
+            year: "1882",
+            category: "Property Law",
+            catKey: "property",
+            purpose: "Governs inter-vivos (between living persons) transfers of immovable property including sales, mortgages, leases, exchanges, and gifts.",
+            coverage: "Sale deeds, mortgage types, lease agreements, gift deeds, actionable claims, and doctrine of lis pendens.",
+            whyItMatters: "Establishes fundamental property transfer rules, lease determination, tenant rights, and mortgage foreclosure procedures.",
+            importantConcepts: [
+                "Section 54: Sale definition & mandatory registered instrument for values > ₹100.",
+                "Section 105 & 106: Lease agreements & notice periods for termination.",
+                "Section 52: Doctrine of Lis Pendens prohibiting property transfer during active court litigation."
+            ],
+            practicalRelevance: "Crucial for property buyers, sellers, landlords, tenants, and mortgage borrowers.",
+            officialRef: "Department of Land Resources",
+            relatedTerms: ["sale-deed", "lease-agreement", "lis-pendens"],
+            relatedGuides: ["property-purchase-guide"],
+            studyNotes: "Does not apply to testamentary transfers (wills), which are governed by Indian Succession Act."
+        },
+        {
+            slug: "contract-act",
+            title: "Indian Contract Act, 1872",
+            shortName: "Contract Act 1872",
+            year: "1872",
+            category: "Civil & Commercial",
+            catKey: "civil",
+            purpose: "Defines the formation, execution, and enforceability of contracts, agreements, breach remedies, indemnity, guarantee, bailment, and agency.",
+            coverage: "Offer, acceptance, consideration, free consent, void contracts, breach of contract damages (Sec 73-74), and indemnity.",
+            whyItMatters: "The foundational law behind every commercial agreement, business contract, employment agreement, and service deal in India.",
+            importantConcepts: [
+                "Essential elements of valid contract (Sec 10): Capacity, Free Consent, Lawful Object.",
+                "Void Ab Initio agreements: Agreements with minors or illegal objects are void from inception.",
+                "Section 73: Compensation for loss or damage caused by breach of contract."
+            ],
+            practicalRelevance: "Governs business contracts, freelance agreements, employment contracts, and breach compensation claims.",
+            officialRef: "Law Commission of India Reports",
+            relatedTerms: ["contract-breach", "consideration", "void-contract"],
+            relatedGuides: ["contract-drafting-guide"],
+            studyNotes: "General principles contained in Sections 1-75; Special contracts in Sections 124-238."
+        },
+        {
+            slug: "negotiable-instruments",
+            title: "Negotiable Instruments Act, 1881",
+            shortName: "NI Act 1881",
+            year: "1881",
+            category: "Corporate & Financial",
+            catKey: "corporate",
+            purpose: "Governs promissory notes, bills of exchange, cheques, and establishes criminal liability for cheque bounce due to insufficient funds.",
+            coverage: "Cheque bounce complaints (Section 138), statutory demand notice, interim compensation (Sec 143A), and summary trials.",
+            whyItMatters: "Section 138 provides criminal remedy for dishonoured cheques, punishing defaulters with up to 2 years imprisonment or double fine amount.",
+            importantConcepts: [
+                "Section 138: Dishonour of cheque for insufficiency of funds in bank account.",
+                "Mandatory 15-day statutory demand notice before filing court complaint.",
+                "Section 143A: Power of Court to order interim compensation up to 20% of cheque amount."
+            ],
+            practicalRelevance: "Used extensively by businesses, lenders, and individuals for recovering dishonoured cheque payments.",
+            officialRef: "Reserve Bank of India (Banking Ombudsman)",
+            relatedTerms: ["cheque-bounce", "section-138"],
+            relatedGuides: ["cheque-bounce-legal-notice"],
+            studyNotes: "Complaint must be filed within 1 month after expiry of 15-day notice period."
+        },
+        {
+            slug: "arbitration",
+            title: "Arbitration and Conciliation Act, 1996",
+            shortName: "Arbitration Act 1996",
+            year: "1996 (Amended 2015, 2019, 2021)",
+            category: "Civil & Commercial ADR",
+            catKey: "civil",
+            purpose: "Consolidates laws relating to domestic arbitration, international commercial arbitration, enforcement of foreign arbitral awards, and conciliation.",
+            coverage: "Arbitration agreements, tribunal appointments, interim court measures (Sec 9 & 17), arbitral awards, and Section 34 challenges.",
+            whyItMatters: "Enables businesses and contracting parties to resolve commercial disputes privately through speedier arbitration rather than lengthy court litigation.",
+            importantConcepts: [
+                "Section 9: Interim measures by Court before or during arbitral proceedings.",
+                "Mandatory 12-month timeline for completing domestic arbitration proceedings.",
+                "Section 34: Minimal judicial interference in challenging arbitral awards."
+            ],
+            practicalRelevance: "The preferred dispute resolution mechanism in commercial contracts, infrastructure projects, and corporate deals.",
+            officialRef: "Arbitration Council of India (ACI)",
+            relatedTerms: ["arbitral-award", "adr"],
+            relatedGuides: ["arbitration-clause-guide"],
+            studyNotes: "Based on UNCITRAL Model Law on International Commercial Arbitration."
+        },
+        {
+            slug: "legal-services",
+            title: "Legal Services Authorities Act, 1987",
+            shortName: "LSAA 1987",
+            year: "1987",
+            category: "Human Rights & Legal Aid",
+            catKey: "human-rights",
+            purpose: "Fulfills Constitutional mandate under Article 39A by establishing NALSA, SALSA, DLSA, and Lok Adalats to guarantee free legal services to eligible citizens.",
+            coverage: "Free legal representation, advocate assignments, court fee waivers, Lok Adalats, and Permanent Lok Adalats.",
+            whyItMatters: "Guarantees free legal representation and court assistance to women, children, SC/ST members, undertrials, and low-income citizens.",
+            importantConcepts: [
+                "Section 12: Categorical eligibility criteria for free legal aid.",
+                "Lok Adalats: Pre-litigation and pending dispute resolution with non-appealable final awards.",
+                "Permanent Lok Adalats for public utility service disputes (electricity, water, telecom)."
+            ],
+            practicalRelevance: "Empowers underprivileged citizens to access free lawyers and resolve disputes amicably through Lok Adalats.",
+            officialRef: "National Legal Services Authority (NALSA Toll-Free 15100)",
+            relatedTerms: ["nalsa", "lok-adalat", "free-legal-aid"],
+            relatedGuides: ["how-to-apply-for-free-legal-aid"],
+            studyNotes: "Lok Adalat awards carry the statutory force of a Civil Court decree."
+        },
+        {
+            slug: "environment-protection",
+            title: "Environment (Protection) Act, 1986",
+            shortName: "EPA 1986",
+            year: "1986",
+            category: "Environmental Law",
+            catKey: "environmental",
+            purpose: "Umbrella legislation protecting and improving environmental quality, regulating industrial emissions, hazardous waste management, and NGT jurisdiction.",
+            coverage: "Environmental Impact Assessment (EIA), hazardous substance handling, pollution control orders, and NGT enforcement.",
+            whyItMatters: "Enacted in the aftermath of the 1984 Bhopal Gas Tragedy to empower the Central Government to take all measures necessary to prevent environmental pollution.",
+            importantConcepts: [
+                "Environmental Impact Assessment (EIA) notification for infrastructure projects.",
+                "Precautionary Principle & Polluter Pays Principle enforced by Indian Courts.",
+                "National Green Tribunal (NGT) specialized forum for environmental litigation."
+            ],
+            practicalRelevance: "Underpins environmental clearances, industrial waste compliance, and citizen PILs against pollution.",
+            officialRef: "Ministry of Environment, Forest and Climate Change (MoEFCC)",
+            relatedTerms: ["ngt", "eia", "polluter-pays"],
+            relatedGuides: ["environmental-complaint-guide"],
+            studyNotes: "Violations punishable under Section 15 with imprisonment up to 5 years or fine up to ₹1 Lakh."
+        },
+        {
+            slug: "disaster-management",
+            title: "Disaster Management Act, 2005",
+            shortName: "DMA 2005",
+            year: "2005",
+            category: "Public Safety & Emergency",
+            catKey: "constitutional",
+            purpose: "Provides for the effective management of natural & man-made disasters, establishing NDMA, SDMA, and emergency executive power execution.",
+            coverage: "National Disaster Management Authority (NDMA), National Disaster Response Force (NDRF), emergency directives, and relief funds.",
+            whyItMatters: "Extensively invoked during national emergencies, cyclones, floods, and the COVID-19 pandemic to issue binding lockdown and safety orders.",
+            importantConcepts: [
+                "NDMA headed by the Prime Minister of India; SDMAs headed by Chief Ministers.",
+                "Section 51-60: Penalties for obstructing disaster response officers or spreading false alarm.",
+                "National Disaster Response Force (NDRF) specialized relief force."
+            ],
+            practicalRelevance: "Establishes emergency executive authority and disaster relief entitlements during national crises.",
+            officialRef: "National Disaster Management Authority (NDMA)",
+            relatedTerms: ["ndma", "ndrf"],
+            relatedGuides: ["disaster-relief-rights"],
+            studyNotes: "Binding across all Ministries, State Governments, and local municipal authorities."
+        },
+        {
+            slug: "rera",
+            title: "Real Estate (Regulation and Development) Act, 2016",
+            shortName: "RERA 2016",
+            year: "2016",
+            category: "Property & Consumer",
+            catKey: "property",
+            purpose: "Protects home buyers, ensures transparency in real estate transactions, regulates property builders, and establishes State Real Estate Regulatory Authorities.",
+            coverage: "Mandatory project registration, escrow account rules (70% funds deposit), builder delay penalties, and RERA Tribunals.",
+            whyItMatters: "Prohibits real estate developers from diverting homebuyer money to other projects, penalizing delayed possession with interest payouts.",
+            importantConcepts: [
+                "Mandatory 70% project funds deposit in designated escrow bank accounts.",
+                "Carpet Area standardization for property pricing instead of super-built-up area.",
+                "Statutory interest penalty on builders for delayed possession handover."
+            ],
+            practicalRelevance: "Essential legal safeguard for flat buyers facing builder delay, structural defects, or unauthorized plan changes.",
+            officialRef: "State RERA Authorities (e.g., MahaRERA, UP RERA)",
+            relatedTerms: ["rera-complaint", "carpet-area", "escrow"],
+            relatedGuides: ["rera-homebuyer-complaint-guide"],
+            studyNotes: "Registration mandatory for all commercial and residential projects where land area exceeds 500 sq meters."
+        },
+        {
+            slug: "code-on-wages",
+            title: "Code on Wages, 2019",
+            shortName: "Wage Code 2019",
+            year: "2019",
+            category: "Labour & Employment",
+            catKey: "labour",
+            purpose: "Consolidates and simplifies 4 legacy labour statutes (Equal Remuneration, Minimum Wages, Payment of Wages, Payment of Bonus) into a uniform code.",
+            coverage: "Universal floor wage, minimum wage calculations, timely wage payment, bonus entitlements, and gender wage equality.",
+            whyItMatters: "Extends statutory minimum wage protections to all workers across organized and unorganized sectors throughout India.",
+            importantConcepts: [
+                "Universal Floor Wage fixed by Central Government binding across all states.",
+                "Prohibition of gender discrimination in wage payment and recruitment.",
+                "Mandatory wage payout within 2 working days of employee resignation or removal."
+            ],
+            practicalRelevance: "Protects employee salary rights, overtime payouts, minimum wage compliance, and bonus claims.",
+            officialRef: "Ministry of Labour and Employment",
+            relatedTerms: ["minimum-wage", "floor-wage"],
+            relatedGuides: ["workplace-salary-rights-guide"],
+            studyNotes: "Replaced Minimum Wages Act 1948 and Payment of Wages Act 1936."
+        },
+        {
+            slug: "hindu-marriage",
+            title: "Hindu Marriage Act, 1955",
+            shortName: "HMA 1955",
+            year: "1955",
+            category: "Family Law",
+            catKey: "family",
+            purpose: "Governs marriage, solemnization, judicial separation, nullity, restitution of conjugal rights, and divorce for Hindus, Buddhists, Jains, and Sikhs.",
+            coverage: "Conditions for valid marriage, bigamy ban, restitution of conjugal rights (Sec 9), divorce grounds (Sec 13), and mutual consent divorce (Sec 13B).",
+            whyItMatters: "Establishes legal codification of marital rights, monogamy mandates, maintenance, and child custody rules for applicable communities.",
+            importantConcepts: [
+                "Monogamy mandate: Second marriage during subsistence of first marriage is void & bigamous.",
+                "Section 13B: Mutual Consent Divorce requiring 6-month cooling-off period (waivable by Court).",
+                "Permanent Alimony & Maintenance under Section 25."
+            ],
+            practicalRelevance: "Governs legal marriage validity, divorce petitions, alimony, and custody disputes.",
+            officialRef: "Family Courts Act 1984 Framework",
+            relatedTerms: ["mutual-consent-divorce", "alimony"],
+            relatedGuides: ["divorce-procedure-guide"],
+            studyNotes: "Applies to any person who is Hindu, Buddhist, Jain, or Sikh by religion."
+        },
+        {
+            slug: "special-marriage",
+            title: "Special Marriage Act, 1954",
+            shortName: "SMA 1954",
+            year: "1954",
+            category: "Family & Civil Law",
+            catKey: "family",
+            purpose: "Provides a civil form of marriage for any two individuals in India regardless of religion, faith, or caste without religious conversion.",
+            coverage: "Civil marriage registration, 30-day public notice, Marriage Officers, divorce grounds, and succession rules.",
+            whyItMatters: "Enables inter-faith, inter-caste, and secular civil marriages without requiring either party to convert to another religion.",
+            importantConcepts: [
+                "Solemnization before Marriage Registrar without religious rites.",
+                "Mandatory 30-day public notice period for inviting objections.",
+                "Succession to property governed by Indian Succession Act 1925."
+            ],
+            practicalRelevance: "The statutory framework for inter-religious marriages and civil registration in India.",
+            officialRef: "Special Marriage Registrar Offices",
+            relatedTerms: ["civil-marriage", "marriage-registrar"],
+            relatedGuides: ["court-marriage-guide"],
+            studyNotes: "Parties must be 21+ years (male) and 18+ years (female)."
+        },
+        {
+            slug: "rte",
+            title: "Right of Children to Free and Compulsory Education (RTE) Act, 2009",
+            shortName: "RTE Act 2009",
+            year: "2009",
+            category: "Human Rights & Education",
+            catKey: "human-rights",
+            purpose: "Fulfills Article 21A by guaranteeing free and compulsory elementary education for all children between 6 and 14 years in India.",
+            coverage: "25% private school EWS quota, pupil-teacher ratios, prohibition of screening tests/capitation fees, and corporal punishment ban.",
+            whyItMatters: "Mandates that non-minority private schools reserve 25% of entry-level seats for children from Economically Weaker Sections (EWS).",
+            importantConcepts: [
+                "Article 21A Fundamental Right implementation.",
+                "25% mandatory EWS seat reservation in private unaided schools.",
+                "Prohibition of capitation fee, screening interviews for child/parents, and physical punishment."
+            ],
+            practicalRelevance: "Empowers low-income parents to claim free private school admissions and quality elementary education.",
+            officialRef: "Ministry of Education (Samagra Shiksha)",
+            relatedTerms: ["article-21a", "ews-quota"],
+            relatedGuides: ["rte-admission-guide"],
+            studyNotes: "No child can be held back or expelled until completion of elementary education (Class VIII)."
+        }
+    ];
+
+    // Pre-render 25 law cards
+    const initialLawsCardsHtml = expandedLawsList.map(item => `
+        <div class="law-card" data-category="${item.catKey}" data-title="${item.title.toLowerCase()}" data-aos="fade-up">
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
+                    <span class="badge-cat"><i class="fas fa-scale-unbalanced-flip"></i> ${item.category}</span>
+                    <span style="font-size:12px; font-weight:800; color:#718096;"><i class="fas fa-calendar-days"></i> ${item.year}</span>
+                </div>
+                <h3 style="font-size:1.25rem; font-weight:800; color:var(--dark); margin-bottom:10px; line-height:1.35;">${item.title}</h3>
+                <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:16px;">${item.purpose}</p>
+                <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:18px;">
+                    <strong style="font-size:12px; color:var(--primary-dark); text-transform:uppercase; tracking:1px;">Covers:</strong>
+                    <p style="font-size:12.5px; color:#555; margin:2px 0 0; line-height:1.5;">${item.coverage}</p>
+                </div>
+            </div>
+            <div>
+                <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+                    <button onclick="openLawModal('${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px;"><i class="fas fa-book-open"></i> Explore Law &rarr;</button>
+                    <a href="laws/${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none;">Full Act &rarr;</a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Laws JSON-LD Schema
+    const lawsPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Indian Laws Library",
+        "url": "https://nyayi.in/laws.html",
+        "description": "Comprehensive Indian Laws Library by NYAYI. Explore major Indian statutes, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, Bharatiya Sakshya Adhiniyam, IT Act, Consumer Protection Act, and Constitutional frameworks.",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Indian Laws Library", "item": "https://nyayi.in/laws.html" }
+            ]
+        }
+    };
+
     const lawsHub = `
-    ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws.html', 0)}
+    ${renderHead('Indian Laws Library - Major Indian Acts & Codes Explained | NYAYI', 'Comprehensive Indian Laws Library. Search, explore, and study major Indian statutes, Bharatiya Nyaya Sanhita (BNS 2023), BNSS 2023, BSA 2023, IT Act, Consumer Protection Act, and Constitutional frameworks in plain language.', 'Indian Laws Library, Indian legal acts, BNS 2023, BNSS 2023, BSA 2023, Indian Constitution, IT Act 2000, Consumer Protection Act 2019, Indian criminal law, law study notes', '/laws.html', 0)}
     ${renderHeader('laws', 0)}
 
-    <section class="page-header">
-        <div class="container" data-aos="zoom-in">
-            <h1>Indian Laws <span>Library</span></h1>
-            <p>Structured breakdowns of major Indian acts, new criminal codes, and constitutional frameworks.</p>
-        </div>
-    </section>
+    <script type="application/ld+json">
+    ${JSON.stringify(lawsPageSchema, null, 2)}
+    </script>
 
-    <section style="padding:40px 0 100px; background:#fff;">
-        <div class="container">
-            <div class="laws-grid">
-                ${laws.map(item => `
-                    <div class="law-card" data-aos="fade-up">
-                        <div>
-                            <span class="card-tag">${item.category}</span>
-                            <h3 style="margin-top:10px;">${item.title}</h3>
-                            <p>${item.purpose}</p>
-                        </div>
-                        <a href="laws/${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                `).join('')}
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding-bottom: 50px;">
+        <div class="container" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.15); color:var(--primary-dark); font-weight:800;">
+                <i class="fas fa-book-scale" style="color:var(--primary);"></i> INDIAN LEGAL KNOWLEDGE BASE
+            </span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px;">
+                Explore Indian Laws. <br><span>Understand the Law.</span>
+            </h1>
+            <p style="max-width:860px; margin:16px auto 30px; font-size:1.2rem; color:#4a5568; line-height:1.8;">
+                Explore major Indian laws, constitutional frameworks, and modern legal codes through structured explanations designed for citizens, students, and legal learners.
+            </p>
+            <div class="hero-btns" style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+                <a href="#search" class="btn-ai" style="padding:16px 36px; font-size:16px;">
+                    <i class="fas fa-book-bookmark"></i> Explore the Library
+                </a>
+                <a href="#category-filter" class="btn-outline" style="padding:16px 36px; font-size:16px;">
+                    <i class="fas fa-magnifying-glass"></i> Search a Law
+                </a>
             </div>
         </div>
     </section>
+
+    <!-- 02 — LIBRARY SEARCH SECTION -->
+    <section style="padding:50px 0 30px; background:#ffffff;" id="search">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:24px;">
+                <h2>Search <span>Indian Laws</span></h2>
+                <p>Filter through major statutes, section references, topics, or keywords instantly.</p>
+            </div>
+
+            <!-- SEARCH BOX -->
+            <div class="law-search-wrapper" data-aos="fade-up">
+                <i class="fas fa-search law-search-icon"></i>
+                <input type="text" id="lawSearchInput" class="law-search-input" oninput="handleLawSearch()" placeholder="Search by law name, section, topic or keyword (e.g. BNS, Consumer, Cyber, Motor Vehicles, RTI)...">
+                <button id="lawClearBtn" class="law-clear-btn" onclick="clearLawSearch()"><i class="fas fa-times"></i></button>
+            </div>
+
+            <!-- POPULAR SEARCH CHIPS -->
+            <div style="margin-top:20px; text-align:center; font-size:14px; color:#666;" data-aos="fade-up">
+                <strong style="color:var(--dark);">Popular searches:</strong> 
+                <div style="display:inline-flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-left:8px; margin-top:8px;">
+                    <button class="az-pill" onclick="quickLawSearch('BNS 2023')">BNS 2023</button>
+                    <button class="az-pill" onclick="quickLawSearch('BNSS 2023')">BNSS 2023</button>
+                    <button class="az-pill" onclick="quickLawSearch('BSA 2023')">BSA 2023</button>
+                    <button class="az-pill" onclick="quickLawSearch('Constitution')">Constitution</button>
+                    <button class="az-pill" onclick="quickLawSearch('Consumer Protection')">Consumer Protection</button>
+                    <button class="az-pill" onclick="quickLawSearch('IT Act')">IT Act</button>
+                    <button class="az-pill" onclick="quickLawSearch('Motor Vehicles')">Motor Vehicles Act</button>
+                    <button class="az-pill" onclick="quickLawSearch('RTI')">RTI Act</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — LAW CATEGORY FILTER -->
+    <section style="padding:40px 0 60px; background:var(--bg-light);" id="category-filter">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Browse by <span>Legal Category</span></h2>
+                <p>Filter Indian laws by statutory domain and court specialization.</p>
+            </div>
+
+            <div class="filter-tags" style="justify-content:center;" data-aos="fade-up">
+                <button class="filter-btn active" onclick="filterLawCat('all', this)">All Categories (${expandedLawsList.length})</button>
+                <button class="filter-btn" onclick="filterLawCat('constitutional', this)">Constitutional Law</button>
+                <button class="filter-btn" onclick="filterLawCat('criminal', this)">Criminal Law (Substantive)</button>
+                <button class="filter-btn" onclick="filterLawCat('procedural', this)">Criminal Procedure</button>
+                <button class="filter-btn" onclick="filterLawCat('evidence', this)">Law of Evidence</button>
+                <button class="filter-btn" onclick="filterLawCat('civil', this)">Civil & Commercial</button>
+                <button class="filter-btn" onclick="filterLawCat('consumer', this)">Consumer Protection</button>
+                <button class="filter-btn" onclick="filterLawCat('family', this)">Family & Child Law</button>
+                <button class="filter-btn" onclick="filterLawCat('property', this)">Property Law</button>
+                <button class="filter-btn" onclick="filterLawCat('labour', this)">Labour & Employment</button>
+                <button class="filter-btn" onclick="filterLawCat('corporate', this)">Corporate & Financial</button>
+                <button class="filter-btn" onclick="filterLawCat('cyber', this)">Cyber & Technology</button>
+                <button class="filter-btn" onclick="filterLawCat('motor', this)">Motor Vehicles</button>
+                <button class="filter-btn" onclick="filterLawCat('human-rights', this)">Human Rights & Legal Aid</button>
+                <button class="filter-btn" onclick="filterLawCat('environmental', this)">Environmental Law</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04 & 05 — FEATURED / SELECTED MAJOR LAWS GRID -->
+    <section style="padding:70px 0; background:#ffffff;" id="featured-laws">
+        <div class="container">
+            <div class="dict-stats-bar" data-aos="fade-up" style="margin-bottom:30px;">
+                <div class="dict-count-badge">
+                    <i class="fas fa-book-scale" style="color:var(--primary);"></i>
+                    Showing <span id="lawCurrentCount" class="dict-count-num">${expandedLawsList.length}</span> Selected Major Laws
+                </div>
+                <div id="lawStatusText" style="font-size:13.5px; color:#666; font-weight:600;">
+                    Structured Indian Acts & Modern Criminal Law Codes
+                </div>
+            </div>
+
+            <!-- LAWS GRID -->
+            <div class="laws-grid" id="lawsGrid">
+                ${initialLawsCardsHtml}
+            </div>
+
+            <!-- EMPTY SEARCH STATE -->
+            <div id="lawEmptyState" class="dict-empty-state" style="display:none;">
+                <div class="dict-empty-icon"><i class="fas fa-search-minus"></i></div>
+                <h3 style="font-size:20px; font-weight:800; margin-bottom:8px;">No Indian laws match your search</h3>
+                <p style="font-size:14.5px; color:#666; max-width:500px; margin:0 auto 20px;">We couldn't find any law matching your keywords. Try clearing search filters or browse categories.</p>
+                <button onclick="clearLawSearch()" class="btn-outline" style="padding:10px 24px; font-size:14px;"><i class="fas fa-rotate-left"></i> Reset Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 — CONSTITUTIONAL FRAMEWORK SECTION -->
+    <section style="padding:90px 0; background:radial-gradient(circle at 50% 0%, #f0fdf4 0%, #ffffff 75%); border-top:1px solid #e2e8f0;" id="constitution-framework">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="cp-role" style="display:inline-block; margin-bottom:10px; background:rgba(0,200,83,0.1); color:var(--primary-dark);">SUPREME LEGAL FOUNDATION</span>
+                <h2>The Constitutional <span>Framework</span></h2>
+                <p style="max-width:800px; margin:0 auto;">The supreme law of India establishing state governance, fundamental rights, directive principles, and citizen duties.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:40px;" data-aos="fade-up">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-scroll"></i></div>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Preamble</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Declares India a Sovereign, Socialist, Secular, Democratic Republic securing Justice, Liberty, Equality & Fraternity.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-shield-halved"></i></div>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Part III • Fundamental Rights</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Articles 12 to 35 guaranteeing equality, freedoms, personal liberty, protection against arrest, and writ remedies.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-landmark"></i></div>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Part IV • Directive Principles</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Articles 36 to 51 guiding state policy on public welfare, equal justice, free legal aid (Art 39A), and village panchayats.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-gavel"></i></div>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Articles 32 & 226 • Writs</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Empowers Supreme Court (Art 32) and High Courts (Art 226) to issue Habeas Corpus, Mandamus & Certiorari Writs.</p>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE CONSTITUTIONAL ARTICLE STRIP -->
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:18px; text-align:center;">Key Constitutional Articles at a Glance</h3>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; text-align:center;">
+                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 14</strong>
+                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Equality Before Law</span>
+                    </div>
+                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 19</strong>
+                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">6 Fundamental Freedoms</span>
+                    </div>
+                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 21</strong>
+                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Life & Personal Liberty</span>
+                    </div>
+                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 22</strong>
+                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Arrest & Custody Safeguards</span>
+                    </div>
+                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 32</strong>
+                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Writ Remedies</span>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top:24px;">
+                    <a href="rights.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
+                        <i class="fas fa-graduation-cap"></i> Study Constitutional Rights in Detail &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 — NEW CRIMINAL LAW FRAMEWORK (PREMIUM DARK SECTION) -->
+    <section style="padding:90px 0; background:linear-gradient(135deg, #050505 0%, #151515 100%); color:white;" id="new-criminal-laws">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="color:white;">
+                <span class="cp-role" style="background:rgba(0,200,83,0.15); color:var(--primary); display:inline-block; margin-bottom:12px;">HISTORIC LEGAL REFORM (ENFORCED JULY 1, 2024)</span>
+                <h2 style="color:white;">India's New <span>Criminal Law Framework</span></h2>
+                <p style="color:#aaa; max-width:800px; margin:0 auto;">Understanding the transition from colonial criminal statutes to modern Bharatiya codes.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; margin-bottom:40px;" data-aos="fade-up">
+                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
+                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">SUBSTANTIVE CRIMINAL LAW</span>
+                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BNS (2023)</h3>
+                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Indian Penal Code (IPC 1860)</strong>. Defines offences, criminal liability, community service punishments, and modern penalties.</p>
+                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">IPC &rarr; BNS 2023</span>
+                </div>
+
+                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
+                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">PROCEDURAL CRIMINAL LAW</span>
+                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BNSS (2023)</h3>
+                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Code of Criminal Procedure (CrPC 1973)</strong>. Governs police investigations, arrests, bail, Zero FIR, and trial timelines.</p>
+                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">CrPC &rarr; BNSS 2023</span>
+                </div>
+
+                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
+                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">LAW OF EVIDENCE</span>
+                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BSA (2023)</h3>
+                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Indian Evidence Act (1872)</strong>. Grants equal evidentiary standing to digital/electronic records and server logs.</p>
+                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">Evidence Act &rarr; BSA 2023</span>
+                </div>
+            </div>
+
+            <!-- VISUAL FLOW RELATIONSHIP -->
+            <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px; text-align:center;" data-aos="fade-up">
+                <h4 style="font-size:16px; font-weight:800; color:white; margin-bottom:20px;">HOW THE NEW CRIMINAL LAWS WORK TOGETHER</h4>
+                <div style="display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
+                        <strong style="color:var(--primary); font-size:14px;">1. CRIME OCCURS</strong>
+                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BNS defines offence & penalty</p>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
+                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
+                        <strong style="color:var(--primary); font-size:14px;">2. POLICE INVESTIGATE</strong>
+                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BNSS defines FIR & arrest rules</p>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
+                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
+                        <strong style="color:var(--primary); font-size:14px;">3. COURT TRIAL</strong>
+                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BSA governs evidence proof</p>
+                    </div>
+                </div>
+                <div style="margin-top:20px; font-size:12.5px; color:#888;">
+                    <em>Note: Crimes committed prior to July 1, 2024 remain governed by IPC 1860 under transitional provisions.</em>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 09 — STUDY MODE ("STUDY INDIAN LAW") -->
+    <section style="padding:90px 0; background:#ffffff;" id="study-mode">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="cp-role" style="display:inline-block; margin-bottom:10px; background:rgba(0,200,83,0.1); color:var(--primary-dark);">SIGNATURE LEARNING TOOL</span>
+                <h2>Study <span>Indian Law</span></h2>
+                <p>Interactive educational flashcards engineered for law students, competitive exams, and legal literacy.</p>
+            </div>
+
+            <div style="max-width:860px; margin:0 auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.02);" data-aos="fade-up">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+                    <span id="lawStudyCardNum" style="font-size:13px; font-weight:900; color:var(--primary-dark); letter-spacing:1px;">STUDY CARD 1 OF 7</span>
+                    <span style="font-size:12.5px; color:#718096; font-weight:700;">JURISPRUDENCE & STATUTORY CONCEPTS</span>
+                </div>
+
+                <div id="lawStudyDeckContainer">
+                    <h3 id="lawStudyTitle" style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:14px;">Mens Rea — Guilty Mind</h3>
+                    <p id="lawStudyBody" style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:24px;">
+                        <em>Mens Rea</em> is the mental element or criminal intent required to establish criminal liability. Under Indian criminal law (BNS 2023), an act alone does not create guilt unless accompanied by a guilty intention, knowledge, or recklessness.
+                    </p>
+                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:18px; border-radius:14px; margin-bottom:24px;">
+                        <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-lightbulb"></i> Key Revision Note:</strong>
+                        <p id="lawStudyNote" style="font-size:14px; color:#2d3748; margin:4px 0 0;">Latin Legal Maxim: <em>Actus non facit reum nisi mens sit rea</em> (The act does not make one guilty unless the mind is guilty).</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #e2e8f0; padding-top:20px;">
+                    <button onclick="prevLawStudyCard()" class="btn-outline" style="padding:10px 24px; font-size:14px;"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button onclick="nextLawStudyCard()" class="btn-ai" style="padding:10px 24px; font-size:14px;">Next Concept <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 — LAW COMPARISON SECTION -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="comparisons">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Compare <span>Legal Frameworks</span></h2>
+                <p>Understand key differences between historical Indian codes and active modern statutes.</p>
+            </div>
+
+            <div class="law-compare-grid" data-aos="fade-up">
+                <div class="law-compare-card">
+                    <span class="badge-cat" style="margin-bottom:12px;">CRIMINAL CODE TRANSITION</span>
+                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BNS (2023) vs IPC (1860)</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
+                        <p style="margin-bottom:8px;"><strong>Old (IPC 1860):</strong> 511 Sections, colonial penal focus, Sedition (Sec 124A).</p>
+                        <p style="margin-bottom:8px;"><strong>New (BNS 2023):</strong> 358 Sections, Community Service, Mob Lynching (Sec 103), Organized Crime (Sec 111).</p>
+                        <strong style="color:var(--primary-dark);">Key Change:</strong> Modernized structure prioritizing victim justice and community service.
+                    </div>
+                </div>
+
+                <div class="law-compare-card">
+                    <span class="badge-cat" style="margin-bottom:12px;">PROCEDURAL REFORM</span>
+                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BNSS (2023) vs CrPC (1973)</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
+                        <p style="margin-bottom:8px;"><strong>Old (CrPC 1973):</strong> 484 Sections, paper filing, indefinite trial delays.</p>
+                        <p style="margin-bottom:8px;"><strong>New (BNSS 2023):</strong> 531 Sections, Zero FIR statutory mandate, e-FIR, strict 90-day charge sheet limits.</p>
+                        <strong style="color:var(--primary-dark);">Key Change:</strong> Digital search/seizure recording and mandatory forensic investigation.
+                    </div>
+                </div>
+
+                <div class="law-compare-card">
+                    <span class="badge-cat" style="margin-bottom:12px;">EVIDENCE ADMISSIBILITY</span>
+                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BSA (2023) vs Evidence Act (1872)</h3>
+                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
+                        <p style="margin-bottom:8px;"><strong>Old (Act 1872):</strong> 167 Sections, physical paper document bias.</p>
+                        <p style="margin-bottom:8px;"><strong>New (BSA 2023):</strong> 170 Sections, Electronic & Digital logs given equal primary evidence standing.</p>
+                        <strong style="color:var(--primary-dark);">Key Change:</strong> Cloud data, WhatsApp logs, and emails recognized as primary evidence.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11 — LAW IN REAL LIFE ("WHERE DOES THIS LAW MATTER?") -->
+    <section style="padding:90px 0; background:#ffffff;" id="real-life-laws">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Where Does <span>This Law Matter?</span></h2>
+                <p>Real-life everyday scenarios illustrating how Indian statutes apply to common situations.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
+                    <span class="flow-step-badge">CRIMINAL OFFENCE</span>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Accused of a Crime or Filing FIR</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Bharatiya Nyaya Sanhita (BNS 2023) for offences & Bharatiya Nagarik Suraksha Sanhita (BNSS 2023) for FIR & bail.</p>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
+                    <span class="flow-step-badge">CYBER & UPI FRAUD</span>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Online Theft or Identity Fraud</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> IT Act 2000 (Sec 66C/66D), BNS 2023 (Sec 318 Cheating), and BSA 2023 for digital evidence.</p>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
+                    <span class="flow-step-badge">DEFECTIVE PRODUCT</span>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">E-Commerce Refund / Service Dispute</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Consumer Protection Act 2019 via e-Daakhil and Central Consumer Protection Authority (CCPA).</p>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
+                    <span class="flow-step-badge">TRAFFIC STOP</span>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Vehicle Checking & Traffic Fine</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Motor Vehicles Act 1988 (Amended 2019) & IT Act for DigiLocker digital DL/RC validity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 — LEGAL JOURNEY ("FROM LAW TO ACTION") -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="legal-journey">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>From Law to <span>Action</span></h2>
+                <p>A structured 7-step roadmap from statutory knowledge to seeking legal remedies.</p>
+            </div>
+
+            <div class="journey-flow-grid" data-aos="fade-up">
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 1</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">THE LAW</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Identify relevant Act or statute</p>
+                </div>
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 2</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">UNDERSTAND</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Read plain-language summary</p>
+                </div>
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 3</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">SITUATION</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Match real-life facts</p>
+                </div>
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 4</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">PROVISIONS</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Check specific sections</p>
+                </div>
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 5</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">PROCEDURE</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Follow procedural code</p>
+                </div>
+                <div class="journey-flow-step">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 6</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">REMEDIES</h4>
+                    <p style="font-size:12px; color:#666; margin:0;">Approach court or forum</p>
+                </div>
+                <div class="journey-flow-step" style="background:#f0fdf4; border-color:var(--primary);">
+                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 7</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--primary-dark); margin:6px 0 4px;">LEGAL HELP</h4>
+                    <p style="font-size:12px; color:#555; margin:0;">Consult advocate / NALSA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13 — POPULAR LEGAL TOPICS GRID -->
+    <section style="padding:90px 0; background:#ffffff;" id="popular-topics">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Popular <span>Legal Topics</span></h2>
+                <p>Browse law guides, dictionary explainers, and rights portals by topic.</p>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;" data-aos="fade-up">
+                <a href="dictionary.html?q=FIR" class="topic-chip"><i class="fas fa-file-shield" style="color:var(--primary);"></i> FIR</a>
+                <a href="rights.html#police-rights" class="topic-chip"><i class="fas fa-handcuffs" style="color:var(--primary);"></i> Arrest Rights</a>
+                <a href="dictionary.html?q=Bail" class="topic-chip"><i class="fas fa-key" style="color:var(--primary);"></i> Bail</a>
+                <a href="dictionary.html?q=Assault" class="topic-chip"><i class="fas fa-user-ninja" style="color:var(--primary);"></i> Assault</a>
+                <a href="dictionary.html?q=Theft" class="topic-chip"><i class="fas fa-mask" style="color:var(--primary);"></i> Theft</a>
+                <a href="dictionary.html?q=Cheating" class="topic-chip"><i class="fas fa-user-secret" style="color:var(--primary);"></i> Cheating</a>
+                <a href="dictionary.html?q=Defamation" class="topic-chip"><i class="fas fa-comment-slash" style="color:var(--primary);"></i> Defamation</a>
+                <a href="rights.html#cyber-rights" class="topic-chip"><i class="fas fa-headset" style="color:var(--primary);"></i> Cyber Fraud</a>
+                <a href="rights.html#womens-rights" class="topic-chip"><i class="fas fa-person-dress" style="color:var(--primary);"></i> Domestic Violence</a>
+                <a href="rights.html#consumer-rights" class="topic-chip"><i class="fas fa-bag-shopping" style="color:var(--primary);"></i> Consumer Complaints</a>
+                <a href="rights.html#tenant-rights" class="topic-chip"><i class="fas fa-building" style="color:var(--primary);"></i> Tenant Disputes</a>
+                <a href="rights.html#workplace-rights" class="topic-chip"><i class="fas fa-briefcase" style="color:var(--primary);"></i> Workplace POSH</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14 & 15 — DICTIONARY & RIGHTS CONNECTION BRIDGES -->
+    <section style="padding:80px 0; background:var(--bg-light);">
+        <div class="container">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:30px;" data-aos="fade-up">
+                
+                <!-- DICTIONARY CONNECTION -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+                    <div style="width:48px; height:48px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-book-bookmark"></i>
+                    </div>
+                    <h3 style="font-size:1.6rem; font-weight:900; color:var(--dark); margin-bottom:10px;">Don't Understand a Legal Term?</h3>
+                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:20px;">
+                        The NYAYI Legal Dictionary provides plain-language definitions for over 1,200+ Indian legal terms including <em>Bail, Cognizable, Mens Rea, Habeas Corpus, Prima Facie, and Affidavit</em>.
+                    </p>
+                    <a href="dictionary.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
+                        <i class="fas fa-book-bookmark"></i> Explore Legal Dictionary &rarr;
+                    </a>
+                </div>
+
+                <!-- RIGHTS CONNECTION -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+                    <div style="width:48px; height:48px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3 style="font-size:1.6rem; font-weight:900; color:var(--dark); margin-bottom:10px;">Know the Law. Know Your Rights.</h3>
+                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:20px;">
+                        Understanding statutes becomes practical when combined with awareness of your constitutional and procedural citizen rights during police stops, arrests, consumer disputes, and workplace incidents.
+                    </p>
+                    <a href="rights.html" class="btn-outline" style="padding:12px 28px; font-size:14px; border-color:var(--primary); color:var(--primary-dark) !important;">
+                        <i class="fas fa-compass"></i> Explore Know Your Rights &rarr;
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 16 — FAQ SECTION -->
+    <section style="padding:90px 0; background:#ffffff;" id="faq">
+        <div class="container" style="max-width:880px;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Laws Library <span>FAQs</span></h2>
+                <p>Common questions regarding Indian legal statutes, new criminal codes, and study usage.</p>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:14px;">
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What is the NYAYI Indian Laws Library?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The Indian Laws Library is a structured digital reference database by NYAYI explaining major Indian acts, modern criminal law codes (BNS, BNSS, BSA 2023), and constitutional frameworks in clear, plain language.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Are these laws applicable across all of India?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes. Central acts such as the Bharatiya Nyaya Sanhita (BNS 2023), BNSS, BSA, IT Act, and Consumer Protection Act apply across all States and Union Territories of India, subject to specific state-amended procedural rules.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What is the difference between BNS, BNSS, and BSA 2023?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>BNS (Bharatiya Nyaya Sanhita) defines crimes and punishments (substantive law); BNSS (Bharatiya Nagarik Suraksha Sanhita) defines police procedure, FIRs, bail, and trial steps (procedural law); BSA (Bharatiya Sakshya Adhiniyam) defines rules of court evidence and digital records admissibility.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What replaced the Indian Penal Code (IPC 1860)?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The Bharatiya Nyaya Sanhita (BNS 2023) replaced the IPC 1860 on July 1, 2024. All offences committed on or after July 1, 2024 are charged under BNS sections.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What replaced the Code of Criminal Procedure (CrPC 1973)?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The Bharatiya Nagarik Suraksha Sanhita (BNSS 2023) replaced the CrPC 1973 on July 1, 2024, introducing strict trial timelines, e-FIR, and Zero FIR provisions.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What replaced the Indian Evidence Act (1872)?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The Bharatiya Sakshya Adhiniyam (BSA 2023) replaced the Evidence Act 1872 on July 1, 2024, giving full legal standing to electronic/digital evidence and cloud server records.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Can I search laws by keyword or section on NYAYI?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes! Use the live Library Search bar at the top of the page or click any category chip to instantly filter through laws by name, topic, or keyword.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Can I use the Laws Library for legal academic study?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes! The library includes interactive Study Mode flashcards, comparative framework charts, and key constitutional article breakdowns designed for law students and exam preparation.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI provide formal legal advice?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No. NYAYI provides educational and informational resources to promote legal literacy. It does not provide formal legal advice, representation, or substitute for a qualified advocate.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17 — RESPONSIBLE LEGAL DISCLAIMER -->
+    <section style="padding:40px 0; background:var(--bg-light); border-top:1px solid #e2e8f0;">
+        <div class="container" style="max-width:960px;">
+            <div style="background:#ffffff; border-left:4px solid var(--primary); padding:24px 30px; border-radius:16px; border:1px solid #e2e8f0;">
+                <strong style="color:var(--dark); font-size:14.5px; display:block; margin-bottom:6px;">
+                    <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> Educational & Informational Disclaimer:
+                </strong>
+                <p style="font-size:13.5px; color:#555; line-height:1.7; margin:0;">
+                    NYAYI provides educational and informational resources intended to help users understand Indian legal concepts. Laws, procedures and their application can depend on specific facts, jurisdiction, statutory amendments, and the applicable date. Information on this platform should not be treated as a substitute for legal advice from a qualified advocate.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 27 — FINAL CTA BLOCK -->
+    <section style="padding:90px 0 100px; background:linear-gradient(135deg, #000000 0%, #151515 100%); color:white;" id="final-cta">
+        <div class="container">
+            <div style="text-align:center; max-width:820px; margin:0 auto;" data-aos="zoom-in">
+                <span class="cp-role" style="background:rgba(0,200,83,0.15); color:var(--primary); display:inline-block; margin-bottom:14px;">NYAYI LEGAL KNOWLEDGE ECOSYSTEM</span>
+                <h2 style="font-size:2.8rem; font-weight:900; color:white; margin-bottom:16px; letter-spacing:-1px;">Understand the Law.<br><span>Navigate Life With Clarity.</span></h2>
+                <p style="font-size:1.15rem; color:#aaa; margin:0 auto 30px; line-height:1.8;">Explore laws, constitutional principles, and practical legal knowledge — all in one place.</p>
+                <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+                    <a href="rights.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-shield-halved"></i> Explore Know Your Rights</a>
+                    <a href="dictionary.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Open Legal Dictionary</a>
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:16px 36px; font-size:15px;"><i class="fas fa-robot"></i> Launch NYAYI Web AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LAW EXPLORER MODAL -->
+    <div id="lawModalOverlay" class="law-modal-overlay" onclick="if(event.target === this) closeLawModal()">
+        <div class="law-modal-content">
+            <div class="law-modal-close" onclick="closeLawModal()"><i class="fas fa-times"></i></div>
+            <div id="lawModalBody">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT-SIDE LAWS SEARCH ENGINE & MODAL SCRIPT -->
+    <script>
+        window.NYAYI_LAWS = ${JSON.stringify(expandedLawsList)};
+        let currentLawCat = 'all';
+
+        function filterLawCat(catKey, btn) {
+            document.querySelectorAll('#category-filter .filter-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            currentLawCat = catKey;
+            renderFilteredLaws();
+        }
+
+        function quickLawSearch(query) {
+            const input = document.getElementById('lawSearchInput');
+            if (input) {
+                input.value = query;
+                handleLawSearch();
+                const searchSec = document.getElementById('featured-laws');
+                if (searchSec) {
+                    const y = searchSec.getBoundingClientRect().top + window.pageYOffset - 110;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
+        }
+
+        function handleLawSearch() {
+            const input = document.getElementById('lawSearchInput');
+            const clearBtn = document.getElementById('lawClearBtn');
+            const val = input ? input.value.trim() : '';
+            if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+            renderFilteredLaws();
+        }
+
+        function clearLawSearch() {
+            const input = document.getElementById('lawSearchInput');
+            if (input) input.value = '';
+            const clearBtn = document.getElementById('lawClearBtn');
+            if (clearBtn) clearBtn.style.display = 'none';
+            currentLawCat = 'all';
+            document.querySelectorAll('#category-filter .filter-btn').forEach(b => b.classList.remove('active'));
+            const firstBtn = document.querySelector('#category-filter .filter-btn');
+            if (firstBtn) firstBtn.classList.add('active');
+            renderFilteredLaws();
+        }
+
+        function renderFilteredLaws() {
+            const query = (document.getElementById('lawSearchInput')?.value || '').toLowerCase().trim();
+            const grid = document.getElementById('lawsGrid');
+            const emptyState = document.getElementById('lawEmptyState');
+            const countSpan = document.getElementById('lawCurrentCount');
+            const statusText = document.getElementById('lawStatusText');
+
+            if (!grid) return;
+
+            const filtered = window.NYAYI_LAWS.filter(item => {
+                if (currentLawCat !== 'all' && item.catKey !== currentLawCat) return false;
+                if (query) {
+                    const haystack = (item.title + ' ' + item.shortName + ' ' + item.category + ' ' + item.purpose + ' ' + item.coverage + ' ' + item.whyItMatters).toLowerCase();
+                    if (!haystack.includes(query)) return false;
+                }
+                return true;
+            });
+
+            if (countSpan) countSpan.textContent = filtered.length;
+            if (statusText) {
+                if (query) statusText.textContent = 'Search results for "' + query + '" (' + filtered.length + ' laws)';
+                else if (currentLawCat !== 'all') statusText.textContent = 'Filtered by category (' + filtered.length + ' laws)';
+                else statusText.textContent = 'Structured Indian Acts & Modern Criminal Law Codes';
+            }
+
+            if (filtered.length === 0) {
+                grid.style.display = 'none';
+                if (emptyState) emptyState.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            if (emptyState) emptyState.style.display = 'none';
+
+            grid.innerHTML = filtered.map(item => \`
+                <div class="law-card">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
+                            <span class="badge-cat"><i class="fas fa-scale-unbalanced-flip"></i> \${item.category}</span>
+                            <span style="font-size:12px; font-weight:800; color:#718096;"><i class="fas fa-calendar-days"></i> \${item.year}</span>
+                        </div>
+                        <h3 style="font-size:1.25rem; font-weight:800; color:var(--dark); margin-bottom:10px; line-height:1.35;">\${item.title}</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:16px;">\${item.purpose}</p>
+                        <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:18px;">
+                            <strong style="font-size:12px; color:var(--primary-dark); text-transform:uppercase; tracking:1px;">Covers:</strong>
+                            <p style="font-size:12.5px; color:#555; margin:2px 0 0; line-height:1.5;">\${item.coverage}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+                            <button onclick="openLawModal('\${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px;"><i class="fas fa-book-open"></i> Explore Law &rarr;</button>
+                            <a href="laws/\${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none;">Full Act &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            \`).join('');
+        }
+
+        // LAW EXPLORER MODAL OVERLAY
+        function openLawModal(slug) {
+            const item = window.NYAYI_LAWS.find(l => l.slug === slug);
+            if (!item) return;
+            const modalBody = document.getElementById('lawModalBody');
+            const overlay = document.getElementById('lawModalOverlay');
+            if (!modalBody || !overlay) return;
+
+            modalBody.innerHTML = \`
+                <div style="margin-bottom:20px;">
+                    <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-scale-unbalanced-flip"></i> \${item.category}</span>
+                    <h2 style="font-size:2rem; font-weight:900; color:var(--dark); margin:12px 0 6px;">\${item.title}</h2>
+                    <span style="font-size:13px; font-weight:700; color:#718096;"><i class="fas fa-calendar-days"></i> Enacted / Enforced: \${item.year}</span>
+                </div>
+
+                <div style="background:#f8fafc; border-left:4px solid var(--primary); padding:20px; border-radius:16px; margin-bottom:24px;">
+                    <h3 style="font-size:16px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">Purpose & Core Objective</h3>
+                    <p style="font-size:14.5px; color:#2d3748; margin:0; line-height:1.7;">\${item.purpose}</p>
+                </div>
+
+                <div style="margin-bottom:24px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;">What This Law Covers</h3>
+                    <p style="font-size:14.5px; color:#4a5568; line-height:1.7;">\${item.coverage}</p>
+                </div>
+
+                <div style="margin-bottom:24px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;">Why It Matters to Citizens</h3>
+                    <p style="font-size:14.5px; color:#4a5568; line-height:1.7;">\${item.whyItMatters}</p>
+                </div>
+
+                <div style="margin-bottom:24px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:12px;">Key Statutory Concepts</h3>
+                    <ul style="padding-left:20px; font-size:14px; color:#4a5568; line-height:1.8;">
+                        \${item.importantConcepts.map(c => '<li>' + c + '</li>').join('')}
+                    </ul>
+                </div>
+
+                <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:18px; border-radius:14px; margin-bottom:24px;">
+                    <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-graduation-cap"></i> Study Note:</strong>
+                    <p style="font-size:13.5px; color:#2d3748; margin:4px 0 0;">\${item.studyNotes}</p>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:20px; flex-wrap:wrap; gap:12px;">
+                    <a href="laws/\${item.slug}.html" class="btn-ai" style="padding:12px 28px; font-size:14px;"><i class="fas fa-file-contract"></i> Read Detailed Act Analysis</a>
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-outline" style="padding:12px 24px; font-size:14px;"><i class="fas fa-robot"></i> Research with NYAYI AI</a>
+                </div>
+            \`;
+
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLawModal() {
+            const overlay = document.getElementById('lawModalOverlay');
+            if (overlay) overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // STUDY MODE FLASHCARDS
+        const lawStudyCards = [
+            {
+                num: "STUDY CARD 1 OF 7",
+                title: "Mens Rea — Guilty Mind",
+                body: "Mens Rea is the mental intent required to establish criminal liability. Under Indian criminal law (BNS 2023), an act alone does not create guilt unless accompanied by a guilty intention, knowledge, or criminal recklessness.",
+                note: "Maxim: Actus non facit reum nisi mens sit rea (An act does not make one guilty unless the mind is guilty)."
+            },
+            {
+                num: "STUDY CARD 2 OF 7",
+                title: "Actus Reus — Guilty Act",
+                body: "Actus Reus is the physical conduct, omission, or prohibited result that constitutes the overt criminal act required by statute.",
+                note: "Both Actus Reus and Mens Rea must coincide at the time of committing the offence."
+            },
+            {
+                num: "STUDY CARD 3 OF 7",
+                title: "Cognizable vs Non-Cognizable Offences",
+                body: "Cognizable offences (e.g., BNS murder, theft) permit police arrest without a warrant and mandatory FIR registration (BNSS Sec 173). Non-cognizable offences require Judicial Magistrate authorization.",
+                note: "Defined under Section 2(g) and 2(o) of Bharatiya Nagarik Suraksha Sanhita (BNSS 2023)."
+            },
+            {
+                num: "STUDY CARD 4 OF 7",
+                title: "Bailable vs Non-Bailable Offences",
+                body: "In Bailable offences, bail is a matter of statutory right (BNSS Sec 478). In Non-Bailable offences, granting bail is subject to judicial discretion based on offence severity.",
+                note: "Anticipatory bail for apprehending non-bailable arrest is governed under BNSS Section 484."
+            },
+            {
+                num: "STUDY CARD 5 OF 7",
+                title: "Strict & Absolute Liability",
+                body: "Strict liability imposes legal responsibility without proving Mens Rea (e.g. hazardous industry leaks, traffic violations). Absolute liability admits no statutory exceptions (M.C. Mehta v. Union of India).",
+                note: "Crucial principle under Environmental Protection Act 1986 and industrial safety statutes."
+            },
+            {
+                num: "STUDY CARD 6 OF 7",
+                title: "Prima Facie — On the Face of It",
+                body: "A legal claim or evidence that is sufficient at first impression to establish a fact or raise a presumption unless rebutted by contrary evidence in court.",
+                note: "Used by Magistrates when deciding whether to issue summons or frame charges under BNSS."
+            },
+            {
+                num: "STUDY CARD 7 OF 7",
+                title: "Promissory Estoppel",
+                body: "An equitable doctrine preventing a party (or Government authority) from reneging on a clear promise if another party acted upon that promise to their detriment.",
+                note: "Frequently invoked in administrative law and government tender contracts."
+            }
+        ];
+        let currentLawStudyIdx = 0;
+        function updateLawStudyCard() {
+            const card = lawStudyCards[currentLawStudyIdx];
+            document.getElementById('lawStudyCardNum').textContent = card.num;
+            document.getElementById('lawStudyTitle').textContent = card.title;
+            document.getElementById('lawStudyBody').textContent = card.body;
+            document.getElementById('lawStudyNote').textContent = card.note;
+        }
+        function nextLawStudyCard() {
+            currentLawStudyIdx = (currentLawStudyIdx + 1) % lawStudyCards.length;
+            updateLawStudyCard();
+        }
+        function prevLawStudyCard() {
+            currentLawStudyIdx = (currentLawStudyIdx - 1 + lawStudyCards.length) % lawStudyCards.length;
+            updateLawStudyCard();
+        }
+    </script>
 
     ${renderFooter(0)}
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'laws.html'), lawsHub, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsHub.replace(/laws\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
 
-    laws.forEach(item => {
+    expandedLawsList.forEach(item => {
         const pageHtml = `
         ${renderHead(`${item.title} (${item.shortName}) | Act Analysis`, item.purpose, `${item.title}, ${item.shortName}, Indian law`, `/laws/${item.slug}.html`, 1)}
         ${renderHeader('laws', 1)}
@@ -3213,7 +4547,7 @@ function buildFeaturesAndOther() {
         <section class="page-header" style="padding-bottom:40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <a href="../laws.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
-                <span class="cp-role" style="margin-top:20px; display:inline-block;">Enacted: ${item.enacted}</span>
+                <span class="cp-role" style="margin-top:20px; display:inline-block;">Enacted / Enforced: ${item.year}</span>
                 <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
                 <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.purpose}</p>
             </div>
@@ -3227,12 +4561,23 @@ function buildFeaturesAndOther() {
                         ${item.importantConcepts.map(c => `<li style="margin-bottom:12px;">${c}</li>`).join('')}
                     </ul>
 
-                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Practical Relevance</h2>
+                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Practical Relevance & Scope</h2>
                     <p style="font-size:16px; color:#555; line-height:1.8; margin-bottom:30px;">${item.practicalRelevance}</p>
+
+                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:20px; border-radius:14px; margin-bottom:30px;">
+                        <strong style="color:var(--primary-dark); font-size:15px;"><i class="fas fa-graduation-cap"></i> Educational Study Note:</strong>
+                        <p style="font-size:14px; color:#2d3748; margin:4px 0 0;">${item.studyNotes}</p>
+                    </div>
 
                     <div style="border-top:1px solid #edf2f7; padding-top:20px; color:#718096; font-size:14px;">
                         <strong>Official Reference:</strong> ${item.officialRef}
                     </div>
+                </div>
+
+                <div style="margin-top:30px; text-align:center;">
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:14px 32px; font-size:15px;">
+                        <i class="fas fa-robot"></i> Research "${item.shortName}" with NYAYI AI
+                    </a>
                 </div>
             </div>
         </section>
