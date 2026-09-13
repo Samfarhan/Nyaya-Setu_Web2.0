@@ -101,7 +101,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=9.0">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=10.0">
     
     ${schemaScripts}
 </head>
