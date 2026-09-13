@@ -6890,7 +6890,7 @@ function buildFeaturesAndOther() {
     ${renderHeader('articles', 0)}
 
     <!-- SECTION 1: HERO HEADER -->
-    <section class="page-header" style="padding: 70px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+    <section class="page-header" style="padding: 150px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
         <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
                 <i class="fas fa-newspaper"></i> NYAYI Legal Journal
@@ -7376,44 +7376,44 @@ function buildFeaturesAndOther() {
                 <h2 style="font-size:28px; font-weight:900; color:#111; margin-top:6px;">Frequently Asked Questions</h2>
             </div>
 
-            <div class="faq-accordion">
-                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
-                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                        <span>What are NYAYI Articles & Updates?</span>
-                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
-                    </button>
-                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
-                        NYAYI Articles & Updates is an editorial legal journal providing structured explainers, legislative updates on BNS 2023 / BNSS 2023 / BSA 2023, Supreme Court judgment breakdowns, and citizen knowledge guides.
+            <div class="faq-grid" style="max-width:850px; margin:0 auto; display:grid; gap:16px;">
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <h3>What are NYAYI Articles & Updates?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        <p>NYAYI Articles & Updates is an editorial legal journal providing structured explainers, legislative updates on BNS 2023 / BNSS 2023 / BSA 2023, Supreme Court judgment breakdowns, and citizen knowledge guides.</p>
                     </div>
                 </div>
 
-                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
-                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                        <span>Are NYAYI articles substitute for formal legal advice?</span>
-                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
-                    </button>
-                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
-                        No. NYAYI articles are created for general educational awareness and legal literacy. For formal court litigation or specific legal representation, users must consult a licensed advocate.
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <h3>Are NYAYI articles substitute for formal legal advice?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        <p>No. NYAYI articles are created for general educational awareness and legal literacy. For formal court litigation or specific legal representation, users must consult a licensed advocate.</p>
                     </div>
                 </div>
 
-                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
-                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                        <span>What is the difference between an Article and a Legal Guide?</span>
-                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
-                    </button>
-                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
-                        Articles analyze legal developments, court judgments, and statutory shifts. Legal Guides provide step-by-step practical instructions (e.g. how to file an FIR or report cyber fraud) for real-life action.
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <h3>What is the difference between an Article and a Legal Guide?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        <p>Articles analyze legal developments, court judgments, and statutory shifts. Legal Guides provide step-by-step practical instructions (e.g. how to file an FIR or report cyber fraud) for real-life action.</p>
                     </div>
                 </div>
 
-                <div style="border:1px solid #e2e8f0; border-radius:12px; margin-bottom:12px; overflow:hidden;">
-                    <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:#f8fafc; border:none; padding:18px 24px; font-size:16px; font-weight:800; color:#111; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-                        <span>Can law students use these articles for revision?</span>
-                        <i class="fas fa-chevron-down" style="color:#00C853; transition:transform 0.3s ease;"></i>
-                    </button>
-                    <div style="display:none; padding:20px 24px; font-size:14px; color:#4a5568; line-height:1.6; background:#fff; border-top:1px solid #edf2f7;">
-                        Yes! Our 'Student Note' and 'Legal Concept' editorial formats are specifically designed with structured takeaways, landmark case references, and statutory section mappings for LLB students and competitive exam preparation.
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <h3>Can law students use these articles for revision?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        <p>Yes! Our 'Student Note' and 'Legal Concept' editorial formats are specifically designed with structured takeaways, landmark case references, and statutory section mappings for LLB students and competitive exam preparation.</p>
                     </div>
                 </div>
             </div>
@@ -7455,19 +7455,31 @@ function buildFeaturesAndOther() {
 
     <!-- CLIENT-SIDE INTERACTIVE JAVASCRIPT FOR SEARCH, CATEGORY FILTERS & FAQ -->
     <script>
-    function handleArticleSearch() {
-        const query = document.getElementById('articleSearchInput').value.toLowerCase().trim();
+    function runArticleSearch() {
+        const input = document.getElementById('articleSearchInput');
+        const query = input ? input.value.toLowerCase().trim() : '';
         const clearBtn = document.getElementById('articleClearBtn');
         if (clearBtn) clearBtn.style.display = query ? 'block' : 'none';
 
+        const activeBtn = document.querySelector('.filter-btn.active');
+        let activeCat = 'all';
+        if (activeBtn) {
+            const match = activeBtn.getAttribute('onclick') ? activeBtn.getAttribute('onclick').match(/'([^']+)'/) : null;
+            if (match) activeCat = match[1];
+        }
+
         const cards = document.querySelectorAll('.article-item-card');
         let count = 0;
+
         cards.forEach(card => {
-            const title = card.getAttribute('data-title') || '';
-            const cat = card.getAttribute('data-category') || '';
+            const title = (card.getAttribute('data-title') || '').toLowerCase();
+            const cat = (card.getAttribute('data-category') || '').toLowerCase();
             const text = card.textContent.toLowerCase();
 
-            if (!query || title.includes(query) || text.includes(query)) {
+            const matchesCat = (activeCat === 'all' || cat === activeCat);
+            const matchesQuery = (!query || title.includes(query) || text.includes(query) || cat.includes(query));
+
+            if (matchesCat && matchesQuery) {
                 card.style.display = 'flex';
                 count++;
             } else {
@@ -7479,53 +7491,42 @@ function buildFeaturesAndOther() {
         const countSpan = document.getElementById('articleResultsCount');
         const noFound = document.getElementById('noArticlesFound');
 
-        if (heading) heading.innerText = query ? 'Search Results for "' + query + '"' : 'Showing All 24 Articles & Updates';
+        if (heading) {
+            if (query && activeCat !== 'all') {
+                heading.innerText = 'Results for "' + query + '" in ' + activeCat.toUpperCase();
+            } else if (query) {
+                heading.innerText = 'Search Results for "' + query + '"';
+            } else if (activeCat !== 'all') {
+                heading.innerText = 'Articles in ' + activeCat.toUpperCase();
+            } else {
+                heading.innerText = 'Showing All 24 Articles & Updates';
+            }
+        }
         if (countSpan) countSpan.innerText = count + ' articles';
         if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    function handleArticleSearch() { runArticleSearch(); }
+    function filterArticleCat(catKey, el) {
+        if (el) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+        runArticleSearch();
     }
 
     function setArticleSearch(term) {
         const input = document.getElementById('articleSearchInput');
         if (input) {
             input.value = term;
-            handleArticleSearch();
+            runArticleSearch();
         }
     }
 
     function clearArticleSearch() {
         const input = document.getElementById('articleSearchInput');
-        if (input) {
-            input.value = '';
-            handleArticleSearch();
-        }
+        if (input) { input.value = ''; }
         filterArticleCat('all', document.querySelector('.filter-btn'));
-    }
-
-    function filterArticleCat(catKey, el) {
-        if (el) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        const cards = document.querySelectorAll('.article-item-card');
-        let count = 0;
-        cards.forEach(card => {
-            const cardCat = card.getAttribute('data-category');
-            if (catKey === 'all' || cardCat === catKey) {
-                card.style.display = 'flex';
-                count++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        const heading = document.getElementById('articleResultsHeading');
-        const countSpan = document.getElementById('articleResultsCount');
-        const noFound = document.getElementById('noArticlesFound');
-
-        if (heading) heading.innerText = catKey === 'all' ? 'Showing All 24 Articles & Updates' : 'Articles in ' + catKey.toUpperCase();
-        if (countSpan) countSpan.innerText = count + ' articles';
-        if (noFound) noFound.style.display = count === 0 ? 'block' : 'none';
     }
 
     function toggleFaq(btn) {
@@ -7546,7 +7547,7 @@ function buildFeaturesAndOther() {
     fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), articlesHub, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), articlesHub.replace(/articles\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
 
-    // Individual Article Subpages Generator (24+ HTML Files)
+            // Individual Article Subpages Generator (24+ HTML Files)
     if (!fs.existsSync(path.join(ROOT_DIR, 'articles'))) fs.mkdirSync(path.join(ROOT_DIR, 'articles'), { recursive: true });
     if (!fs.existsSync(path.join(ROOT_DIR, 'blog'))) fs.mkdirSync(path.join(ROOT_DIR, 'blog'), { recursive: true });
 
@@ -7555,10 +7556,10 @@ function buildFeaturesAndOther() {
         ${renderHead(`${item.title} | NYAYI Legal Journal`, item.summary, `${item.title}, legal article India, BNS BNSS 2023`, `/articles/${item.slug}.html`, 1)}
         ${renderHeader('articles', 1)}
 
-        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+        <section class="page-header" style="padding:150px 0 40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <a href="../articles.html" style="font-weight:700; color:var(--primary-dark); font-size:14px; text-decoration:none;"><i class="fas fa-arrow-left"></i> Back to Legal Articles Journal</a>
-                <div style="margin-top:20px; display:flex; gap:10px; align-items:center;">
+                <div style="margin-top:20px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                     <span class="type-badge ${item.typeKey}">${item.type}</span>
                     <span class="cp-role" style="display:inline-block; background:#e8f5e9; color:#00C853; font-weight:800; padding:4px 14px; border-radius:20px; font-size:12px;">${item.category} • ${item.readTime}</span>
                 </div>
@@ -7571,51 +7572,75 @@ function buildFeaturesAndOther() {
             </div>
         </section>
 
-        <section style="padding:60px 0 100px; background:#fff;">
-            <div class="container" style="max-width:900px;">
-                <!-- ARTICLE AT A GLANCE BOX -->
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #00C853; border-radius:18px; padding:28px; margin-bottom:36px;" data-aos="fade-up">
-                    <h3 style="font-size:16px; font-weight:900; color:#111; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-bolt" style="color:#00C853;"></i> Article at a Glance</h3>
-                    <ul style="padding-left:20px; margin:0; font-size:14.5px; color:#2d3748; line-height:1.7;">
-                        ${item.atAGlance.map(pt => `<li>${pt}</li>`).join('')}
-                    </ul>
-                </div>
-
-                <!-- MAIN ARTICLE CONTENT -->
-                <div style="background:#fff; border:1px solid #edf2f7; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
-                    <h2 style="font-size:24px; font-weight:900; color:#111; margin-bottom:16px;">Executive Overview</h2>
-                    <p style="font-size:16px; color:#4a5568; line-height:1.8; margin-bottom:28px;">${item.summary}</p>
-
-                    <!-- KEY TAKEAWAYS -->
-                    <div class="takeaways-box">
-                        <h3 style="font-size:16px; font-weight:900; color:#009624; margin-bottom:12px;"><i class="fas fa-check-circle"></i> Key Takeaways & Practical Takeouts</h3>
+        <section style="padding:40px 0 100px; background:#fff;">
+            <div class="container article-subpage-layout">
+                <!-- MAIN LEFT CONTENT COLUMN -->
+                <div>
+                    <!-- ARTICLE AT A GLANCE BOX -->
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #00C853; border-radius:18px; padding:28px; margin-bottom:32px;" data-aos="fade-up">
+                        <h3 style="font-size:16px; font-weight:900; color:#111; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-bolt" style="color:#00C853;"></i> Article at a Glance</h3>
                         <ul style="padding-left:20px; margin:0; font-size:14.5px; color:#2d3748; line-height:1.7;">
-                            ${item.takeaways.map(tk => `<li>${tk}</li>`).join('')}
+                            ${item.atAGlance.map(pt => `<li>${pt}</li>`).join('')}
                         </ul>
                     </div>
 
-                    <!-- ECOSYSTEM CONTINUE LEARNING -->
-                    <div style="margin-top:40px; background:#fafbfc; border-radius:18px; padding:28px; border:1px solid #e2e8f0;">
-                        <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:16px;">Continue Learning on NYAYI</h3>
-                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
-                            <a href="../laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
-                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Law</strong>
-                                <span style="font-size:13px; color:#00C853;">${item.relatedLaw}</span>
-                            </a>
-                            <a href="../rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
-                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Right</strong>
-                                <span style="font-size:13px; color:#3182ce;">${item.relatedRights}</span>
-                            </a>
-                            <a href="../dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
-                                <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Terms</strong>
-                                <span style="font-size:13px; color:#805ad5;">${item.relatedTerms.join(', ')}</span>
+                    <!-- MAIN ARTICLE CONTENT -->
+                    <div style="background:#fff; border:1px solid #edf2f7; border-radius:24px; padding:36px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                        <h2 style="font-size:24px; font-weight:900; color:#111; margin-bottom:16px;">Executive Overview</h2>
+                        <p style="font-size:16px; color:#4a5568; line-height:1.8; margin-bottom:28px;">${item.summary}</p>
+
+                        <!-- KEY TAKEAWAYS -->
+                        <div class="takeaways-box">
+                            <h3 style="font-size:16px; font-weight:900; color:#009624; margin-bottom:12px;"><i class="fas fa-check-circle"></i> Key Takeaways & Practical Takeouts</h3>
+                            <ul style="padding-left:20px; margin:0; font-size:14.5px; color:#2d3748; line-height:1.7;">
+                                ${item.takeaways.map(tk => `<li>${tk}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <!-- ECOSYSTEM CONTINUE LEARNING -->
+                        <div style="margin-top:40px; background:#fafbfc; border-radius:18px; padding:28px; border:1px solid #e2e8f0;">
+                            <h3 style="font-size:18px; font-weight:800; color:#111; margin-bottom:16px;">Continue Learning on NYAYI</h3>
+                            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+                                <a href="../laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                    <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Law</strong>
+                                    <span style="font-size:13px; color:#00C853;">${item.relatedLaw}</span>
+                                </a>
+                                <a href="../rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                    <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Right</strong>
+                                    <span style="font-size:13px; color:#3182ce;">${item.relatedRights}</span>
+                                </a>
+                                <a href="../dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; text-decoration:none; display:block;">
+                                    <strong style="font-size:14px; color:#111; display:block; margin-bottom:4px;">Related Terms</strong>
+                                    <span style="font-size:13px; color:#805ad5;">${item.relatedTerms.join(', ')}</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:36px; text-align:center;">
+                            <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="display:inline-flex; align-items:center; gap:10px; background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 4px 14px rgba(0,200,83,0.3);">
+                                <i class="fas fa-robot"></i> Research "${item.title}" with NYAYI AI
                             </a>
                         </div>
                     </div>
+                </div>
 
-                    <div style="margin-top:36px; text-align:center;">
-                        <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="display:inline-flex; align-items:center; gap:10px; background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 4px 14px rgba(0,200,83,0.3);">
-                            <i class="fas fa-robot"></i> Research "${item.title}" with NYAYI AI
+                <!-- RIGHT STICKY SIDEBAR (DESKTOP) -->
+                <div class="sticky-desktop-sidebar">
+                    <!-- TABLE OF CONTENTS -->
+                    <div class="toc-box">
+                        <h4 style="font-size:14px; font-weight:900; color:#111; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;"><i class="fas fa-list" style="color:#00C853;"></i> Table of Contents</h4>
+                        <ul style="list-style:none; padding:0; margin:0; font-size:13.5px; line-height:1.8;">
+                            ${item.toc.map(tc => `<li><a href="#${tc.id}" style="color:#4a5568; text-decoration:none; font-weight:600; transition:color 0.2s;">${tc.label}</a></li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <!-- QUICK AI ASK CARD -->
+                    <div style="background:linear-gradient(135deg, #0a0a0a 0%, #171717 100%); border-radius:20px; padding:24px; color:#fff; text-align:center;">
+                        <i class="fas fa-brain" style="font-size:32px; color:#00C853; margin-bottom:12px;"></i>
+                        <h4 style="font-size:16px; font-weight:900; margin-bottom:8px;">Have Questions About This Article?</h4>
+                        <p style="font-size:13px; color:#a0aec0; line-height:1.5; margin-bottom:18px;">Ask NYAYI Legal AI for immediate citation analysis and practical answers.</p>
+                        <a href="https://ai.nyayi.in" target="_blank" style="display:block; background:#00C853; color:#fff; font-weight:800; font-size:13.5px; padding:12px 20px; border-radius:10px; text-decoration:none;">
+                            Launch Web AI Assistant <i class="fas fa-arrow-right" style="font-size:12px;"></i>
                         </a>
                     </div>
                 </div>
