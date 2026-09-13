@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://nyayi.in/</loc>
+        <loc>https://nyayi.in/index.html</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -25,13 +25,13 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://nyayi.in/laws/</loc>
+        <loc>https://nyayi.in/laws/index.html</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://nyayi.in/legal-guides/</loc>
+        <loc>https://nyayi.in/legal-guides/index.html</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -43,19 +43,13 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://nyayi.in/about.html</loc>
+        <loc>https://nyayi.in/contact.html</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://nyayi.in/app.html</loc>
-        <lastmod>2026-09-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://nyayi.in/contact.html</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

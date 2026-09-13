@@ -23,20 +23,20 @@ const articles = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/articles.j
 const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "NYAYI Legal AI",
+    "name": "Nyayi Legal AI",
     "url": "https://nyayi.in/",
     "logo": "https://nyayi.in/images/logo.png",
     "founder": {
         "@type": "Person",
         "name": "Farhan Khan"
     },
-    "description": "India's premier AI legal knowledge platform providing accessible legal guidance, BNS mapping, and constitutional rights."
+    "description": "India's most advanced AI legal assistant providing reliable legal advice on BNS, IPC, FIRs, cyber fraud, and rights."
 };
 
 const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "NYAYI Legal Knowledge Platform",
+    "name": "Nyayi Legal AI",
     "url": "https://nyayi.in/",
     "potentialAction": {
         "@type": "SearchAction",
@@ -46,74 +46,78 @@ const webSiteSchema = {
 };
 
 // COMMON RENDERING HELPERS
-function renderHead(title, description, keywords, pathUrl, extraSchemas = []) {
+function renderHead(title, description, keywords, pathUrl, depth = 0) {
     const canonical = `https://nyayi.in${pathUrl}`;
-    const schemas = [orgSchema, webSiteSchema, ...extraSchemas];
+    const relPrefix = depth === 1 ? '../' : './';
+    const cleanTitle = title.includes('NYAYI') || title.includes('Nyayi') ? title : `${title} | Nyayi Legal AI`;
+    const schemas = [orgSchema, webSiteSchema];
     const schemaScripts = schemas.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n    ');
 
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} | NYAYI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>${cleanTitle}</title>
     <meta name="description" content="${description}">
     <meta name="keywords" content="${keywords}">
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="English, Hindi">
     <link rel="canonical" href="${canonical}">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="${canonical}">
-    <meta property="og:title" content="${title}">
+    <meta property="og:title" content="${cleanTitle}">
     <meta property="og:description" content="${description}">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
 
-    <!-- Fonts & Styles -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css">
     
     ${schemaScripts}
 </head>
-<body>`;
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>`;
 }
 
-function renderHeader(activePage = '') {
+function renderHeader(activePage = '', depth = 0) {
+    const p = depth === 1 ? '../' : './';
     return `
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="close-drawer" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="/" onclick="toggleMenu()">Home</a>
-        <a href="/features.html" onclick="toggleMenu()">Features</a>
-        <a href="/dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="/rights.html" onclick="toggleMenu()">Know Rights</a>
-        <a href="/laws/" onclick="toggleMenu()">Laws Library</a>
-        <a href="/legal-guides/" onclick="toggleMenu()">Guides</a>
-        <a href="/articles.html" onclick="toggleMenu()">Articles</a>
-        <a href="/about.html" onclick="toggleMenu()">About</a>
-        <a href="/contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:900; margin-top:20px;">Launch NYAYI AI <i class="fas fa-arrow-up-right-from-square"></i></a>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="${p}index.html" onclick="toggleMenu()">Home</a>
+        <a href="${p}features.html" onclick="toggleMenu()">Features</a>
+        <a href="${p}dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="${p}rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
+        <a href="${p}app.html" style="color:var(--primary);">Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
     </div>
 
-    <header class="site-header">
+    <header>
         <div class="nav-capsule">
-            <a href="/" class="logo">
-                <i class="fas fa-scale-balanced"></i> NYAYI<span>.</span>
+            <a href="${p}index.html" class="logo">
+                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="/" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
-                <li><a href="/features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
-                <li><a href="/dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
-                <li><a href="/rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li><a href="/laws/" class="${activePage === 'laws' ? 'active' : ''}">Laws</a></li>
-                <li><a href="/legal-guides/" class="${activePage === 'guides' ? 'active' : ''}">Guides</a></li>
-                <li><a href="/about.html" class="${activePage === 'about' ? 'active' : ''}">About</a></li>
+                <li><a href="${p}index.html" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
+                <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
+                <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
+                <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Know Rights</a></li>
+                <li><a href="${p}contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
+                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
 
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div style="display:flex; align-items:center;">
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
-                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                    <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
                 <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             </div>
@@ -122,84 +126,117 @@ function renderHeader(activePage = '') {
 }
 
 function renderArchitectsSection() {
-    const archCards = architectsData.architects.map(a => `
-        <div class="architect-card">
-            <div>
-                <div class="arch-header">
-                    <div class="arch-avatar"><i class="fas ${a.icon}"></i></div>
-                    <div class="arch-info">
-                        <h3>${a.name}</h3>
-                        <span class="arch-role">${a.role}</span>
+    return `
+    <section class="creators-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>The <span>Architects</span></h2>
+                <p>Connect with the minds behind the technological revolution.</p>
+            </div>
+            
+            <div class="creators-grid">
+                <div class="creator-profile" data-aos="fade-up">
+                    <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Farhan Khan</h3>
+                    <span class="cp-role">Founder & Lead Developer</span>
+                    <div class="cp-actions">
+                        <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
+                        <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
                     </div>
                 </div>
-                <p class="arch-desc">${a.description}</p>
-            </div>
-            <div class="arch-actions">
-                <a href="${a.instagram}" target="_blank" class="arch-btn"><i class="fab fa-instagram"></i> View Profile</a>
-                <a href="tel:${a.phone}" class="arch-btn"><i class="fas fa-phone"></i> Direct Contact</a>
-            </div>
-        </div>
-    `).join('');
-
-    return `
-    <section class="architects-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>${architectsData.title}</h2>
-                <p>${architectsData.subtitle}</p>
-            </div>
-            <div class="architects-grid">
-                ${archCards}
+                
+                <div class="creator-profile" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Kamran Sheikh</h3>
+                    <span class="cp-role">Lead Legal Researcher</span>
+                    <div class="cp-actions">
+                        <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
+                        <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>`;
 }
 
-function renderFooter() {
+function renderFooter(depth = 0) {
+    const p = depth === 1 ? '../' : './';
     return `
-    <footer class="site-footer">
+    <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>Bridging the gap between citizens and Indian law through structured legal knowledge and advanced Artificial Intelligence.</p>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/features.html">Features</a></li>
-                    <li><a href="/app.html">Mobile App</a></li>
-                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary);">Launch AI Terminal</a></li>
+                    <li><a href="${p}index.html">Home</a></li>
+                    <li><a href="${p}features.html">Features</a></li>
+                    <li><a href="${p}app.html">Mobile App</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal Knowledge</h4>
+                <h4>Resources</h4>
                 <ul>
-                    <li><a href="/dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="/rights.html">Know Your Rights</a></li>
-                    <li><a href="/laws/">Indian Laws Library</a></li>
-                    <li><a href="/legal-guides/">Step-by-Step Guides</a></li>
+                    <li><a href="${p}dictionary.html">Dictionary</a></li>
+                    <li><a href="${p}rights.html">Know Rights</a></li>
+                    <li><a href="${p}laws/index.html">Laws Library</a></li>
+                    <li><a href="${p}legal-guides/index.html">Legal Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal & Policy</h4>
+                <h4>Legal</h4>
                 <ul>
-                    <li><a href="/about.html">About NYAYI</a></li>
-                    <li><a href="/contact.html">Contact Support</a></li>
-                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="/legal-disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="${p}privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
+                    <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div>&copy; 2026 NYAYI AI. Designed & Developed by Farhan Khan.</div>
+        <div class="copyright">
+            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
 
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
         function toggleMenu() {
-            document.getElementById('mobileDrawer').classList.toggle('active');
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = \`\${posX}px\`;
+            cursorDot.style.top = \`\${posY}px\`;
+            cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
+        });
+
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+            else scrollTopBtn.classList.remove('active');
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
@@ -209,85 +246,102 @@ function renderFooter() {
 // 1. GENERATE HOMEPAGE (index.html)
 function buildHomepage() {
     const dictCards = dictionary.slice(0, 6).map(item => `
-        <div class="info-card">
+        <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
+                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
                 <h3 style="margin-top:8px;">${item.term}</h3>
                 <p>${item.simpleDef}</p>
             </div>
-            <a href="/dictionary/${item.slug}.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+            <a href="dictionary/${item.slug}.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
         </div>
     `).join('');
 
     const rightsCards = rights.map(item => `
-        <div class="info-card">
+        <div class="info-card" data-aos="fade-up">
             <div>
                 <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
             </div>
-            <a href="/know-your-rights/${item.slug}.html" class="card-link">Explore Your Rights <i class="fas fa-arrow-right"></i></a>
-        </div>
-    `).join('');
-
-    const lawsCards = laws.map(item => `
-        <div class="info-card">
-            <div>
-                <span class="highlight" style="font-size:12px; font-weight:800;">${item.category}</span>
-                <h3 style="margin-top:8px;">${item.title}</h3>
-                <p>${item.purpose}</p>
-            </div>
-            <a href="/laws/${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+            <a href="know-your-rights/${item.slug}.html" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
         </div>
     `).join('');
 
     const html = `
-    ${renderHead('Legal Knowledge. Made Simple.', 'NYAYI is India\'s premier legal knowledge platform. Access simplified explanations of BNS, IPC, FIRs, constitutional rights, and AI legal advice.', 'NYAYI, Indian Legal Knowledge, BNS 2023, IPC sections, Know Your Rights India, AI lawyer', '/')}
-    ${renderHeader('home')}
+    ${renderHead('NYAYI | India\'s #1 Legal AI', 'Nyayi (NYAYI) is India\'s most advanced AI legal assistant. Get instant, reliable legal advice on Indian laws, FIRs, cyber fraud, and rights.', 'Nyayi, Indian Legal AI, AI lawyer India, free legal advice India, BNS 2023, IPC sections, cyber crime help, Indian Constitution', '/')}
+    ${renderHeader('home', 0)}
 
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-tag"><i class="fas fa-balance-scale"></i> Empowering 1.4 Billion Citizens</div>
-            <h1 class="hero-title">Legal Knowledge. <br><span class="highlight">Made Accessible & Simple.</span></h1>
-            <p class="hero-subtitle">Understand Indian law, discover your rights, explore legal terminology, and access practical guides — all in one modern platform.</p>
-            <div class="hero-actions">
-                <a href="https://ai.nyayi.in" target="_blank" class="btn-primary"><i class="fas fa-rocket"></i> Launch NYAYI AI</a>
-                <a href="/dictionary.html" class="btn-secondary"><i class="fas fa-book"></i> Explore Dictionary</a>
+    <section class="hero">
+        <div class="container hero-content" data-aos="zoom-in">
+            <h1>Legal Intelligence <br> <span>Reimagined.</span></h1>
+            <p>Explore cutting-edge AI tools engineered to simplify the complex matrix of the Indian legal system. From context-aware research to dynamic document workflows—get precise, fast, and secure guidance instantly.</p>
+            
+            <div class="hero-btns">
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-ai">
+                    <i class="fas fa-robot"></i> Start AI Chat
+                </a>
+                <a href="features.html" class="btn-outline">
+                    <i class="fas fa-layer-group"></i> Explore Features
+                </a>
             </div>
+
+            <a href="https://ai.nyayi.in" target="_blank" class="chat-ui-link">
+                <div class="chat-ui" data-aos="fade-up" data-aos-delay="200">
+                    <div class="chat-header">
+                        <div class="bot-img"><i class="fas fa-robot"></i></div>
+                        <div style="text-align:left;"><strong>Nyayi Neural Engine</strong><br><span style="font-size:12px; color:green;">● Online • Click to Chat</span></div>
+                    </div>
+                    <div class="msg msg-user">How do I map an old crime to the new laws?</div>
+                    <div class="msg msg-ai">
+                        You can use our integrated <strong>IPC & BNS Converter</strong> to map any old section directly to its active counterpart in the new Bharatiya Nyaya Sanhita instantly.
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
 
-    <!-- SECTION: WHAT IS NYAYI -->
-    <section style="padding:80px 0; background:#fafafa;">
+    <!-- STATS STRIP -->
+    <section class="stats-strip">
+        <div class="container stats-grid">
+            <div data-aos="fade-up"><span class="stat-badge">#1 IN INDIA</span><div class="stat-num">511+</div><div class="stat-label">IPC & BNS Sections Covered</div></div>
+            <div data-aos="fade-up" data-aos-delay="100"><span class="stat-badge">MULTILINGUAL</span><div class="stat-num">22+</div><div class="stat-label">Indian Languages</div></div>
+            <div data-aos="fade-up" data-aos-delay="200"><span class="stat-badge">SECURE</span><div class="stat-num">100%</div><div class="stat-label">Data Privacy Guard</div></div>
+            <div data-aos="fade-up" data-aos-delay="300"><span class="stat-badge">AI DRIVEN</span><div class="stat-num">24/7</div><div class="stat-label">Instant Solution Delivery</div></div>
+        </div>
+    </section>
+
+    <!-- BENTO GRID -->
+    <section class="bento-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Re-architecting Legal Literacy for India</h2>
-                <p>Navigating Indian law should not require a law degree. NYAYI bridges the gap between dense statutory codes and citizen clarity.</p>
+            <div class="section-header" data-aos="fade-up">
+                <h2>Powerful <span>Legal Tools</span></h2>
+                <p>Advanced computational engines designed to empower the modern citizen.</p>
             </div>
-            <div class="card-grid">
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-language"></i></div>
-                    <h3>Multi-Lingual Clarity</h3>
-                    <p>Legal concepts and procedural steps synthesized across 22+ official Indian languages for true grassroots accessibility.</p>
+
+            <div class="bento-grid">
+                <div class="b-card b-dark" data-aos="fade-right">
+                    <div class="b-icon"><i class="fas fa-search-location"></i></div>
+                    <h3>Smart Case Search</h3>
+                    <p>Describe your situation in simple stories or casual phrases. Our custom neural network scans the entire Indian Penal Code (IPC), Constitution, and active court precedents to reveal the exact legal sections and penalties relevant to you.</p>
                 </div>
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-diagram-project"></i></div>
-                    <h3>BNS & IPC Mapping</h3>
-                    <p>Instant cross-referencing between the old Indian Penal Code (1860) and the new Bharatiya Nyaya Sanhita (BNS 2023).</p>
+                <div class="b-card" data-aos="fade-left">
+                    <div class="b-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>Dynamic Document Drafting</h3>
+                    <p>Create legally tight documents instantly. Generate a formal Draft FIR or customized Rent Agreements tailored to your specific inputs inside 30 seconds.</p>
                 </div>
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-gavel"></i></div>
-                    <h3>Actionable Guidance</h3>
-                    <p>Practical step-by-step walk-throughs for FIRs, bail applications, consumer complaints, and cyber fraud recovery.</p>
+                <div class="b-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="b-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Challan & Code Utilities</h3>
+                    <p>Calculate road liabilities instantly with our Traffic Fine Calculator, or cross-check statutory transformations smoothly through the active IPC & BNS Converter.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION: LEGAL DICTIONARY PREVIEW -->
-    <section style="padding:100px 0;">
+    <section style="padding:90px 0; background:white;">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up">
                 <h2>Searchable Legal <span>Dictionary</span></h2>
                 <p>Demystifying Latin maxims, procedural terms, and court jargon in plain English & Hindi.</p>
             </div>
@@ -295,15 +349,15 @@ function buildHomepage() {
                 ${dictCards}
             </div>
             <div style="text-align:center; margin-top:40px;">
-                <a href="/dictionary.html" class="btn-secondary">Browse All Legal Terms <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary.html" class="btn-outline">Browse All Legal Terms <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
     <!-- SECTION: KNOW YOUR RIGHTS -->
-    <section style="padding:100px 0; background:var(--gray-light);">
+    <section style="padding:90px 0; background:var(--bg-light);">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up">
                 <h2>Know Your Fundamental <span>Rights</span></h2>
                 <p>Knowledge is your first line of defense against illegal detention, police overreach, and consumer exploitation.</p>
             </div>
@@ -313,32 +367,50 @@ function buildHomepage() {
         </div>
     </section>
 
-    <!-- SECTION: INDIAN LAWS LIBRARY -->
-    <section style="padding:100px 0;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Indian Laws <span>Library</span></h2>
-                <p>Comprehensive breakdowns of major Indian acts, criminal codes, and constitutional frameworks.</p>
-            </div>
-            <div class="card-grid">
-                ${lawsCards}
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION: THE ARCHITECTS -->
     ${renderArchitectsSection()}
 
-    <!-- SECTION: AI CTA BANNER -->
-    <section class="container">
-        <div class="cta-banner">
-            <h2>Experience NYAYI Neural Engine</h2>
-            <p>Get instant answers to your specific legal questions from our dedicated AI Assistant terminal.</p>
-            <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:16px; padding:16px 40px;"><i class="fas fa-rocket"></i> Launch NYAYI AI Terminal</a>
+    <!-- SECTION: FAQ ACCORDION -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up"><h2>Frequently Asked <span>Questions</span></h2></div>
+            <div class="faq-grid">
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Is Nyayi free for citizens?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes, our core mission is accessibility. Features like Case Search, Dictionary, Converter utilities, and Basic Drafting are completely free for public use.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>Is my data secure and private?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>We prioritize absolute privacy. We use industry-standard encryption protocols for all data operations. Your queries are processed dynamically but never personally linked, stored, or distributed.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-header"><h3>Does this platform replace an advocate?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p><strong>No.</strong> Nyayi is an informational tool built for research and legal literacy. For formal court representations, active litigation advice, or official filings, you can browse verified advocates through our dedicated lawyer portal.</p></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    ${renderFooter()}
+    <script>
+        function toggleFaq(element) {
+            const allFaqs = document.querySelectorAll('.faq-item');
+            allFaqs.forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-body').style.maxHeight = null;
+                }
+            });
+            element.classList.toggle('active');
+            const body = element.querySelector('.faq-body');
+            if (element.classList.contains('active')) {
+                body.style.maxHeight = body.scrollHeight + "px";
+            } else {
+                body.style.maxHeight = null;
+            }
+        }
+    </script>
+
+    ${renderFooter(0)}
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'index.html'), html, 'utf8');
@@ -347,9 +419,8 @@ function buildHomepage() {
 
 // 2. GENERATE DICTIONARY HUB & TERM PAGES
 function buildDictionary() {
-    // Hub Page
     const termCards = dictionary.map(item => `
-        <div class="info-card" data-category="${item.category}">
+        <div class="info-card" data-category="${item.category}" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
                 <h3 style="margin-top:6px; font-size:20px;">${item.term}</h3>
@@ -357,36 +428,36 @@ function buildDictionary() {
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> ${item.ref}</span>
-                <a href="/dictionary/${item.slug}.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/${item.slug}.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     `).join('');
 
     const hubHtml = `
-    ${renderHead('Legal Dictionary | Search Indian Legal Terms', 'Search simplified explanations of over 80+ Indian legal terms, Latin maxims, BNS/IPC sections, and constitutional definitions.', 'Indian legal dictionary, IPC BNS terms, FIR definition, bail legal meaning, Latin legal maxims', '/dictionary.html')}
-    ${renderHeader('dictionary')}
+    ${renderHead('Legal Dictionary | Nyayi Legal AI', 'Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.', 'Nyayi, Legal Dictionary India, law glossary, legal terms, IPC sections, BNS codes', '/dictionary.html')}
+    ${renderHeader('dictionary', 0)}
 
-    <section class="hero-section" style="padding-bottom:50px;">
-        <div class="container">
-            <h1 class="hero-title">Legal <span>Dictionary</span></h1>
-            <p class="hero-subtitle">Simplified explanations for legal jargon, Latin maxims, BNS/IPC sections, and constitutional terminology.</p>
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Legal <span>Dictionary</span></h1>
+            <p>Simplified explanations for legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.</p>
             
-            <div class="search-container">
+            <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="dictSearch" onkeyup="filterDict()" placeholder="Search terms (e.g. Cognizable, Bail, FIR, Habeas Corpus)...">
             </div>
 
-            <div class="filter-bar">
-                <button class="filter-chip active" onclick="filterCat('all', this)">All Categories</button>
-                <button class="filter-chip" onclick="filterCat('Criminal Law', this)">Criminal Law</button>
-                <button class="filter-chip" onclick="filterCat('Constitutional Law', this)">Constitutional Law</button>
-                <button class="filter-chip" onclick="filterCat('Civil Law', this)">Civil Law</button>
-                <button class="filter-chip" onclick="filterCat('Cyber Law', this)">Cyber Law</button>
+            <div class="filter-tags">
+                <button class="filter-btn active" onclick="filterCat('all', this)">All Terms</button>
+                <button class="filter-btn" onclick="filterCat('Criminal Law', this)">Criminal Law</button>
+                <button class="filter-btn" onclick="filterCat('Constitutional Law', this)">Constitutional</button>
+                <button class="filter-btn" onclick="filterCat('Civil Law', this)">Civil & Property</button>
+                <button class="filter-btn" onclick="filterCat('Cyber Law', this)">Cyber & Tech</button>
             </div>
         </div>
     </section>
 
-    <section style="padding:40px 0 100px;">
+    <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid" id="dictGrid">
                 ${termCards}
@@ -404,7 +475,7 @@ function buildDictionary() {
             });
         }
         function filterCat(cat, btn) {
-            document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const cards = document.querySelectorAll('#dictGrid .info-card');
             cards.forEach(card => {
@@ -417,7 +488,7 @@ function buildDictionary() {
         }
     </script>
 
-    ${renderFooter()}
+    ${renderFooter(0)}
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'dictionary.html'), hubHtml, 'utf8');
@@ -426,191 +497,262 @@ function buildDictionary() {
     // Individual Term Pages
     dictionary.forEach(item => {
         const termHtml = `
-        ${renderHead(`${item.term} - Meaning & Legal Definition`, item.simpleDef, `${item.term}, ${item.category}, Indian Law, BNS IPC definition`, `/dictionary/${item.slug}.html`)}
-        ${renderHeader('dictionary')}
+        ${renderHead(`${item.term} - Meaning & Legal Definition`, item.simpleDef, `${item.term}, ${item.category}, Indian Law, BNS IPC definition`, `/dictionary/${item.slug}.html`, 1)}
+        ${renderHeader('dictionary', 1)}
 
-        <section class="hero-section" style="padding-bottom:40px; text-align:left;">
-            <div class="container">
-                <a href="/dictionary.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Dictionary</a>
-                <span class="hero-tag" style="margin-top:20px; display:inline-block;">${item.category}</span>
-                <h1 class="hero-title" style="margin:10px 0 20px;">${item.term}</h1>
-                <p class="hero-subtitle" style="margin:0;">${item.simpleDef}</p>
+        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+            <div class="container" data-aos="fade-up">
+                <a href="../dictionary.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Dictionary</a>
+                <span class="cp-role" style="margin-top:20px; display:inline-block;">${item.category}</span>
+                <h1 style="margin:10px 0 20px; font-size:3rem;">${item.term}</h1>
+                <p style="margin:0; font-size:1.2rem; max-width:100%; color:#555;">${item.simpleDef}</p>
             </div>
         </section>
 
-        <section style="padding:60px 0 100px;">
+        <section style="padding:60px 0 100px; background:#fff;">
             <div class="container" style="max-width:900px;">
-                <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-sm);">
-                    <h2 style="font-size:24px; margin-bottom:12px;">Legal Meaning & Statutory Context</h2>
-                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8;">${item.legalMeaning}</p>
+                <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Legal Meaning & Statutory Context</h2>
+                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#555;">${item.legalMeaning}</p>
 
-                    <h2 style="font-size:24px; margin-bottom:12px;">Detailed Plain-Language Explanation</h2>
-                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8;">${item.explanation}</p>
+                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Detailed Plain-Language Explanation</h2>
+                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#555;">${item.explanation}</p>
 
-                    <div style="background:var(--primary-light); border-left:4px solid var(--primary); padding:24px; border-radius:var(--radius-sm); margin-bottom:30px;">
-                        <h3 style="font-size:18px; color:var(--primary-dark); margin-bottom:8px;"><i class="fas fa-lightbulb"></i> Practical Example</h3>
-                        <p style="margin:0; color:#2d3748;">${item.example}</p>
+                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:24px; border-radius:12px; margin-bottom:30px;">
+                        <h3 style="font-size:18px; color:var(--primary-dark); margin-bottom:8px; font-weight:800;"><i class="fas fa-lightbulb"></i> Practical Example</h3>
+                        <p style="margin:0; color:#333;">${item.example}</p>
                     </div>
 
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid #edf2f7; padding-top:24px;">
                         <div>
                             <strong style="color:var(--dark); font-size:14px;">Where Used:</strong>
-                            <p style="font-size:14px; margin:4px 0 0;">${item.whereUsed}</p>
+                            <p style="font-size:14px; margin:4px 0 0; color:#666;">${item.whereUsed}</p>
                         </div>
                         <div>
                             <strong style="color:var(--dark); font-size:14px;">Statutory Reference:</strong>
-                            <p style="font-size:14px; margin:4px 0 0;">${item.ref}</p>
+                            <p style="font-size:14px; margin:4px 0 0; color:#666;">${item.ref}</p>
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top:50px; text-align:center;">
-                    <a href="https://ai.nyayi.in" target="_blank" class="btn-primary"><i class="fas fa-robot"></i> Ask NYAYI AI About ${item.term}</a>
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai"><i class="fas fa-robot"></i> Ask NYAYI AI About ${item.term}</a>
                 </div>
             </div>
         </section>
 
-        ${renderFooter()}
+        ${renderFooter(1)}
         `;
 
         fs.writeFileSync(path.join(ROOT_DIR, `dictionary/${item.slug}.html`), termHtml, 'utf8');
     });
-    console.log(`Generated: ${dictionary.length} individual dictionary term pages.`);
 }
 
 // 3. BUILD KNOW YOUR RIGHTS HUB & CATEGORY PAGES
 function buildRights() {
     const hubHtml = `
     ${renderHead('Know Your Rights | Citizen Protections in India', 'Understand your legal rights against arbitrary arrest, police overreach, consumer fraud, cybercrime, and workplace harassment.', 'Know Your Rights India, police rights, arrest rights, womens rights India, consumer rights', '/rights.html')}
-    ${renderHeader('rights')}
+    ${renderHeader('rights', 0)}
 
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Know Your <span>Rights</span></h1>
-            <p class="hero-subtitle">Empowering Indian citizens with actionable constitutional safeguards and practical protections.</p>
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Know Your <span>Rights</span></h1>
+            <p>Empowering Indian citizens with actionable constitutional safeguards and practical protections.</p>
         </div>
     </section>
 
-    <section style="padding:60px 0 100px;">
+    <section style="padding:60px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid">
                 ${rights.map(item => `
-                    <div class="info-card">
+                    <div class="info-card" data-aos="fade-up">
                         <div>
                             <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
                         </div>
-                        <a href="/know-your-rights/${item.slug}.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="know-your-rights/${item.slug}.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `).join('')}
             </div>
         </div>
     </section>
 
-    ${renderFooter()}
+    ${renderFooter(0)}
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'rights.html'), hubHtml, 'utf8');
-    console.log('Generated: rights.html');
 
     rights.forEach(item => {
         const pageHtml = `
-        ${renderHead(`${item.title} | NYAYI Rights Guide`, item.description, `${item.title}, legal rights India, citizen protections`, `/know-your-rights/${item.slug}.html`)}
-        ${renderHeader('rights')}
+        ${renderHead(`${item.title} | NYAYI Rights Guide`, item.description, `${item.title}, legal rights India, citizen protections`, `/know-your-rights/${item.slug}.html`, 1)}
+        ${renderHeader('rights', 1)}
 
-        <section class="hero-section" style="padding-bottom:40px; text-align:left;">
-            <div class="container">
-                <a href="/rights.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Rights Overview</a>
-                <h1 class="hero-title" style="margin:16px 0 20px;">${item.title}</h1>
-                <p class="hero-subtitle" style="margin:0;">${item.description}</p>
+        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+            <div class="container" data-aos="fade-up">
+                <a href="../rights.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Rights Overview</a>
+                <h1 style="margin:16px 0 20px; font-size:3rem;">${item.title}</h1>
+                <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.description}</p>
             </div>
         </section>
 
-        <section style="padding:60px 0 100px;">
+        <section style="padding:60px 0 100px; background:#fff;">
             <div class="container" style="max-width:900px;">
-                <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-sm); margin-bottom:30px;">
-                    <h2 style="font-size:24px; margin-bottom:16px;">Important Legal Points to Know</h2>
-                    <ul style="padding-left:20px; line-height:1.9; color:#4a5568; margin-bottom:30px;">
+                <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03); margin-bottom:30px;" data-aos="fade-up">
+                    <h2 style="font-size:24px; margin-bottom:16px; font-weight:800;">Important Legal Points to Know</h2>
+                    <ul style="padding-left:20px; line-height:1.9; color:#555; margin-bottom:30px;">
                         ${item.importantPoints.map(p => `<li style="margin-bottom:12px;">${p}</li>`).join('')}
                     </ul>
 
-                    <h2 style="font-size:24px; margin-bottom:16px;">Practical Action Steps</h2>
-                    <ol style="padding-left:20px; line-height:1.9; color:#4a5568;">
+                    <h2 style="font-size:24px; margin-bottom:16px; font-weight:800;">Practical Action Steps</h2>
+                    <ol style="padding-left:20px; line-height:1.9; color:#555;">
                         ${item.practicalSteps.map(s => `<li style="margin-bottom:12px;">${s}</li>`).join('')}
                     </ol>
                 </div>
             </div>
         </section>
 
-        ${renderFooter()}
+        ${renderFooter(1)}
         `;
 
         fs.writeFileSync(path.join(ROOT_DIR, `know-your-rights/${item.slug}.html`), pageHtml, 'utf8');
     });
-    console.log(`Generated: ${rights.length} individual rights pages.`);
 }
 
-// 4. BUILD LAWS LIBRARY (laws/index.html & laws/*.html)
-function buildLaws() {
-    const hubHtml = `
-    ${renderHead('Indian Laws Library | BNS, BNSS, BSA & Constitution', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws/')}
-    ${renderHeader('laws')}
+// 4. BUILD FEATURES, ABOUT, CONTACT, APP, LAWS, GUIDES, POLICIES
+function buildFeaturesAndOther() {
+    // Features Page
+    const featuresHtml = `
+    ${renderHead('Features | NYAYI Legal AI', 'Explore features of NYAYI: BNS IPC Converter, FIR Drafter, Case Search, 22+ Languages, and AI Legal Terminal.', 'NYAYI features, IPC BNS converter, draft FIR generator, AI legal assistant', '/features.html')}
+    ${renderHeader('features', 0)}
 
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Indian Laws <span>Library</span></h1>
-            <p class="hero-subtitle">Structured breakdowns of major Indian acts, new criminal codes, and constitutional frameworks.</p>
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Platform <span>Features</span></h1>
+            <p>Cutting-edge legal technology engineered for simplicity, precision, and speed.</p>
         </div>
     </section>
 
-    <section style="padding:60px 0 100px;">
+    <section style="padding:60px 0 100px; background:#fff;">
+        <div class="container">
+            <div class="card-grid">
+                <div class="info-card" data-aos="fade-up">
+                    <div class="card-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3>IPC & BNS Converter</h3>
+                    <p>Instant cross-referencing between old Indian Penal Code sections and new Bharatiya Nyaya Sanhita 2023 provisions.</p>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>Draft FIR Assistant</h3>
+                    <p>Structured template assistance to articulate crime facts accurately before approaching police stations.</p>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon"><i class="fas fa-language"></i></div>
+                    <h3>22+ Indian Languages</h3>
+                    <p>Voice and text support across Hindi, English, Bengali, Tamil, Telugu, Marathi, and regional dialects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ${renderFooter(0)}
+    `;
+    fs.writeFileSync(path.join(ROOT_DIR, 'features.html'), featuresHtml, 'utf8');
+
+    // Contact Page
+    const contactHtml = `
+    ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
+    ${renderHeader('contact', 0)}
+
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Get in <span>Touch</span></h1>
+            <p>Have questions or feedback? Reach out directly to the creators of NYAYI.</p>
+        </div>
+    </section>
+
+    ${renderArchitectsSection()}
+
+    ${renderFooter(0)}
+    `;
+    fs.writeFileSync(path.join(ROOT_DIR, 'contact.html'), contactHtml, 'utf8');
+
+    // App Page
+    const appHtml = `
+    ${renderHead('Mobile App | NYAYI Legal AI', 'Download NYAYI Mobile App or launch the Web AI terminal directly on your smartphone.', 'NYAYI app, legal AI app India', '/app.html')}
+    ${renderHeader('app', 0)}
+
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>NYAYI <span>Mobile App</span></h1>
+            <p>Access voice-assisted legal answers and case search on any mobile device.</p>
+            <div style="margin-top:30px;">
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-ai"><i class="fas fa-mobile-screen"></i> Launch Web App Immediately</a>
+            </div>
+        </div>
+    </section>
+
+    ${renderFooter(0)}
+    `;
+    fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
+
+    // Laws Hub (laws/index.html)
+    const lawsHub = `
+    ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws/index.html', 1)}
+    ${renderHeader('laws', 1)}
+
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Indian Laws <span>Library</span></h1>
+            <p>Structured breakdowns of major Indian acts, new criminal codes, and constitutional frameworks.</p>
+        </div>
+    </section>
+
+    <section style="padding:60px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid">
                 ${laws.map(item => `
-                    <div class="info-card">
+                    <div class="info-card" data-aos="fade-up">
                         <div>
-                            <span class="highlight" style="font-size:12px; font-weight:800; text-transform:uppercase;">${item.category}</span>
+                            <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
                             <h3 style="margin-top:10px;">${item.title}</h3>
                             <p>${item.purpose}</p>
                         </div>
-                        <a href="/laws/${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                        <a href="${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `).join('')}
             </div>
         </div>
     </section>
 
-    ${renderFooter()}
+    ${renderFooter(1)}
     `;
-
-    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), hubHtml, 'utf8');
-    console.log('Generated: laws/index.html');
+    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsHub, 'utf8');
 
     laws.forEach(item => {
         const pageHtml = `
-        ${renderHead(`${item.title} (${item.shortName}) | Act Analysis`, item.purpose, `${item.title}, ${item.shortName}, Indian law`, `/laws/${item.slug}.html`)}
-        ${renderHeader('laws')}
+        ${renderHead(`${item.title} (${item.shortName}) | Act Analysis`, item.purpose, `${item.title}, ${item.shortName}, Indian law`, `/laws/${item.slug}.html`, 1)}
+        ${renderHeader('laws', 1)}
 
-        <section class="hero-section" style="padding-bottom:40px; text-align:left;">
-            <div class="container">
-                <a href="/laws/" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
-                <span class="hero-tag" style="margin-top:20px; display:inline-block;">Enacted: ${item.enacted}</span>
-                <h1 class="hero-title" style="margin:10px 0 20px;">${item.title}</h1>
-                <p class="hero-subtitle" style="margin:0;">${item.purpose}</p>
+        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+            <div class="container" data-aos="fade-up">
+                <a href="index.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
+                <span class="cp-role" style="margin-top:20px; display:inline-block;">Enacted: ${item.enacted}</span>
+                <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
+                <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.purpose}</p>
             </div>
         </section>
 
-        <section style="padding:60px 0 100px;">
+        <section style="padding:60px 0 100px; background:#fff;">
             <div class="container" style="max-width:900px;">
-                <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-sm);">
-                    <h2 style="font-size:24px; margin-bottom:16px;">Key Concepts & Structural Highlights</h2>
-                    <ul style="padding-left:20px; line-height:1.9; color:#4a5568; margin-bottom:30px;">
+                <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h2 style="font-size:24px; margin-bottom:16px; font-weight:800;">Key Concepts & Structural Highlights</h2>
+                    <ul style="padding-left:20px; line-height:1.9; color:#555; margin-bottom:30px;">
                         ${item.importantConcepts.map(c => `<li style="margin-bottom:12px;">${c}</li>`).join('')}
                     </ul>
 
-                    <h2 style="font-size:24px; margin-bottom:12px;">Practical Relevance</h2>
-                    <p style="font-size:16px; color:#4a5568; line-height:1.8; margin-bottom:30px;">${item.practicalRelevance}</p>
+                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Practical Relevance</h2>
+                    <p style="font-size:16px; color:#555; line-height:1.8; margin-bottom:30px;">${item.practicalRelevance}</p>
 
                     <div style="border-top:1px solid #edf2f7; padding-top:20px; color:#718096; font-size:14px;">
                         <strong>Official Reference:</strong> ${item.officialRef}
@@ -619,80 +761,75 @@ function buildLaws() {
             </div>
         </section>
 
-        ${renderFooter()}
+        ${renderFooter(1)}
         `;
 
         fs.writeFileSync(path.join(ROOT_DIR, `laws/${item.slug}.html`), pageHtml, 'utf8');
     });
-    console.log(`Generated: ${laws.length} individual law pages.`);
-}
 
-// 5. BUILD GUIDES (legal-guides/index.html & legal-guides/*.html)
-function buildGuides() {
-    const hubHtml = `
-    ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/legal-guides/')}
-    ${renderHeader('guides')}
+    // Legal Guides Hub (legal-guides/index.html)
+    const guidesHub = `
+    ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/legal-guides/index.html', 1)}
+    ${renderHeader('guides', 1)}
 
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Step-by-Step <span>Legal Guides</span></h1>
-            <p class="hero-subtitle">Clear, practical instructions breaking down complex court and police procedures into understandable steps.</p>
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Step-by-Step <span>Legal Guides</span></h1>
+            <p>Clear, practical instructions breaking down complex court and police procedures into understandable steps.</p>
         </div>
     </section>
 
-    <section style="padding:60px 0 100px;">
+    <section style="padding:60px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid">
                 ${guides.map(item => `
-                    <div class="info-card">
+                    <div class="info-card" data-aos="fade-up">
                         <div>
                             <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category} • ${item.readingTime}</span>
                             <h3 style="margin-top:8px;">${item.title}</h3>
                             <p>${item.summary}</p>
                         </div>
-                        <a href="/legal-guides/${item.slug}.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="${item.slug}.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `).join('')}
             </div>
         </div>
     </section>
 
-    ${renderFooter()}
+    ${renderFooter(1)}
     `;
-
-    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), hubHtml, 'utf8');
-    console.log('Generated: legal-guides/index.html');
+    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub, 'utf8');
 
     guides.forEach(item => {
         const pageHtml = `
-        ${renderHead(`${item.title} | NYAYI Guide`, item.summary, `${item.title}, legal procedure guide India`, `/legal-guides/${item.slug}.html`)}
-        ${renderHeader('guides')}
+        ${renderHead(`${item.title} | NYAYI Guide`, item.summary, `${item.title}, legal procedure guide India`, `/legal-guides/${item.slug}.html`, 1)}
+        ${renderHeader('guides', 1)}
 
-        <section class="hero-section" style="padding-bottom:40px; text-align:left;">
-            <div class="container">
-                <a href="/legal-guides/" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Guides</a>
-                <span class="hero-tag" style="margin-top:20px; display:inline-block;">${item.category}</span>
-                <h1 class="hero-title" style="margin:10px 0 20px;">${item.title}</h1>
-                <p class="hero-subtitle" style="margin:0;">${item.summary}</p>
+        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+            <div class="container" data-aos="fade-up">
+                <a href="index.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Guides</a>
+                <span class="cp-role" style="margin-top:20px; display:inline-block;">${item.category}</span>
+                <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
+                <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.summary}</p>
             </div>
         </section>
 
-        <section style="padding:60px 0 100px;">
+        <section style="padding:60px 0 100px; background:#fff;">
             <div class="container" style="max-width:900px;">
-                <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-sm);">
-                    <h2 style="font-size:24px; margin-bottom:24px;">Step-by-Step Procedure</h2>
+                <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h2 style="font-size:24px; margin-bottom:24px; font-weight:800;">Step-by-Step Procedure</h2>
                     ${item.steps.map(s => `
                         <div style="display:flex; gap:20px; margin-bottom:28px;">
-                            <div style="width:40px; height:40px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; shrink:0;">${s.num}</div>
+                            <div style="width:40px; height:40px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; flex-shrink:0;">${s.num}</div>
                             <div>
-                                <h3 style="font-size:18px; margin-bottom:6px;">${s.heading}</h3>
-                                <p style="font-size:15px; color:#4a5568; margin:0;">${s.text}</p>
+                                <h3 style="font-size:18px; margin-bottom:6px; font-weight:800;">${s.heading}</h3>
+                                <p style="font-size:15px; color:#555; margin:0;">${s.text}</p>
                             </div>
                         </div>
                     `).join('')}
 
                     ${item.warnings.length ? `
-                        <div style="background:#fff5f5; border-left:4px solid #e53e3e; padding:20px; border-radius:var(--radius-sm); margin-top:30px;">
+                        <div style="background:#fff5f5; border-left:4px solid #e53e3e; padding:20px; border-radius:12px; margin-top:30px;">
                             <strong style="color:#c53030;"><i class="fas fa-exclamation-triangle"></i> Important Warning:</strong>
                             ${item.warnings.map(w => `<p style="margin:6px 0 0; color:#9b2c2c; font-size:14px;">${w}</p>`).join('')}
                         </div>
@@ -701,33 +838,46 @@ function buildGuides() {
             </div>
         </section>
 
-        ${renderFooter()}
+        ${renderFooter(1)}
         `;
 
         fs.writeFileSync(path.join(ROOT_DIR, `legal-guides/${item.slug}.html`), pageHtml, 'utf8');
     });
-    console.log(`Generated: ${guides.length} individual legal guide pages.`);
-}
 
-// 6. BUILD ARTICLES / BLOG, APP, CONTACT, POLICIES, & SEO METADATA
-function buildRemainingPages() {
-    // Articles / Blog Page
-    const blogHtml = `
-    ${renderHead('Legal Articles & Editorial Updates | NYAYI', 'Read legal insights, BNS 2023 updates, and legal awareness articles written by Farhan Khan & Kamran Sheikh.', 'Legal articles India, BNS updates, legal tech blog', '/articles.html')}
-    ${renderHeader()}
-
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Legal <span>Insights & Blog</span></h1>
-            <p class="hero-subtitle">Editorial updates, deep-dive law explainers, and technology insights.</p>
+    // Policy Pages
+    const disclaimerHtml = `
+    ${renderHead('Legal Disclaimer | NYAYI Legal AI', 'Important disclaimer: NYAYI provides legal information, not professional advocate representation.', 'NYAYI disclaimer', '/legal-disclaimer.html', 0)}
+    ${renderHeader('home', 0)}
+    <section class="page-header">
+        <div class="container" style="max-width:800px;" data-aos="zoom-in">
+            <h1>Legal <span>Disclaimer</span></h1>
+            <div style="line-height:1.8; color:#555; text-align:left; margin-top:30px;">
+                <p><strong>1. Informational Purpose Only:</strong> NYAYI is an educational and legal information platform. The content provided on this website, including legal dictionary terms, guides, and AI responses, does NOT constitute formal legal advice or create an advocate-client relationship.</p>
+                <p><strong>2. No Guarantee of Court Outcome:</strong> Legal statutes and court precedents vary based on individual case facts. For formal court representation or litigation advice, users must consult a licensed advocate.</p>
+            </div>
         </div>
     </section>
+    ${renderFooter(0)}
+    `;
+    fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHtml, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'privacy-policy.html'), disclaimerHtml, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
 
-    <section style="padding:60px 0 100px;">
+    // Articles Page
+    const blogHtml = `
+    ${renderHead('Legal Articles | NYAYI Legal AI', 'Read legal insights, BNS 2023 updates, and legal awareness articles written by Farhan Khan & Kamran Sheikh.', 'Legal articles India, BNS updates, legal tech blog', '/articles.html', 0)}
+    ${renderHeader('home', 0)}
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Legal <span>Articles</span></h1>
+            <p>Editorial updates, deep-dive law explainers, and technology insights.</p>
+        </div>
+    </section>
+    <section style="padding:60px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid">
                 ${articles.map(art => `
-                    <div class="info-card">
+                    <div class="info-card" data-aos="fade-up">
                         <div>
                             <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${art.category} • ${art.date}</span>
                             <h3 style="margin-top:8px;">${art.title}</h3>
@@ -742,78 +892,22 @@ function buildRemainingPages() {
             </div>
         </div>
     </section>
-
-    ${renderFooter()}
+    ${renderFooter(0)}
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), blogHtml, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogHtml, 'utf8');
-    console.log('Generated: articles.html & blog/index.html');
-
-    // App Page
-    const appHtml = `
-    ${renderHead('NYAYI Mobile App | AI Legal Assistant on Mobile', 'Download NYAYI Mobile App or launch the Web AI terminal directly on your smartphone.', 'NYAYI app, legal AI app India', '/app.html')}
-    ${renderHeader()}
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">NYAYI <span>Mobile Experience</span></h1>
-            <p class="hero-subtitle">Access voice-assisted legal answers and case search on any mobile device.</p>
-            <div style="margin-top:30px;">
-                <a href="https://ai.nyayi.in" target="_blank" class="btn-primary"><i class="fas fa-mobile-screen"></i> Launch Web App Immediately</a>
-            </div>
-        </div>
-    </section>
-    ${renderFooter()}
-    `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
-
-    // Contact Page
-    const contactHtml = `
-    ${renderHead('Contact NYAYI Support', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
-    ${renderHeader()}
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Get in <span>Touch</span></h1>
-            <p class="hero-subtitle">Have questions or feedback? Reach out directly to the creators of NYAYI.</p>
-        </div>
-    </section>
-    ${renderArchitectsSection()}
-    ${renderFooter()}
-    `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'contact.html'), contactHtml, 'utf8');
-
-    // Legal Disclaimers & Policies
-    const disclaimerHtml = `
-    ${renderHead('Legal Disclaimer | NYAYI', 'Important disclaimer: NYAYI provides legal information, not professional advocate representation.', 'NYAYI disclaimer', '/legal-disclaimer.html')}
-    ${renderHeader()}
-    <section style="padding:150px 0 100px;">
-        <div class="container" style="max-width:800px;">
-            <h1 style="font-size:2.5rem; margin-bottom:20px;">Legal Disclaimer</h1>
-            <div style="line-height:1.8; color:#4a5568;">
-                <p><strong>1. Informational Purpose Only:</strong> NYAYI is an educational and legal information platform. The content provided on this website, including legal dictionary terms, guides, and AI responses, does NOT constitute formal legal advice or create an advocate-client relationship.</p>
-                <p><strong>2. No Guarantee of Court Outcome:</strong> Legal statutes and court precedents vary based on individual case facts. For formal court representation or litigation advice, users must consult a licensed advocate.</p>
-            </div>
-        </div>
-    </section>
-    ${renderFooter()}
-    `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'privacy-policy.html'), disclaimerHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), disclaimerHtml, 'utf8');
-    console.log('Generated: Legal policy pages.');
 
     // Sitemap & Robots
     const urls = [
-        'https://nyayi.in/',
+        'https://nyayi.in/index.html',
         'https://nyayi.in/features.html',
         'https://nyayi.in/dictionary.html',
         'https://nyayi.in/rights.html',
-        'https://nyayi.in/laws/',
-        'https://nyayi.in/legal-guides/',
+        'https://nyayi.in/laws/index.html',
+        'https://nyayi.in/legal-guides/index.html',
         'https://nyayi.in/articles.html',
-        'https://nyayi.in/about.html',
-        'https://nyayi.in/app.html',
         'https://nyayi.in/contact.html',
+        'https://nyayi.in/app.html',
         'https://nyayi.in/legal-disclaimer.html',
         ...dictionary.map(d => `https://nyayi.in/dictionary/${d.slug}.html`),
         ...rights.map(r => `https://nyayi.in/know-your-rights/${r.slug}.html`),
@@ -833,7 +927,7 @@ Allow: /
 
 Sitemap: https://nyayi.in/sitemap.xml`;
     fs.writeFileSync(path.join(ROOT_DIR, 'robots.txt'), robotsTxt, 'utf8');
-    console.log('Generated: sitemap.xml & robots.txt');
+    console.log('Generated: Sitemap & Robots.txt');
 }
 
 // EXECUTE ALL BUILD STEPS
@@ -841,8 +935,5 @@ console.log('Starting NYAYI Static Site Generator Build...');
 buildHomepage();
 buildDictionary();
 buildRights();
-buildLaws();
-buildGuides();
-buildRemainingPages();
-console.log('BUILD COMPLETE! All static pages generated successfully.');
-
+buildFeaturesAndOther();
+console.log('BUILD COMPLETE! All static pages generated successfully with exact original visual aesthetics.');

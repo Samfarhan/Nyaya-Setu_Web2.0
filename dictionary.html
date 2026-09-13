@@ -3,44 +3,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Dictionary | Search Indian Legal Terms | NYAYI</title>
-    <meta name="description" content="Search simplified explanations of over 80+ Indian legal terms, Latin maxims, BNS/IPC sections, and constitutional definitions.">
-    <meta name="keywords" content="Indian legal dictionary, IPC BNS terms, FIR definition, bail legal meaning, Latin legal maxims">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Legal Dictionary | Nyayi Legal AI</title>
+    <meta name="description" content="Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.">
+    <meta name="keywords" content="Nyayi, Legal Dictionary India, law glossary, legal terms, IPC sections, BNS codes">
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/dictionary.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nyayi.in/dictionary.html">
-    <meta property="og:title" content="Legal Dictionary | Search Indian Legal Terms">
-    <meta property="og:description" content="Search simplified explanations of over 80+ Indian legal terms, Latin maxims, BNS/IPC sections, and constitutional definitions.">
+    <meta property="og:title" content="Legal Dictionary | Nyayi Legal AI">
+    <meta property="og:description" content="Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
 
-    <!-- Fonts & Styles -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
     
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "NYAYI Legal AI",
+  "name": "Nyayi Legal AI",
   "url": "https://nyayi.in/",
   "logo": "https://nyayi.in/images/logo.png",
   "founder": {
     "@type": "Person",
     "name": "Farhan Khan"
   },
-  "description": "India's premier AI legal knowledge platform providing accessible legal guidance, BNS mapping, and constitutional rights."
+  "description": "India's most advanced AI legal assistant providing reliable legal advice on BNS, IPC, FIRs, cyber fraud, and rights."
 }
 </script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "NYAYI Legal Knowledge Platform",
+  "name": "Nyayi Legal AI",
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
@@ -51,71 +54,69 @@
 </script>
 </head>
 <body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="close-drawer" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="/" onclick="toggleMenu()">Home</a>
-        <a href="/features.html" onclick="toggleMenu()">Features</a>
-        <a href="/dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="/rights.html" onclick="toggleMenu()">Know Rights</a>
-        <a href="/laws/" onclick="toggleMenu()">Laws Library</a>
-        <a href="/legal-guides/" onclick="toggleMenu()">Guides</a>
-        <a href="/articles.html" onclick="toggleMenu()">Articles</a>
-        <a href="/about.html" onclick="toggleMenu()">About</a>
-        <a href="/contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:900; margin-top:20px;">Launch NYAYI AI <i class="fas fa-arrow-up-right-from-square"></i></a>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="./index.html" onclick="toggleMenu()">Home</a>
+        <a href="./features.html" onclick="toggleMenu()">Features</a>
+        <a href="./dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="./rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="./contact.html" onclick="toggleMenu()">Contact</a>
+        <a href="./app.html" style="color:var(--primary);">Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
     </div>
 
-    <header class="site-header">
+    <header>
         <div class="nav-capsule">
-            <a href="/" class="logo">
-                <i class="fas fa-scale-balanced"></i> NYAYI<span>.</span>
+            <a href="./index.html" class="logo">
+                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="/" class="">Home</a></li>
-                <li><a href="/features.html" class="">Features</a></li>
-                <li><a href="/dictionary.html" class="active">Dictionary</a></li>
-                <li><a href="/rights.html" class="">Rights</a></li>
-                <li><a href="/laws/" class="">Laws</a></li>
-                <li><a href="/legal-guides/" class="">Guides</a></li>
-                <li><a href="/about.html" class="">About</a></li>
+                <li><a href="./index.html" class="">Home</a></li>
+                <li><a href="./features.html" class="">Features</a></li>
+                <li><a href="./dictionary.html" class="active">Dictionary</a></li>
+                <li><a href="./rights.html" class="">Know Rights</a></li>
+                <li><a href="./contact.html" class="">Contact</a></li>
+                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div style="display:flex; align-items:center;">
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
-                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                    <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
                 <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             </div>
         </div>
     </header>
 
-    <section class="hero-section" style="padding-bottom:50px;">
-        <div class="container">
-            <h1 class="hero-title">Legal <span>Dictionary</span></h1>
-            <p class="hero-subtitle">Simplified explanations for legal jargon, Latin maxims, BNS/IPC sections, and constitutional terminology.</p>
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Legal <span>Dictionary</span></h1>
+            <p>Simplified explanations for legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.</p>
             
-            <div class="search-container">
+            <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="dictSearch" onkeyup="filterDict()" placeholder="Search terms (e.g. Cognizable, Bail, FIR, Habeas Corpus)...">
             </div>
 
-            <div class="filter-bar">
-                <button class="filter-chip active" onclick="filterCat('all', this)">All Categories</button>
-                <button class="filter-chip" onclick="filterCat('Criminal Law', this)">Criminal Law</button>
-                <button class="filter-chip" onclick="filterCat('Constitutional Law', this)">Constitutional Law</button>
-                <button class="filter-chip" onclick="filterCat('Civil Law', this)">Civil Law</button>
-                <button class="filter-chip" onclick="filterCat('Cyber Law', this)">Cyber Law</button>
+            <div class="filter-tags">
+                <button class="filter-btn active" onclick="filterCat('all', this)">All Terms</button>
+                <button class="filter-btn" onclick="filterCat('Criminal Law', this)">Criminal Law</button>
+                <button class="filter-btn" onclick="filterCat('Constitutional Law', this)">Constitutional</button>
+                <button class="filter-btn" onclick="filterCat('Civil Law', this)">Civil & Property</button>
+                <button class="filter-btn" onclick="filterCat('Cyber Law', this)">Cyber & Tech</button>
             </div>
         </div>
     </section>
 
-    <section style="padding:40px 0 100px;">
+    <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
             <div class="card-grid" id="dictGrid">
                 
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">First Information Report (FIR)</h3>
@@ -123,11 +124,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 173 / CrPC Section 154</span>
-                <a href="/dictionary/fir.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/fir.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Zero FIR</h3>
@@ -135,11 +136,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Mandate / Ministry of Home Affairs Guidelines</span>
-                <a href="/dictionary/zero-fir.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/zero-fir.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Bail</h3>
@@ -147,11 +148,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 478-496 / CrPC Section 436-439</span>
-                <a href="/dictionary/bail.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/bail.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Anticipatory Bail</h3>
@@ -159,11 +160,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 482 / CrPC Section 438</span>
-                <a href="/dictionary/anticipatory-bail.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/anticipatory-bail.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Cognizable Offence</h3>
@@ -171,11 +172,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 2(1)(g) / CrPC Section 2(c)</span>
-                <a href="/dictionary/cognizable-offence.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/cognizable-offence.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Non-Cognizable Offence</h3>
@@ -183,11 +184,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 2(1)(l) / CrPC Section 2(l)</span>
-                <a href="/dictionary/non-cognizable-offence.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/non-cognizable-offence.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Criminal Law">
+        <div class="info-card" data-category="Criminal Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Charge Sheet (Final Police Report)</h3>
@@ -195,11 +196,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> BNSS Section 193 / CrPC Section 173(2)</span>
-                <a href="/dictionary/charge-sheet.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/charge-sheet.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Constitutional Law">
+        <div class="info-card" data-category="Constitutional Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Constitutional Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Habeas Corpus</h3>
@@ -207,11 +208,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> Article 32 & Article 226, Constitution of India</span>
-                <a href="/dictionary/habeas-corpus.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/habeas-corpus.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Constitutional Law">
+        <div class="info-card" data-category="Constitutional Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Constitutional Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Mandamus</h3>
@@ -219,11 +220,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> Article 32 & Article 226</span>
-                <a href="/dictionary/mandamus.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/mandamus.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Civil Law">
+        <div class="info-card" data-category="Civil Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Civil Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Injunction</h3>
@@ -231,11 +232,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> CPC Order 39 / Specific Relief Act 1963</span>
-                <a href="/dictionary/injunction.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/injunction.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Cyber Law">
+        <div class="info-card" data-category="Cyber Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Cyber Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Phishing & Identity Theft</h3>
@@ -243,11 +244,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> IT Act 2000 Sec 66C/66D & BNS Sec 318</span>
-                <a href="/dictionary/phishing.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/phishing.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Civil Law">
+        <div class="info-card" data-category="Civil Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Civil Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Plaint</h3>
@@ -255,11 +256,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> CPC Order 7</span>
-                <a href="/dictionary/plaint.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/plaint.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Civil Law">
+        <div class="info-card" data-category="Civil Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Civil Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Written Statement</h3>
@@ -267,11 +268,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> CPC Order 8</span>
-                <a href="/dictionary/written-statement.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/written-statement.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Family Law">
+        <div class="info-card" data-category="Family Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Family Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Divorce</h3>
@@ -279,11 +280,11 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> Hindu Marriage Act Sec 13 / Special Marriage Act Sec 28</span>
-                <a href="/dictionary/divorce.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/divorce.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
-        <div class="info-card" data-category="Consumer Law">
+        <div class="info-card" data-category="Consumer Law" data-aos="fade-up">
             <div>
                 <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Consumer Law</span>
                 <h3 style="margin-top:6px; font-size:20px;">Consumer Complaint</h3>
@@ -291,7 +292,7 @@
             </div>
             <div style="border-top:1px solid #edf2f7; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-size:12px; color:#718096; font-weight:700;"><i class="fas fa-book"></i> Consumer Protection Act 2019 Sec 35</span>
-                <a href="/dictionary/consumer-complaint.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
+                <a href="dictionary/consumer-complaint.html" class="card-link" style="font-size:13px;">View <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     
@@ -309,7 +310,7 @@
             });
         }
         function filterCat(cat, btn) {
-            document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const cards = document.querySelectorAll('#dictGrid .info-card');
             cards.forEach(card => {
@@ -323,49 +324,81 @@
     </script>
 
     
-    <footer class="site-footer">
+    <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>Bridging the gap between citizens and Indian law through structured legal knowledge and advanced Artificial Intelligence.</p>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/features.html">Features</a></li>
-                    <li><a href="/app.html">Mobile App</a></li>
-                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary);">Launch AI Terminal</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./features.html">Features</a></li>
+                    <li><a href="./app.html">Mobile App</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal Knowledge</h4>
+                <h4>Resources</h4>
                 <ul>
-                    <li><a href="/dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="/rights.html">Know Your Rights</a></li>
-                    <li><a href="/laws/">Indian Laws Library</a></li>
-                    <li><a href="/legal-guides/">Step-by-Step Guides</a></li>
+                    <li><a href="./dictionary.html">Dictionary</a></li>
+                    <li><a href="./rights.html">Know Rights</a></li>
+                    <li><a href="./laws/index.html">Laws Library</a></li>
+                    <li><a href="./legal-guides/index.html">Legal Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal & Policy</h4>
+                <h4>Legal</h4>
                 <ul>
-                    <li><a href="/about.html">About NYAYI</a></li>
-                    <li><a href="/contact.html">Contact Support</a></li>
-                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="/legal-disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="./terms-of-use.html">Terms of Use</a></li>
+                    <li><a href="./legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div>&copy; 2026 NYAYI AI. Designed & Developed by Farhan Khan.</div>
+        <div class="copyright">
+            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
 
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
         function toggleMenu() {
-            document.getElementById('mobileDrawer').classList.toggle('active');
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+            else scrollTopBtn.classList.remove('active');
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

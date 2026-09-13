@@ -3,44 +3,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact NYAYI Support | NYAYI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Support | NYAYI Legal AI</title>
     <meta name="description" content="Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.">
     <meta name="keywords" content="Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact">
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/contact.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nyayi.in/contact.html">
-    <meta property="og:title" content="Contact NYAYI Support">
+    <meta property="og:title" content="Contact Support | NYAYI Legal AI">
     <meta property="og:description" content="Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
 
-    <!-- Fonts & Styles -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
     
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "NYAYI Legal AI",
+  "name": "Nyayi Legal AI",
   "url": "https://nyayi.in/",
   "logo": "https://nyayi.in/images/logo.png",
   "founder": {
     "@type": "Person",
     "name": "Farhan Khan"
   },
-  "description": "India's premier AI legal knowledge platform providing accessible legal guidance, BNS mapping, and constitutional rights."
+  "description": "India's most advanced AI legal assistant providing reliable legal advice on BNS, IPC, FIRs, cyber fraud, and rights."
 }
 </script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "NYAYI Legal Knowledge Platform",
+  "name": "Nyayi Legal AI",
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
@@ -51,141 +54,159 @@
 </script>
 </head>
 <body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="close-drawer" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="/" onclick="toggleMenu()">Home</a>
-        <a href="/features.html" onclick="toggleMenu()">Features</a>
-        <a href="/dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="/rights.html" onclick="toggleMenu()">Know Rights</a>
-        <a href="/laws/" onclick="toggleMenu()">Laws Library</a>
-        <a href="/legal-guides/" onclick="toggleMenu()">Guides</a>
-        <a href="/articles.html" onclick="toggleMenu()">Articles</a>
-        <a href="/about.html" onclick="toggleMenu()">About</a>
-        <a href="/contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:900; margin-top:20px;">Launch NYAYI AI <i class="fas fa-arrow-up-right-from-square"></i></a>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="./index.html" onclick="toggleMenu()">Home</a>
+        <a href="./features.html" onclick="toggleMenu()">Features</a>
+        <a href="./dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="./rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="./contact.html" onclick="toggleMenu()">Contact</a>
+        <a href="./app.html" style="color:var(--primary);">Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
     </div>
 
-    <header class="site-header">
+    <header>
         <div class="nav-capsule">
-            <a href="/" class="logo">
-                <i class="fas fa-scale-balanced"></i> NYAYI<span>.</span>
+            <a href="./index.html" class="logo">
+                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="/" class="">Home</a></li>
-                <li><a href="/features.html" class="">Features</a></li>
-                <li><a href="/dictionary.html" class="">Dictionary</a></li>
-                <li><a href="/rights.html" class="">Rights</a></li>
-                <li><a href="/laws/" class="">Laws</a></li>
-                <li><a href="/legal-guides/" class="">Guides</a></li>
-                <li><a href="/about.html" class="">About</a></li>
+                <li><a href="./index.html" class="">Home</a></li>
+                <li><a href="./features.html" class="">Features</a></li>
+                <li><a href="./dictionary.html" class="">Dictionary</a></li>
+                <li><a href="./rights.html" class="">Know Rights</a></li>
+                <li><a href="./contact.html" class="active">Contact</a></li>
+                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div style="display:flex; align-items:center;">
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
-                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                    <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
                 <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             </div>
         </div>
     </header>
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Get in <span>Touch</span></h1>
-            <p class="hero-subtitle">Have questions or feedback? Reach out directly to the creators of NYAYI.</p>
+
+    <section class="page-header">
+        <div class="container" data-aos="zoom-in">
+            <h1>Get in <span>Touch</span></h1>
+            <p>Have questions or feedback? Reach out directly to the creators of NYAYI.</p>
         </div>
     </section>
+
     
-    <section class="architects-section">
+    <section class="creators-section">
         <div class="container">
-            <div class="section-header">
-                <h2>The Architects</h2>
-                <p>Built by people who believe legal knowledge should be accessible to every citizen.</p>
+            <div class="section-header" data-aos="fade-up">
+                <h2>The <span>Architects</span></h2>
+                <p>Connect with the minds behind the technological revolution.</p>
             </div>
-            <div class="architects-grid">
+            
+            <div class="creators-grid">
+                <div class="creator-profile" data-aos="fade-up">
+                    <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Farhan Khan</h3>
+                    <span class="cp-role">Founder & Lead Developer</span>
+                    <div class="cp-actions">
+                        <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
+                        <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                    </div>
+                </div>
                 
-        <div class="architect-card">
-            <div>
-                <div class="arch-header">
-                    <div class="arch-avatar"><i class="fas fa-code"></i></div>
-                    <div class="arch-info">
-                        <h3>Farhan Khan</h3>
-                        <span class="arch-role">Founder & Lead Developer</span>
+                <div class="creator-profile" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Kamran Sheikh</h3>
+                    <span class="cp-role">Lead Legal Researcher</span>
+                    <div class="cp-actions">
+                        <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
+                        <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
                     </div>
                 </div>
-                <p class="arch-desc">Full-stack developer and AI system designer focused on bridging complex technological infrastructure with accessible, human-centric UI/UX.</p>
-            </div>
-            <div class="arch-actions">
-                <a href="https://instagram.com/sajj1507" target="_blank" class="arch-btn"><i class="fab fa-instagram"></i> View Profile</a>
-                <a href="tel:9598042676" class="arch-btn"><i class="fas fa-phone"></i> Direct Contact</a>
-            </div>
-        </div>
-    
-        <div class="architect-card">
-            <div>
-                <div class="arch-header">
-                    <div class="arch-avatar"><i class="fas fa-scale-balanced"></i></div>
-                    <div class="arch-info">
-                        <h3>Kamran Sheikh</h3>
-                        <span class="arch-role">Lead Legal Researcher</span>
-                    </div>
-                </div>
-                <p class="arch-desc">Specialist in Indian constitutional law, BNS framework mapping, and procedural legal synthesis to maintain absolute informational integrity.</p>
-            </div>
-            <div class="arch-actions">
-                <a href="https://instagram.com/kamran.irll" target="_blank" class="arch-btn"><i class="fab fa-instagram"></i> View Profile</a>
-                <a href="tel:7393905299" class="arch-btn"><i class="fas fa-phone"></i> Direct Contact</a>
-            </div>
-        </div>
-    
             </div>
         </div>
     </section>
+
     
-    <footer class="site-footer">
+    <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>Bridging the gap between citizens and Indian law through structured legal knowledge and advanced Artificial Intelligence.</p>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/features.html">Features</a></li>
-                    <li><a href="/app.html">Mobile App</a></li>
-                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary);">Launch AI Terminal</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./features.html">Features</a></li>
+                    <li><a href="./app.html">Mobile App</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal Knowledge</h4>
+                <h4>Resources</h4>
                 <ul>
-                    <li><a href="/dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="/rights.html">Know Your Rights</a></li>
-                    <li><a href="/laws/">Indian Laws Library</a></li>
-                    <li><a href="/legal-guides/">Step-by-Step Guides</a></li>
+                    <li><a href="./dictionary.html">Dictionary</a></li>
+                    <li><a href="./rights.html">Know Rights</a></li>
+                    <li><a href="./laws/index.html">Laws Library</a></li>
+                    <li><a href="./legal-guides/index.html">Legal Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal & Policy</h4>
+                <h4>Legal</h4>
                 <ul>
-                    <li><a href="/about.html">About NYAYI</a></li>
-                    <li><a href="/contact.html">Contact Support</a></li>
-                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="/legal-disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="./terms-of-use.html">Terms of Use</a></li>
+                    <li><a href="./legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div>&copy; 2026 NYAYI AI. Designed & Developed by Farhan Khan.</div>
+        <div class="copyright">
+            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
 
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
         function toggleMenu() {
-            document.getElementById('mobileDrawer').classList.toggle('active');
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+            else scrollTopBtn.classList.remove('active');
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
