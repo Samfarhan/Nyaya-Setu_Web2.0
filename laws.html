@@ -1314,6 +1314,13 @@
             const overlay = document.getElementById('lawModalOverlay');
             if (!modalBody || !overlay) return;
 
+            let conceptsList = '';
+            if (Array.isArray(item.importantConcepts)) {
+                for (let i = 0; i < item.importantConcepts.length; i++) {
+                    conceptsList += '<li>' + item.importantConcepts[i] + '</li>';
+                }
+            }
+
             modalBody.innerHTML = `
                 <div style="margin-bottom:20px;">
                     <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-scale-unbalanced-flip"></i> ${item.category}</span>
@@ -1339,12 +1346,12 @@
                 <div style="margin-bottom:24px;">
                     <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:12px;">Key Statutory Concepts</h3>
                     <ul style="padding-left:20px; font-size:14px; color:#4a5568; line-height:1.8;">
-                        ${item.importantConcepts.map(c => '<li>' + c + '</li>').join('')}
+                        ${conceptsList}
                     </ul>
                 </div>
 
                 <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:18px; border-radius:14px; margin-bottom:24px;">
-                    <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-graduation-cap"></i> Study Note:</strong>
+                    <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-graduation-cap"></i> Educational Note:</strong>
                     <p style="font-size:13.5px; color:#2d3748; margin:4px 0 0;">${item.studyNotes}</p>
                 </div>
 

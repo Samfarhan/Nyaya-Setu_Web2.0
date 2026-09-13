@@ -2870,6 +2870,112 @@ footer {
     margin: 0;
 }
 
+/* ---- LAWS HUB MISSING UTILITY CLASSES ---- */
+.az-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #4a5568;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.az-pill:hover {
+    border-color: var(--primary);
+    background: #f0fdf4;
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 200, 83, 0.12);
+}
+
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.filter-btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #4a5568;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    background: #f0fdf4;
+}
+.filter-btn.active {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 4px 16px rgba(0, 200, 83, 0.35) !important;
+}
+
+.badge-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    background: rgba(0, 200, 83, 0.12);
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+.dict-stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.dict-count-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+}
+.dict-count-num {
+    color: var(--primary-dark);
+    font-weight: 900;
+}
+
+.dict-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e0;
+    border-radius: 24px;
+    margin-top: 30px;
+}
+.dict-empty-icon {
+    font-size: 48px;
+    color: #a0aec0;
+    margin-bottom: 16px;
+}
+
+
 
 
 
