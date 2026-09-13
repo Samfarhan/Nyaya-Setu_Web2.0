@@ -263,6 +263,24 @@ function renderFooter(depth = 0) {
             if (menu) menu.classList.toggle('active');
         }
 
+        function toggleFaq(element) {
+            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
+            if (!faqItem) return;
+            const body = faqItem.querySelector('.faq-body');
+            const isActive = faqItem.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const b = item.querySelector('.faq-body');
+                if (b) b.style.maxHeight = null;
+            });
+
+            if (!isActive && body) {
+                faqItem.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        }
+
         function toggleBlogDropdown(e) {
             if (e) e.stopPropagation();
             const drop = document.getElementById('blogDropdown');
@@ -2322,6 +2340,24 @@ function buildRights() {
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
+        function toggleFaq(element) {
+            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
+            if (!faqItem) return;
+            const body = faqItem.querySelector('.faq-body');
+            const isActive = faqItem.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const b = item.querySelector('.faq-body');
+                if (b) b.style.maxHeight = null;
+            });
+
+            if (!isActive && body) {
+                faqItem.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        }
+
         function toggleScenario(headerElement) {
             const scenarioItem = headerElement.parentElement;
             const body = scenarioItem.querySelector('.scenario-body');
