@@ -93,7 +93,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=4.0">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=6.0">
     
     ${schemaScripts}
 </head>
@@ -3206,6 +3206,7 @@ function buildFeaturesAndOther() {
             year: "2023 (Enforced July 1, 2024)",
             category: "Criminal Law",
             catKey: "criminal",
+            keywords: "ipc Indian penal code criminal offence punishment community service murder theft robbery organized crime treason sedition 106 hit and run mob lynching",
             purpose: "Replaced the 163-year-old Indian Penal Code (IPC 1860) with a modern criminal legal code focused on justice rather than colonial punishment.",
             coverage: "Offences against human body, property, public order, state sovereignty, organized crime, terror acts, and community service punishments.",
             whyItMatters: "Every criminal complaint, FIR, and charge sheet filed after July 1, 2024 is registered under BNS section numbers instead of IPC sections.",
@@ -3228,6 +3229,7 @@ function buildFeaturesAndOther() {
             year: "2023 (Enforced July 1, 2024)",
             category: "Criminal Procedure",
             catKey: "procedural",
+            keywords: "crpc criminal procedure police arrest bail anticipatory bail zero fir efir forensics investigation charge sheet magistrate custody summons warrant",
             purpose: "Governs the procedural framework for police investigations, arrests, bail, trials, and court administration in criminal matters.",
             coverage: "Police arrest powers, Zero FIR, e-FIR, mandatory forensic collection, bail procedures, and strict trial time limits.",
             whyItMatters: "Replaced CrPC 1973. Mandates strict timelines: charge sheets within 90 days, trial judgments within 45 days of trial conclusion.",
@@ -3250,6 +3252,7 @@ function buildFeaturesAndOther() {
             year: "2023 (Enforced July 1, 2024)",
             category: "Law of Evidence",
             catKey: "evidence",
+            keywords: "evidence act evidence rules section 63 electronic evidence digital record whatsapp cctv video recording secondary evidence proof witness hash value",
             purpose: "Modernizes the rules of evidence admissibility, giving equal legal standing to electronic records, digital signatures, and server logs.",
             coverage: "Rules of primary & secondary evidence, electronic evidence admissibility, expert opinions, and witness protection.",
             whyItMatters: "Replaced Indian Evidence Act 1872. Establishes that digital/electronic records carry equal legal evidentiary weight as physical documents.",
@@ -3271,6 +3274,7 @@ function buildFeaturesAndOther() {
             year: "1950",
             category: "Constitutional Law",
             catKey: "constitutional",
+            keywords: "article 21 article 14 article 32 fundamental rights writs habeas corpus mandamus certiorari Supreme Court preamble constitution of india",
             purpose: "The supreme legal document establishing the political structure, fundamental rights, directive principles, and duties of citizens and government.",
             coverage: "Part III Fundamental Rights (Art 12-35), Part IV Directive Principles, Part IV-A Fundamental Duties, Union & State judiciary.",
             whyItMatters: "Any statute, police action, or executive order that violates Constitutional Fundamental Rights can be struck down as unconstitutional.",
@@ -3292,6 +3296,7 @@ function buildFeaturesAndOther() {
             year: "2000 (Amended 2008)",
             category: "Cyber & Technology",
             catKey: "cyber",
+            keywords: "cyber cyber crime hacking phishing online fraud digital privacy data protection Section 66E section 67 identity theft server IT act",
             purpose: "Provides legal recognition for electronic commerce, digital signatures, cyber crimes, data privacy, and computer system security.",
             coverage: "Cyber crimes, unauthorized computer access, identity theft, online fraud, cyber terrorism, and intermediary liability.",
             whyItMatters: "Governs digital transactions, electronic records, and online offences across digital platforms in India.",
@@ -3314,6 +3319,7 @@ function buildFeaturesAndOther() {
             year: "2019",
             category: "Consumer Law",
             catKey: "consumer",
+            keywords: "consumer consumer court cpa refund defective product deficiency service e-commerce unfair trade practice misleading advertisement consumer rights",
             purpose: "Protects consumer rights against defective goods, deficient services, unfair trade practices, misleading advertisements, and e-commerce fraud.",
             coverage: "Central Consumer Protection Authority (CCPA), e-Daakhil filing, product liability, misleading ads, and Consumer Disputes Commissions.",
             whyItMatters: "Replaced CPA 1986. Introduces statutory product liability holding manufacturers and sellers accountable for defective goods.",
@@ -3336,6 +3342,7 @@ function buildFeaturesAndOther() {
             year: "1988 (Amended 2019)",
             category: "Motor Vehicles",
             catKey: "motor",
+            keywords: "motor vehicle traffic challan mact accident driving license drunken driving insurance compensation hit and run vehicle impound virtual court",
             purpose: "Regulates road transport, driver licensing, vehicle registration, traffic safety regulations, third-party insurance, and accident compensation.",
             coverage: "Driving licences, traffic fines, DUI offences, third-party accident claims (MACT), and hit-and-run compensation.",
             whyItMatters: "The 2019 amendment dramatically increased fines for dangerous driving, drunk driving, driving without insurance, and minor driving offences.",
@@ -3358,6 +3365,7 @@ function buildFeaturesAndOther() {
             year: "2005",
             category: "Constitutional & Public",
             catKey: "constitutional",
+            keywords: "right to information rti public information officer pio transparency first appeal second appeal cic sic public authority rti application fee",
             purpose: "Empowers citizens to request information from public authorities, promoting government transparency, accountability, and anti-corruption.",
             coverage: "Public Information Officers (PIOs), 30-day response mandate, first and second appeals, and Information Commissions.",
             whyItMatters: "Any Indian citizen can file an RTI query to inspect government records, project expenditures, exam answer sheets, or passport delays.",
@@ -3379,6 +3387,7 @@ function buildFeaturesAndOther() {
             year: "2005",
             category: "Family & Women",
             catKey: "family",
+            keywords: "domestic violence pwdva protection order maintenance residence order monetary relief custody order shelter home domestic incident report",
             purpose: "Provides civil remedies and protection orders for women suffering physical, sexual, verbal, emotional, or economic abuse within domestic relationships.",
             coverage: "Protection Orders, Residence Orders, Monetary Relief, Custody Orders, and Protection Officers.",
             whyItMatters: "Extends protection beyond married women to domestic relationships (live-in relationships, mothers, sisters) living in a shared household.",
@@ -3400,6 +3409,7 @@ function buildFeaturesAndOther() {
             year: "2013",
             category: "Labour & Workplace",
             catKey: "labour",
+            keywords: "posh act workplace sexual harassment internal committee ic internal complaints committee inquiry employee protection women safety",
             purpose: "Mandates safe working environments for women by preventing, prohibiting, and redressing workplace sexual harassment across formal & informal sectors.",
             coverage: "Internal Complaints Committee (ICC), Local Complaints Committee (LCC), inquiry timelines, and employer duties.",
             whyItMatters: "Mandatory for all organizations with 10+ employees to constitute an Internal Complaints Committee (ICC) headed by a senior woman employee.",
@@ -3421,6 +3431,7 @@ function buildFeaturesAndOther() {
             year: "2015",
             category: "Family & Child Protection",
             catKey: "family",
+            keywords: "juvenile justice child minor jjb child welfare committee cwc observation home rehabilitation adoption child in conflict with law",
             purpose: "Consolidates laws relating to children in conflict with law and children in need of care and protection through child-friendly adjudication.",
             coverage: "Juvenile Justice Boards (JJB), Child Welfare Committees (CWC), adoption rules (CARA), and rehabilitation homes.",
             whyItMatters: "Allows preliminary assessment for juveniles aged 16-18 accused of heinous offences to determine if they should be tried as adults.",
@@ -3442,6 +3453,7 @@ function buildFeaturesAndOther() {
             year: "2012 (Amended 2019)",
             category: "Child Protection",
             catKey: "family",
+            keywords: "pocso act child sexual abuse special court child protection mandatory reporting child safety digital abuse online grooming",
             purpose: "Special law enacted to protect children below 18 years from sexual assault, harassment, and pornography with child-friendly trial procedures.",
             coverage: "Penalties for penetrative and non-penetrative sexual assault, mandatory reporting, Special Courts, and child recording safeguards.",
             whyItMatters: "Mandatory reporting requirement: Any person, doctor, or institution aware of child sexual abuse must report it to police immediately.",
@@ -3463,6 +3475,7 @@ function buildFeaturesAndOther() {
             year: "2013",
             category: "Corporate & Commercial",
             catKey: "corporate",
+            keywords: "company corporate director nclt board meeting csr incorporation shareholder annual return auditor company secretary winding up",
             purpose: "Regulates company formation, responsibilities of directors, corporate governance, auditing standards, CSR mandates, and company dissolution.",
             coverage: "Incorporation, One Person Company (OPC), Director duties, NCLT / NCLAT, Independent Directors, and CSR mandates (Sec 135).",
             whyItMatters: "The primary legislation governing corporate entities, startups, private limited companies, and public limited firms in India.",
@@ -3484,6 +3497,7 @@ function buildFeaturesAndOther() {
             year: "1882",
             category: "Property Law",
             catKey: "property",
+            keywords: "property sale deed lease mortgage gift deed tenant landlord tpa transfer of property ownership title deed partition easement",
             purpose: "Governs inter-vivos (between living persons) transfers of immovable property including sales, mortgages, leases, exchanges, and gifts.",
             coverage: "Sale deeds, mortgage types, lease agreements, gift deeds, actionable claims, and doctrine of lis pendens.",
             whyItMatters: "Establishes fundamental property transfer rules, lease determination, tenant rights, and mortgage foreclosure procedures.",
@@ -3505,6 +3519,7 @@ function buildFeaturesAndOther() {
             year: "1872",
             category: "Civil & Commercial",
             catKey: "civil",
+            keywords: "contract agreement breach of contract damages indemnity guarantee bailment agency offer acceptance consideration void contract",
             purpose: "Defines the formation, execution, and enforceability of contracts, agreements, breach remedies, indemnity, guarantee, bailment, and agency.",
             coverage: "Offer, acceptance, consideration, free consent, void contracts, breach of contract damages (Sec 73-74), and indemnity.",
             whyItMatters: "The foundational law behind every commercial agreement, business contract, employment agreement, and service deal in India.",
@@ -3526,6 +3541,7 @@ function buildFeaturesAndOther() {
             year: "1881",
             category: "Corporate & Financial",
             catKey: "corporate",
+            keywords: "cheque cheque bounce 138 ni act promissory note bill of exchange dishonour demand notice bank return memo financial dispute",
             purpose: "Governs promissory notes, bills of exchange, cheques, and establishes criminal liability for cheque bounce due to insufficient funds.",
             coverage: "Cheque bounce complaints (Section 138), statutory demand notice, interim compensation (Sec 143A), and summary trials.",
             whyItMatters: "Section 138 provides criminal remedy for dishonoured cheques, punishing defaulters with up to 2 years imprisonment or double fine amount.",
@@ -3547,6 +3563,7 @@ function buildFeaturesAndOther() {
             year: "1996 (Amended 2015, 2019, 2021)",
             category: "Civil & Commercial ADR",
             catKey: "civil",
+            keywords: "arbitration adr alternative dispute resolution arbitral award mediator commercial dispute tribunal section 34 section 11",
             purpose: "Consolidates laws relating to domestic arbitration, international commercial arbitration, enforcement of foreign arbitral awards, and conciliation.",
             coverage: "Arbitration agreements, tribunal appointments, interim court measures (Sec 9 & 17), arbitral awards, and Section 34 challenges.",
             whyItMatters: "Enables businesses and contracting parties to resolve commercial disputes privately through speedier arbitration rather than lengthy court litigation.",
@@ -3568,6 +3585,7 @@ function buildFeaturesAndOther() {
             year: "1987",
             category: "Human Rights & Legal Aid",
             catKey: "human-rights",
+            keywords: "legal aid nalsa salsa dlsa free lawyer lok adalat legal literacy legal awareness legal service authority indigent person",
             purpose: "Fulfills Constitutional mandate under Article 39A by establishing NALSA, SALSA, DLSA, and Lok Adalats to guarantee free legal services to eligible citizens.",
             coverage: "Free legal representation, advocate assignments, court fee waivers, Lok Adalats, and Permanent Lok Adalats.",
             whyItMatters: "Guarantees free legal representation and court assistance to women, children, SC/ST members, undertrials, and low-income citizens.",
@@ -3589,6 +3607,7 @@ function buildFeaturesAndOther() {
             year: "1986",
             category: "Environmental Law",
             catKey: "environmental",
+            keywords: "environment pollution ngt national green tribunal air pollution water pollution forest ecological waste management environmental clearance",
             purpose: "Umbrella legislation protecting and improving environmental quality, regulating industrial emissions, hazardous waste management, and NGT jurisdiction.",
             coverage: "Environmental Impact Assessment (EIA), hazardous substance handling, pollution control orders, and NGT enforcement.",
             whyItMatters: "Enacted in the aftermath of the 1984 Bhopal Gas Tragedy to empower the Central Government to take all measures necessary to prevent environmental pollution.",
@@ -3610,6 +3629,7 @@ function buildFeaturesAndOther() {
             year: "2005",
             category: "Public Safety & Emergency",
             catKey: "constitutional",
+            keywords: "disaster management ndma sdma calamity relief emergency lockdown pandemic disaster response fund disaster mitigation",
             purpose: "Provides for the effective management of natural & man-made disasters, establishing NDMA, SDMA, and emergency executive power execution.",
             coverage: "National Disaster Management Authority (NDMA), National Disaster Response Force (NDRF), emergency directives, and relief funds.",
             whyItMatters: "Extensively invoked during national emergencies, cyclones, floods, and the COVID-19 pandemic to issue binding lockdown and safety orders.",
@@ -3631,6 +3651,7 @@ function buildFeaturesAndOther() {
             year: "2016",
             category: "Property & Consumer",
             catKey: "property",
+            keywords: "rera builder delay possession real estate promoter homebuyer allottee real estate regulatory authority builder delay penalty",
             purpose: "Protects home buyers, ensures transparency in real estate transactions, regulates property builders, and establishes State Real Estate Regulatory Authorities.",
             coverage: "Mandatory project registration, escrow account rules (70% funds deposit), builder delay penalties, and RERA Tribunals.",
             whyItMatters: "Prohibits real estate developers from diverting homebuyer money to other projects, penalizing delayed possession with interest payouts.",
@@ -3652,6 +3673,7 @@ function buildFeaturesAndOther() {
             year: "2019",
             category: "Labour & Employment",
             catKey: "labour",
+            keywords: "wage wages salary minimum wage bonus overtime equal remuneration payment of wages central advisory board wage code",
             purpose: "Consolidates and simplifies 4 legacy labour statutes (Equal Remuneration, Minimum Wages, Payment of Wages, Payment of Bonus) into a uniform code.",
             coverage: "Universal floor wage, minimum wage calculations, timely wage payment, bonus entitlements, and gender wage equality.",
             whyItMatters: "Extends statutory minimum wage protections to all workers across organized and unorganized sectors throughout India.",
@@ -3673,6 +3695,7 @@ function buildFeaturesAndOther() {
             year: "1955",
             category: "Family Law",
             catKey: "family",
+            keywords: "hindu marriage hma divorce restitution of conjugal rights judicial separation customary marriage sapinda Relationship maintenance",
             purpose: "Governs marriage, solemnization, judicial separation, nullity, restitution of conjugal rights, and divorce for Hindus, Buddhists, Jains, and Sikhs.",
             coverage: "Conditions for valid marriage, bigamy ban, restitution of conjugal rights (Sec 9), divorce grounds (Sec 13), and mutual consent divorce (Sec 13B).",
             whyItMatters: "Establishes legal codification of marital rights, monogamy mandates, maintenance, and child custody rules for applicable communities.",
@@ -3694,6 +3717,7 @@ function buildFeaturesAndOther() {
             year: "1954",
             category: "Family & Civil Law",
             catKey: "family",
+            keywords: "special marriage sma interfaith marriage civil marriage court marriage registration 30 day notice period divorce",
             purpose: "Provides a civil form of marriage for any two individuals in India regardless of religion, faith, or caste without religious conversion.",
             coverage: "Civil marriage registration, 30-day public notice, Marriage Officers, divorce grounds, and succession rules.",
             whyItMatters: "Enables inter-faith, inter-caste, and secular civil marriages without requiring either party to convert to another religion.",
@@ -3715,6 +3739,7 @@ function buildFeaturesAndOther() {
             year: "2009",
             category: "Human Rights & Education",
             catKey: "human-rights",
+            keywords: "rte act right to education free education 25 percent quota admission school elementary education children rights",
             purpose: "Fulfills Article 21A by guaranteeing free and compulsory elementary education for all children between 6 and 14 years in India.",
             coverage: "25% private school EWS quota, pupil-teacher ratios, prohibition of screening tests/capitation fees, and corporal punishment ban.",
             whyItMatters: "Mandates that non-minority private schools reserve 25% of entry-level seats for children from Economically Weaker Sections (EWS).",
@@ -4356,20 +4381,33 @@ function buildFeaturesAndOther() {
 
             if (!grid) return;
 
+            const words = query.split(/\s+/).filter(w => w.length > 0);
+
             const filtered = window.NYAYI_LAWS.filter(item => {
                 if (currentLawCat !== 'all' && item.catKey !== currentLawCat) return false;
-                if (query) {
-                    const haystack = (item.title + ' ' + item.shortName + ' ' + item.category + ' ' + item.purpose + ' ' + item.coverage + ' ' + item.whyItMatters).toLowerCase();
-                    if (!haystack.includes(query)) return false;
+                if (words.length > 0) {
+                    const haystack = (
+                        (item.title || '') + ' ' +
+                        (item.shortName || '') + ' ' +
+                        (item.category || '') + ' ' +
+                        (item.purpose || '') + ' ' +
+                        (item.coverage || '') + ' ' +
+                        (item.whyItMatters || '') + ' ' +
+                        (item.keywords || '') + ' ' +
+                        (Array.isArray(item.importantConcepts) ? item.importantConcepts.join(' ') : '')
+                    ).toLowerCase();
+
+                    return words.every(word => haystack.includes(word));
                 }
                 return true;
             });
 
             if (countSpan) countSpan.textContent = filtered.length;
             if (statusText) {
-                if (query) statusText.textContent = 'Search results for "' + query + '" (' + filtered.length + ' laws)';
+                if (query && currentLawCat !== 'all') statusText.textContent = 'Results for "' + query + '" in ' + currentLawCat.toUpperCase() + ' (' + filtered.length + ' laws)';
+                else if (query) statusText.textContent = 'Search results for "' + query + '" (' + filtered.length + ' laws)';
                 else if (currentLawCat !== 'all') statusText.textContent = 'Filtered by category (' + filtered.length + ' laws)';
-                else statusText.textContent = 'Structured Indian Acts & Modern Criminal Law Codes';
+                else statusText.textContent = 'Structured Indian Acts & Modern Criminal Law Codes (25 Acts)';
             }
 
             if (filtered.length === 0) {
@@ -4382,7 +4420,7 @@ function buildFeaturesAndOther() {
             if (emptyState) emptyState.style.display = 'none';
 
             grid.innerHTML = filtered.map(item => \`
-                <div class="law-card">
+                <div class="law-card" data-category="\${item.catKey}" data-title="\${(item.title || '').toLowerCase()}" data-aos="fade-up">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
                             <span class="badge-cat"><i class="fas fa-scale-unbalanced-flip"></i> \${item.category}</span>
