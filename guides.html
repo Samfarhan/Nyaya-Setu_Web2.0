@@ -100,10 +100,10 @@
                 <li><a href="./features.html" class="">Features</a></li>
                 <li><a href="./dictionary.html" class="">Dictionary</a></li>
                 <li><a href="./rights.html" class="">Rights</a></li>
-                <li class="nav-dropdown">
-                    <a href="./articles.html" class="dropdown-toggle active">
+                <li class="nav-dropdown" id="blogDropdown">
+                    <button type="button" class="dropdown-toggle active" onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
+                    </button>
                     <div class="dropdown-panel">
                         <a href="./laws.html" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
                         <a href="./guides.html" class="active"><i class="fas fa-compass"></i> Legal Guides</a>
@@ -225,6 +225,19 @@
             const menu = document.getElementById('mobileMenu');
             if (menu) menu.classList.toggle('active');
         }
+
+        function toggleBlogDropdown(e) {
+            if (e) e.stopPropagation();
+            const drop = document.getElementById('blogDropdown');
+            if (drop) drop.classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const drop = document.getElementById('blogDropdown');
+            if (drop && !drop.contains(e.target)) {
+                drop.classList.remove('open');
+            }
+        });
 
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');

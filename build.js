@@ -135,10 +135,10 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li class="nav-dropdown">
-                    <a href="${p}articles.html" class="dropdown-toggle ${isBlogActive ? 'active' : ''}">
+                <li class="nav-dropdown" id="blogDropdown">
+                    <button type="button" class="dropdown-toggle ${isBlogActive ? 'active' : ''}" onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
+                    </button>
                     <div class="dropdown-panel">
                         <a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
                         <a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
@@ -256,6 +256,19 @@ function renderFooter(depth = 0) {
             const menu = document.getElementById('mobileMenu');
             if (menu) menu.classList.toggle('active');
         }
+
+        function toggleBlogDropdown(e) {
+            if (e) e.stopPropagation();
+            const drop = document.getElementById('blogDropdown');
+            if (drop) drop.classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const drop = document.getElementById('blogDropdown');
+            if (drop && !drop.contains(e.target)) {
+                drop.classList.remove('open');
+            }
+        });
 
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
