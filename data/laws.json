@@ -1,0 +1,76 @@
+[
+  {
+    "slug": "bns",
+    "title": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "shortName": "BNS 2023",
+    "category": "Substantive Criminal Law",
+    "enacted": "July 1, 2024 (Replaced IPC 1860)",
+    "purpose": "Replaced the 163-year-old Indian Penal Code (IPC) with a modern criminal legal code focused on justice rather than colonial punishment.",
+    "scope": "Applies across all states and Union Territories of India for criminal offences.",
+    "importantConcepts": [
+      "Introduction of Community Service as a statutory punishment for minor offences.",
+      "Categorization of Organized Crime, Gangrape, Mob Lynching, and Terrorist Acts.",
+      "Gender-neutral provisions for offences against children and property.",
+      "Scrapping of Sedition (Section 124A IPC) replaced by treasonous acts against Sovereignty (Section 152 BNS)."
+    ],
+    "practicalRelevance": "Every criminal charge, FIR, and trial initiated after July 1, 2024 is registered under BNS sections instead of IPC sections.",
+    "relatedTerms": ["cognizable-offence", "non-cognizable-offence", "fir", "phishing"],
+    "relatedGuides": ["how-to-file-an-fir", "what-happens-after-filing-an-fir"],
+    "officialRef": "Ministry of Law and Justice, Gazette Notification 2023"
+  },
+  {
+    "slug": "bnss",
+    "title": "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+    "shortName": "BNSS 2023",
+    "category": "Procedural Criminal Law",
+    "enacted": "July 1, 2024 (Replaced CrPC 1973)",
+    "purpose": "Governs the procedural framework for police investigations, arrests, bail, trials, and court administration in criminal matters.",
+    "scope": "All criminal investigations and court proceedings in India.",
+    "importantConcepts": [
+      "Mandatory forensic investigation for offences punishable by 7+ years imprisonment.",
+      "Strict timelines: Charge sheets within 90 days; trial judgments within 45 days of conclusion.",
+      "Statutory recognition of Zero FIR, e-FIR, and digital/audio-video recording of searches and seizures.",
+      "Enhanced safeguards for arrests of elderly or infirm citizens."
+    ],
+    "practicalRelevance": "Defines police powers, bail application procedure (Sec 478-496), FIR filing rules (Sec 173), and Magistrate jurisdictions.",
+    "relatedTerms": ["fir", "zero-fir", "bail", "anticipatory-bail", "charge-sheet"],
+    "relatedGuides": ["how-to-file-an-fir", "understanding-anticipatory-bail"],
+    "officialRef": "Ministry of Home Affairs Guidelines"
+  },
+  {
+    "slug": "bsa",
+    "title": "Bharatiya Sakshya Adhiniyam (BSA), 2023",
+    "shortName": "BSA 2023",
+    "category": "Law of Evidence",
+    "enacted": "July 1, 2024 (Replaced Evidence Act 1872)",
+    "purpose": "Modernizes the rules of evidence admissibility, giving equal legal standing to electronic records, digital signatures, and server logs.",
+    "scope": "All judicial proceedings in or before any court in India.",
+    "importantConcepts": [
+      "Electronic & Digital Records recognized as primary evidence.",
+      "Standardized admissibility for cloud storage, emails, WhatsApp logs, and smartphone recordings.",
+      "Protection of spousal communication and legal professional privilege."
+    ],
+    "practicalRelevance": "Crucial for establishing guilt or innocence in court trials through physical and digital evidence.",
+    "relatedTerms": ["charge-sheet", "phishing"],
+    "relatedGuides": ["how-to-report-cyber-crime"],
+    "officialRef": "Gazette of India 2023"
+  },
+  {
+    "slug": "constitution",
+    "title": "Constitution of India",
+    "shortName": "Indian Constitution",
+    "category": "Supreme Supreme Law",
+    "enacted": "January 26, 1950",
+    "purpose": "The supreme legal document establishing the political structure, fundamental rights, directive principles, and duties of citizens and government.",
+    "scope": "The entire Republic of India.",
+    "importantConcepts": [
+      "Part III: Fundamental Rights (Articles 12 to 35) ensuring equality, freedom, protection against exploitation, and constitutional remedies.",
+      "Articles 32 & 226: Power of Supreme Court and High Courts to issue Writs (Habeas Corpus, Mandamus, Certiorari, etc.).",
+      "Preamble: Declares India a Sovereign, Socialist, Secular, Democratic Republic."
+    ],
+    "practicalRelevance": "Any state law or executive action that violates Fundamental Rights can be struck down as unconstitutional.",
+    "relatedTerms": ["habeas-corpus", "mandamus"],
+    "relatedGuides": ["police-and-arrest-rights"],
+    "officialRef": "Constituent Assembly of India"
+  }
+]

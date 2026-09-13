@@ -1,0 +1,108 @@
+[
+  {
+    "slug": "arrest-rights",
+    "title": "Arrest & Police Rights in India",
+    "category": "Criminal & Fundamental Rights",
+    "description": "Essential constitutional and procedural safeguards every Indian citizen possesses if stopped, questioned, or detained by police officers.",
+    "whoItAppliesTo": "All Indian citizens and residents facing police inquiry, detention, or formal arrest.",
+    "whatYouCanDo": "Demand to see the police officer's identification badge and arrest memo; inform family or a lawyer immediately; exercise your right to remain silent beyond stating your name and address; demand to be produced before a Magistrate within 24 hours.",
+    "importantPoints": [
+      "Article 22(1) guarantees the right to know the grounds of arrest immediately.",
+      "Article 22(2) mandates production before the nearest Judicial Magistrate within 24 hours of arrest (excluding travel time).",
+      "Section 47 of BNSS 2023 requires police to prepare a written Arrest Memo signed by at least one family member or respectable local witness.",
+      "Women cannot be arrested between sunset and sunrise except under extraordinary circumstances with prior written permission of a Judicial Magistrate."
+    ],
+    "misunderstandings": [
+      "Myth: Police can beat or physically torture an accused to extract confessions. Fact: Custodial violence is strictly illegal under Indian Law; confessions made to police officers are inadmissible in court.",
+      "Myth: Police can keep an arrested person in custody indefinitely without court approval. Fact: Detention beyond 24 hours without a Magistrate's remand order is unconstitutional habeas corpus violation."
+    ],
+    "practicalSteps": [
+      "Stay calm and do not physically resist the police officer.",
+      "Ask politely: 'Am I under arrest, or am I free to go?'",
+      "If under arrest, ask for the formal Arrest Memo and read it carefully before signing.",
+      "Immediately call your lawyer or a family member to notify them of your location and the station name.",
+      "Request a medical examination under Section 53 of BNSS upon arrest to document physical health."
+    ],
+    "relatedLaws": ["bns", "bnss", "constitution"],
+    "relatedTerms": ["fir", "bail", "anticipatory-bail", "habeas-corpus"],
+    "faqs": [
+      {
+        "q": "Can police search my phone without a warrant?",
+        "a": "Police cannot force you to unlock your personal digital devices without specific judicial authorization or a warrant in non-emergency situations."
+      }
+    ]
+  },
+  {
+    "slug": "womens-rights",
+    "title": "Women's Legal Rights & Protections",
+    "category": "Constitutional & Personal Protection",
+    "description": "Special legal safeguards enshrined under the Constitution of India, BNS, and specialized acts protecting women against domestic violence, workplace harassment, and illegal arrest.",
+    "whoItAppliesTo": "All women in India regardless of age, marital status, religion, or employment status.",
+    "whatYouCanDo": "File complaints under POSH Act at workplace Internal Committees; register Zero FIRs for assault; seek emergency protection orders under Domestic Violence Act 2005; claim free legal representation from DLSA.",
+    "importantPoints": [
+      "Zero FIR Mandate: A woman victim of a sexual offence can register an FIR at ANY police station regardless of jurisdiction.",
+      "Sunset Protection: Under BNSS Section 43(4), women cannot be arrested after sunset and before sunrise except by a female officer with prior Magistrate sanction.",
+      "Right to Confidentiality: Section 72 of BNS prohibits publishing or revealing the identity of victims of sexual offences.",
+      "Workplace Protection: The POSH Act 2013 mandates an Internal Complaints Committee (ICC) in every organization with 10+ employees."
+    ],
+    "misunderstandings": [
+      "Myth: Domestic violence only applies to physical beatings. Fact: The Domestic Violence Act covers emotional, verbal, sexual, and economic abuse.",
+      "Myth: A woman must go to a police station to report harassment. Fact: Women can request a female police officer to come to their residence to record statements."
+    ],
+    "practicalSteps": [
+      "For emergency help, dial 112 (National Emergency) or 1091 (Women Helpline).",
+      "For workplace harassment, submit a written complaint to your company's Internal Complaints Committee (ICC) within 3 months.",
+      "Keep digital backups of emails, WhatsApp messages, or call logs as electronic evidence."
+    ],
+    "relatedLaws": ["bns", "bnss", "constitution"],
+    "relatedTerms": ["zero-fir", "cognizable-offence"],
+    "faqs": []
+  },
+  {
+    "slug": "consumer-rights",
+    "title": "Consumer Rights & Redressal",
+    "category": "Commercial & Citizen Rights",
+    "description": "Statutory rights guaranteed under the Consumer Protection Act 2019 to protect buyers against deceptive trade, defective goods, and deficient service providers.",
+    "whoItAppliesTo": "Any individual who buys goods or hires services for personal use (excluding commercial resale).",
+    "whatYouCanDo": "File consumer complaints online on e-Daakhil; claim full refunds, replacements, and financial compensation for mental harassment; report deceptive advertisements to the Central Consumer Protection Authority (CCPA).",
+    "importantPoints": [
+      "Right to Safety, Information, Choice, Redressal, and Consumer Education.",
+      "Product Liability: Manufacturers and sellers are strictly liable for injuries or damages caused by defective products.",
+      "E-Commerce Coverage: Online marketplaces (Amazon, Flipkart, etc.) are strictly governed under E-Commerce Rules 2020."
+    ],
+    "misunderstandings": [
+      "Myth: 'Goods once sold will not be taken back' stores tags are legally binding. Fact: Such disclaimers are unfair trade practices and invalid under Consumer Law."
+    ],
+    "practicalSteps": [
+      "Always preserve tax invoices, receipts, and warranty cards.",
+      "Send a formal written Legal Notice to the company giving 15 days to resolve the grievance.",
+      "If unfulfilled, file a direct complaint on the National Consumer Helpline (NCH) app or e-Daakhil portal."
+    ],
+    "relatedLaws": ["consumer-act"],
+    "relatedTerms": ["consumer-complaint"],
+    "faqs": []
+  },
+  {
+    "slug": "cyber-rights",
+    "title": "Cyber Rights & Digital Privacy",
+    "category": "Technology & Personal Privacy",
+    "description": "Rights shielding citizens against online financial scams, identity theft, cyberstalking, and unauthorized data breaches under the IT Act 2000.",
+    "whoItAppliesTo": "All internet users, smartphone owners, and digital banking customers in India.",
+    "whatYouCanDo": "Report financial cyber fraud within the 'Golden Hour' to helpline 1930 to freeze stolen funds; file complaints on cybercrime.gov.in; request removal of intimate images without consent.",
+    "importantPoints": [
+      "Helpline 1930 connects directly to bank fraud monitoring nodes to freeze stolen amounts instantaneously.",
+      "DPDP Act 2023 grants citizens the right to data erasure and privacy consent withdraw."
+    ],
+    "misunderstandings": [
+      "Myth: If you accidentally share an OTP, banks have zero liability. Fact: Reporting financial fraud immediately triggers cyber cell intervention and RBI limited liability guidelines."
+    ],
+    "practicalSteps": [
+      "Call 1930 immediately within 1 hour of unauthorized bank transactions.",
+      "Take screenshots of transactional SMS, bank statements, and fraudster numbers.",
+      "Lodge a complaint on www.cybercrime.gov.in."
+    ],
+    "relatedLaws": ["it-act", "bns"],
+    "relatedTerms": ["phishing"],
+    "faqs": []
+  }
+]

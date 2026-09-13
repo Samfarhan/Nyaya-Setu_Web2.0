@@ -1,0 +1,108 @@
+[
+  {
+    "slug": "how-to-file-an-fir",
+    "title": "How to File an FIR in India (Step-by-Step Guide)",
+    "category": "Criminal Procedure & Police Help",
+    "readingTime": "6 min read",
+    "summary": "A practical walkthrough on registering a First Information Report (FIR) under Section 173 of BNSS 2023, knowing what details to include, and what to do if police refuse registration.",
+    "steps": [
+      {
+        "num": 1,
+        "heading": "Identify the Cognizable Offence",
+        "text": "Ensure the crime involves a cognizable offence (e.g. theft, assault, robbery, cyber fraud). If minor, police will log an NCR instead."
+      },
+      {
+        "num": 2,
+        "heading": "Visit the Police Station or Lodge Zero FIR",
+        "text": "Go to the nearest police station having territorial jurisdiction. In emergency or out-of-station scenarios, request a Zero FIR."
+      },
+      {
+        "num": 3,
+        "heading": "Provide Oral or Written Statement",
+        "text": "Narrate the facts clearly: Date, Time, Exact Location, Accused Name/Description, Witnesses, and Stolen Property details. The police officer will write it down."
+      },
+      {
+        "num": 4,
+        "heading": "Verify and Sign the FIR Copy",
+        "text": "Read the written FIR statement carefully. Ensure no facts were omitted or distorted. Sign the statement."
+      },
+      {
+        "num": 5,
+        "heading": "Obtain Free Stamped Copy of FIR",
+        "text": "Under BNSS Section 173(2), collect the official stamped copy of the FIR with the unique FIR Number immediately, completely free of charge."
+      }
+    ],
+    "warnings": [
+      "Never give false or misleading statements in an FIR. Filing a false FIR is punishable under Section 248 of BNS 2023.",
+      "Do not leave the station without your official free stamped copy of the FIR."
+    ],
+    "relatedTerms": ["fir", "zero-fir", "cognizable-offence", "charge-sheet"],
+    "relatedLaws": ["bnss", "bns"],
+    "faqs": [
+      {
+        "q": "What if the Police Station Superintendent refuses to register the FIR?",
+        "a": "Send your complaint in writing via registered post to the Superintendent of Police (SP) under BNSS Section 173(4), or file a direct complaint before the Judicial Magistrate."
+      }
+    ]
+  },
+  {
+    "slug": "how-to-report-cyber-crime",
+    "title": "What to Do After an Online Financial Fraud",
+    "category": "Cyber Crime & Emergency Action",
+    "readingTime": "5 min read",
+    "summary": "Immediate critical actions to take within the 'Golden Hour' after suffering UPI, net-banking, or credit card fraud in India.",
+    "steps": [
+      {
+        "num": 1,
+        "heading": "Call National Cyber Crime Helpline 1930",
+        "text": "Dial 1930 immediately. Provide your mobile number, bank name, account number, and transaction UTR details to trigger financial asset freezing."
+      },
+      {
+        "num": 2,
+        "heading": "Lodge Online Complaint on cybercrime.gov.in",
+        "text": "Fill out the official complaint form on the National Cyber Crime Reporting Portal. Attach screenshots of transaction SMS, bank statements, and fraud links."
+      },
+      {
+        "num": 3,
+        "heading": "Notify Your Bank Branch",
+        "text": "Submit a formal written notification to your bank manager within 3 days. Under RBI zero-liability rules, prompt reporting protects you against unauthorized electronic banking losses."
+      }
+    ],
+    "warnings": [
+      "Do not delay calling 1930. The first 1 to 2 hours are crucial before fraudsters transfer money across multiple wallet layers."
+    ],
+    "relatedTerms": ["phishing"],
+    "relatedLaws": ["bsa"],
+    "faqs": []
+  },
+  {
+    "slug": "understanding-anticipatory-bail",
+    "title": "How Anticipatory Bail Works in India",
+    "category": "Criminal Protection",
+    "readingTime": "7 min read",
+    "summary": "Understanding pre-arrest protection under Section 482 BNSS, eligible offences, court criteria, and conditions imposed.",
+    "steps": [
+      {
+        "num": 1,
+        "heading": "Evaluate Apprehension of Arrest",
+        "text": "Consult a legal advocate if there is reasonable ground to believe a non-bailable FIR or false complaint is imminent."
+      },
+      {
+        "num": 2,
+        "heading": "File Application in Sessions Court or High Court",
+        "text": "Draft an anticipatory bail application highlighting lack of flight risk, cooperation with investigation, and bogus allegations."
+      },
+      {
+        "num": 3,
+        "heading": "Interim Protection & Final Hearing",
+        "text": "The judge may grant interim protection against arrest while calling for police status reports before passing final orders."
+      }
+    ],
+    "warnings": [
+      "Anticipatory bail does not mean you can evade police inquiry; you are mandated to join investigation whenever called."
+    ],
+    "relatedTerms": ["anticipatory-bail", "bail", "cognizable-offence"],
+    "relatedLaws": ["bnss"],
+    "faqs": []
+  }
+]

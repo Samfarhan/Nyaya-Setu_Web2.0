@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "understanding-bns-2023-transition",
+    "title": "Understanding Bharatiya Nyaya Sanhita (BNS) 2023: Key Structural Shifts from IPC",
+    "category": "Indian Law Updates",
+    "date": "September 12, 2026",
+    "author": "Farhan Khan",
+    "summary": "An in-depth analysis of how India replaced the colonial-era Indian Penal Code of 1860 with BNS 2023, introducing community service, strict timelines, and modern definitions of organized crime.",
+    "content": "On July 1, 2024, India witnessed one of the most historic legal overhauls in modern history as the Bharatiya Nyaya Sanhita (BNS) officially superseded the Indian Penal Code (IPC) of 1860. The transition reflects a paradigm shift from punitive colonial enforcement to restorative citizen-centric justice.\n\n### Major Innovations in BNS 2023:\n1. **Restorative Punishment**: For the first time, Community Service is recognized as a statutory punishment for minor offences like petty theft, public nuisance, and defamation.\n2. **Treason vs Sedition**: Section 124A (Sedition) was repealed. Section 152 now penalizes acts endangering the sovereignty, unity, and integrity of India.\n3. **Modern Crime Framework**: Explicit statutes penalizing organized crime syndicates, mob lynching, cyber-enabled extortions, and deepfake impersonations.",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "digital-evidence-and-bsa-2023",
+    "title": "Digital Evidence & Audio-Video Recording under Bharatiya Sakshya Adhiniyam",
+    "category": "Technology & Law",
+    "date": "September 10, 2026",
+    "author": "Kamran Sheikh",
+    "summary": "How BSA 2023 grants primary evidence status to electronic records, WhatsApp logs, CCTV footage, and digital signatures in Indian courts.",
+    "content": "With the enactment of Bharatiya Sakshya Adhiniyam (BSA) 2023, Indian law has adapted to the digital age. Previously, electronic records required strict Certificate 65B requirements under the old Evidence Act.\n\nUnder BSA, server logs, smartphone recordings, encrypted emails, and cloud documents are recognized as primary evidence provided their hash values and chain of custody remain intact.",
+    "readTime": "4 min read"
+  },
+  {
+    "slug": "empowering-citizens-through-zero-fir",
+    "title": "Zero FIR: Eliminating Police Station Jurisdiction Barriers for Crime Victims",
+    "category": "Legal Awareness",
+    "date": "September 5, 2026",
+    "author": "Farhan Khan",
+    "summary": "Why Zero FIR is a game-changer for emergency crime reporting, sexual harassment cases, and interstate accidents across India.",
+    "content": "Jurisdictional refusal was historically a major hurdle faced by victims seeking immediate police assistance. Under the mandate codified in BNSS 2023, any police station is bound to register a Zero FIR regardless of where the crime took place.",
+    "readTime": "4 min read"
+  }
+]

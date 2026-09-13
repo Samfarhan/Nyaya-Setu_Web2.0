@@ -1,245 +1,46 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Know Your Rights | NYAYI</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Nyayi (NYAYI) is India's most advanced AI legal assistant. Get instant, reliable legal advice on Indian laws, FIRs, cyber fraud, and rights.">
-    <meta name="keywords" content="Nyayi, Nyayi, Indian Legal AI, AI lawyer India, free legal advice India, BNS 2023, IPC sections, cyber crime help, Indian Constitution">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your Rights | Citizen Protections in India | NYAYI</title>
+    <meta name="description" content="Understand your legal rights against arbitrary arrest, police overreach, consumer fraud, cybercrime, and workplace harassment.">
+    <meta name="keywords" content="Know Your Rights India, police rights, arrest rights, womens rights India, consumer rights">
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/rights.html">
 
-    <!-- Open Graph / Facebook / WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nyayi.in/rights.html">
-    <meta property="og:title" content="Know Your Rights | NYAYI">
-    <meta property="og:description" content="Get instant legal guidance on Indian laws, FIRs, BNS, and Cyber Fraud. Free AI legal advisor for every citizen.">
+    <meta property="og:title" content="Know Your Rights | Citizen Protections in India">
+    <meta property="og:description" content="Understand your legal rights against arbitrary arrest, police overreach, consumer fraud, cybercrime, and workplace harassment.">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nyayi.in/rights.html">
-    <meta property="twitter:title" content="Know Your Rights | NYAYI">
-    <meta property="twitter:description" content="Get instant legal guidance on Indian laws, FIRs, BNS, and Cyber Fraud. Free AI legal advisor for every citizen.">
-    <meta property="twitter:image" content="https://nyayi.in/images/logo.png">
-    <meta name="theme-color" content="#00C853">
-    
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+
+    <!-- Fonts & Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
     
-    <!-- Motion Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        /* ---- PREMIUM CONFIGURATION ---- */
-        :root {
-            --primary: #00C853;       
-            --primary-dark: #009624;
-            --dark: #0a0a0a;
-            --white: #ffffff;
-            --bg-light: #f4f7f6;
-            --glass: rgba(255, 255, 255, 0.95);
-            --blur: blur(20px);
-            --shadow: 0 20px 60px rgba(0, 200, 83, 0.08);
-        }
-
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none; }
-        
-        html, body { overflow-x: hidden; width: 100%; }
-
-        body {
-            font-family: 'Urbanist', sans-serif;
-            background-color: var(--white);
-            color: var(--dark);
-            line-height: 1.7;
-        }
-
-        /* ---- CUSTOM CURSOR ---- */
-        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
-        .cursor-outline { width: 40px; height: 40px; border: 1px solid var(--primary); transition: width 0.2s, height 0.2s, background-color 0.2s; }
-        body.hovering .cursor-outline { width: 60px; height: 60px; background-color: rgba(0, 200, 83, 0.1); border-color: transparent; }
-
-        /* ---- FLOATING NAVBAR ---- */
-        header { position: fixed; top: 20px; left: 0; right: 0; z-index: 3000; display: flex; justify-content: center; padding: 0 20px; transition: 0.3s; }
-        .nav-capsule { background: var(--glass); backdrop-filter: var(--blur); padding: 10px 30px; border-radius: 50px; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1150px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6); }
-        
-        .logo { font-size: 22px; font-weight: 900; color: var(--dark); display: flex; align-items: center; gap: 8px; text-decoration: none; white-space: nowrap; }
-        .logo i { color: var(--primary); font-size: 26px; } 
-        
-        .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
-        .nav-links a { text-decoration: none; color: #444; font-weight: 700; font-size: 15px; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-        
-        .btn-launch { background: linear-gradient(135deg, #00C853 0%, #009624 100%); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 800; transition: 0.3s; font-size: 14px; box-shadow: 0 8px 20px rgba(0,200,83,0.3); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-        .btn-launch:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,200,83,0.5); }
-        
-        .menu-toggle { display: none; font-size: 26px; cursor: pointer; color: var(--dark); margin-left: 15px; padding: 5px; }
-
-        /* ---- HERO SECTION ---- */
-        .rights-hero { padding: 180px 0 100px; text-align: center; background: radial-gradient(circle at 50% 10%, #e8f5e9 0%, #ffffff 80%); }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        .rights-hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; color: #111; letter-spacing: -2px; line-height: 1.1; }
-        .rights-hero h1 span { color: var(--primary); }
-        .rights-hero p { font-size: 1.3rem; color: #666; max-width: 700px; margin: 0 auto 30px; }
-
-        .btn-main-cta {
-            background: #0a0a0a; color: white; padding: 16px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px;
-            transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.15); font-size: 17px;
-        }
-        .btn-main-cta:hover { transform: translateY(-3px); background: var(--primary); box-shadow: 0 15px 40px rgba(0,200,83,0.3); }
-
-        /* ---- CONSTITUTION ARTICLES STRIP ---- */
-        .fund-section { padding: 80px 0; background: #050505; color: white; }
-        .section-header.fund-header h2 { color: white; text-align: center; font-size: 2.8rem; font-weight: 900; margin-bottom: 10px; }
-        .section-header.fund-header p { color: #aaa; text-align: center; margin-bottom: 50px; font-size: 1.2rem; }
-        .fund-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .fund-item { text-align: center; padding: 35px 20px; border: 1px solid #222; border-radius: 25px; background: #111; transition: 0.3s; }
-        .fund-item:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,200,83,0.1); }
-        .fund-num { font-size: 14px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .fund-item h4 { font-size: 20px; font-weight: 800; color: white; }
-
-        /* ---- RIGHTS BENTO GRID ---- */
-        .rights-grid-section { padding: 100px 0; background: #fcfcfc; }
-        .rights-grid-section .section-header { text-align: center; margin-bottom: 60px; }
-        .rights-grid-section .section-header h2 { font-size: 2.8rem; font-weight: 900; margin-bottom: 10px; }
-        .rights-grid-section .section-header p { color: #666; }
-        
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .r-card { border-radius: 35px; padding: 45px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #eee; display: flex; flex-direction: column; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.01); min-height: 380px; }
-        .r-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,200,83,0.12); border-color: var(--primary); }
-        .r-icon { width: 70px; height: 70px; background: #e8f5e9; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--primary); margin-bottom: 25px; transition: 0.3s; }
-        .r-card:hover .r-icon { background: #0a0a0a; color: white; }
-        .r-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 20px; text-align: left; letter-spacing: -0.5px; }
-        .r-list { list-style: none; padding: 0; text-align: left; }
-        .r-list li { margin-bottom: 15px; font-size: 15px; color: #4b4b4a; position: relative; padding-left: 25px; line-height: 1.6; font-weight: 500; }
-        .r-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 2px; font-size: 14px; }
-
-        .r-dark { grid-column: span 2; background: #000000; color: white; border: 1px solid #1c1c1c; }
-        .r-dark h3 { color: white; }
-        .r-dark .r-list li { color: #ccc; }
-        .r-dark .r-icon { background: rgba(255,255,255,0.08); color: var(--primary); }
-        .r-tall { grid-row: span 2; background: linear-gradient(180deg, #ffffff 0%, #f4fbf0 100%); }
-
-        /* ---- NEW DETAILED INTERACTIVE CTA ROW ---- */
-        .interactive-cta-row { padding: 40px 0 80px; background: #fcfcfc; }
-        .banner-panel {
-            background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
-            border-radius: 35px; padding: 60px; display: flex; justify-content: space-between;
-            align-items: center; gap: 40px; border: 1px solid #222; box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-        }
-        .bp-left { text-align: left; }
-        .bp-left h3 { font-size: 2.5rem; font-weight: 900; color: white; margin-bottom: 15px; letter-spacing: -1px; }
-        .bp-left h3 span { color: var(--primary); }
-        .bp-left p { color: #aaa; font-size: 1.15rem; max-width: 650px; }
-        .bp-right-btn {
-            background: var(--white); color: var(--dark); padding: 18px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 800; font-size: 16px; transition: 0.3s;
-            display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
-            box-shadow: 0 10px 25px rgba(255,255,255,0.05);
-        }
-        .banner-panel:hover .bp-right-btn { background: var(--primary); color: white; transform: scale(1.03); }
-
-        /* ---- UNIQUE PRECEDENTS SECTION ---- */
-        .precedents-section { padding: 80px 0; background: #ffffff; }
-        .precedents-section .section-header { text-align: center; margin-bottom: 60px; }
-        .precedents-section .section-header h2 { font-size: 2.8rem; font-weight: 900; }
-        .prec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .prec-card { background: #fafafa; border-radius: 25px; padding: 40px; border: 1px solid #eee; text-align: left; }
-        .prec-card:hover { border-color: var(--primary); background: white; box-shadow: var(--shadow); }
-        .prec-case { font-size: 13px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .prec-card h4 { font-size: 22px; font-weight: 800; margin-bottom: 15px; color: var(--dark); }
-        .prec-card p { color: #555; font-size: 15px; line-height: 1.6; }
-
-        /* ---- INTERACTIVE ACCORDION SCENARIOS ---- */
-        .scenarios-section { padding: 80px 0 100px; background: white; }
-        .scenarios-section .section-header { text-align: center; margin-bottom: 60px; }
-        .scenarios-section .section-header h2 { font-size: 2.8rem; font-weight: 900; margin-bottom: 10px; }
-        .scenarios-section .section-header p { color: #666; }
-        .scenario-grid { max-width: 800px; margin: 0 auto; display: grid; gap: 20px; }
-        .scenario-item { background: #f9f9f9; border-radius: 24px; overflow: hidden; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid #eaeaea; }
-        .scenario-item:hover { border-color: #ccc; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
-        .scenario-item.active { border-color: var(--primary); background: #f0fdf4; box-shadow: 0 15px 35px rgba(0,200,83,0.06); }
-        .scenario-header { padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .scenario-header h3 { font-size: 19px; font-weight: 800; margin: 0; color: #111; display: flex; align-items: center; gap: 15px; letter-spacing: -0.3px; }
-        .s-icon-bubble { width: 44px; height: 44px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); box-shadow: 0 5px 12px rgba(0,0,0,0.04); transition: 0.3s; }
-        .scenario-item.active .s-icon-bubble { background: var(--primary); color: white; }
-        .scenario-icon { font-size: 16px; color: #b4b4b4; transition: 0.3s; }
-        .scenario-item.active .scenario-icon { transform: rotate(180deg); color: var(--primary); }
-        .scenario-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; color: #444; line-height: 1.7; text-align: left; }
-        .scenario-body-content { padding: 0 25px 30px; padding-left: 84px; }
-        .scenario-steps { list-style: decimal; padding-left: 20px; }
-        .scenario-steps li { margin-bottom: 12px; font-size: 16px; font-weight: 500; color: #3a3a3a; }
-
-        /* ---- FOOTER ---- */
-        footer { background: #050505; color: white; padding: 80px 0 30px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .footer-brand h2 { font-size: 24px; font-weight: 900; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .footer-brand p { color: #888; font-size: 14px; max-width: 300px; line-height: 1.8; }
-        .footer-col h4 { font-size: 16px; font-weight: 800; color: white; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: #999; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: 500; }
-        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
-        .copyright { text-align: center; border-top: 1px solid #222; margin-top: 60px; padding-top: 30px; color: #555; font-size: 13px;  display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .powered-tag { font-size: 12px; color: var(--primary); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-
-        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: white; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--dark); cursor: pointer; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1000; }
-        .scroll-top.active { opacity: 1; visibility: visible; }
-        .scroll-top:hover { background: var(--primary); color: white; }
-
-        /* MOBILE MENU */
-        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: white; z-index: 4000; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: translateY(-100%); transition: 0.4s ease-in-out; opacity: 0; visibility: hidden; }
-        .mobile-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .mobile-menu a { font-size: 20px; font-weight: 800; color: #111; margin: 15px 0; text-decoration: none; }
-        .close-menu { position: absolute; top: 25px; right: 25px; font-size: 30px; cursor: pointer; }
-
-        @media(max-width: 900px) {
-            header { top: 10px; padding: 0 15px; }
-            .nav-capsule { border-radius: 15px; padding: 15px 20px; width: 100%; justify-content: space-between; }
-            .nav-links, .btn-launch { display: none; }
-            .menu-toggle { display: block; }
-            .rights-hero h1 { font-size: 3rem; }
-            .bento-grid, .fund-grid, .prec-grid { grid-template-columns: 1fr; gap: 25px; }
-            .r-dark, .r-tall { grid-column: span 1; grid-row: auto; min-height: auto; }
-            .banner-panel { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .bp-left { text-align: center; }
-            .bp-left h3 { font-size: 1.8rem; }
-            .bp-right-btn { width: 100%; justify-content: center; }
-            .scenario-header h3 { font-size: 16px; }
-            .scenario-body-content { padding-left: 25px; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .footer-brand { display: flex; flex-direction: column; align-items: center; }
-        }
-    </style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Nyayi Legal AI",
+  "name": "NYAYI Legal AI",
   "url": "https://nyayi.in/",
   "logo": "https://nyayi.in/images/logo.png",
   "founder": {
     "@type": "Person",
     "name": "Farhan Khan"
   },
-  "description": "India's most advanced AI legal assistant providing reliable legal advice on BNS, IPC, FIRs, cyber fraud, and constitutional rights."
+  "description": "India's premier AI legal knowledge platform providing accessible legal guidance, BNS mapping, and constitutional rights."
 }
 </script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Nyayi Legal AI",
+  "name": "NYAYI Legal Knowledge Platform",
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
@@ -250,308 +51,143 @@
 </script>
 </head>
 <body>
-
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="index.html" onclick="toggleMenu()">Home</a>
-        <a href="features.html" onclick="toggleMenu()">Features</a>
-        <a href="dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="rights.html" class="active" onclick="toggleMenu()">Know Rights</a>
-        <a href="contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="app.html">Mobile App</a>
-        <a href="https://ai.nyayi.in" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
+    
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="close-drawer" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <a href="/" onclick="toggleMenu()">Home</a>
+        <a href="/features.html" onclick="toggleMenu()">Features</a>
+        <a href="/dictionary.html" onclick="toggleMenu()">Dictionary</a>
+        <a href="/rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="/laws/" onclick="toggleMenu()">Laws Library</a>
+        <a href="/legal-guides/" onclick="toggleMenu()">Guides</a>
+        <a href="/articles.html" onclick="toggleMenu()">Articles</a>
+        <a href="/about.html" onclick="toggleMenu()">About</a>
+        <a href="/contact.html" onclick="toggleMenu()">Contact</a>
+        <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:900; margin-top:20px;">Launch NYAYI AI <i class="fas fa-arrow-up-right-from-square"></i></a>
     </div>
 
-    <header>
+    <header class="site-header">
         <div class="nav-capsule">
-            <a href="index.html" class="logo">
-                <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
+            <a href="/" class="logo">
+                <i class="fas fa-scale-balanced"></i> NYAYI<span>.</span>
             </a>
+            
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="dictionary.html">Dictionary</a></li>
-                <li><a href="rights.html" class="active">Know Rights</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="app.html" style="color:var(--primary);">Mobile App</a></li>
+                <li><a href="/" class="">Home</a></li>
+                <li><a href="/features.html" class="">Features</a></li>
+                <li><a href="/dictionary.html" class="">Dictionary</a></li>
+                <li><a href="/rights.html" class="active">Rights</a></li>
+                <li><a href="/laws/" class="">Laws</a></li>
+                <li><a href="/legal-guides/" class="">Guides</a></li>
+                <li><a href="/about.html" class="">About</a></li>
             </ul>
-            <div style="display:flex; align-items:center;">
-                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch"><i class="fas fa-rocket"></i> Launch Web AI</a>
+
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
+                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                </a>
                 <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             </div>
         </div>
     </header>
 
-    <section class="rights-hero">
-        <div class="container" data-aos="zoom-in">
-            <h1>Knowledge is <br> Your <span>Superpower.</span></h1>
-            <p>Don't be intimidated by the system. Here is your ultimate, simplified guide to Indian citizen rights.</p>
-            <a href="https://ai.nyayi.in" target="_blank" class="btn-main-cta">
-                <i class="fas fa-shield-halved"></i> Verify Your Rights With AI
-            </a>
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Know Your <span>Rights</span></h1>
+            <p class="hero-subtitle">Empowering Indian citizens with actionable constitutional safeguards and practical protections.</p>
         </div>
     </section>
 
-    <section class="fund-section">
+    <section style="padding:60px 0 100px;">
         <div class="container">
-            <div class="section-header fund-header" data-aos="fade-up">
-                <h2>The <span>Constitution's</span> Shield</h2>
-                <p>Your non-negotiable fundamental rights.</p>
-            </div>
-            <div class="fund-grid">
-                <div class="fund-item" data-aos="fade-up">
-                    <span class="fund-num">Article 14</span>
-                    <h4>Equality Before Law</h4>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="fund-num">Article 19</span>
-                    <h4>Freedom of Speech</h4>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="fund-num">Article 21</span>
-                    <h4>Right to Life & Liberty</h4>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="300">
-                    <span class="fund-num">Article 32</span>
-                    <h4>Right to Remedies</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="rights-grid-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Rights in <span>Daily Life</span></h2>
-                <p>Situations where you need protection the most.</p>
-            </div>
-
-            <div class="bento-grid">
-                <div class="r-card r-dark" data-aos="fade-right">
-                    <div class="r-icon"><i class="fas fa-handcuffs"></i></div>
-                    <h3>Police & Arrest Interaction</h3>
-                    <ul class="r-list">
-                        <li><strong>Grounds of Arrest:</strong> Police must inform you of the exact reason for arrest immediately.</li>
-                        <li><strong>No Detention > 24 Hrs:</strong> Cannot be held without being presented to a Magistrate.</li>
-                        <li><strong>Right to Inform:</strong> You have the right to call a friend or relative to inform them of your location.</li>
-                        <li><strong>Right to Lawyer:</strong> You have the right to consult your lawyer during interrogation.</li>
-                    </ul>
-                </div>
-
-                <div class="r-card r-tall" data-aos="fade-left">
-                    <div class="r-icon"><i class="fas fa-traffic-light"></i></div>
-                    <h3>Traffic & Roadside</h3>
-                    <ul class="r-list">
-                        <li><strong>Keys Snatching Illegal:</strong> Traffic police cannot forcibly take your vehicle keys.</li>
-                        <li><strong>Uniform Mandatory:</strong> Officer must be in uniform with a nameplate to issue a fine.</li>
-                        <li><strong>Demand Receipt:</strong> Always demand an official challan receipt on spot.</li>
-                        <li><strong>Digital Documents Valid:</strong> DigiLocker and mParivahan copies are legally valid under IT Act.</li>
-                    </ul>
-                </div>
-
-                <div class="r-card" data-aos="fade-up">
-                    <div class="r-icon"><i class="fas fa-person-dress"></i></div>
-                    <h3>Women Safety & Protections</h3>
-                    <ul class="r-list">
-                        <li><strong>No Sunset Arrest:</strong> Women cannot be arrested after sunset and before sunrise except in extraordinary cases with Magistrate sanction.</li>
-                        <li><strong>Female Escort:</strong> Arrest must be carried out by or in presence of a female police officer.</li>
-                        <li><strong>Zero FIR:</strong> Can file an FIR at any police station irrespective of crime location.</li>
-                    </ul>
-                </div>
-
-                <div class="r-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="r-icon"><i class="fas fa-bag-shopping"></i></div>
-                    <h3>Consumer & Retail Rights</h3>
-                    <ul class="r-list">
-                        <li><strong>No MRP Surcharges:</strong> Retailers cannot charge above Maximum Retail Price (MRP).</li>
-                        <li><strong>Right to Refuse Mandatory Tip:</strong> Service charge at restaurants is strictly voluntary.</li>
-                        <li><strong>Right to Refund:</strong> Defective products must be replaced or refunded under Consumer Protection Act 2019.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="interactive-cta-row">
-        <div class="container">
-            <div class="banner-panel" data-aos="zoom-in">
-                <div class="bp-left">
-                    <h3>Unsure of Your <span>Current Situation?</span></h3>
-                    <p>Ask NYAYI AI to analyze your case against relevant Indian laws in real time.</p>
-                </div>
-                <a href="https://ai.nyayi.in" target="_blank" class="bp-right-btn">
-                    <i class="fas fa-robot"></i> Ask AI Assistant
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="precedents-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Landmark <span>Supreme Court</span> Precedents</h2>
-                <p>Key court rulings that define citizen safeguards today.</p>
-            </div>
-
-            <div class="prec-grid">
-                <div class="prec-card" data-aos="fade-up">
-                    <span class="prec-case">D.K. Basu v. State of West Bengal</span>
-                    <h4>Mandatory Arrest Guidelines</h4>
-                    <p>Established strict protocols for arrest and detention, including visible identification badges for officers and immediate notification of relatives.</p>
-                </div>
-
-                <div class="prec-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="prec-case">K.S. Puttaswamy v. Union of India</span>
-                    <h4>Fundamental Right to Privacy</h4>
-                    <p>Declared privacy a fundamental right under Article 21, protecting personal data, digital surveillance boundaries, and individual autonomy.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="scenarios-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Action Plan in <span>Real Scenarios</span></h2>
-                <p>Click on any scenario to reveal step-by-step guidance.</p>
-            </div>
-
-            <div class="scenario-grid">
-                <div class="scenario-item" data-aos="fade-up">
-                    <div class="scenario-header" onclick="toggleScenario(this)">
-                        <h3>
-                            <div class="s-icon-bubble"><i class="fas fa-shield-cat"></i></div>
-                            Police Stop You for Late-Night Checking
-                        </h3>
-                        <i class="fas fa-chevron-down scenario-icon"></i>
-                    </div>
-                    <div class="scenario-body">
-                        <div class="scenario-body-content">
-                            <ol class="scenario-steps">
-                                <li>Remain calm and request the officer's identity badge or nameplate.</li>
-                                <li>Show required documents via DigiLocker or mParivahan.</li>
-                                <li>If detained, ask for the exact reason and record details politely.</li>
-                            </ol>
+            <div class="card-grid">
+                
+                    <div class="info-card">
+                        <div>
+                            <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h3>Arrest & Police Rights in India</h3>
+                            <p>Essential constitutional and procedural safeguards every Indian citizen possesses if stopped, questioned, or detained by police officers.</p>
                         </div>
+                        <a href="/know-your-rights/arrest-rights.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
-                </div>
-
-                <div class="scenario-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="scenario-header" onclick="toggleScenario(this)">
-                        <h3>
-                            <div class="s-icon-bubble"><i class="fas fa-headset"></i></div>
-                            Cyber Fraud or Online Money Theft
-                        </h3>
-                        <i class="fas fa-chevron-down scenario-icon"></i>
-                    </div>
-                    <div class="scenario-body">
-                        <div class="scenario-body-content">
-                            <ol class="scenario-steps">
-                                <li>Immediately call the national cyber helpline at <strong>1930</strong>.</li>
-                                <li>Block affected bank accounts, cards, or digital wallets via mobile banking app.</li>
-                                <li>File a formal complaint online at <code>cybercrime.gov.in</code> within the golden hour.</li>
-                            </ol>
+                
+                    <div class="info-card">
+                        <div>
+                            <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h3>Women's Legal Rights & Protections</h3>
+                            <p>Special legal safeguards enshrined under the Constitution of India, BNS, and specialized acts protecting women against domestic violence, workplace harassment, and illegal arrest.</p>
                         </div>
+                        <a href="/know-your-rights/womens-rights.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
-                </div>
+                
+                    <div class="info-card">
+                        <div>
+                            <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h3>Consumer Rights & Redressal</h3>
+                            <p>Statutory rights guaranteed under the Consumer Protection Act 2019 to protect buyers against deceptive trade, defective goods, and deficient service providers.</p>
+                        </div>
+                        <a href="/know-your-rights/consumer-rights.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                
+                    <div class="info-card">
+                        <div>
+                            <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h3>Cyber Rights & Digital Privacy</h3>
+                            <p>Rights shielding citizens against online financial scams, identity theft, cyberstalking, and unauthorized data breaches under the IT Act 2000.</p>
+                        </div>
+                        <a href="/know-your-rights/cyber-rights.html" class="card-link">Explore Rights Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                
             </div>
         </div>
     </section>
 
-    <footer>
+    
+    <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+                <p>Bridging the gap between citizens and Indian law through structured legal knowledge and advanced Artificial Intelligence.</p>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="app.html">Mobile App</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/features.html">Features</a></li>
+                    <li><a href="/app.html">Mobile App</a></li>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary);">Launch AI Terminal</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>Legal Knowledge</h4>
                 <ul>
-                    <li><a href="dictionary.html">Dictionary</a></li>
-                    <li><a href="rights.html">Know Rights</a></li>
-                    <li><a href="contact.html">Support</a></li>
+                    <li><a href="/dictionary.html">Legal Dictionary</a></li>
+                    <li><a href="/rights.html">Know Your Rights</a></li>
+                    <li><a href="/laws/">Indian Laws Library</a></li>
+                    <li><a href="/legal-guides/">Step-by-Step Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
+                <h4>Legal & Policy</h4>
                 <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="/about.html">About NYAYI</a></li>
+                    <li><a href="/contact.html">Contact Support</a></li>
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
         </div>
-        <div class="copyright">
-            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 NYAYI AI. Designed & Developed by Farhan Khan.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
 
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="fas fa-chevron-up"></i>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
-
         function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
-
-        const hoverElements = document.querySelectorAll('a, button, .scenario-header');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-        });
-
-        const scrollTopBtn = document.querySelector('.scroll-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
-            else scrollTopBtn.classList.remove('active');
-        });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleScenario(headerElement) {
-            const scenarioItem = headerElement.parentElement;
-            const body = scenarioItem.querySelector('.scenario-body');
-            const isActive = scenarioItem.classList.contains('active');
-
-            document.querySelectorAll('.scenario-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.scenario-body').style.maxHeight = null;
-            });
-
-            if (!isActive) {
-                scenarioItem.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
-            }
+            document.getElementById('mobileDrawer').classList.toggle('active');
         }
     </script>
 </body>
 </html>
+    
