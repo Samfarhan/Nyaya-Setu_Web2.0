@@ -1244,24 +1244,60 @@ function buildRights() {
 function buildFeaturesAndOther() {
     // Features Page
     const featuresHtml = `
-    ${renderHead('Features | NYAYI Legal AI', 'Explore features of NYAYI: BNS IPC Converter, FIR Drafter, Case Search, 22+ Languages, and AI Legal Terminal.', 'NYAYI features, IPC BNS converter, draft FIR generator, AI legal assistant', '/features.html')}
+    ${renderHead('Core Legal Capabilities & Tools | NYAYI Legal AI', 'Explore the flagship features of NYAYI: BNS IPC Converter, Draft FIR Generator, Smart Case Search, Multilingual Legal Access, Rent Agreement Drafter, and Traffic Fine Calculator.', 'NYAYI features, IPC BNS converter, draft FIR generator, AI legal assistant India, Indian law tools, legal research tools, BNS 2023 tools', '/features.html')}
     ${renderHeader('features', 0)}
 
-    <section class="page-header">
+    <!-- 1. HERO SECTION -->
+    <section class="page-header" style="padding-bottom: 40px;">
         <div class="container" data-aos="zoom-in">
-            <h1>Core <span>Legal Capabilities</span></h1>
-            <p>Engineered with legal-grade natural language AI, precision converters, and dynamic drafting modules.</p>
+            <span class="cp-role" style="display:inline-block; margin-bottom:12px;">THE NYAYI TOOLKIT</span>
+            <h1>Powerful Legal Tools. <br><span>Built for India.</span></h1>
+            <p style="max-width:800px; margin:0 auto 30px;">NYAYI brings together practical legal tools, statutory research utilities, document drafting templates, and regional language access designed around Indian legal information needs.</p>
+            
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="#overview" class="btn-outline">
+                    <i class="fas fa-compass"></i> Explore Capabilities
+                </a>
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="padding:14px 32px; font-size:15px;">
+                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                </a>
+            </div>
+
+            <!-- SECTION 10: CATEGORY QUICK NAV -->
+            <div class="category-nav-bar" data-aos="fade-up" data-aos-delay="100">
+                <a href="#overview" class="cat-pill"><i class="fas fa-layer-group"></i> All Tools</a>
+                <a href="#research" class="cat-pill"><i class="fas fa-brain"></i> Legal Research</a>
+                <a href="#converters" class="cat-pill"><i class="fas fa-arrow-right-arrow-left"></i> Statutory Converters</a>
+                <a href="#drafting" class="cat-pill"><i class="fas fa-file-signature"></i> Document Drafting</a>
+                <a href="#calculators" class="cat-pill"><i class="fas fa-calculator"></i> Practical Utilities</a>
+                <a href="#multilingual" class="cat-pill"><i class="fas fa-language"></i> 22+ Languages</a>
+                <a href="#flow" class="cat-pill"><i class="fas fa-route"></i> Product Flow</a>
+                <a href="#use-cases" class="cat-pill"><i class="fas fa-users"></i> Use Cases</a>
+                <a href="#trust" class="cat-pill"><i class="fas fa-shield-halved"></i> Trust & Security</a>
+                <a href="#faqs" class="cat-pill"><i class="fas fa-circle-question"></i> FAQs</a>
+            </div>
         </div>
     </section>
 
-    <section class="features-section">
+    <!-- 2. CORE FEATURE OVERVIEW GRID -->
+    <section class="features-section" id="overview" style="padding:80px 0; background:var(--white);">
         <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Platform <span>Capabilities Overview</span></h2>
+                <p>Engineered with legal-grade natural language mapping, statutory converters, and dynamic drafting modules.</p>
+            </div>
+
             <div class="features-grid">
                 <div class="feature-card" data-aos="fade-up">
                     <div>
                         <div class="fc-icon"><i class="fas fa-brain"></i></div>
                         <h3>Smart Case Search</h3>
-                        <p>Express legal concerns in simple conversational language. The neural core maps descriptions directly to relevant IPC, BNS, and Constitutional provisions.</p>
+                        <p style="margin-bottom:12px;">Express legal concerns in simple conversational language. The neural core maps descriptions directly to relevant IPC, BNS, and Constitutional provisions.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Natural language query mapping<br>
+                            <strong>WHY IT HELPS:</strong> Eliminates dense legal search jargon<br>
+                            <strong>FOR:</strong> Citizens, Students & Legal Professionals
+                        </div>
                     </div>
                     <span class="fc-tag">AI Powered</span>
                 </div>
@@ -1270,7 +1306,12 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-arrow-right-arrow-left"></i></div>
                         <h3>IPC & BNS Converter</h3>
-                        <p>Seamlessly translate classic Indian Penal Code (IPC) sections into their updated Bharatiya Nyaya Sanhita (BNS) equivalents in real-time.</p>
+                        <p style="margin-bottom:12px;">Seamlessly translate classic Indian Penal Code (IPC 1860) sections into their updated Bharatiya Nyaya Sanhita (BNS 2023) counterparts in real-time.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Instant IPC ↔ BNS statutory lookup<br>
+                            <strong>WHY IT HELPS:</strong> Resolves criminal law code confusion<br>
+                            <strong>FOR:</strong> Advocates, Law Students & Police Officers
+                        </div>
                     </div>
                     <span class="fc-tag">Statutory Utility</span>
                 </div>
@@ -1279,7 +1320,12 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-file-signature"></i></div>
                         <h3>Draft FIR Generator</h3>
-                        <p>Generate structured, legally sound First Information Report (FIR) drafts by answering guided prompts about incident details.</p>
+                        <p style="margin-bottom:12px;">Generate structured, legally sound First Information Report (FIR) drafts by answering guided prompts about incident details and timelines.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Guided complaint draft structuring<br>
+                            <strong>WHY IT HELPS:</strong> Ensures clear factual police reports<br>
+                            <strong>FOR:</strong> Complainants & Legal Aid Seekers
+                        </div>
                     </div>
                     <span class="fc-tag">Auto-Drafting</span>
                 </div>
@@ -1288,7 +1334,12 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-building-user"></i></div>
                         <h3>Rent Agreement Drafter</h3>
-                        <p>Create customizable rental contracts formatted to standard Indian real estate legal norms in less than 30 seconds.</p>
+                        <p style="margin-bottom:12px;">Create customizable rental contracts formatted to standard Indian real estate tenancy norms and state registration guidelines.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Structured residential lease drafting<br>
+                            <strong>WHY IT HELPS:</strong> Protects landlord & tenant rights<br>
+                            <strong>FOR:</strong> Tenants, Property Owners & Brokers
+                        </div>
                     </div>
                     <span class="fc-tag">Document Builder</span>
                 </div>
@@ -1297,7 +1348,12 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-calculator"></i></div>
                         <h3>Traffic Fine Calculator</h3>
-                        <p>Calculate fine amounts, legal liabilities, and court summons risks based on the active Motor Vehicles Amendment Act.</p>
+                        <p style="margin-bottom:12px;">Calculate fine amounts, legal liabilities, and court summons risks based on the active Motor Vehicles Amendment Act.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Instant MV Act violation estimator<br>
+                            <strong>WHY IT HELPS:</strong> Clarifies compounding fines vs court risks<br>
+                            <strong>FOR:</strong> Vehicle Owners & Commuters
+                        </div>
                     </div>
                     <span class="fc-tag">Instant Calculator</span>
                 </div>
@@ -1306,7 +1362,12 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-language"></i></div>
                         <h3>22+ Indian Languages</h3>
-                        <p>Query, process, and read legal outputs in 22+ official Indian languages with context-aware voice query support.</p>
+                        <p style="margin-bottom:12px;">Query, process, and read legal outputs in 22+ official Indian languages with context-aware voice query support.</p>
+                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
+                            <strong>WHAT IT DOES:</strong> Vernacular translation & speech input<br>
+                            <strong>WHY IT HELPS:</strong> Democratizes legal access across India<br>
+                            <strong>FOR:</strong> Non-English Speaking Citizens
+                        </div>
                     </div>
                     <span class="fc-tag">Multilingual AI</span>
                 </div>
@@ -1314,14 +1375,437 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <section class="cta-section">
+    <!-- 3. FEATURE SPOTLIGHT 1: SMART CASE SEARCH -->
+    <section id="research" style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="spotlight-grid">
+                <div data-aos="fade-right">
+                    <span class="card-tag" style="background:rgba(0,200,83,0.1); color:var(--primary-dark);">AI-POWERED SEARCH</span>
+                    <h2 style="font-size:2.4rem; font-weight:900; margin:15px 0 20px; line-height:1.2;">Search legal concepts in plain language.</h2>
+                    <p style="color:#555; font-size:16.5px; line-height:1.8; margin-bottom:24px;">Describe a real-world legal situation naturally—without memorizing statute numbers or complex advocate jargon. NYAYI's computational engine analyzes the factual context and explores relevant provisions across Indian criminal, civil, and cyber laws.</p>
+                    <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+                        <a href="dictionary.html" class="btn-outline"><i class="fas fa-magnifying-glass"></i> Explore Legal Terms</a>
+                        <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="font-weight:800; font-size:14px;">Try Live AI Search <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="mock-ui-card" data-aos="fade-left">
+                    <div class="mock-ui-header">
+                        <div class="mock-dots">
+                            <span class="mock-dot dot-red"></span>
+                            <span class="mock-dot dot-yellow"></span>
+                            <span class="mock-dot dot-green"></span>
+                        </div>
+                        <span style="font-size:12px; font-weight:800; color:#718096; text-transform:uppercase; letter-spacing:1px;">NYAYI Search Console</span>
+                    </div>
+                    <div class="mock-query-box">
+                        <i class="fas fa-user-slash" style="color:var(--primary);"></i>
+                        <span>"Someone took a loan in my name using stolen Aadhaar card details online. Which law applies?"</span>
+                    </div>
+                    <div class="mock-response-box">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                            <span style="font-size:12px; font-weight:900; color:var(--primary-dark); text-transform:uppercase;">Mapped Legal Provisions</span>
+                            <span style="font-size:11px; background:#e6fffa; color:#234e52; padding:3px 8px; border-radius:10px; font-weight:700;">High Relevance</span>
+                        </div>
+                        <ul style="padding-left:18px; margin:0; line-height:1.7; font-size:14px; color:#2d3748;">
+                            <li><strong>BNS Section 318(4):</strong> Cheating & Identity Impersonation</li>
+                            <li><strong>IT Act Section 66C:</strong> Identity Theft Punishment</li>
+                            <li><strong>IT Act Section 66D:</strong> Cheating by Personation using Computer Resource</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FEATURE SPOTLIGHT 2: IPC TO BNS CONVERTER -->
+    <section id="converters" style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div style="text-align:center; max-width:800px; margin:0 auto 40px;" data-aos="fade-up">
+                <span class="card-tag" style="background:rgba(0,200,83,0.1); color:var(--primary-dark);">STATUTORY MAPPING</span>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-top:12px;">From IPC to BNS, without the confusion.</h2>
+                <p style="color:#555; font-size:16.5px; line-height:1.8;">On July 1, 2024, India implemented new criminal law codes. NYAYI provides real-time cross-referencing between the Indian Penal Code (IPC 1860) and Bharatiya Nyaya Sanhita (BNS 2023) so legal practitioners and citizens never lose context.</p>
+            </div>
+
+            <div class="ipc-bns-comparison" data-aos="zoom-in">
+                <div class="compare-box old-ipc">
+                    <span style="font-size:12px; font-weight:800; color:#718096; text-transform:uppercase; letter-spacing:1px;">Legacy Code (1860)</span>
+                    <h3 style="font-size:22px; font-weight:900; margin:8px 0; color:#2d3748;">Indian Penal Code (IPC)</h3>
+                    <div style="border-top:1px solid #eee; padding-top:12px; margin-top:12px;">
+                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 302:</strong> Murder</p>
+                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 420:</strong> Cheating & Dishonesty</p>
+                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 376:</strong> Sexual Assault / Rape</p>
+                    </div>
+                </div>
+
+                <div class="compare-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="compare-box new-bns">
+                    <span style="font-size:12px; font-weight:900; color:var(--primary-dark); text-transform:uppercase; letter-spacing:1px;">Active Code (2023)</span>
+                    <h3 style="font-size:22px; font-weight:900; margin:8px 0; color:var(--primary-dark);">Bharatiya Nyaya Sanhita (BNS)</h3>
+                    <div style="border-top:1px solid rgba(0,200,83,0.2); padding-top:12px; margin-top:12px;">
+                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 103:</strong> Murder</p>
+                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 318:</strong> Cheating & Dishonesty</p>
+                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 64:</strong> Sexual Assault / Rape</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-ai">
+                    <i class="fas fa-arrow-right-arrow-left"></i> Launch Live Statutory Converter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FEATURE SPOTLIGHT 3: LEGAL DOCUMENT DRAFTING (DARK SECTION) -->
+    <section id="drafting" class="dark-drafting-section">
+        <div class="container">
+            <div style="text-align:center; max-width:800px; margin:0 auto;" data-aos="fade-up">
+                <span class="card-tag" style="background:rgba(0,200,83,0.2); color:var(--primary);">DOCUMENT AUTOMATION</span>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-top:15px; color:#ffffff;">Turn Legal Information Into Structured Documents.</h2>
+                <p style="color:#a0aec0; font-size:16.5px; line-height:1.8;">NYAYI provides technology-assisted drafting modules that help convert incident timelines and factual details into clear, standardized preliminary legal documents.</p>
+            </div>
+
+            <div class="draft-grid">
+                <div class="draft-card" data-aos="fade-up">
+                    <div>
+                        <div style="width:44px; height:44px; background:rgba(0,200,83,0.15); color:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                            <i class="fas fa-file-shield"></i>
+                        </div>
+                        <h3 style="font-size:19px; font-weight:800; color:#fff; margin-bottom:8px;">Draft FIR Helper</h3>
+                        <p style="font-size:14px; color:#a0aec0; line-height:1.6;">Structured prompts guide you through incident chronology, accused details, and police station jurisdiction tagging.</p>
+                    </div>
+                    <span style="font-size:12px; color:var(--primary); font-weight:700; display:inline-block; margin-top:16px;">Guided Complaint Flow →</span>
+                </div>
+
+                <div class="draft-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div style="width:44px; height:44px; background:rgba(0,200,83,0.15); color:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                            <i class="fas fa-house-chimney-user"></i>
+                        </div>
+                        <h3 style="font-size:19px; font-weight:800; color:#fff; margin-bottom:8px;">Rent Agreement Drafter</h3>
+                        <p style="font-size:14px; color:#a0aec0; line-height:1.6;">Generate standard residential lease drafts containing deposit terms, lock-in clauses, and eviction notice guidelines.</p>
+                    </div>
+                    <span style="font-size:12px; color:var(--primary); font-weight:700; display:inline-block; margin-top:16px;">Tenancy Agreement Builder →</span>
+                </div>
+
+                <div class="draft-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div style="width:44px; height:44px; background:rgba(0,200,83,0.15); color:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3 style="font-size:19px; font-weight:800; color:#fff; margin-bottom:8px;">Legal Notice Builder</h3>
+                        <p style="font-size:14px; color:#a0aec0; line-height:1.6;">Structure formal demand letters for non-payment, breach of contract, or property recovery before litigation.</p>
+                    </div>
+                    <span style="font-size:12px; color:var(--primary); font-weight:700; display:inline-block; margin-top:16px;">Demand Letter Framework →</span>
+                </div>
+
+                <div class="draft-card" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div style="width:44px; height:44px; background:rgba(0,200,83,0.15); color:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                            <i class="fas fa-scale-unbalanced"></i>
+                        </div>
+                        <h3 style="font-size:19px; font-weight:800; color:#fff; margin-bottom:8px;">Consumer Complaint Form</h3>
+                        <p style="font-size:14px; color:#a0aec0; line-height:1.6;">Format deficiency-of-service complaints for filing before District Consumer Disputes Redressal Commissions.</p>
+                    </div>
+                    <span style="font-size:12px; color:var(--primary); font-weight:700; display:inline-block; margin-top:16px;">Consumer Forum Formatter →</span>
+                </div>
+            </div>
+
+            <!-- RESPONSIBLE LEGAL DISCLAIMER BOX -->
+            <div style="background:#141820; border-left:4px solid var(--primary); padding:24px; border-radius:14px; margin-top:40px;" data-aos="fade-up">
+                <strong style="color:var(--primary); font-size:15px;"><i class="fas fa-circle-info"></i> Responsible Legal Drafting Notice:</strong>
+                <p style="margin:8px 0 0; color:#a0aec0; font-size:14px; line-height:1.7;">NYAYI document tools provide technology-assisted preliminary drafting support. Drafted documents do not constitute formal court filings or attorney work product. Users should independently review and customize all generated drafts with a licensed advocate prior to police submission or judicial filing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FEATURE SPOTLIGHT 4: PRACTICAL LEGAL UTILITIES -->
+    <section id="calculators" style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Instant Practical <span>Legal Utilities</span></h2>
+                <p>Calculators and lookup modules engineered to answer immediate statutory questions.</p>
+            </div>
+
+            <div class="spotlight-grid" style="margin-top:40px;">
+                <div class="mock-ui-card" data-aos="fade-right">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #edf2f7; padding-bottom:14px; margin-bottom:20px;">
+                        <h3 style="font-size:18px; font-weight:800; margin:0;"><i class="fas fa-car-burst" style="color:var(--primary);"></i> Traffic Fine & Summons Estimator</h3>
+                        <span class="badge-cat">MV Act 2019</span>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="background:#f8faf9; border:1px solid #e2e8f0; padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                            <span>Driving without Helmet (Sec 129/194D)</span>
+                            <strong style="color:#e53e3e;">₹1,000 + 3M License Susp.</strong>
+                        </div>
+                        <div style="background:#f8faf9; border:1px solid #e2e8f0; padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                            <span>Over-speeding LMV (Sec 112/183)</span>
+                            <strong style="color:#dd6b20;">₹1,000 – ₹2,000</strong>
+                        </div>
+                        <div style="background:#f8faf9; border:1px solid #e2e8f0; padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                            <span>Red Light Jump (Sec 184)</span>
+                            <strong style="color:#dd6b20;">₹1,000 – ₹5,000</strong>
+                        </div>
+                        <div style="background:#fff5f5; border:1px solid #feb2b2; padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                            <span>Drunk Driving (Sec 185)</span>
+                            <strong style="color:#c53030;">₹10,000 + Court Summons</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <span class="card-tag" style="background:rgba(0,200,83,0.1); color:var(--primary-dark);">CALCULATOR SUITE</span>
+                    <h2 style="font-size:2.2rem; font-weight:900; margin:15px 0 20px; line-height:1.2;">Clear Fine Estimates & Statutory Limits.</h2>
+                    <p style="color:#555; font-size:16px; line-height:1.8; margin-bottom:20px;">Avoid confusion during traffic stops or procedural deadlines. NYAYI's practical calculators compute compounding fine amounts, court summons risks, limitation periods for legal notices, and consumer forum jurisdiction limits based on active central acts.</p>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;">
+                        <div style="background:#fff; border:1px solid #e2e8f0; padding:18px; border-radius:16px;">
+                            <h4 style="font-size:15px; font-weight:800; margin-bottom:6px;"><i class="fas fa-clock" style="color:var(--primary);"></i> Limitation Periods</h4>
+                            <p style="font-size:13px; color:#666; margin:0;">Calculate valid filing windows under Indian Limitation Act 1963.</p>
+                        </div>
+                        <div style="background:#fff; border:1px solid #e2e8f0; padding:18px; border-radius:16px;">
+                            <h4 style="font-size:15px; font-weight:800; margin-bottom:6px;"><i class="fas fa-coins" style="color:var(--primary);"></i> Consumer Forum Limits</h4>
+                            <p style="font-size:13px; color:#666; margin:0;">Map claim value to District, State or National Commission jurisdiction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. MULTILINGUAL LEGAL ACCESS -->
+    <section id="multilingual" style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div style="text-align:center; max-width:800px; margin:0 auto;" data-aos="fade-up">
+                <span class="card-tag" style="background:rgba(0,200,83,0.1); color:var(--primary-dark);">VERNACULAR ACCESSIBILITY</span>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-top:15px;">Legal Knowledge Should Speak Your Language.</h2>
+                <p style="color:#555; font-size:16.5px; line-height:1.8;">Justice cannot be restricted to English legalese. NYAYI supports query processing and legal explanations across 22+ official Indian languages.</p>
+            </div>
+
+            <div class="lang-chips-grid" data-aos="zoom-in">
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> English</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Hindi (हिन्दी)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Bengali (বাংলা)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Marathi (मराठी)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Tamil (தமிழ்)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Telugu (తెలుగు)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Gujarati (ગુજરાતી)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Kannada (ಕನ್ನಡ)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Malayalam (മലയാളം)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Punjabi (ਪੰਜਾਬੀ)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Odia (ଓଡ଼ିଆ)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Assamese (অসমীয়া)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. HOW THE FEATURES WORK TOGETHER (PRODUCT FLOW TIMELINE) -->
+    <section id="flow" style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>One Platform. <span>Multiple Ways to Explore.</span></h2>
+                <p>A unified product flow connecting basic awareness to practical legal action.</p>
+            </div>
+
+            <div class="flow-timeline-grid">
+                <div class="flow-step-card" data-aos="fade-up">
+                    <div class="flow-num">1</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">UNDERSTAND</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Explore simplified dictionary terms & fundamental constitutional rights.</p>
+                </div>
+
+                <div class="flow-step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flow-num">2</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">SEARCH</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Query real legal situations using natural conversational prompts.</p>
+                </div>
+
+                <div class="flow-step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flow-num">3</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">COMPARE</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Translate legacy IPC codes directly to new active BNS sections.</p>
+                </div>
+
+                <div class="flow-step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flow-num">4</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">DRAFT</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Generate preliminary FIR complaints and tenancy lease structures.</p>
+                </div>
+
+                <div class="flow-step-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flow-num">5</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">VERIFY</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Check traffic fine liabilities, court fees, and limitation windows.</p>
+                </div>
+
+                <div class="flow-step-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flow-num">6</div>
+                    <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">NEXT STEP</h4>
+                    <p style="font-size:13px; color:#555; margin:0;">Consult advocates with organized, factual case preparation details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. USE CASES — BUILT FOR REAL LEGAL QUESTIONS -->
+    <section id="use-cases" style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Built for <span>Real Legal Questions</span></h2>
+                <p>Tailored legal technology designed for diverse user needs across India.</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="aud-card" data-aos="fade-up">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; margin-bottom:10px;">For Citizens</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">Understand fundamental rights during police interactions, file consumer complaints, calculate traffic fines, and draft FIR complaints.</p>
+                </div>
+
+                <div class="aud-card" data-aos="fade-up" data-aos-delay="100">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; margin-bottom:10px;">For Students & Researchers</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">Study the IPC to BNS code transition, explore statutory definitions, and analyze landmark constitutional court precedents.</p>
+                </div>
+
+                <div class="aud-card" data-aos="fade-up" data-aos-delay="200">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; margin-bottom:10px;">For Legal Professionals</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">Perform rapid statutory section cross-referencing, prepare initial draft frameworks, and organize preliminary client intake data.</p>
+                </div>
+
+                <div class="aud-card" data-aos="fade-up" data-aos-delay="300">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 style="font-size:18px; font-weight:800; margin-bottom:10px;">For Businesses & Startups</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">Review residential and commercial tenancy contracts, understand statutory compliance norms, and structure formal legal notices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. WHY THESE TOOLS EXIST (EDITORIAL PHILOSOPHY) -->
+    <section style="padding:100px 0; background:var(--bg-light);">
+        <div class="container" style="max-width:900px;">
+            <div style="text-align:center;" data-aos="fade-up">
+                <span class="card-tag" style="background:rgba(0,200,83,0.1); color:var(--primary-dark);">EDITORIAL PHILOSOPHY</span>
+                <h2 style="font-size:2.5rem; font-weight:900; margin:15px 0 24px;">Technology Should Reduce Legal Friction.</h2>
+                <div style="line-height:1.9; color:#4a5568; font-size:16.5px; text-align:left;">
+                    <p style="margin-bottom:18px;">Legal information in India has historically been locked behind dense statutory legalese, outdated procedural manuals, and hard-to-navigate code references. When individuals face legal uncertainty, finding clear answers often feels intimidating and convoluted.</p>
+                    <p style="margin-bottom:18px;">NYAYI is built on a simple premise: <strong>technology should clarify the law, not complicate it.</strong> By combining natural language AI search, precise IPC-BNS statutory converters, and intuitive document drafting assistants, we empower every citizen to understand their rights and take informed next steps.</p>
+                    <p style="margin:0;">We believe that democratizing statutory knowledge fosters a more legal-aware society where justice is accessible, understandable, and transparent for all.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. RESPONSIBLE AI & LEGAL TRUST -->
+    <section id="trust" style="padding:80px 0; background:#ffffff;">
+        <div class="container">
+            <div class="trust-banner-box" data-aos="zoom-in">
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+                    <i class="fas fa-shield-halved" style="color:var(--primary); font-size:32px;"></i>
+                    <h2 style="font-size:2rem; font-weight:900; margin:0; color:#fff;">Technology-Assisted. Human-Aware.</h2>
+                </div>
+                <p style="color:#a0aec0; font-size:16px; line-height:1.8; margin-bottom:30px;">NYAYI is designed as an educational and computational legal research platform. We prioritize transparency, factual accuracy, and responsible AI usage across all our tools.</p>
+                
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
+                    <div>
+                        <h4 style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:6px;"><i class="fas fa-info-circle"></i> Information Only</h4>
+                        <p style="font-size:13.5px; color:#cbd5e0; margin:0; line-height:1.6;">Tools provide legal information and structured drafting support, not advocate representation.</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:6px;"><i class="fas fa-scale-balanced"></i> Case Specificity</h4>
+                        <p style="font-size:13.5px; color:#cbd5e0; margin:0; line-height:1.6;">Legal outcomes depend on specific facts. Users must independently verify critical documents.</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:6px;"><i class="fas fa-lock"></i> Privacy First</h4>
+                        <p style="font-size:13.5px; color:#cbd5e0; margin:0; line-height:1.6;">User queries and draft session data remain confidential and protected under strict security norms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. SUBSTANTIAL FAQ SECTION -->
+    <section id="faqs" style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Everything you need to know about NYAYI legal tools and capabilities.</p>
+            </div>
+
+            <div class="faq-list" style="max-width:900px; margin:40px auto 0;">
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What is NYAYI and what tools does it provide?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI is a modern Indian legal knowledge platform. It provides AI-powered case search, IPC to BNS statutory converters, FIR draft helpers, rent agreement drafters, traffic fine calculators, and multilingual legal explanations.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>How does the IPC to BNS Converter work?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The converter maps classic Indian Penal Code (IPC 1860) section numbers directly to their active counterparts under the Bharatiya Nyaya Sanhita (BNS 2023) in real-time, helping users navigate India's criminal code transition.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-header"><h3>Can NYAYI generate a draft FIR or Rent Agreement?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes! NYAYI includes guided auto-drafting modules that help format incident details into a structured First Information Report (FIR) complaint or create standardized residential lease agreements according to Indian real estate norms.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI support multiple Indian languages?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes, NYAYI supports legal queries and statutory explanations across 22+ official Indian languages, including Hindi, English, Bengali, Marathi, Tamil, Telugu, Gujarati, Kannada, Malayalam, Punjabi, Odia, and Assamese.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>Can NYAYI replace a lawyer or advocate in court?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No. NYAYI provides technology-assisted legal information and research tools. It does not provide formal legal advice, representation, or substitute for a licensed advocate in court proceedings.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-header"><h3>Where can I access the interactive NYAYI AI Web App?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>You can access the dedicated NYAYI AI research terminal by clicking any "Launch NYAYI AI" button on this website or by visiting <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">ai.nyayi.in</a> directly.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Are NYAYI's legal tools free to use?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes, NYAYI's core legal dictionary, statutory converters, practical calculators, legal guides, and fundamental rights explainers are freely accessible to all citizens.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>How should I verify legal information before taking action?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Users should cross-reference statutory section numbers with official government gazettes (e.g. eGazette of India) and consult a qualified advocate for case-specific legal strategy.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. STRONG FINAL CTA BLOCK -->
+    <section class="cta-section" style="padding:0 0 110px;">
         <div class="container">
             <div class="cta-box" data-aos="zoom-in">
-                <h2>Experience AI Legal Assistance</h2>
-                <p>Get fast, confidential, and intelligent guidance for your legal queries right now.</p>
-                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:18px; padding:18px 45px;">
-                    <i class="fas fa-rocket"></i> Launch NYAYI Web AI
-                </a>
+                <h2 style="font-size:2.6rem;">Ready to Explore NYAYI?</h2>
+                <p style="max-width:650px; margin:14px auto 28px;">Explore legal knowledge, practical statutory tools, and AI-assisted legal research designed around Indian legal needs.</p>
+                <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:17px; padding:16px 40px;">
+                        <i class="fas fa-rocket"></i> Launch NYAYI AI
+                    </a>
+                    <a href="dictionary.html" class="btn-outline" style="background:#ffffff; color:#111 !important; border-color:#ffffff; font-size:15px; padding:16px 32px;">
+                        <i class="fas fa-book"></i> Explore Legal Knowledge
+                    </a>
+                </div>
             </div>
         </div>
     </section>
