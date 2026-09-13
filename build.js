@@ -33,7 +33,7 @@ const orgSchema = {
     ],
     "founder": {
         "@type": "Person",
-        "name": "Farhan Khan"
+        "name": "NYAYI Legal Knowledge Foundation"
     },
     "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 };
@@ -66,7 +66,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <title>${cleanTitle}</title>
     <meta name="description" content="${description}">
     <meta name="keywords" content="${keywords}">
-    <meta name="author" content="Farhan Khan">
+    <meta name="author" content="NYAYI Legal Editorial Board">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="${canonical}">
@@ -176,8 +176,8 @@ function renderArchitectsSection() {
             <div class="creators-grid">
                 <div class="creator-profile" data-aos="fade-up">
                     <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Farhan Khan</h3>
-                    <span class="cp-role">Founder & Lead Developer</span>
+                    <h3>NYAYI Legal Technology Division</h3>
+                    <span class="cp-role">AI Systems & Digital Infrastructure</span>
                     <div class="cp-actions">
                         <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
                         <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 9598042676</a>
@@ -186,8 +186,8 @@ function renderArchitectsSection() {
                 
                 <div class="creator-profile" data-aos="fade-up" data-aos-delay="100">
                     <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Kamran Sheikh</h3>
-                    <span class="cp-role">Lead Legal Researcher</span>
+                    <h3>NYAYI Legal Research Council</h3>
+                    <span class="cp-role">Statutory Research & Code Mapping</span>
                     <div class="cp-actions">
                         <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
                         <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 7393905299</a>
@@ -245,7 +245,7 @@ function renderFooter(depth = 0) {
             </div>
         </div>
         <div class="copyright">
-            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+            <div>&copy; 2026 NYAYI — Official Indian Legal Knowledge Platform. All Rights Reserved.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
@@ -256,7 +256,14 @@ function renderFooter(depth = 0) {
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+        document.addEventListener("DOMContentLoaded", function() {
+            window.scrollTo(0, 0);
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 30 });
+            }
+        });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -3136,13 +3143,13 @@ function buildFeaturesAndOther() {
 
     // Contact Page
     const contactHtml = `
-    ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
+    ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with the official NYAYI Legal Editorial Board & Technical Support Desk.', 'Contact NYAYI, NYAYI legal support, NYAYI contact', '/contact.html')}
     ${renderHeader('home', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
             <h1>Get in <span>Touch</span></h1>
-            <p>Have questions or feedback? Reach out directly to the creators of NYAYI.</p>
+            <p>Have questions or feedback? Reach out directly to the official NYAYI Legal Team.</p>
         </div>
     </section>
 
@@ -6182,7 +6189,7 @@ function buildFeaturesAndOther() {
             typeKey: "update",
             date: "13 SEPT 2026",
             readTime: "7 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Comprehensive analysis of BNS 2023 replacing the 1860 IPC, introducing community service penalties, organized crime definitions, and updated offences against women.",
             tags: ["BNS 2023", "IPC Replacement", "Criminal Code", "Community Service"],
             atAGlance: [
@@ -6215,7 +6222,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "10 SEPT 2026",
             readTime: "8 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Detailed guide on BNSS 2023 replacing CrPC 1973, mandating electronic FIRs, forensic investigation deadlines, and 14-day preliminary inquiry rules.",
             tags: ["BNSS 2023", "CrPC Replacement", "e-FIR", "Forensics", "Bail"],
             atAGlance: [
@@ -6275,7 +6282,7 @@ function buildFeaturesAndOther() {
             typeKey: "student",
             date: "01 SEPT 2026",
             readTime: "5 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "How audio-video crime scene recordings and digital messages are certified and presented before Indian courts under Section 63 of BSA 2023.",
             tags: ["BSA Section 63", "CCTV Footage", "Hash Code", "Audio Video"],
             atAGlance: [
@@ -6304,7 +6311,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "25 AUG 2026",
             readTime: "7 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Exploring how Supreme Court jurisprudence expanded Article 21 to cover right to privacy, speedy trial, clean environment, and dignity.",
             tags: ["Article 21", "Fundamental Rights", "Privacy", "Puttaswamy"],
             atAGlance: [
@@ -6363,7 +6370,7 @@ function buildFeaturesAndOther() {
             typeKey: "guide",
             date: "15 AUG 2026",
             readTime: "8 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "The heart and soul of the Indian Constitution: how citizens file Habeas Corpus, Mandamus, Certiorari, Prohibition, and Quo Warranto writs.",
             tags: ["Article 32", "Writs", "Supreme Court", "Habeas Corpus"],
             atAGlance: [
@@ -6392,7 +6399,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "10 AUG 2026",
             readTime: "7 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Detailed breakdown of bailable vs non-bailable offences, anticipatory bail under BNSS Sec 482, regular bail Sec 479/480, and bail bond conditions.",
             tags: ["Bail", "Anticipatory Bail", "BNSS 482", "Surety", "Personal Bond"],
             atAGlance: [
@@ -6450,7 +6457,7 @@ function buildFeaturesAndOther() {
             typeKey: "guide",
             date: "01 AUG 2026",
             readTime: "6 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Step-by-step criminal process: spot inspection, witness statements under BNSS 180, search warrants, arrest memos, and final chargesheet under BNSS 193.",
             tags: ["Police Investigation", "Chargesheet", "BNSS 193", "Closure Report"],
             atAGlance: [
@@ -6479,7 +6486,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "25 JULY 2026",
             readTime: "6 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Why legal notices are served before civil suits, mandatory elements, delivery via Registered Post AD, statutory response windows, and legal consequences.",
             tags: ["Legal Notice", "Registered Post", "Civil Suit", "CPC Sec 80"],
             atAGlance: [
@@ -6537,7 +6544,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "15 JULY 2026",
             readTime: "6 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Model Tenancy Act provisions: security deposit caps (2 months residential), 30-day deposit refund timeline, rent authority jurisdiction, and eviction notice rules.",
             tags: ["Model Tenancy Act", "Security Deposit", "Rent Agreement", "Eviction"],
             atAGlance: [
@@ -6566,7 +6573,7 @@ function buildFeaturesAndOther() {
             typeKey: "update",
             date: "10 JULY 2026",
             readTime: "5 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Emergency protocol for financial cyber fraud: dialing 1930 helpline within Golden Hour, account freezing mechanisms, and cybercrime.gov.in portal reporting.",
             tags: ["Cyber Crime", "1930 Helpline", "Golden Hour", "Financial Fraud"],
             atAGlance: [
@@ -6624,7 +6631,7 @@ function buildFeaturesAndOther() {
             typeKey: "explainer",
             date: "01 JULY 2026",
             readTime: "6 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Complete guide on Sexual Harassment of Women at Workplace Act 2013: Internal Committee (IC) setup, 90-day inquiry timelines, interim relief, and confidentiality.",
             tags: ["POSH Act 2013", "Workplace Harassment", "Internal Committee", "IC Inquiry"],
             atAGlance: [
@@ -6653,7 +6660,7 @@ function buildFeaturesAndOther() {
             typeKey: "guide",
             date: "25 JUNE 2026",
             readTime: "6 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Drafting RTI queries under RTI Act 2005, identifying Public Information Officer (PIO), statutory 30-day deadline, First Appeal, and Central Information Commission.",
             tags: ["RTI Act 2005", "PIO", "First Appeal", "Public Authority"],
             atAGlance: [
@@ -6711,7 +6718,7 @@ function buildFeaturesAndOther() {
             typeKey: "judgment",
             date: "15 JUNE 2026",
             readTime: "8 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Analyzing landmark Supreme Court rulings (*Kesavananda Bharati*, *Maneka Gandhi*, *Minerva Mills*) that established the Basic Structure Doctrine and purposive interpretation.",
             tags: ["Supreme Court", "Basic Structure", "Kesavananda Bharati", "Judicial Review"],
             atAGlance: [
@@ -6740,7 +6747,7 @@ function buildFeaturesAndOther() {
             typeKey: "guide",
             date: "10 JUNE 2026",
             readTime: "6 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Criminal prosecution for dishonored cheques under Negotiable Instruments Act: bank memo, mandatory 30-day statutory notice, 15-day payment window, and magistrate complaint.",
             tags: ["Cheque Bounce", "Section 138 NI Act", "Statutory Notice", "Bank Memo"],
             atAGlance: [
@@ -6798,7 +6805,7 @@ function buildFeaturesAndOther() {
             typeKey: "guide",
             date: "01 JUNE 2026",
             readTime: "6 MIN READ",
-            author: "Farhan Khan",
+            author: "NYAYI Legal Editorial Board",
             summary: "Filing claim before Motor Accident Claims Tribunal (MACT) under MV Act, Detailed Accident Report (DAR), third-party insurance liability, and compensation calculation.",
             tags: ["MACT", "Motor Vehicles Act", "DAR Report", "Third Party Insurance"],
             atAGlance: [
@@ -6827,7 +6834,7 @@ function buildFeaturesAndOther() {
             typeKey: "concept",
             date: "25 MAY 2026",
             readTime: "7 MIN READ",
-            author: "Kamran Sheikh",
+            author: "NYAYI Legal Research Division",
             summary: "Alternative Dispute Resolution (ADR) under Arbitration & Conciliation Act 1996: arbitration agreements, arbitral tribunal awards, 12-month timeline, and Section 34 challenge.",
             tags: ["Arbitration", "ADR", "Arbitral Award", "Section 34"],
             atAGlance: [
@@ -6937,7 +6944,7 @@ function buildFeaturesAndOther() {
                         </div>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:16px;">
-                        <span style="font-size:13px; font-weight:700; color:#4a5568;">By Kamran Sheikh • NYAYI Lead Legal Researcher</span>
+                        <span style="font-size:13px; font-weight:700; color:#4a5568;">By NYAYI Legal Research Division • NYAYI Lead Legal Researcher</span>
                         <a href="articles/bns-2023-structural-shifts.html" class="card-link" style="background:#111; color:#fff; padding:10px 22px; border-radius:10px; font-weight:700; font-size:13.5px; text-decoration:none;">
                             Read Full Analysis <i class="fas fa-arrow-right"></i>
                         </a>

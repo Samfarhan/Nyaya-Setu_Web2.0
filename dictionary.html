@@ -7,7 +7,7 @@
     <title>Indian Legal Dictionary – 1,200+ Legal Terms Explained | NYAYI</title>
     <meta name="description" content="Explore the comprehensive Indian Legal Dictionary by NYAYI. Instant search and plain-language legal definitions across Criminal Law, BNS 2023, BNSS, Evidence, Civil Code, Constitutional Writs, Property, Contracts, and Latin Maxims.">
     <meta name="keywords" content="Indian Legal Dictionary, legal terms India, law glossary, BNS IPC sections, legal definitions India, legal jargon explained">
-    <meta name="author" content="Farhan Khan">
+    <meta name="author" content="NYAYI Legal Editorial Board">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/dictionary.html">
@@ -50,7 +50,7 @@
   ],
   "founder": {
     "@type": "Person",
-    "name": "Farhan Khan"
+    "name": "NYAYI Legal Knowledge Foundation"
   },
   "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 }
@@ -1657,7 +1657,7 @@
             </div>
         </div>
         <div class="copyright">
-            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+            <div>&copy; 2026 NYAYI — Official Indian Legal Knowledge Platform. All Rights Reserved.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
@@ -1668,7 +1668,14 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+        document.addEventListener("DOMContentLoaded", function() {
+            window.scrollTo(0, 0);
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 30 });
+            }
+        });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');

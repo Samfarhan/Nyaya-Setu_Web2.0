@@ -7,7 +7,7 @@
     <title>Bharatiya Sakshya Adhiniyam: Understanding India's New Evidence Framework | NYAYI Legal Journal</title>
     <meta name="description" content="An explainer on BSA 2023 replacing the Indian Evidence Act 1872, recognizing electronic records as primary evidence and Section 63 certificate rules.">
     <meta name="keywords" content="Bharatiya Sakshya Adhiniyam: Understanding India's New Evidence Framework, legal article India, BNS BNSS 2023">
-    <meta name="author" content="Farhan Khan">
+    <meta name="author" content="NYAYI Legal Editorial Board">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/articles/bsa-2023-evidence-framework.html">
@@ -50,7 +50,7 @@
   ],
   "founder": {
     "@type": "Person",
-    "name": "Farhan Khan"
+    "name": "NYAYI Legal Knowledge Foundation"
   },
   "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 }
@@ -239,7 +239,7 @@
             </div>
         </div>
         <div class="copyright">
-            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+            <div>&copy; 2026 NYAYI — Official Indian Legal Knowledge Platform. All Rights Reserved.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
@@ -250,7 +250,14 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+        document.addEventListener("DOMContentLoaded", function() {
+            window.scrollTo(0, 0);
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 30 });
+            }
+        });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');

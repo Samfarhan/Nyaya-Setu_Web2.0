@@ -7,7 +7,7 @@
     <title>Indian Laws Library - Major Indian Acts & Codes Explained | NYAYI</title>
     <meta name="description" content="Comprehensive Indian Laws Library. Search, explore, and study major Indian statutes, Bharatiya Nyaya Sanhita (BNS 2023), BNSS 2023, BSA 2023, IT Act, Consumer Protection Act, and Constitutional frameworks in plain language.">
     <meta name="keywords" content="Indian Laws Library, Indian legal acts, BNS 2023, BNSS 2023, BSA 2023, Indian Constitution, IT Act 2000, Consumer Protection Act 2019, Indian criminal law, law study notes">
-    <meta name="author" content="Farhan Khan">
+    <meta name="author" content="NYAYI Legal Editorial Board">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="https://nyayi.in/laws.html">
@@ -50,7 +50,7 @@
   ],
   "founder": {
     "@type": "Person",
-    "name": "Farhan Khan"
+    "name": "NYAYI Legal Knowledge Foundation"
   },
   "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 }
@@ -1439,7 +1439,7 @@
             </div>
         </div>
         <div class="copyright">
-            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+            <div>&copy; 2026 NYAYI — Official Indian Legal Knowledge Platform. All Rights Reserved.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
@@ -1450,7 +1450,14 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+        document.addEventListener("DOMContentLoaded", function() {
+            window.scrollTo(0, 0);
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 30 });
+            }
+        });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
