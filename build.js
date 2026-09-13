@@ -3762,28 +3762,65 @@ function buildFeaturesAndOther() {
     ];
 
     // Pre-render 25 law cards
-    const initialLawsCardsHtml = expandedLawsList.map(item => `
-        <div class="law-card" data-category="${item.catKey}" data-title="${item.title.toLowerCase()}" data-aos="fade-up">
+        function getLawCategoryIcon(catKey) {
+        switch (catKey) {
+            case 'constitutional': return 'fa-landmark';
+            case 'criminal': return 'fa-handcuffs';
+            case 'procedural': return 'fa-file-shield';
+            case 'evidence': return 'fa-fingerprint';
+            case 'civil': return 'fa-scale-balanced';
+            case 'consumer': return 'fa-cart-shopping';
+            case 'family': return 'fa-people-roof';
+            case 'property': return 'fa-house-chimney';
+            case 'labour': return 'fa-user-tie';
+            case 'corporate': return 'fa-building-columns';
+            case 'cyber': return 'fa-shield-virus';
+            case 'motor': return 'fa-car';
+            case 'human-rights': return 'fa-hand-holding-heart';
+            case 'environmental': return 'fa-leaf';
+            default: return 'fa-book-scale';
+        }
+    }
+
+    function renderSingleLawCard(item) {
+        const icon = getLawCategoryIcon(item.catKey);
+        const studyBadge = item.studyNotes ? `
+            <div style="margin-top:10px; display:inline-flex; align-items:center; gap:6px; background:#f0fdf4; border:1px solid #dcfce7; padding:4px 10px; border-radius:8px; font-size:12px; color:#166534; font-weight:700;">
+                <i class="fas fa-check-circle" style="color:#00C853; font-size:11px;"></i> ${item.studyNotes.split('.')[0]}.
+            </div>` : '';
+
+        return `
+        <div class="law-card" data-category="${item.catKey}" data-title="${(item.title || '').toLowerCase()}" data-aos="fade-up">
             <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
-                    <span class="badge-cat"><i class="fas fa-scale-unbalanced-flip"></i> ${item.category}</span>
+                    <span class="badge-cat" style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800;">
+                        <i class="fas ${icon}"></i> ${item.category}
+                    </span>
                     <span style="font-size:12px; font-weight:800; color:#718096;"><i class="fas fa-calendar-days"></i> ${item.year}</span>
                 </div>
-                <h3 style="font-size:1.25rem; font-weight:800; color:var(--dark); margin-bottom:10px; line-height:1.35;">${item.title}</h3>
-                <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:16px;">${item.purpose}</p>
-                <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:18px;">
-                    <strong style="font-size:12px; color:var(--primary-dark); text-transform:uppercase; tracking:1px;">Covers:</strong>
-                    <p style="font-size:12.5px; color:#555; margin:2px 0 0; line-height:1.5;">${item.coverage}</p>
+                <h3 style="font-size:1.25rem; font-weight:900; color:var(--dark); margin-bottom:10px; line-height:1.35;">${item.title}</h3>
+                <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:14px;">${item.purpose}</p>
+                <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:14px;">
+                    <strong style="font-size:11.5px; color:var(--primary-dark); text-transform:uppercase; letter-spacing:0.5px;">Statutory Scope:</strong>
+                    <p style="font-size:12.5px; color:#4a5568; margin:2px 0 0; line-height:1.5;">${item.coverage}</p>
                 </div>
+                ${studyBadge}
             </div>
-            <div>
-                <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
-                    <button onclick="openLawModal('${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px;"><i class="fas fa-book-open"></i> Explore Law &rarr;</button>
-                    <a href="laws/${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none;">Full Act &rarr;</a>
+            <div style="margin-top:16px;">
+                <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <button onclick="openLawModal('${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px; font-weight:700; cursor:pointer;">
+                        <i class="fas fa-book-open"></i> Quick Explorer &rarr;
+                    </button>
+                    <a href="laws/${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                        Full Act Guide <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }
+
+    const initialLawsCardsHtml = expandedLawsList.map(item => renderSingleLawCard(item)).join('');
 
     // Laws JSON-LD Schema
     const lawsPageSchema = {
@@ -3809,35 +3846,30 @@ function buildFeaturesAndOther() {
     ${JSON.stringify(lawsPageSchema, null, 2)}
     </script>
 
-    <!-- 01 — HERO SECTION -->
-    <section class="page-header" id="hero" style="padding: 165px 0 50px;">
-        <div class="container" data-aos="zoom-in">
-            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.15); color:var(--primary-dark); font-weight:800;">
-                <i class="fas fa-book-scale" style="color:var(--primary);"></i> INDIAN LEGAL KNOWLEDGE BASE
+    <!-- 01 — UNIFIED HERO & SEARCH HUB -->
+    <section class="page-header" id="hero" style="padding: 165px 0 60px; background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 80%);">
+        <div class="container" style="max-width: 1000px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; border:1px solid rgba(0,200,83,0.25);">
+                <i class="fas fa-book-scale" style="color:var(--primary);"></i> OFFICIAL INDIAN STATUTORY REPOSITORY
             </span>
-            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px;">
-                Explore Indian Laws. <br><span>Understand the Law.</span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px; margin-bottom:16px;">
+                Indian Laws <span style="background: linear-gradient(135deg, var(--primary), #009624); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Library</span>
             </h1>
-            <p style="max-width:860px; margin:16px auto 30px; font-size:1.2rem; color:#4a5568; line-height:1.8;">
-                Explore major Indian laws, constitutional frameworks, and modern legal codes through structured explanations designed for citizens, students, and legal learners.
+            <p style="max-width:820px; margin:0 auto 24px; font-size:1.18rem; color:#4a5568; line-height:1.75;">
+                Explore major Indian statutory acts, modern criminal legal codes (BNS, BNSS, BSA 2023), constitutional frameworks, and key citizen provisions in clear, authoritative plain language.
             </p>
-            <div class="hero-btns" style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-                <a href="#search" class="btn-ai" style="padding:16px 36px; font-size:16px;">
-                    <i class="fas fa-book-bookmark"></i> Explore the Library
-                </a>
-                <a href="#category-filter" class="btn-outline" style="padding:16px 36px; font-size:16px;">
-                    <i class="fas fa-magnifying-glass"></i> Search a Law
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- 02 — LIBRARY SEARCH SECTION -->
-    <section style="padding:50px 0 30px; background:#ffffff;" id="search">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" style="margin-bottom:24px;">
-                <h2>Search <span>Indian Laws</span></h2>
-                <p>Filter through major statutes, section references, topics, or keywords instantly.</p>
+            <!-- PLATFORM STAT BADGES -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:6px 16px; font-size:13px; font-weight:700; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-bolt" style="color:#00C853;"></i> 25+ Primary Indian Acts
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:6px 16px; font-size:13px; font-weight:700; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-scale-balanced" style="color:#00C853;"></i> July 2024 BNS / BNSS / BSA Active
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:6px 16px; font-size:13px; font-weight:700; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-magnifying-glass" style="color:#00C853;"></i> Instant Multi-Keyword Search
+                </span>
             </div>
 
             <!-- SEARCH BOX -->
@@ -3848,9 +3880,9 @@ function buildFeaturesAndOther() {
             </div>
 
             <!-- POPULAR SEARCH CHIPS -->
-            <div style="margin-top:20px; text-align:center; font-size:14px; color:#666;" data-aos="fade-up">
+            <div style="margin-top:14px; text-align:center; font-size:13.5px; color:#666;" data-aos="fade-up">
                 <strong style="color:var(--dark);">Popular searches:</strong> 
-                <div style="display:inline-flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-left:8px; margin-top:8px;">
+                <div style="display:inline-flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-left:8px; margin-top:6px;">
                     <button class="az-pill" onclick="quickLawSearch('BNS 2023')">BNS 2023</button>
                     <button class="az-pill" onclick="quickLawSearch('BNSS 2023')">BNSS 2023</button>
                     <button class="az-pill" onclick="quickLawSearch('BSA 2023')">BSA 2023</button>
@@ -3864,44 +3896,44 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <!-- 03 — LAW CATEGORY FILTER -->
-    <section style="padding:40px 0 60px; background:var(--bg-light);" id="category-filter">
+    <!-- 02 — LAW CATEGORY FILTER WITH RICH ICONS -->
+    <section style="padding:40px 0 50px; background:var(--bg-light); border-top:1px solid #edf2f7;" id="category-filter">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:24px;">
                 <h2>Browse by <span>Legal Category</span></h2>
                 <p>Filter Indian laws by statutory domain and court specialization.</p>
             </div>
 
-            <div class="filter-tags" style="justify-content:center;" data-aos="fade-up">
-                <button class="filter-btn active" onclick="filterLawCat('all', this)">All Categories (${expandedLawsList.length})</button>
-                <button class="filter-btn" onclick="filterLawCat('constitutional', this)">Constitutional Law</button>
-                <button class="filter-btn" onclick="filterLawCat('criminal', this)">Criminal Law (Substantive)</button>
-                <button class="filter-btn" onclick="filterLawCat('procedural', this)">Criminal Procedure</button>
-                <button class="filter-btn" onclick="filterLawCat('evidence', this)">Law of Evidence</button>
-                <button class="filter-btn" onclick="filterLawCat('civil', this)">Civil & Commercial</button>
-                <button class="filter-btn" onclick="filterLawCat('consumer', this)">Consumer Protection</button>
-                <button class="filter-btn" onclick="filterLawCat('family', this)">Family & Child Law</button>
-                <button class="filter-btn" onclick="filterLawCat('property', this)">Property Law</button>
-                <button class="filter-btn" onclick="filterLawCat('labour', this)">Labour & Employment</button>
-                <button class="filter-btn" onclick="filterLawCat('corporate', this)">Corporate & Financial</button>
-                <button class="filter-btn" onclick="filterLawCat('cyber', this)">Cyber & Technology</button>
-                <button class="filter-btn" onclick="filterLawCat('motor', this)">Motor Vehicles</button>
-                <button class="filter-btn" onclick="filterLawCat('human-rights', this)">Human Rights & Legal Aid</button>
-                <button class="filter-btn" onclick="filterLawCat('environmental', this)">Environmental Law</button>
+            <div class="filter-tags" style="justify-content:center; gap:10px;" data-aos="fade-up">
+                <button class="filter-btn active" onclick="filterLawCat('all', this)"><i class="fas fa-layer-group"></i> All Categories (25)</button>
+                <button class="filter-btn" onclick="filterLawCat('constitutional', this)"><i class="fas fa-landmark"></i> Constitutional Law</button>
+                <button class="filter-btn" onclick="filterLawCat('criminal', this)"><i class="fas fa-handcuffs"></i> Criminal Law (BNS)</button>
+                <button class="filter-btn" onclick="filterLawCat('procedural', this)"><i class="fas fa-file-shield"></i> Criminal Procedure (BNSS)</button>
+                <button class="filter-btn" onclick="filterLawCat('evidence', this)"><i class="fas fa-fingerprint"></i> Law of Evidence (BSA)</button>
+                <button class="filter-btn" onclick="filterLawCat('civil', this)"><i class="fas fa-scale-balanced"></i> Civil & Commercial</button>
+                <button class="filter-btn" onclick="filterLawCat('consumer', this)"><i class="fas fa-cart-shopping"></i> Consumer Protection</button>
+                <button class="filter-btn" onclick="filterLawCat('family', this)"><i class="fas fa-people-roof"></i> Family & Marriage</button>
+                <button class="filter-btn" onclick="filterLawCat('property', this)"><i class="fas fa-house-chimney"></i> Property & RERA</button>
+                <button class="filter-btn" onclick="filterLawCat('labour', this)"><i class="fas fa-user-tie"></i> Labour & Wages</button>
+                <button class="filter-btn" onclick="filterLawCat('corporate', this)"><i class="fas fa-building-columns"></i> Corporate & Financial</button>
+                <button class="filter-btn" onclick="filterLawCat('cyber', this)"><i class="fas fa-shield-virus"></i> Cyber & IT Act</button>
+                <button class="filter-btn" onclick="filterLawCat('motor', this)"><i class="fas fa-car"></i> Motor Vehicles</button>
+                <button class="filter-btn" onclick="filterLawCat('human-rights', this)"><i class="fas fa-hand-holding-heart"></i> Legal Aid & RTE</button>
+                <button class="filter-btn" onclick="filterLawCat('environmental', this)"><i class="fas fa-leaf"></i> Environmental Law</button>
             </div>
         </div>
     </section>
 
-    <!-- 04 & 05 — FEATURED / SELECTED MAJOR LAWS GRID -->
+    <!-- 03 — FEATURED / SELECTED MAJOR LAWS GRID -->
     <section style="padding:70px 0; background:#ffffff;" id="featured-laws">
         <div class="container">
             <div class="dict-stats-bar" data-aos="fade-up" style="margin-bottom:30px;">
                 <div class="dict-count-badge">
                     <i class="fas fa-book-scale" style="color:var(--primary);"></i>
-                    Showing <span id="lawCurrentCount" class="dict-count-num">${expandedLawsList.length}</span> Selected Major Laws
+                    Showing <span id="lawCurrentCount" class="dict-count-num">25</span> Selected Major Laws
                 </div>
                 <div id="lawStatusText" style="font-size:13.5px; color:#666; font-weight:600;">
-                    Structured Indian Acts & Modern Criminal Law Codes
+                    Structured Indian Acts & Modern Criminal Law Codes (25 Acts)
                 </div>
             </div>
 
@@ -3911,143 +3943,184 @@ function buildFeaturesAndOther() {
             </div>
 
             <!-- EMPTY SEARCH STATE -->
-            <div id="lawEmptyState" class="dict-empty-state" style="display:none;">
-                <div class="dict-empty-icon"><i class="fas fa-search-minus"></i></div>
-                <h3 style="font-size:20px; font-weight:800; margin-bottom:8px;">No Indian laws match your search</h3>
-                <p style="font-size:14.5px; color:#666; max-width:500px; margin:0 auto 20px;">We couldn't find any law matching your keywords. Try clearing search filters or browse categories.</p>
-                <button onclick="clearLawSearch()" class="btn-outline" style="padding:10px 24px; font-size:14px;"><i class="fas fa-rotate-left"></i> Reset Search</button>
+            <div id="lawEmptyState" style="display:none; text-align:center; padding:60px 20px;" data-aos="fade-up">
+                <div style="width:70px; height:70px; background:#f1f5f9; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; color:#94a3b8;">
+                    <i class="fas fa-magnifying-glass"></i>
+                </div>
+                <h3 style="font-size:1.4rem; font-weight:800; color:var(--dark); margin-bottom:8px;">No matching laws found</h3>
+                <p style="color:#64748b; max-width:480px; margin:0 auto 20px; font-size:14.5px;">We couldn't find any law matching your search query. Try searching by act name (e.g. BNS, Consumer, IT Act), or browse categories.</p>
+                <button onclick="clearLawSearch()" class="btn-ai" style="padding:10px 24px; font-size:14px;"><i class="fas fa-rotate-left"></i> Reset Search</button>
             </div>
         </div>
     </section>
 
-    <!-- 06 — CONSTITUTIONAL FRAMEWORK SECTION -->
+    <!-- 04 — CONSTITUTIONAL FRAMEWORK SECTION -->
     <section style="padding:90px 0; background:radial-gradient(circle at 50% 0%, #f0fdf4 0%, #ffffff 75%); border-top:1px solid #e2e8f0;" id="constitution-framework">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="cp-role" style="display:inline-block; margin-bottom:10px; background:rgba(0,200,83,0.1); color:var(--primary-dark);">SUPREME LEGAL FOUNDATION</span>
+                <span class="cp-role" style="display:inline-block; margin-bottom:10px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
+                    <i class="fas fa-landmark"></i> SUPREME LEGAL FOUNDATION
+                </span>
                 <h2>The Constitutional <span>Framework</span></h2>
                 <p style="max-width:800px; margin:0 auto;">The supreme law of India establishing state governance, fundamental rights, directive principles, and citizen duties.</p>
             </div>
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:40px;" data-aos="fade-up">
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
-                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-scroll"></i></div>
-                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Preamble</h3>
-                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Declares India a Sovereign, Socialist, Secular, Democratic Republic securing Justice, Liberty, Equality & Fraternity.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:22px; padding:26px; box-shadow:0 6px 24px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="width:46px; height:46px; background:rgba(0,200,83,0.12); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px;"><i class="fas fa-scroll"></i></div>
+                    <span style="font-size:11.5px; font-weight:800; color:#00C853; text-transform:uppercase; letter-spacing:0.5px;">SOVEREIGN DECLARATION</span>
+                    <h3 style="font-size:19px; font-weight:800; color:var(--dark); margin:6px 0 8px;">The Preamble</h3>
+                    <p style="font-size:13.5px; color:#4a5568; margin:0; line-height:1.65;">Declares India a Sovereign, Socialist, Secular, Democratic Republic securing Justice (Social, Economic, Political), Liberty, Equality & Fraternity.</p>
                 </div>
 
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
-                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-shield-halved"></i></div>
-                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Part III • Fundamental Rights</h3>
-                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Articles 12 to 35 guaranteeing equality, freedoms, personal liberty, protection against arrest, and writ remedies.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:22px; padding:26px; box-shadow:0 6px 24px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="width:46px; height:46px; background:rgba(0,200,83,0.12); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px;"><i class="fas fa-shield-halved"></i></div>
+                    <span style="font-size:11.5px; font-weight:800; color:#00C853; text-transform:uppercase; letter-spacing:0.5px;">ARTICLES 12 TO 35</span>
+                    <h3 style="font-size:19px; font-weight:800; color:var(--dark); margin:6px 0 8px;">Part III • Fundamental Rights</h3>
+                    <p style="font-size:13.5px; color:#4a5568; margin:0; line-height:1.65;">Enforceable in courts against state action. Guarantees equality (Art 14), 6 freedoms (Art 19), right to life & privacy (Art 21), and arrest safeguards (Art 22).</p>
                 </div>
 
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
-                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-landmark"></i></div>
-                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Part IV • Directive Principles</h3>
-                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Articles 36 to 51 guiding state policy on public welfare, equal justice, free legal aid (Art 39A), and village panchayats.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:22px; padding:26px; box-shadow:0 6px 24px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="width:46px; height:46px; background:rgba(0,200,83,0.12); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px;"><i class="fas fa-landmark"></i></div>
+                    <span style="font-size:11.5px; font-weight:800; color:#00C853; text-transform:uppercase; letter-spacing:0.5px;">ARTICLES 36 TO 51</span>
+                    <h3 style="font-size:19px; font-weight:800; color:var(--dark); margin:6px 0 8px;">Part IV • Directive Principles</h3>
+                    <p style="font-size:13.5px; color:#4a5568; margin:0; line-height:1.65;">Directs state policies towards social justice, universal welfare, equal pay for equal work, free legal aid (Art 39A), and environmental preservation.</p>
                 </div>
 
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.02);">
-                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-gavel"></i></div>
-                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;">Articles 32 & 226 • Writs</h3>
-                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Empowers Supreme Court (Art 32) and High Courts (Art 226) to issue Habeas Corpus, Mandamus & Certiorari Writs.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:22px; padding:26px; box-shadow:0 6px 24px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="width:46px; height:46px; background:rgba(0,200,83,0.12); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px;"><i class="fas fa-gavel"></i></div>
+                    <span style="font-size:11.5px; font-weight:800; color:#00C853; text-transform:uppercase; letter-spacing:0.5px;">CONSTITUTIONAL REMEDIES</span>
+                    <h3 style="font-size:19px; font-weight:800; color:var(--dark); margin:6px 0 8px;">Articles 32 & 226 • Writs</h3>
+                    <p style="font-size:13.5px; color:#4a5568; margin:0; line-height:1.65;">Empowers Supreme Court (Art 32) and High Courts (Art 226) to issue Writs of Habeas Corpus, Mandamus, Prohibition, Quo Warranto & Certiorari.</p>
                 </div>
             </div>
 
             <!-- INTERACTIVE CONSTITUTIONAL ARTICLE STRIP -->
-            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
-                <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:18px; text-align:center;">Key Constitutional Articles at a Glance</h3>
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:32px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                <div style="text-align:center; margin-bottom:20px;">
+                    <h3 style="font-size:1.35rem; font-weight:900; color:var(--dark); margin-bottom:6px;">Key Citizen Constitutional Articles</h3>
+                    <p style="font-size:13.5px; color:#666; margin:0;">Core articles protecting every citizen in India daily</p>
+                </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; text-align:center;">
-                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
-                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 14</strong>
-                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Equality Before Law</span>
+                    <a href="articles/article-14-right-to-equality-explained.html" style="text-decoration:none; background:#f8fafc; padding:18px 14px; border-radius:16px; border:1px solid #edf2f7; transition:0.3s; display:block;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-3px)'" onmouseleave="this.style.borderColor='#edf2f7'; this.style.transform='translateY(0)'">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block; font-weight:800;">ARTICLE 14</strong>
+                        <span style="font-size:13px; color:#2d3748; display:block; margin-top:4px; font-weight:700;">Equality Before Law</span>
+                        <span style="font-size:11.5px; color:#718096; display:block; margin-top:2px;">Prohibits Arbitrary State Action</span>
+                    </a>
+                    <div style="background:#f8fafc; padding:18px 14px; border-radius:16px; border:1px solid #edf2f7; transition:0.3s; display:block;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block; font-weight:800;">ARTICLE 19</strong>
+                        <span style="font-size:13px; color:#2d3748; display:block; margin-top:4px; font-weight:700;">6 Core Freedoms</span>
+                        <span style="font-size:11.5px; color:#718096; display:block; margin-top:2px;">Speech, Assembly, Trade, Movement</span>
                     </div>
-                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
-                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 19</strong>
-                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">6 Fundamental Freedoms</span>
+                    <a href="articles/article-21-personal-liberty-privacy.html" style="text-decoration:none; background:#f8fafc; padding:18px 14px; border-radius:16px; border:1px solid #edf2f7; transition:0.3s; display:block;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-3px)'" onmouseleave="this.style.borderColor='#edf2f7'; this.style.transform='translateY(0)'">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block; font-weight:800;">ARTICLE 21</strong>
+                        <span style="font-size:13px; color:#2d3748; display:block; margin-top:4px; font-weight:700;">Life & Liberty</span>
+                        <span style="font-size:11.5px; color:#718096; display:block; margin-top:2px;">Includes Privacy & Dignity</span>
+                    </a>
+                    <div style="background:#f8fafc; padding:18px 14px; border-radius:16px; border:1px solid #edf2f7; transition:0.3s; display:block;">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block; font-weight:800;">ARTICLE 22</strong>
+                        <span style="font-size:13px; color:#2d3748; display:block; margin-top:4px; font-weight:700;">Arrest Safeguards</span>
+                        <span style="font-size:11.5px; color:#718096; display:block; margin-top:2px;">24-Hr Magistrate Production Rule</span>
                     </div>
-                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
-                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 21</strong>
-                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Life & Personal Liberty</span>
-                    </div>
-                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
-                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 22</strong>
-                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Arrest & Custody Safeguards</span>
-                    </div>
-                    <div style="background:#f8fafc; padding:16px; border-radius:14px; border:1px solid #edf2f7;">
-                        <strong style="color:var(--primary-dark); font-size:15px; display:block;">ARTICLE 32</strong>
-                        <span style="font-size:13px; color:#555; display:block; margin-top:4px;">Writ Remedies</span>
-                    </div>
+                    <a href="articles/article-32-constitutional-remedies-writs.html" style="text-decoration:none; background:#f8fafc; padding:18px 14px; border-radius:16px; border:1px solid #edf2f7; transition:0.3s; display:block;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-3px)'" onmouseleave="this.style.borderColor='#edf2f7'; this.style.transform='translateY(0)'">
+                        <strong style="color:var(--primary-dark); font-size:15px; display:block; font-weight:800;">ARTICLE 32</strong>
+                        <span style="font-size:13px; color:#2d3748; display:block; margin-top:4px; font-weight:700;">Writ Remedies</span>
+                        <span style="font-size:11.5px; color:#718096; display:block; margin-top:2px;">Direct Supreme Court Protection</span>
+                    </a>
                 </div>
                 <div style="text-align:center; margin-top:24px;">
                     <a href="rights.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
-                        <i class="fas fa-graduation-cap"></i> Study Constitutional Rights in Detail &rarr;
+                        <i class="fas fa-graduation-cap"></i> Study Full Constitutional Rights Hub &rarr;
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 07 — NEW CRIMINAL LAW FRAMEWORK (PREMIUM DARK SECTION) -->
-    <section style="padding:90px 0; background:linear-gradient(135deg, #050505 0%, #151515 100%); color:white;" id="new-criminal-laws">
+    <!-- 05 — NEW CRIMINAL LAW FRAMEWORK (PREMIUM DARK GLASS SECTION) -->
+    <section style="padding:100px 0; background:radial-gradient(circle at 50% 10%, rgba(0,200,83,0.12) 0%, #0a0f0d 60%, #050706 100%); color:white; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);" id="new-criminal-laws">
         <div class="container">
             <div class="section-header" data-aos="fade-up" style="color:white;">
-                <span class="cp-role" style="background:rgba(0,200,83,0.15); color:var(--primary); display:inline-block; margin-bottom:12px;">HISTORIC LEGAL REFORM (ENFORCED JULY 1, 2024)</span>
-                <h2 style="color:white;">India's New <span>Criminal Law Framework</span></h2>
-                <p style="color:#aaa; max-width:800px; margin:0 auto;">Understanding the transition from colonial criminal statutes to modern Bharatiya codes.</p>
+                <span class="cp-role" style="background:rgba(0,200,83,0.18); color:var(--primary); display:inline-block; margin-bottom:12px; border:1px solid rgba(0,200,83,0.3);">
+                    <i class="fas fa-scale-balanced"></i> HISTORIC CRIMINAL REFORM (ACTIVE JULY 1, 2024)
+                </span>
+                <h2 style="color:white; font-size:2.8rem; font-weight:900;">India's New <span>Criminal Law Architecture</span></h2>
+                <p style="color:#a0aec0; max-width:800px; margin:0 auto; font-size:1.15rem;">A complete structural transition from colonial 19th-century penal statutes to modern justice-centered codes.</p>
             </div>
 
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; margin-bottom:40px;" data-aos="fade-up">
-                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
-                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">SUBSTANTIVE CRIMINAL LAW</span>
-                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BNS (2023)</h3>
-                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Indian Penal Code (IPC 1860)</strong>. Defines offences, criminal liability, community service punishments, and modern penalties.</p>
-                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">IPC &rarr; BNS 2023</span>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin-bottom:40px;" data-aos="fade-up">
+                <!-- BNS CARD -->
+                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:32px; backdrop-filter:blur(10px); transition:0.3s; position:relative;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 40px rgba(0,200,83,0.15)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11.5px; font-weight:900; color:#00C853; text-transform:uppercase; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 12px; border-radius:20px;">SUBSTANTIVE LAW</span>
+                        <span style="font-size:12px; color:#888; font-weight:700;">Replaces IPC 1860</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:white; margin:8px 0 10px;">BNS <span style="color:#00C853;">2023</span></h3>
+                    <p style="font-size:14px; color:#cbd5e1; line-height:1.7; margin-bottom:20px;">Defines primary criminal offences, culpability, statutory community service for minor offences, organized crime (Sec 111), and enhanced penalties for crimes against women & children.</p>
+                    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:12.5px; color:#94a3b8;"><i class="fas fa-list-ol"></i> 358 Sections</span>
+                        <a href="articles/bns-2023-structural-shifts.html" style="color:#00C853; font-size:13px; font-weight:800; text-decoration:none;">Read Explainer &rarr;</a>
+                    </div>
                 </div>
 
-                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
-                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">PROCEDURAL CRIMINAL LAW</span>
-                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BNSS (2023)</h3>
-                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Code of Criminal Procedure (CrPC 1973)</strong>. Governs police investigations, arrests, bail, Zero FIR, and trial timelines.</p>
-                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">CrPC &rarr; BNSS 2023</span>
+                <!-- BNSS CARD -->
+                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:32px; backdrop-filter:blur(10px); transition:0.3s; position:relative;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 40px rgba(0,200,83,0.15)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11.5px; font-weight:900; color:#00C853; text-transform:uppercase; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 12px; border-radius:20px;">PROCEDURAL LAW</span>
+                        <span style="font-size:12px; color:#888; font-weight:700;">Replaces CrPC 1973</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:white; margin:8px 0 10px;">BNSS <span style="color:#00C853;">2023</span></h3>
+                    <p style="font-size:14px; color:#cbd5e1; line-height:1.7; margin-bottom:20px;">Governs police investigations, statutory Zero FIR & e-FIR, mandatory forensic sampling for 7+ year offences, video recording of searches, and strict 90-day charge sheet timelines.</p>
+                    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:12.5px; color:#94a3b8;"><i class="fas fa-list-ol"></i> 531 Sections</span>
+                        <a href="articles/bnss-2023-criminal-procedure-changes.html" style="color:#00C853; font-size:13px; font-weight:800; text-decoration:none;">Read Explainer &rarr;</a>
+                    </div>
                 </div>
 
-                <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px;">
-                    <span style="font-size:12px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:1px;">LAW OF EVIDENCE</span>
-                    <h3 style="font-size:1.8rem; font-weight:900; color:var(--primary); margin:8px 0 12px;">BSA (2023)</h3>
-                    <p style="font-size:14px; color:#ccc; line-height:1.7; margin-bottom:16px;">Replaced the <strong>Indian Evidence Act (1872)</strong>. Grants equal evidentiary standing to digital/electronic records and server logs.</p>
-                    <span style="font-size:12px; background:rgba(0,200,83,0.1); color:var(--primary); padding:4px 10px; border-radius:20px; font-weight:700;">Evidence Act &rarr; BSA 2023</span>
+                <!-- BSA CARD -->
+                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:32px; backdrop-filter:blur(10px); transition:0.3s; position:relative;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 40px rgba(0,200,83,0.15)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11.5px; font-weight:900; color:#00C853; text-transform:uppercase; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 12px; border-radius:20px;">LAW OF EVIDENCE</span>
+                        <span style="font-size:12px; color:#888; font-weight:700;">Replaces Evidence Act 1872</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:white; margin:8px 0 10px;">BSA <span style="color:#00C853;">2023</span></h3>
+                    <p style="font-size:14px; color:#cbd5e1; line-height:1.7; margin-bottom:20px;">Recognizes digital and electronic records (emails, server logs, WhatsApp messages, smartphone media) as primary evidence on equal footing with paper documents.</p>
+                    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:12.5px; color:#94a3b8;"><i class="fas fa-list-ol"></i> 170 Sections</span>
+                        <a href="articles/bsa-2023-evidence-framework.html" style="color:#00C853; font-size:13px; font-weight:800; text-decoration:none;">Read Explainer &rarr;</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- VISUAL FLOW RELATIONSHIP -->
-            <div style="background:#181818; border:1px solid #333; border-radius:24px; padding:30px; text-align:center;" data-aos="fade-up">
-                <h4 style="font-size:16px; font-weight:800; color:white; margin-bottom:20px;">HOW THE NEW CRIMINAL LAWS WORK TOGETHER</h4>
-                <div style="display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;">
-                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
-                        <strong style="color:var(--primary); font-size:14px;">1. CRIME OCCURS</strong>
-                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BNS defines offence & penalty</p>
+            <!-- VISUAL PIPELINE -->
+            <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:32px; text-align:center;" data-aos="fade-up">
+                <span style="font-size:12px; font-weight:900; color:#00C853; text-transform:uppercase; letter-spacing:1.5px; display:block; margin-bottom:16px;">
+                    INTEGRATED STATUTORY PIPELINE
+                </span>
+                <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;">
+                    <div style="background:#111; padding:16px 24px; border-radius:18px; border:1px solid rgba(255,255,255,0.1); min-width:200px;">
+                        <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">1. OFFENCE OCCURS</span>
+                        <strong style="color:white; font-size:16px; display:block; margin-top:4px;">BNS (2023)</strong>
+                        <p style="font-size:12px; color:#94a3b8; margin:4px 0 0;">Defines the Crime & Punishment</p>
                     </div>
-                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
-                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
-                        <strong style="color:var(--primary); font-size:14px;">2. POLICE INVESTIGATE</strong>
-                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BNSS defines FIR & arrest rules</p>
+                    <div style="color:#00C853; font-size:22px;"><i class="fas fa-arrow-right"></i></div>
+                    <div style="background:#111; padding:16px 24px; border-radius:18px; border:1px solid rgba(255,255,255,0.1); min-width:200px;">
+                        <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">2. POLICE INVESTIGATION</span>
+                        <strong style="color:white; font-size:16px; display:block; margin-top:4px;">BNSS (2023)</strong>
+                        <p style="font-size:12px; color:#94a3b8; margin:4px 0 0;">FIR, Arrest, Custody & Bail Procedure</p>
                     </div>
-                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
-                    <div style="background:#222; padding:14px 24px; border-radius:16px; border:1px solid #444;">
-                        <strong style="color:var(--primary); font-size:14px;">3. COURT TRIAL</strong>
-                        <p style="font-size:12px; color:#aaa; margin:2px 0 0;">BSA governs evidence proof</p>
+                    <div style="color:#00C853; font-size:22px;"><i class="fas fa-arrow-right"></i></div>
+                    <div style="background:#111; padding:16px 24px; border-radius:18px; border:1px solid rgba(255,255,255,0.1); min-width:200px;">
+                        <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">3. COURT TRIAL</span>
+                        <strong style="color:white; font-size:16px; display:block; margin-top:4px;">BSA (2023)</strong>
+                        <p style="font-size:12px; color:#94a3b8; margin:4px 0 0;">Admissibility of Physical & Digital Proof</p>
                     </div>
-                </div>
-                <div style="margin-top:20px; font-size:12.5px; color:#888;">
-                    <em>Note: Crimes committed prior to July 1, 2024 remain governed by IPC 1860 under transitional provisions.</em>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 10 — LAW COMPARISON SECTION -->
+    <!-- 06 — SIDE-BY-SIDE LAW COMPARISON SECTION -->
     <section style="padding:90px 0; background:var(--bg-light);" id="comparisons">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -4057,75 +4130,118 @@ function buildFeaturesAndOther() {
 
             <div class="law-compare-grid" data-aos="fade-up">
                 <div class="law-compare-card">
-                    <span class="badge-cat" style="margin-bottom:12px;">CRIMINAL CODE TRANSITION</span>
-                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BNS (2023) vs IPC (1860)</h3>
-                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
-                        <p style="margin-bottom:8px;"><strong>Old (IPC 1860):</strong> 511 Sections, colonial penal focus, Sedition (Sec 124A).</p>
-                        <p style="margin-bottom:8px;"><strong>New (BNS 2023):</strong> 358 Sections, Community Service, Mob Lynching (Sec 103), Organized Crime (Sec 111).</p>
-                        <strong style="color:var(--primary-dark);">Key Change:</strong> Modernized structure prioritizing victim justice and community service.
+                    <span class="badge-cat" style="margin-bottom:12px;"><i class="fas fa-scale-unbalanced-flip"></i> CRIMINAL CODE TRANSITION</span>
+                    <h3 style="font-size:1.35rem; font-weight:900; color:var(--dark); margin-bottom:14px;">BNS (2023) vs IPC (1860)</h3>
+                    
+                    <div style="background:#fff5f5; border:1px solid #fed7d7; padding:12px 14px; border-radius:12px; margin-bottom:10px;">
+                        <span style="font-size:11px; font-weight:900; color:#c53030; text-transform:uppercase;">HISTORICAL CODE (IPC 1860)</span>
+                        <p style="font-size:13px; color:#4a5568; margin:3px 0 0;">511 Sections, colonial punitive focus, sedition under Sec 124A, no recognition of community service.</p>
+                    </div>
+
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:12px 14px; border-radius:12px; margin-bottom:14px;">
+                        <span style="font-size:11px; font-weight:900; color:#166534; text-transform:uppercase;">MODERN CODE (BNS 2023)</span>
+                        <p style="font-size:13px; color:#2d3748; margin:3px 0 0;">358 Sections, statutory community service for 6 minor crimes, organized crime (Sec 111), mob lynching (Sec 103).</p>
+                    </div>
+
+                    <div style="background:#ffffff; border-left:3px solid var(--primary); padding:10px 14px; border-radius:8px; font-size:13px; color:#2d3748;">
+                        <strong style="color:var(--primary-dark);">Key Citizen Impact:</strong> Shift from colonial punitive deterrence to victim justice & restorative community penalties.
                     </div>
                 </div>
 
                 <div class="law-compare-card">
-                    <span class="badge-cat" style="margin-bottom:12px;">PROCEDURAL REFORM</span>
-                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BNSS (2023) vs CrPC (1973)</h3>
-                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
-                        <p style="margin-bottom:8px;"><strong>Old (CrPC 1973):</strong> 484 Sections, paper filing, indefinite trial delays.</p>
-                        <p style="margin-bottom:8px;"><strong>New (BNSS 2023):</strong> 531 Sections, Zero FIR statutory mandate, e-FIR, strict 90-day charge sheet limits.</p>
-                        <strong style="color:var(--primary-dark);">Key Change:</strong> Digital search/seizure recording and mandatory forensic investigation.
+                    <span class="badge-cat" style="margin-bottom:12px;"><i class="fas fa-file-shield"></i> PROCEDURAL REFORM</span>
+                    <h3 style="font-size:1.35rem; font-weight:900; color:var(--dark); margin-bottom:14px;">BNSS (2023) vs CrPC (1973)</h3>
+                    
+                    <div style="background:#fff5f5; border:1px solid #fed7d7; padding:12px 14px; border-radius:12px; margin-bottom:10px;">
+                        <span style="font-size:11px; font-weight:900; color:#c53030; text-transform:uppercase;">HISTORICAL CODE (CrPC 1973)</span>
+                        <p style="font-size:13px; color:#4a5568; margin:3px 0 0;">484 Sections, paper filing, no statutory time limit on judgments, discretionary Zero FIR registration.</p>
+                    </div>
+
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:12px 14px; border-radius:12px; margin-bottom:14px;">
+                        <span style="font-size:11px; font-weight:900; color:#166534; text-transform:uppercase;">MODERN CODE (BNSS 2023)</span>
+                        <p style="font-size:13px; color:#2d3748; margin:3px 0 0;">531 Sections, statutory Zero FIR & e-FIR, mandatory video-recording of search/seizure, 90-day charge sheet limit.</p>
+                    </div>
+
+                    <div style="background:#ffffff; border-left:3px solid var(--primary); padding:10px 14px; border-radius:8px; font-size:13px; color:#2d3748;">
+                        <strong style="color:var(--primary-dark);">Key Citizen Impact:</strong> Fixed timelines reduce undertrial detention, mandatory forensic collection for severe crimes.
                     </div>
                 </div>
 
                 <div class="law-compare-card">
-                    <span class="badge-cat" style="margin-bottom:12px;">EVIDENCE ADMISSIBILITY</span>
-                    <h3 style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:14px;">BSA (2023) vs Evidence Act (1872)</h3>
-                    <div style="font-size:13.5px; color:#4a5568; line-height:1.7;">
-                        <p style="margin-bottom:8px;"><strong>Old (Act 1872):</strong> 167 Sections, physical paper document bias.</p>
-                        <p style="margin-bottom:8px;"><strong>New (BSA 2023):</strong> 170 Sections, Electronic & Digital logs given equal primary evidence standing.</p>
-                        <strong style="color:var(--primary-dark);">Key Change:</strong> Cloud data, WhatsApp logs, and emails recognized as primary evidence.
+                    <span class="badge-cat" style="margin-bottom:12px;"><i class="fas fa-fingerprint"></i> EVIDENCE ADMISSIBILITY</span>
+                    <h3 style="font-size:1.35rem; font-weight:900; color:var(--dark); margin-bottom:14px;">BSA (2023) vs Evidence Act (1872)</h3>
+                    
+                    <div style="background:#fff5f5; border:1px solid #fed7d7; padding:12px 14px; border-radius:12px; margin-bottom:10px;">
+                        <span style="font-size:11px; font-weight:900; color:#c53030; text-transform:uppercase;">HISTORICAL CODE (Act 1872)</span>
+                        <p style="font-size:13px; color:#4a5568; margin:3px 0 0;">167 Sections, heavy presumption toward physical paper documents, complex Sec 65B certification hurdles.</p>
+                    </div>
+
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:12px 14px; border-radius:12px; margin-bottom:14px;">
+                        <span style="font-size:11px; font-weight:900; color:#166534; text-transform:uppercase;">MODERN CODE (BSA 2023)</span>
+                        <p style="font-size:13px; color:#2d3748; margin:3px 0 0;">170 Sections, Electronic & Digital records given primary evidence standing under standardized Section 63 rules.</p>
+                    </div>
+
+                    <div style="background:#ffffff; border-left:3px solid var(--primary); padding:10px 14px; border-radius:8px; font-size:13px; color:#2d3748;">
+                        <strong style="color:var(--primary-dark);">Key Citizen Impact:</strong> Cloud servers, emails, SMS, and WhatsApp messages directly admissible as legal trial evidence.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 11 — LAW IN REAL LIFE ("WHERE DOES THIS LAW MATTER?") -->
+    <!-- 07 — LAW IN REAL LIFE ("WHERE DOES THIS LAW MATTER?") -->
     <section style="padding:90px 0; background:#ffffff;" id="real-life-laws">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Where Does <span>This Law Matter?</span></h2>
-                <p>Real-life everyday scenarios illustrating how Indian statutes apply to common situations.</p>
+                <p>Real-life everyday scenarios illustrating how Indian statutes apply to common citizen situations.</p>
             </div>
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
-                    <span class="flow-step-badge">CRIMINAL OFFENCE</span>
-                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Accused of a Crime or Filing FIR</h3>
-                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Bharatiya Nyaya Sanhita (BNS 2023) for offences & Bharatiya Nagarik Suraksha Sanhita (BNSS 2023) for FIR & bail.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                    <div style="width:50px; height:50px; background:#fee2e2; color:#dc2626; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-handcuffs"></i>
+                    </div>
+                    <span style="font-size:11.5px; font-weight:800; color:#dc2626; text-transform:uppercase; letter-spacing:0.5px;">CRIMINAL OFFENCE & ARREST</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Filing an FIR or Facing Charges</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>BNS 2023</strong> for criminal charges, and <strong>BNSS 2023</strong> for mandatory arrest memos, bail eligibility, and magistrate presentation within 24 hours.</p>
+                    <a href="legal-guides/how-to-file-an-fir.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Step-by-Step FIR Guide &rarr;</a>
                 </div>
 
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
-                    <span class="flow-step-badge">CYBER & UPI FRAUD</span>
-                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Online Theft or Identity Fraud</h3>
-                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> IT Act 2000 (Sec 66C/66D), BNS 2023 (Sec 318 Cheating), and BSA 2023 for digital evidence.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                    <div style="width:50px; height:50px; background:#dbeafe; color:#2563eb; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <span style="font-size:11.5px; font-weight:800; color:#2563eb; text-transform:uppercase; letter-spacing:0.5px;">CYBER & FINANCIAL SCAMS</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Online Bank & Identity Theft</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>IT Act 2000 (Sec 66C/D)</strong>, <strong>BNS 2023 (Sec 318 Cheating)</strong>, and National Cyber Helpline 1930 for golden-hour account freeze.</p>
+                    <a href="legal-guides/cyber-fraud-reporting-1930.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Cyber Scam 1930 Guide &rarr;</a>
                 </div>
 
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
-                    <span class="flow-step-badge">DEFECTIVE PRODUCT</span>
-                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">E-Commerce Refund / Service Dispute</h3>
-                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Consumer Protection Act 2019 via e-Daakhil and Central Consumer Protection Authority (CCPA).</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                    <div style="width:50px; height:50px; background:#fef3c7; color:#d97706; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-cart-shopping"></i>
+                    </div>
+                    <span style="font-size:11.5px; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.5px;">CONSUMER & E-COMMERCE</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Defective Product or Service Fraud</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>Consumer Protection Act 2019</strong>. Entitles buyer to refund, replacement, and compensation via CCPA and online e-Daakhil filing.</p>
+                    <a href="legal-guides/consumer-court-complaint-guide.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Consumer Court Guide &rarr;</a>
                 </div>
 
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:26px;">
-                    <span class="flow-step-badge">TRAFFIC STOP</span>
-                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:10px 0 8px;">Vehicle Checking & Traffic Fine</h3>
-                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:12px;"><strong>Applicable Laws:</strong> Motor Vehicles Act 1988 (Amended 2019) & IT Act for DigiLocker digital DL/RC validity.</p>
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
+                    <div style="width:50px; height:50px; background:#dcfce7; color:#166534; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <span style="font-size:11.5px; font-weight:800; color:#166534; text-transform:uppercase; letter-spacing:0.5px;">TRAFFIC & ROAD SAFETY</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Traffic Challans & Accident Claims</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>Motor Vehicles Act 1988 (Amended 2019)</strong>. Defines DigiLocker validity, Virtual Courts for challan disposal, and MACT compensation.</p>
+                    <a href="legal-guides/traffic-challan-contest-virtual-court.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Contest Traffic Challan &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 12 — LEGAL JOURNEY ("FROM LAW TO ACTION") -->
+    <!-- 08 — LEGAL JOURNEY ("FROM LAW TO ACTION") -->
     <section style="padding:90px 0; background:var(--bg-light);" id="legal-journey">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -4133,47 +4249,47 @@ function buildFeaturesAndOther() {
                 <p>A structured 7-step roadmap from statutory knowledge to seeking legal remedies.</p>
             </div>
 
-            <div class="journey-flow-grid" data-aos="fade-up">
+            <div class="journey-flow-grid" data-aos="fade-up" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 1</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">THE LAW</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Identify relevant Act or statute</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">1</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">THE LAW</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Identify relevant Act or statute</p>
                 </div>
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 2</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">UNDERSTAND</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Read plain-language summary</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">2</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">UNDERSTAND</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Read plain-language summary</p>
                 </div>
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 3</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">SITUATION</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Match real-life facts</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">3</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">SITUATION</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Match real-life facts</p>
                 </div>
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 4</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">PROVISIONS</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Check specific sections</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">4</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">PROVISIONS</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Check specific sections</p>
                 </div>
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 5</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">PROCEDURE</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Follow procedural code</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">5</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">PROCEDURE</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Follow procedural code</p>
                 </div>
                 <div class="journey-flow-step">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 6</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">REMEDIES</h4>
-                    <p style="font-size:12px; color:#666; margin:0;">Approach court or forum</p>
+                    <div style="width:36px; height:36px; background:#f0fdf4; color:#00C853; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px; border:2px solid #00C853;">6</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--dark); margin:0 0 4px;">REMEDIES</h4>
+                    <p style="font-size:11.5px; color:#666; margin:0;">Approach court or forum</p>
                 </div>
                 <div class="journey-flow-step" style="background:#f0fdf4; border-color:var(--primary);">
-                    <span style="font-size:11px; font-weight:900; color:var(--primary-dark);">STEP 7</span>
-                    <h4 style="font-size:15px; font-weight:800; color:var(--primary-dark); margin:6px 0 4px;">LEGAL HELP</h4>
-                    <p style="font-size:12px; color:#555; margin:0;">Consult advocate / NALSA</p>
+                    <div style="width:36px; height:36px; background:#00C853; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; margin:0 auto 10px;">7</div>
+                    <h4 style="font-size:14px; font-weight:800; color:var(--primary-dark); margin:0 0 4px;">LEGAL HELP</h4>
+                    <p style="font-size:11.5px; color:#555; margin:0;">Consult advocate / NALSA</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 13 — POPULAR LEGAL TOPICS GRID -->
+    <!-- 09 — POPULAR LEGAL TOPICS GRID -->
     <section style="padding:90px 0; background:#ffffff;" id="popular-topics">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -4185,47 +4301,59 @@ function buildFeaturesAndOther() {
                 <a href="dictionary.html?q=FIR" class="topic-chip"><i class="fas fa-file-shield" style="color:var(--primary);"></i> FIR</a>
                 <a href="rights.html#police-rights" class="topic-chip"><i class="fas fa-handcuffs" style="color:var(--primary);"></i> Arrest Rights</a>
                 <a href="dictionary.html?q=Bail" class="topic-chip"><i class="fas fa-key" style="color:var(--primary);"></i> Bail</a>
-                <a href="dictionary.html?q=Assault" class="topic-chip"><i class="fas fa-user-ninja" style="color:var(--primary);"></i> Assault</a>
-                <a href="dictionary.html?q=Theft" class="topic-chip"><i class="fas fa-mask" style="color:var(--primary);"></i> Theft</a>
-                <a href="dictionary.html?q=Cheating" class="topic-chip"><i class="fas fa-user-secret" style="color:var(--primary);"></i> Cheating</a>
-                <a href="dictionary.html?q=Defamation" class="topic-chip"><i class="fas fa-comment-slash" style="color:var(--primary);"></i> Defamation</a>
+                <a href="legal-guides/cheque-bounce-138-ni-act.html" class="topic-chip"><i class="fas fa-money-check-dollar" style="color:var(--primary);"></i> Cheque Bounce (Sec 138)</a>
                 <a href="rights.html#cyber-rights" class="topic-chip"><i class="fas fa-headset" style="color:var(--primary);"></i> Cyber Fraud</a>
                 <a href="rights.html#womens-rights" class="topic-chip"><i class="fas fa-person-dress" style="color:var(--primary);"></i> Domestic Violence</a>
                 <a href="rights.html#consumer-rights" class="topic-chip"><i class="fas fa-bag-shopping" style="color:var(--primary);"></i> Consumer Complaints</a>
                 <a href="rights.html#tenant-rights" class="topic-chip"><i class="fas fa-building" style="color:var(--primary);"></i> Tenant Disputes</a>
                 <a href="rights.html#workplace-rights" class="topic-chip"><i class="fas fa-briefcase" style="color:var(--primary);"></i> Workplace POSH</a>
+                <a href="legal-guides/how-to-file-rti-application.html" class="topic-chip"><i class="fas fa-file-signature" style="color:var(--primary);"></i> RTI Application</a>
+                <a href="legal-guides/ancestral-property-partition-guide.html" class="topic-chip"><i class="fas fa-house-user" style="color:var(--primary);"></i> Property Partition</a>
+                <a href="legal-guides/mutual-consent-divorce-guide.html" class="topic-chip"><i class="fas fa-heart-crack" style="color:var(--primary);"></i> Mutual Divorce</a>
             </div>
         </div>
     </section>
 
-    <!-- 14 & 15 — DICTIONARY & RIGHTS CONNECTION BRIDGES -->
+    <!-- 10 — DICTIONARY & RIGHTS CONNECTION BRIDGES -->
     <section style="padding:80px 0; background:var(--bg-light);">
         <div class="container">
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:30px;" data-aos="fade-up">
                 
                 <!-- DICTIONARY CONNECTION -->
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
                     <div style="width:48px; height:48px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
                         <i class="fas fa-book-bookmark"></i>
                     </div>
                     <h3 style="font-size:1.6rem; font-weight:900; color:var(--dark); margin-bottom:10px;">Don't Understand a Legal Term?</h3>
-                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:20px;">
-                        The NYAYI Legal Dictionary provides plain-language definitions for over 1,200+ Indian legal terms including <em>Bail, Cognizable, Mens Rea, Habeas Corpus, Prima Facie, and Affidavit</em>.
+                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:18px;">
+                        The NYAYI Legal Dictionary provides plain-language definitions for over 1,200+ Indian legal terms across Criminal, Civil, Constitutional, Property, and Latin Maxims.
                     </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Bail</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Anticipatory Bail</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Habeas Corpus</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Prima Facie</span>
+                    </div>
                     <a href="dictionary.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
-                        <i class="fas fa-book-bookmark"></i> Explore Legal Dictionary &rarr;
+                        <i class="fas fa-book-bookmark"></i> Explore 1,200+ Terms &rarr;
                     </a>
                 </div>
 
                 <!-- RIGHTS CONNECTION -->
-                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:35px; box-shadow:0 10px 30px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
                     <div style="width:48px; height:48px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">
                         <i class="fas fa-shield-halved"></i>
                     </div>
                     <h3 style="font-size:1.6rem; font-weight:900; color:var(--dark); margin-bottom:10px;">Know the Law. Know Your Rights.</h3>
-                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:20px;">
-                        Understanding statutes becomes practical when combined with awareness of your constitutional and procedural citizen rights during police stops, arrests, consumer disputes, and workplace incidents.
+                    <p style="font-size:14.5px; color:#555; line-height:1.7; margin-bottom:18px;">
+                        Understanding statutes becomes actionable power when combined with awareness of your constitutional safeguards during police checkpoints, arrests, consumer disputes, and landlord issues.
                     </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Police Checks</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Women Protections</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Tenant Rights</span>
+                        <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Cyber Privacy</span>
+                    </div>
                     <a href="rights.html" class="btn-outline" style="padding:12px 28px; font-size:14px; border-color:var(--primary); color:var(--primary-dark) !important;">
                         <i class="fas fa-compass"></i> Explore Know Your Rights &rarr;
                     </a>
@@ -4235,7 +4363,7 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <!-- 16 — FAQ SECTION -->
+    <!-- 11 — FAQ SECTION -->
     <section style="padding:90px 0; background:#ffffff;" id="faq">
         <div class="container" style="max-width:880px;">
             <div class="section-header" data-aos="fade-up">
@@ -4292,7 +4420,7 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <!-- 17 — RESPONSIBLE LEGAL DISCLAIMER -->
+    <!-- 12 — RESPONSIBLE LEGAL DISCLAIMER -->
     <section style="padding:40px 0; background:var(--bg-light); border-top:1px solid #e2e8f0;">
         <div class="container" style="max-width:960px;">
             <div style="background:#ffffff; border-left:4px solid var(--primary); padding:24px 30px; border-radius:16px; border:1px solid #e2e8f0;">
@@ -4306,7 +4434,7 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <!-- 27 — FINAL CTA BLOCK -->
+    <!-- 13 — FINAL CTA BLOCK -->
     <section style="padding:90px 0 100px; background:linear-gradient(135deg, #000000 0%, #151515 100%); color:white;" id="final-cta">
         <div class="container">
             <div style="text-align:center; max-width:820px; margin:0 auto;" data-aos="zoom-in">
@@ -4321,16 +4449,6 @@ function buildFeaturesAndOther() {
             </div>
         </div>
     </section>
-
-    <!-- INTERACTIVE LAW EXPLORER MODAL -->
-    <div id="lawModalOverlay" class="law-modal-overlay" onclick="if(event.target === this) closeLawModal()">
-        <div class="law-modal-content">
-            <div class="law-modal-close" onclick="closeLawModal()"><i class="fas fa-times"></i></div>
-            <div id="lawModalBody">
-                <!-- Dynamically populated via JS -->
-            </div>
-        </div>
-    </div>
 
     <!-- CLIENT-SIDE LAWS SEARCH ENGINE & MODAL SCRIPT -->
     <script>
@@ -4424,28 +4542,64 @@ function buildFeaturesAndOther() {
             grid.style.display = 'grid';
             if (emptyState) emptyState.style.display = 'none';
 
-            grid.innerHTML = filtered.map(item => \`
+            grid.innerHTML = filtered.map(item => {
+                const icon = (function(cat) {
+                    switch(cat) {
+                        case 'constitutional':
+                        case 'constitution': return 'fa-landmark';
+                        case 'criminal':
+                        case 'criminal-new': return 'fa-handcuffs';
+                        case 'procedural':
+                        case 'procedure': return 'fa-file-shield';
+                        case 'evidence': return 'fa-fingerprint';
+                        case 'civil': return 'fa-scale-balanced';
+                        case 'consumer': return 'fa-cart-shopping';
+                        case 'family': return 'fa-people-roof';
+                        case 'property': return 'fa-house-chimney';
+                        case 'labour': return 'fa-user-tie';
+                        case 'corporate': return 'fa-building-columns';
+                        case 'cyber': return 'fa-shield-virus';
+                        case 'motor': return 'fa-car';
+                        case 'human-rights': return 'fa-hand-holding-heart';
+                        case 'environmental': return 'fa-leaf';
+                        default: return 'fa-book-scale';
+                    }
+                })(item.catKey);
+                const studyBadge = item.studyNotes ? \`
+                    <div style="margin-top:10px; display:inline-flex; align-items:center; gap:6px; background:#f0fdf4; border:1px solid #dcfce7; padding:4px 10px; border-radius:8px; font-size:12px; color:#166534; font-weight:700;">
+                        <i class="fas fa-check-circle" style="color:#00C853; font-size:11px;"></i> \${item.studyNotes.split('.')[0]}.
+                    </div>\` : '';
+
+                return \`
                 <div class="law-card" data-category="\${item.catKey}" data-title="\${(item.title || '').toLowerCase()}" data-aos="fade-up">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px;">
-                            <span class="badge-cat"><i class="fas fa-scale-unbalanced-flip"></i> \${item.category}</span>
+                            <span class="badge-cat" style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800;">
+                                <i class="fas \${icon}"></i> \${item.category}
+                            </span>
                             <span style="font-size:12px; font-weight:800; color:#718096;"><i class="fas fa-calendar-days"></i> \${item.year}</span>
                         </div>
-                        <h3 style="font-size:1.25rem; font-weight:800; color:var(--dark); margin-bottom:10px; line-height:1.35;">\${item.title}</h3>
-                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:16px;">\${item.purpose}</p>
-                        <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:18px;">
-                            <strong style="font-size:12px; color:var(--primary-dark); text-transform:uppercase; tracking:1px;">Covers:</strong>
-                            <p style="font-size:12.5px; color:#555; margin:2px 0 0; line-height:1.5;">\${item.coverage}</p>
+                        <h3 style="font-size:1.25rem; font-weight:900; color:var(--dark); margin-bottom:10px; line-height:1.35;">\${item.title}</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin-bottom:14px;">\${item.purpose}</p>
+                        <div style="background:#f8fafc; border-left:3px solid var(--primary); padding:10px 14px; border-radius:10px; margin-bottom:14px;">
+                            <strong style="font-size:11.5px; color:var(--primary-dark); text-transform:uppercase; letter-spacing:0.5px;">Statutory Scope:</strong>
+                            <p style="font-size:12.5px; color:#4a5568; margin:2px 0 0; line-height:1.5;">\${item.coverage}</p>
                         </div>
+                        \${studyBadge}
                     </div>
-                    <div>
-                        <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
-                            <button onclick="openLawModal('\${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px;"><i class="fas fa-book-open"></i> Explore Law &rarr;</button>
-                            <a href="laws/\${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none;">Full Act &rarr;</a>
+                    <div style="margin-top:16px;">
+                        <div style="border-top:1px solid #edf2f7; padding-top:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                            <button onclick="openLawModal('\${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px; font-weight:700; cursor:pointer;">
+                                <i class="fas fa-book-open"></i> Quick Explorer &rarr;
+                            </button>
+                            <a href="laws/\${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                                Full Act Guide <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            \`).join('');
+                \`;
+            }).join('');
         }
 
         // LAW EXPLORER MODAL OVERLAY
