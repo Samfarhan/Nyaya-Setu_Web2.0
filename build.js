@@ -94,7 +94,10 @@ function renderHeader(activePage = '', depth = 0) {
         <a href="${p}index.html" onclick="toggleMenu()">Home</a>
         <a href="${p}features.html" onclick="toggleMenu()">Features</a>
         <a href="${p}dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="${p}rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="${p}rights.html" onclick="toggleMenu()">Rights</a>
+        <a href="${p}laws.html" onclick="toggleMenu()">Laws Library</a>
+        <a href="${p}guides.html" onclick="toggleMenu()">Guides</a>
+        <a href="${p}articles.html" onclick="toggleMenu()">Articles</a>
         <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
         <a href="${p}app.html" style="color:var(--primary);">Mobile App</a>
         <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
@@ -110,7 +113,10 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}index.html" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
-                <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Know Rights</a></li>
+                <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
+                <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}">Laws</a></li>
+                <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}">Guides</a></li>
+                <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}">Articles</a></li>
                 <li><a href="${p}contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
                 <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
@@ -181,8 +187,8 @@ function renderFooter(depth = 0) {
                 <ul>
                     <li><a href="${p}dictionary.html">Dictionary</a></li>
                     <li><a href="${p}rights.html">Know Rights</a></li>
-                    <li><a href="${p}laws/index.html">Laws Library</a></li>
-                    <li><a href="${p}legal-guides/index.html">Legal Guides</a></li>
+                    <li><a href="${p}laws.html">Laws Library</a></li>
+                    <li><a href="${p}guides.html">Legal Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -224,7 +230,7 @@ function renderFooter(depth = 0) {
             cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -583,6 +589,12 @@ function buildRights() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'rights.html'), hubHtml, 'utf8');
 
+    // Create rights/index.html so /rights/ works too!
+    if (!fs.existsSync(path.join(ROOT_DIR, 'rights'))) {
+        fs.mkdirSync(path.join(ROOT_DIR, 'rights'), { recursive: true });
+    }
+    fs.writeFileSync(path.join(ROOT_DIR, 'rights/index.html'), hubHtml, 'utf8');
+
     rights.forEach(item => {
         const pageHtml = `
         ${renderHead(`${item.title} | NYAYI Rights Guide`, item.description, `${item.title}, legal rights India, citizen protections`, `/know-your-rights/${item.slug}.html`, 1)}
@@ -621,36 +633,88 @@ function buildRights() {
 
 // 4. BUILD FEATURES, ABOUT, CONTACT, APP, LAWS, GUIDES, POLICIES
 function buildFeaturesAndOther() {
-    // Features Page
+    // Features Page with original 6 feature cards and CTA box
     const featuresHtml = `
     ${renderHead('Features | NYAYI Legal AI', 'Explore features of NYAYI: BNS IPC Converter, FIR Drafter, Case Search, 22+ Languages, and AI Legal Terminal.', 'NYAYI features, IPC BNS converter, draft FIR generator, AI legal assistant', '/features.html')}
     ${renderHeader('features', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
-            <h1>Platform <span>Features</span></h1>
-            <p>Cutting-edge legal technology engineered for simplicity, precision, and speed.</p>
+            <h1>Core <span>Legal Capabilities</span></h1>
+            <p>Engineered with legal-grade natural language AI, precision converters, and dynamic drafting modules.</p>
         </div>
     </section>
 
-    <section style="padding:60px 0 100px; background:#fff;">
+    <section class="features-section">
         <div class="container">
-            <div class="card-grid">
-                <div class="info-card" data-aos="fade-up">
-                    <div class="card-icon"><i class="fas fa-arrows-rotate"></i></div>
-                    <h3>IPC & BNS Converter</h3>
-                    <p>Instant cross-referencing between old Indian Penal Code sections and new Bharatiya Nyaya Sanhita 2023 provisions.</p>
+            <div class="features-grid">
+                
+                <div class="feature-card" data-aos="fade-up">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Smart Case Search</h3>
+                        <p>Express legal concerns in simple conversational language. The neural core maps descriptions directly to relevant IPC, BNS, and Constitutional provisions.</p>
+                    </div>
+                    <span class="fc-tag">AI Powered</span>
                 </div>
-                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-icon"><i class="fas fa-file-signature"></i></div>
-                    <h3>Draft FIR Assistant</h3>
-                    <p>Structured template assistance to articulate crime facts accurately before approaching police stations.</p>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-arrow-right-arrow-left"></i></div>
+                        <h3>IPC & BNS Converter</h3>
+                        <p>Seamlessly translate classic Indian Penal Code (IPC) sections into their updated Bharatiya Nyaya Sanhita (BNS) equivalents in real-time.</p>
+                    </div>
+                    <span class="fc-tag">Statutory Utility</span>
                 </div>
-                <div class="info-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon"><i class="fas fa-language"></i></div>
-                    <h3>22+ Indian Languages</h3>
-                    <p>Voice and text support across Hindi, English, Bengali, Tamil, Telugu, Marathi, and regional dialects.</p>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Draft FIR Generator</h3>
+                        <p>Generate structured, legally sound First Information Report (FIR) drafts by answering guided prompts about incident details.</p>
+                    </div>
+                    <span class="fc-tag">Auto-Drafting</span>
                 </div>
+
+                <div class="feature-card" data-aos="fade-up">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-building-user"></i></div>
+                        <h3>Rent Agreement Drafter</h3>
+                        <p>Create customizable rental contracts formatted to standard Indian real estate legal norms in less than 30 seconds.</p>
+                    </div>
+                    <span class="fc-tag">Document Builder</span>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-calculator"></i></div>
+                        <h3>Traffic Fine Calculator</h3>
+                        <p>Calculate fine amounts, legal liabilities, and court summons risks based on the active Motor Vehicles Amendment Act.</p>
+                    </div>
+                    <span class="fc-tag">Instant Calculator</span>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-language"></i></div>
+                        <h3>22+ Indian Languages</h3>
+                        <p>Query, process, and read legal outputs in 22+ official Indian languages with context-aware voice query support.</p>
+                    </div>
+                    <span class="fc-tag">Multilingual AI</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box" data-aos="zoom-in">
+                <h2>Experience AI Legal Assistance</h2>
+                <p>Get fast, confidential, and intelligent guidance for your legal queries right now.</p>
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:18px; padding:18px 45px;">
+                    <i class="fas fa-rocket"></i> Launch NYAYI Web AI
+                </a>
             </div>
         </div>
     </section>
@@ -696,10 +760,10 @@ function buildFeaturesAndOther() {
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
 
-    // Laws Hub (laws/index.html)
+    // Laws Hub: generate BOTH laws.html and laws/index.html
     const lawsHub = `
-    ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws/index.html', 1)}
-    ${renderHeader('laws', 1)}
+    ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws.html', 0)}
+    ${renderHeader('laws', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
@@ -718,16 +782,17 @@ function buildFeaturesAndOther() {
                             <h3 style="margin-top:10px;">${item.title}</h3>
                             <p>${item.purpose}</p>
                         </div>
-                        <a href="${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                        <a href="laws/${item.slug}.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `).join('')}
             </div>
         </div>
     </section>
 
-    ${renderFooter(1)}
+    ${renderFooter(0)}
     `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'laws.html'), lawsHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsHub.replace(/laws\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
 
     laws.forEach(item => {
         const pageHtml = `
@@ -736,7 +801,7 @@ function buildFeaturesAndOther() {
 
         <section class="page-header" style="padding-bottom:40px; text-align:left;">
             <div class="container" data-aos="fade-up">
-                <a href="index.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
+                <a href="../laws.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
                 <span class="cp-role" style="margin-top:20px; display:inline-block;">Enacted: ${item.enacted}</span>
                 <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
                 <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.purpose}</p>
@@ -767,10 +832,10 @@ function buildFeaturesAndOther() {
         fs.writeFileSync(path.join(ROOT_DIR, `laws/${item.slug}.html`), pageHtml, 'utf8');
     });
 
-    // Legal Guides Hub (legal-guides/index.html)
+    // Guides Hub: generate BOTH guides.html and legal-guides/index.html
     const guidesHub = `
-    ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/legal-guides/index.html', 1)}
-    ${renderHeader('guides', 1)}
+    ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/guides.html', 0)}
+    ${renderHeader('guides', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
@@ -789,16 +854,17 @@ function buildFeaturesAndOther() {
                             <h3 style="margin-top:8px;">${item.title}</h3>
                             <p>${item.summary}</p>
                         </div>
-                        <a href="${item.slug}.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="legal-guides/${item.slug}.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `).join('')}
             </div>
         </div>
     </section>
 
-    ${renderFooter(1)}
+    ${renderFooter(0)}
     `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'guides.html'), guidesHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub.replace(/legal-guides\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
 
     guides.forEach(item => {
         const pageHtml = `
@@ -807,7 +873,7 @@ function buildFeaturesAndOther() {
 
         <section class="page-header" style="padding-bottom:40px; text-align:left;">
             <div class="container" data-aos="fade-up">
-                <a href="index.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Guides</a>
+                <a href="../guides.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Guides</a>
                 <span class="cp-role" style="margin-top:20px; display:inline-block;">${item.category}</span>
                 <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
                 <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.summary}</p>
@@ -866,7 +932,7 @@ function buildFeaturesAndOther() {
     // Articles Page
     const blogHtml = `
     ${renderHead('Legal Articles | NYAYI Legal AI', 'Read legal insights, BNS 2023 updates, and legal awareness articles written by Farhan Khan & Kamran Sheikh.', 'Legal articles India, BNS updates, legal tech blog', '/articles.html', 0)}
-    ${renderHeader('home', 0)}
+    ${renderHeader('articles', 0)}
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
             <h1>Legal <span>Articles</span></h1>
@@ -903,8 +969,8 @@ function buildFeaturesAndOther() {
         'https://nyayi.in/features.html',
         'https://nyayi.in/dictionary.html',
         'https://nyayi.in/rights.html',
-        'https://nyayi.in/laws/index.html',
-        'https://nyayi.in/legal-guides/index.html',
+        'https://nyayi.in/laws.html',
+        'https://nyayi.in/guides.html',
         'https://nyayi.in/articles.html',
         'https://nyayi.in/contact.html',
         'https://nyayi.in/app.html',

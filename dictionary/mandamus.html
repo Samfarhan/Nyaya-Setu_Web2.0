@@ -62,7 +62,10 @@
         <a href="../index.html" onclick="toggleMenu()">Home</a>
         <a href="../features.html" onclick="toggleMenu()">Features</a>
         <a href="../dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="../rights.html" onclick="toggleMenu()">Know Rights</a>
+        <a href="../rights.html" onclick="toggleMenu()">Rights</a>
+        <a href="../laws.html" onclick="toggleMenu()">Laws Library</a>
+        <a href="../guides.html" onclick="toggleMenu()">Guides</a>
+        <a href="../articles.html" onclick="toggleMenu()">Articles</a>
         <a href="../contact.html" onclick="toggleMenu()">Contact</a>
         <a href="../app.html" style="color:var(--primary);">Mobile App</a>
         <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
@@ -78,7 +81,10 @@
                 <li><a href="../index.html" class="">Home</a></li>
                 <li><a href="../features.html" class="">Features</a></li>
                 <li><a href="../dictionary.html" class="active">Dictionary</a></li>
-                <li><a href="../rights.html" class="">Know Rights</a></li>
+                <li><a href="../rights.html" class="">Rights</a></li>
+                <li><a href="../laws.html" class="">Laws</a></li>
+                <li><a href="../guides.html" class="">Guides</a></li>
+                <li><a href="../articles.html" class="">Articles</a></li>
                 <li><a href="../contact.html" class="">Contact</a></li>
                 <li><a href="../app.html" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
@@ -153,8 +159,8 @@
                 <ul>
                     <li><a href="../dictionary.html">Dictionary</a></li>
                     <li><a href="../rights.html">Know Rights</a></li>
-                    <li><a href="../laws/index.html">Laws Library</a></li>
-                    <li><a href="../legal-guides/index.html">Legal Guides</a></li>
+                    <li><a href="../laws.html">Laws Library</a></li>
+                    <li><a href="../guides.html">Legal Guides</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -196,7 +202,7 @@
             cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
