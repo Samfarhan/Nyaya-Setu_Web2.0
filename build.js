@@ -12,7 +12,7 @@ const architectsData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/arch
 const articles = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/articles.json'), 'utf8'));
 
 // Ensure Output Subdirectories Exist
-['dictionary', 'know-your-rights', 'laws', 'legal-guides', 'blog'].forEach(dir => {
+['dictionary', 'know-your-rights', 'laws', 'legal-guides', 'blog', 'rights'].forEach(dir => {
     const fullPath = path.join(ROOT_DIR, dir);
     if (!fs.existsSync(fullPath)) {
         fs.mkdirSync(fullPath, { recursive: true });
@@ -89,20 +89,20 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
 function renderHeader(activePage = '', depth = 0) {
     const p = depth === 1 ? '../' : './';
     const isBlogActive = ['blog', 'laws', 'guides', 'articles'].includes(activePage);
-
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="${p}index.html" onclick="toggleMenu()">Home</a>
-        <a href="${p}features.html" onclick="toggleMenu()">Features</a>
-        <a href="${p}dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="${p}rights.html" onclick="toggleMenu()">Rights</a>
-        <a href="${p}laws.html" onclick="toggleMenu()">Laws Library</a>
-        <a href="${p}guides.html" onclick="toggleMenu()">Legal Guides</a>
-        <a href="${p}articles.html" onclick="toggleMenu()">Articles</a>
-        <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="${p}app.html" style="color:var(--primary);">Mobile App</a>
-        <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
+        <a href="${p}index.html" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
+        <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
+        <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
+        <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Rights</a>
+        <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Laws Library</a>
+        <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
+        <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}">Articles & Updates</a>
+        <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
+            <i class="fas fa-rocket"></i> Launch Web AI
+        </a>
     </div>
 
     <header>
@@ -116,18 +116,35 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li class="nav-item-dropdown">
-                    <a href="${p}articles.html" class="${isBlogActive ? 'active' : ''}">
-                        Blog <i class="fas fa-chevron-down dropdown-icon"></i>
+                <li class="nav-dropdown">
+                    <a href="${p}articles.html" class="dropdown-trigger ${isBlogActive ? 'active' : ''}">
+                        Blog <i class="fas fa-chevron-down"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${p}laws.html"><i class="fas fa-landmark"></i> Laws Library</a></li>
-                        <li><a href="${p}guides.html"><i class="fas fa-book-open"></i> Legal Guides</a></li>
-                        <li><a href="${p}articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-                    </ul>
+                    <div class="dropdown-menu">
+                        <a href="${p}laws.html" class="dropdown-item ${activePage === 'laws' ? 'active' : ''}">
+                            <div class="dd-icon"><i class="fas fa-book-bookmark"></i></div>
+                            <div class="dd-text">
+                                <strong>Laws Library</strong>
+                                <span>BNS, BNSS, BSA & Constitution</span>
+                            </div>
+                        </a>
+                        <a href="${p}guides.html" class="dropdown-item ${activePage === 'guides' ? 'active' : ''}">
+                            <div class="dd-icon"><i class="fas fa-list-check"></i></div>
+                            <div class="dd-text">
+                                <strong>Legal Guides</strong>
+                                <span>Practical procedural walk-throughs</span>
+                            </div>
+                        </a>
+                        <a href="${p}articles.html" class="dropdown-item ${activePage === 'articles' ? 'active' : ''}">
+                            <div class="dd-icon"><i class="fas fa-newspaper"></i></div>
+                            <div class="dd-text">
+                                <strong>Articles & Insights</strong>
+                                <span>Editorial updates & legal tech analysis</span>
+                            </div>
+                        </a>
+                    </div>
                 </li>
-                <li><a href="${p}contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
-                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
+                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}"><i class="fas fa-mobile-screen"></i> Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center;">
@@ -189,22 +206,26 @@ function renderFooter(depth = 0) {
                     <li><a href="${p}index.html">Home</a></li>
                     <li><a href="${p}features.html">Features</a></li>
                     <li><a href="${p}app.html">Mobile App</a></li>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="${p}dictionary.html">Dictionary</a></li>
+                    <li><a href="${p}dictionary.html">Legal Dictionary</a></li>
                     <li><a href="${p}rights.html">Know Rights</a></li>
                     <li><a href="${p}laws.html">Laws Library</a></li>
                     <li><a href="${p}guides.html">Legal Guides</a></li>
+                    <li><a href="${p}articles.html">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
+                <h4>Contact & Support</h4>
                 <ul>
+                    <li><a href="${p}contact.html">Contact Us</a></li>
+                    <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
+                    <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="${p}privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
                     <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
@@ -239,7 +260,7 @@ function renderFooter(depth = 0) {
             cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dropdown-menu a, .nav-item-dropdown');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .dropdown-item, .nav-dropdown, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -263,8 +284,8 @@ function buildHomepage() {
     const dictCards = dictionary.slice(0, 6).map(item => `
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
-                <h3 style="margin-top:8px;">${item.term}</h3>
+                <span class="card-tag">${item.category}</span>
+                <h3 style="margin-top:4px;">${item.term}</h3>
                 <p>${item.simpleDef}</p>
             </div>
             <a href="dictionary/${item.slug}.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -435,9 +456,9 @@ function buildHomepage() {
 // 2. GENERATE DICTIONARY HUB & TERM PAGES
 function buildDictionary() {
     const termCards = dictionary.map(item => `
-        <div class="info-card" data-category="${item.category}" data-aos="fade-up">
+        <div class="dict-card" data-category="${item.category}" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
+                <span class="card-tag">${item.category}</span>
                 <h3 style="margin-top:6px; font-size:20px;">${item.term}</h3>
                 <p style="font-size:14px; margin-bottom:16px;">${item.simpleDef}</p>
             </div>
@@ -474,7 +495,7 @@ function buildDictionary() {
 
     <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
-            <div class="card-grid" id="dictGrid">
+            <div class="dict-grid" id="dictGrid">
                 ${termCards}
             </div>
         </div>
@@ -483,7 +504,7 @@ function buildDictionary() {
     <script>
         function filterDict() {
             const query = document.getElementById('dictSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('#dictGrid .info-card');
+            const cards = document.querySelectorAll('#dictGrid .dict-card');
             cards.forEach(card => {
                 const text = card.textContent.toLowerCase();
                 card.style.display = text.includes(query) ? 'flex' : 'none';
@@ -492,7 +513,7 @@ function buildDictionary() {
         function filterCat(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const cards = document.querySelectorAll('#dictGrid .info-card');
+            const cards = document.querySelectorAll('#dictGrid .dict-card');
             cards.forEach(card => {
                 if(cat === 'all' || card.getAttribute('data-category') === cat) {
                     card.style.display = 'flex';
@@ -578,9 +599,9 @@ function buildRights() {
 
     <section style="padding:60px 0 100px; background:#fff;">
         <div class="container">
-            <div class="card-grid">
+            <div class="rights-grid">
                 ${rights.map(item => `
-                    <div class="info-card" data-aos="fade-up">
+                    <div class="rights-card" data-aos="fade-up">
                         <div>
                             <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
                             <h3>${item.title}</h3>
@@ -598,10 +619,7 @@ function buildRights() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'rights.html'), hubHtml, 'utf8');
 
-    // Create rights/index.html so /rights/ works too!
-    if (!fs.existsSync(path.join(ROOT_DIR, 'rights'))) {
-        fs.mkdirSync(path.join(ROOT_DIR, 'rights'), { recursive: true });
-    }
+    // Also write rights/index.html so /rights/ works
     fs.writeFileSync(path.join(ROOT_DIR, 'rights/index.html'), hubHtml, 'utf8');
 
     rights.forEach(item => {
@@ -640,7 +658,7 @@ function buildRights() {
     });
 }
 
-// 4. BUILD FEATURES, ABOUT, CONTACT, APP, LAWS, GUIDES, POLICIES
+// 4. BUILD FEATURES, CONTACT, APP, LAWS, GUIDES, POLICIES
 function buildFeaturesAndOther() {
     // Features Page with original 6 feature cards and CTA box
     const featuresHtml = `
@@ -735,7 +753,7 @@ function buildFeaturesAndOther() {
     // Contact Page
     const contactHtml = `
     ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
-    ${renderHeader('contact', 0)}
+    ${renderHeader('home', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
@@ -769,7 +787,7 @@ function buildFeaturesAndOther() {
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
 
-    // Laws Hub: generate BOTH laws.html and laws/index.html
+    // Laws Hub: generate laws.html and laws/index.html
     const lawsHub = `
     ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws.html', 0)}
     ${renderHeader('laws', 0)}
@@ -781,13 +799,13 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <section style="padding:60px 0 100px; background:#fff;">
+    <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
-            <div class="card-grid">
+            <div class="laws-grid">
                 ${laws.map(item => `
-                    <div class="info-card" data-aos="fade-up">
+                    <div class="law-card" data-aos="fade-up">
                         <div>
-                            <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category}</span>
+                            <span class="card-tag">${item.category}</span>
                             <h3 style="margin-top:10px;">${item.title}</h3>
                             <p>${item.purpose}</p>
                         </div>
@@ -841,7 +859,7 @@ function buildFeaturesAndOther() {
         fs.writeFileSync(path.join(ROOT_DIR, `laws/${item.slug}.html`), pageHtml, 'utf8');
     });
 
-    // Guides Hub: generate BOTH guides.html and legal-guides/index.html
+    // Guides Hub: generate guides.html and legal-guides/index.html
     const guidesHub = `
     ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/guides.html', 0)}
     ${renderHeader('guides', 0)}
@@ -853,13 +871,13 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <section style="padding:60px 0 100px; background:#fff;">
+    <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
-            <div class="card-grid">
+            <div class="guides-grid">
                 ${guides.map(item => `
-                    <div class="info-card" data-aos="fade-up">
+                    <div class="guide-card" data-aos="fade-up">
                         <div>
-                            <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${item.category} • ${item.readingTime}</span>
+                            <span class="card-tag">${item.category} • ${item.readingTime}</span>
                             <h3 style="margin-top:8px;">${item.title}</h3>
                             <p>${item.summary}</p>
                         </div>
@@ -948,13 +966,13 @@ function buildFeaturesAndOther() {
             <p>Editorial updates, deep-dive law explainers, and technology insights.</p>
         </div>
     </section>
-    <section style="padding:60px 0 100px; background:#fff;">
+    <section style="padding:40px 0 100px; background:#fff;">
         <div class="container">
-            <div class="card-grid">
+            <div class="articles-grid">
                 ${articles.map(art => `
-                    <div class="info-card" data-aos="fade-up">
+                    <div class="article-card" data-aos="fade-up">
                         <div>
-                            <span style="font-size:12px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">${art.category} • ${art.date}</span>
+                            <span class="card-tag">${art.category} • ${art.date}</span>
                             <h3 style="margin-top:8px;">${art.title}</h3>
                             <p>${art.summary}</p>
                         </div>

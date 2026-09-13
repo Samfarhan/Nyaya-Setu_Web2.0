@@ -59,16 +59,17 @@
     
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="./index.html" onclick="toggleMenu()">Home</a>
-        <a href="./features.html" onclick="toggleMenu()">Features</a>
-        <a href="./dictionary.html" onclick="toggleMenu()">Dictionary</a>
-        <a href="./rights.html" onclick="toggleMenu()">Rights</a>
-        <a href="./laws.html" onclick="toggleMenu()">Laws Library</a>
-        <a href="./guides.html" onclick="toggleMenu()">Legal Guides</a>
-        <a href="./articles.html" onclick="toggleMenu()">Articles</a>
-        <a href="./contact.html" onclick="toggleMenu()">Contact</a>
-        <a href="./app.html" style="color:var(--primary);">Mobile App</a>
-        <a href="https://ai.nyayi.in" target="_blank" style="margin-top:20px; background:black; color:white; padding:12px 30px; border-radius:50px; font-size:16px;">Launch Web AI</a>
+        <a href="./index.html" onclick="toggleMenu()" class="active">Home</a>
+        <a href="./features.html" onclick="toggleMenu()" class="">Features</a>
+        <a href="./dictionary.html" onclick="toggleMenu()" class="">Legal Dictionary</a>
+        <a href="./rights.html" onclick="toggleMenu()" class="">Know Rights</a>
+        <a href="./laws.html" onclick="toggleMenu()" class="">Laws Library</a>
+        <a href="./guides.html" onclick="toggleMenu()" class="">Legal Guides</a>
+        <a href="./articles.html" onclick="toggleMenu()" class="">Articles & Updates</a>
+        <a href="./app.html" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
+            <i class="fas fa-rocket"></i> Launch Web AI
+        </a>
     </div>
 
     <header>
@@ -82,18 +83,35 @@
                 <li><a href="./features.html" class="">Features</a></li>
                 <li><a href="./dictionary.html" class="">Dictionary</a></li>
                 <li><a href="./rights.html" class="">Rights</a></li>
-                <li class="nav-item-dropdown">
-                    <a href="./articles.html" class="">
-                        Blog <i class="fas fa-chevron-down dropdown-icon"></i>
+                <li class="nav-dropdown">
+                    <a href="./articles.html" class="dropdown-trigger ">
+                        Blog <i class="fas fa-chevron-down"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="./laws.html"><i class="fas fa-landmark"></i> Laws Library</a></li>
-                        <li><a href="./guides.html"><i class="fas fa-book-open"></i> Legal Guides</a></li>
-                        <li><a href="./articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-                    </ul>
+                    <div class="dropdown-menu">
+                        <a href="./laws.html" class="dropdown-item ">
+                            <div class="dd-icon"><i class="fas fa-book-bookmark"></i></div>
+                            <div class="dd-text">
+                                <strong>Laws Library</strong>
+                                <span>BNS, BNSS, BSA & Constitution</span>
+                            </div>
+                        </a>
+                        <a href="./guides.html" class="dropdown-item ">
+                            <div class="dd-icon"><i class="fas fa-list-check"></i></div>
+                            <div class="dd-text">
+                                <strong>Legal Guides</strong>
+                                <span>Practical procedural walk-throughs</span>
+                            </div>
+                        </a>
+                        <a href="./articles.html" class="dropdown-item ">
+                            <div class="dd-icon"><i class="fas fa-newspaper"></i></div>
+                            <div class="dd-text">
+                                <strong>Articles & Insights</strong>
+                                <span>Editorial updates & legal tech analysis</span>
+                            </div>
+                        </a>
+                    </div>
                 </li>
-                <li><a href="./contact.html" class="">Contact</a></li>
-                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
+                <li><a href="./app.html" style="color:var(--primary);" class=""><i class="fas fa-mobile-screen"></i> Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center;">
@@ -183,8 +201,8 @@
                 
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">First Information Report (FIR)</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">First Information Report (FIR)</h3>
                 <p>Initial written document prepared by police after receiving information about a cognizable offence.</p>
             </div>
             <a href="dictionary/fir.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -192,8 +210,8 @@
     
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">Zero FIR</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">Zero FIR</h3>
                 <p>An FIR registered at any police station regardless of geographical jurisdiction, later transferred to the appropriate station.</p>
             </div>
             <a href="dictionary/zero-fir.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -201,8 +219,8 @@
     
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">Bail</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">Bail</h3>
                 <p>Judicial release of an accused person from police or prison custody pending trial upon executing a bond or security.</p>
             </div>
             <a href="dictionary/bail.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -210,8 +228,8 @@
     
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">Anticipatory Bail</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">Anticipatory Bail</h3>
                 <p>A pre-arrest court order protecting a person from being detained by police if arrested for a non-bailable offence.</p>
             </div>
             <a href="dictionary/anticipatory-bail.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -219,8 +237,8 @@
     
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">Cognizable Offence</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">Cognizable Offence</h3>
                 <p>A serious crime where police have authority to arrest without a court warrant and initiate investigation immediately.</p>
             </div>
             <a href="dictionary/cognizable-offence.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -228,8 +246,8 @@
     
         <div class="info-card" data-aos="fade-up">
             <div>
-                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Criminal Law</span>
-                <h3 style="margin-top:8px;">Non-Cognizable Offence</h3>
+                <span class="card-tag">Criminal Law</span>
+                <h3 style="margin-top:4px;">Non-Cognizable Offence</h3>
                 <p>A minor or less severe crime where police cannot arrest without a warrant or investigate without court permission.</p>
             </div>
             <a href="dictionary/non-cognizable-offence.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
@@ -377,22 +395,26 @@
                     <li><a href="./index.html">Home</a></li>
                     <li><a href="./features.html">Features</a></li>
                     <li><a href="./app.html">Mobile App</a></li>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="./dictionary.html">Dictionary</a></li>
+                    <li><a href="./dictionary.html">Legal Dictionary</a></li>
                     <li><a href="./rights.html">Know Rights</a></li>
                     <li><a href="./laws.html">Laws Library</a></li>
                     <li><a href="./guides.html">Legal Guides</a></li>
+                    <li><a href="./articles.html">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
+                <h4>Contact & Support</h4>
                 <ul>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                    <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
+                    <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="./terms-of-use.html">Terms of Use</a></li>
                     <li><a href="./legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
@@ -427,7 +449,7 @@
             cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dropdown-menu a, .nav-item-dropdown');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .dropdown-item, .nav-dropdown, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
