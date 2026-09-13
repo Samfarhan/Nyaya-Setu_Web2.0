@@ -93,7 +93,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=3.5">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=4.0">
     
     ${schemaScripts}
 </head>
@@ -901,7 +901,7 @@ function buildDictionary() {
             <!-- SEARCH BOX -->
             <div class="dict-search-wrapper" data-aos="fade-up">
                 <i class="fas fa-search dict-search-icon"></i>
-                <input type="text" id="dictSearchInput" class="dict-search-input" oninput="handleDictSearch()" placeholder="Search 1,200+ legal terms (e.g. FIR, Bail, Anticipatory Bail, Habeas Corpus, Affidavit)...">
+                <input type="text" id="dictSearchInput" class="dict-search-input" oninput="handleDictSearch()" placeholder="Search 1,200+ legal terms (e.g. FIR, Bail, Anticipatory Bail, Habeas Corpus, Affidavit)..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
                 <button id="dictClearBtn" class="dict-clear-btn" onclick="clearDictSearch()"><i class="fas fa-times"></i></button>
             </div>
 
@@ -5222,7 +5222,7 @@ function buildFeaturesAndOther() {
         <div class="container" style="max-width: 1000px;">
             <div class="guide-search-wrapper" style="position:relative;">
                 <i class="fas fa-search guide-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px;"></i>
-                <input type="text" id="guideSearchInput" oninput="handleGuideSearch()" placeholder="Search FIR, Bail, Cyber Crime, Consumer Complaint, Tenant Rights, RERA..." style="width:100%; padding:18px 50px 18px 60px; font-size:16px; border:2px solid #e2e8f0; border-radius:16px; outline:none; transition:all 0.3s ease; box-shadow:0 4px 20px rgba(0,0,0,0.04);">
+                <input type="text" id="guideSearchInput" class="guide-search-input" oninput="handleGuideSearch()" placeholder="Search FIR, Bail, Cyber Crime, Consumer Complaint, Tenant Rights, RERA..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
                 <button id="guideClearBtn" onclick="clearGuideSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:18px; display:none;">
                     <i class="fas fa-times-circle"></i>
                 </button>
@@ -7066,10 +7066,10 @@ function buildFeaturesAndOther() {
                 <p style="font-size:14px; color:#666; margin:0;">Search articles, legal topics, statutory acts, or keywords</p>
             </div>
             
-            <div class="article-search-wrapper">
-                <i class="fas fa-search article-search-icon"></i>
-                <input type="text" id="articleSearchInput" class="article-search-input" oninput="handleArticleSearch()" placeholder="Search articles, legal topics or keywords (e.g. BNS, BNSS, Bail, Supreme Court, Article 21, Cyber Crime)...">
-                <button id="articleClearBtn" class="article-clear-btn" onclick="clearArticleSearch()"><i class="fas fa-times-circle"></i></button>
+            <div class="article-search-wrapper" style="position:relative; display:block; width:100%; max-width:900px; margin:0 auto;">
+                <i class="fas fa-search article-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px; pointer-events:none; z-index:10;"></i>
+                <input type="text" id="articleSearchInput" class="article-search-input" oninput="handleArticleSearch()" placeholder="Search articles, legal topics or keywords (e.g. BNS, BNSS, Bail, Supreme Court, Article 21, Cyber Crime)..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
+                <button id="articleClearBtn" class="article-clear-btn" onclick="clearArticleSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:20px; display:none; z-index:10; padding:0;"><i class="fas fa-times-circle"></i></button>
             </div>
             
             <div style="margin-top: 14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;">
