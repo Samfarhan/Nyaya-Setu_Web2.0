@@ -813,34 +813,19 @@ function buildHomepage() {
 
 // 2. GENERATE DICTIONARY HUB & TERM PAGES
 function buildDictionary() {
-    // Sort dictionary alphabetically
-    dictionary.sort((a, b) => a.term.localeCompare(b.term));
+    // Deduplicate dictionary by term (case-insensitive)
+    const seenMap = new Map();
+    dictionary.forEach(d => {
+        const key = d.term.toLowerCase().trim();
+        if (!seenMap.has(key)) {
+            seenMap.set(key, d);
+        }
+    });
+    const uniqueDict = Array.from(seenMap.values());
+    uniqueDict.sort((a, b) => a.term.localeCompare(b.term));
 
-    // Essential / Popular Legal Terms
-    const popularSlugs = ['fir', 'zero-fir', 'bail', 'anticipatory-bail', 'cognizable-offence', 'legal-notice', 'injunction', 'affidavit', 'habeas-corpus', 'mandamus', 'consumer-complaint', 'divorce'];
-    const popularCardsHtml = popularSlugs.map(slug => {
-        const item = dictionary.find(d => d.slug === slug) || dictionary[0];
-        return `
-            <div class="dict-card" style="border-top:3px solid var(--primary);">
-                <div>
-                    <div class="dict-card-header">
-                        <h3>${item.term}</h3>
-                        <span class="badge-cat">${item.category}</span>
-                    </div>
-                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:15px;">${item.simpleDef}</p>
-                </div>
-                <div>
-                    <div style="font-size:12px; color:#718096; margin-bottom:12px;">
-                        <i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${item.ref}
-                    </div>
-                    <a href="dictionary/${item.slug}.html" class="card-link" style="font-size:13.5px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    // Pre-render initial 48 dictionary cards for immediate SSR display
-    const initialItems = dictionary.slice(0, 48);
+    // Pre-render initial 60 cards for SSR
+    const initialItems = uniqueDict.slice(0, 60);
     const initialCardsHtml = initialItems.map(item => `
         <div class="dict-card" data-category="${item.category}" data-letter="${item.term[0].toUpperCase()}" data-term="${item.term.toLowerCase()}" data-aos="fade-up">
             <div>
@@ -868,7 +853,7 @@ function buildDictionary() {
         alphabet.map(let => `<button class="az-pill" onclick="filterLetter('${let}', this)">${let}</button>`).join('');
 
     // Minified dataset for client-side instant search across 1200+ terms
-    const clientDataset = dictionary.map(d => ({
+    const clientDataset = uniqueDict.map(d => ({
         s: d.slug,
         t: d.term,
         c: d.category,
@@ -895,8 +880,19 @@ function buildDictionary() {
                 <button id="dictClearBtn" class="dict-clear-btn" onclick="clearDictSearch()"><i class="fas fa-times"></i></button>
             </div>
 
+            <!-- POPULAR QUICK SEARCHES -->
+            <div style="margin-top:14px; font-size:13.5px; color:#666;" data-aos="fade-up">
+                <strong>Popular searches:</strong> 
+                <a href="javascript:void(0)" onclick="quickSearch('FIR')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">FIR</a> • 
+                <a href="javascript:void(0)" onclick="quickSearch('Bail')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">Bail</a> • 
+                <a href="javascript:void(0)" onclick="quickSearch('Anticipatory Bail')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">Anticipatory Bail</a> • 
+                <a href="javascript:void(0)" onclick="quickSearch('Habeas Corpus')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">Habeas Corpus</a> • 
+                <a href="javascript:void(0)" onclick="quickSearch('Injunction')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">Injunction</a> • 
+                <a href="javascript:void(0)" onclick="quickSearch('Affidavit')" style="color:var(--primary); font-weight:700; text-decoration:underline; margin:0 4px;">Affidavit</a>
+            </div>
+
             <!-- ALPHABET NAVIGATION BAR -->
-            <div class="az-nav-container" data-aos="fade-up">
+            <div class="az-nav-container" data-aos="fade-up" style="margin-top:20px;">
                 <div class="az-nav-bar" id="azNavBar">
                     ${azPillsHtml}
                 </div>
@@ -920,19 +916,6 @@ function buildDictionary() {
         </div>
     </section>
 
-    <!-- ESSENTIAL / POPULAR LEGAL TERMS -->
-    <section style="padding:50px 0 30px; background:#ffffff; border-bottom:1px solid #edf2f7;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" style="margin-bottom:30px;">
-                <h2 style="font-size:1.8rem;">Essential <span>Legal Terms</span></h2>
-                <p style="font-size:0.95rem;">Key legal terms frequently encountered in Indian police stations, courts, notices, and agreements.</p>
-            </div>
-            <div class="dict-grid" style="grid-template-columns: repeat(4, 1fr);" data-aos="fade-up">
-                ${popularCardsHtml}
-            </div>
-        </div>
-    </section>
-
     <!-- MAIN DICTIONARY SHOWCASE -->
     <section class="features-section" style="padding:50px 0 80px; background:var(--bg-light);">
         <div class="container">
@@ -941,7 +924,7 @@ function buildDictionary() {
             <div class="dict-stats-bar" data-aos="fade-up">
                 <div class="dict-count-badge">
                     <i class="fas fa-book-bookmark" style="color:var(--primary);"></i>
-                    Showing <span id="dictCurrentCount" class="dict-count-num">${dictionary.length}</span> Legal Terms
+                    Showing <span id="dictCurrentCount" class="dict-count-num">${uniqueDict.length}</span> Legal Terms
                 </div>
                 <div id="dictStatusText" style="font-size:13.5px; color:#666; font-weight:600;">
                     Alphabetically Organized A–Z • Verified Indian Legal Context
@@ -964,7 +947,7 @@ function buildDictionary() {
             <!-- LOAD MORE BUTTON -->
             <div id="loadMoreContainer" class="load-more-container">
                 <button class="btn-load-more" onclick="loadMoreTerms()">
-                    <i class="fas fa-plus-circle"></i> Load More Terms (<span id="remainingCount">${dictionary.length - 48}</span> Remaining)
+                    <i class="fas fa-plus-circle"></i> Load More Terms (<span id="remainingCount">${uniqueDict.length - 60}</span> Remaining)
                 </button>
             </div>
 
@@ -979,22 +962,22 @@ function buildDictionary() {
                 <p>Browse legal terminology categorized by statutory domain and court specialization.</p>
             </div>
             <div class="audience-grid" data-aos="fade-up">
-                <div class="aud-card" onclick="filterCat('Criminal Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                <div class="aud-card" onclick="filterCat('Criminal Law', this);" style="cursor:pointer;">
                     <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-gavel"></i></div>
                     <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Criminal Law & BNS</h3>
                     <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">FIRs, bail, arrest rights, non-bailable offences, BNS 2023 codes, and criminal procedure.</p>
                 </div>
-                <div class="aud-card" onclick="filterCat('Constitutional Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                <div class="aud-card" onclick="filterCat('Constitutional Law', this);" style="cursor:pointer;">
                     <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-landmark"></i></div>
                     <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Constitutional Writs</h3>
                     <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Habeas Corpus, Mandamus, Certiorari, Fundamental Rights, Article 32, and High Court writs.</p>
                 </div>
-                <div class="aud-card" onclick="filterCat('Civil Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                <div class="aud-card" onclick="filterCat('Civil Law', this);" style="cursor:pointer;">
                     <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-building"></i></div>
                     <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Civil Code & Property</h3>
                     <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Injunctions, plaints, decrees, adverse possession, sale deeds, easements, and CPC rules.</p>
                 </div>
-                <div class="aud-card" onclick="filterCat('Latin Legal Terms', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                <div class="aud-card" onclick="filterCat('Latin Legal Terms', this);" style="cursor:pointer;">
                     <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-scroll"></i></div>
                     <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Latin Maxims</h3>
                     <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Actus Reus, Mens Rea, Res Judicata, Audi Alteram Partem, Prima Facie, and locus standi.</p>
@@ -1060,29 +1043,50 @@ function buildDictionary() {
         window.NYAYI_DICT = ${JSON.stringify(clientDataset)};
         let currentLetter = 'ALL';
         let currentCategory = 'all';
-        let renderedCount = 48;
+        let renderedCount = 60;
+
+        function scrollGridIntoView() {
+            const grid = document.getElementById('dictGrid');
+            if (grid) {
+                const yOffset = -120;
+                const y = grid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }
 
         function filterLetter(letter, btn) {
             document.querySelectorAll('.az-pill').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
             currentLetter = letter;
-            renderedCount = 48;
+            renderedCount = (letter === 'ALL') ? 60 : 1000;
             renderFilteredDict();
+            if (letter !== 'ALL') scrollGridIntoView();
         }
 
         function filterCat(cat, btn) {
             document.querySelectorAll('.filter-tags .filter-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
             currentCategory = cat;
-            renderedCount = 48;
+            renderedCount = (cat === 'all') ? 60 : 1000;
             renderFilteredDict();
+            if (cat !== 'all') scrollGridIntoView();
+        }
+
+        function quickSearch(term) {
+            const input = document.getElementById('dictSearchInput');
+            if (input) {
+                input.value = term;
+                handleDictSearch();
+                scrollGridIntoView();
+            }
         }
 
         function handleDictSearch() {
             const input = document.getElementById('dictSearchInput');
             const clearBtn = document.getElementById('dictClearBtn');
-            if (clearBtn) clearBtn.style.display = (input && input.value.trim()) ? 'flex' : 'none';
-            renderedCount = 48;
+            const val = input ? input.value.trim() : '';
+            if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+            renderedCount = val ? 500 : 60;
             renderFilteredDict();
         }
 
@@ -1099,7 +1103,7 @@ function buildDictionary() {
             document.querySelectorAll('.filter-tags .filter-btn').forEach(b => b.classList.remove('active'));
             const firstCat = document.querySelector('.filter-tags .filter-btn');
             if(firstCat) firstCat.classList.add('active');
-            renderedCount = 48;
+            renderedCount = 60;
             renderFilteredDict();
         }
 
@@ -1108,6 +1112,7 @@ function buildDictionary() {
             const grid = document.getElementById('dictGrid');
             const emptyState = document.getElementById('dictEmptyState');
             const countBadge = document.getElementById('dictCurrentCount');
+            const statusText = document.getElementById('dictStatusText');
             const loadMoreBtn = document.getElementById('loadMoreContainer');
             const remainingSpan = document.getElementById('remainingCount');
 
@@ -1116,7 +1121,7 @@ function buildDictionary() {
             const filtered = window.NYAYI_DICT.filter(item => {
                 // Letter filter
                 if (currentLetter !== 'ALL') {
-                    const firstChar = item.t.charAt(0).toUpperCase();
+                    const firstChar = item.t.trim().charAt(0).toUpperCase();
                     if (firstChar !== currentLetter) return false;
                 }
                 // Category filter
@@ -1132,6 +1137,18 @@ function buildDictionary() {
             });
 
             if (countBadge) countBadge.textContent = filtered.length.toLocaleString();
+
+            if (statusText) {
+                if (query) {
+                    statusText.textContent = 'Search results for "' + query + '"';
+                } else if (currentLetter !== 'ALL') {
+                    statusText.textContent = 'Showing terms starting with letter ' + currentLetter + ' (' + filtered.length + ' terms)';
+                } else if (currentCategory !== 'all') {
+                    statusText.textContent = 'Showing terms in category ' + currentCategory + ' (' + filtered.length + ' terms)';
+                } else {
+                    statusText.textContent = 'Alphabetically Organized A–Z • 1,231 Verified Legal Terms';
+                }
+            }
 
             if (filtered.length === 0) {
                 grid.style.display = 'none';
@@ -1177,7 +1194,7 @@ function buildDictionary() {
         }
 
         function loadMoreTerms() {
-            renderedCount += 48;
+            renderedCount += 60;
             renderFilteredDict();
         }
 
