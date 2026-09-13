@@ -813,80 +813,365 @@ function buildHomepage() {
 
 // 2. GENERATE DICTIONARY HUB & TERM PAGES
 function buildDictionary() {
-    const dictCardsHtml = dictionary.map(item => `
-        <div class="dict-card" data-category="${item.category}" data-aos="fade-up">
+    // Sort dictionary alphabetically
+    dictionary.sort((a, b) => a.term.localeCompare(b.term));
+
+    // Essential / Popular Legal Terms
+    const popularSlugs = ['fir', 'zero-fir', 'bail', 'anticipatory-bail', 'cognizable-offence', 'legal-notice', 'injunction', 'affidavit', 'habeas-corpus', 'mandamus', 'consumer-complaint', 'divorce'];
+    const popularCardsHtml = popularSlugs.map(slug => {
+        const item = dictionary.find(d => d.slug === slug) || dictionary[0];
+        return `
+            <div class="dict-card" style="border-top:3px solid var(--primary);">
+                <div>
+                    <div class="dict-card-header">
+                        <h3>${item.term}</h3>
+                        <span class="badge-cat">${item.category}</span>
+                    </div>
+                    <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:15px;">${item.simpleDef}</p>
+                </div>
+                <div>
+                    <div style="font-size:12px; color:#718096; margin-bottom:12px;">
+                        <i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${item.ref}
+                    </div>
+                    <a href="dictionary/${item.slug}.html" class="card-link" style="font-size:13.5px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Pre-render initial 48 dictionary cards for immediate SSR display
+    const initialItems = dictionary.slice(0, 48);
+    const initialCardsHtml = initialItems.map(item => `
+        <div class="dict-card" data-category="${item.category}" data-letter="${item.term[0].toUpperCase()}" data-term="${item.term.toLowerCase()}" data-aos="fade-up">
             <div>
-                <div class="dict-header">
+                <div class="dict-card-header">
                     <h3>${item.term}</h3>
                     <span class="badge-cat">${item.category}</span>
                 </div>
-                <p>${item.simpleDef}</p>
+                <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:15px;">${item.simpleDef}</p>
             </div>
             <div>
-                <div class="dict-meta">
-                    <span><i class="fas fa-book"></i> ${item.ref}</span>
-                    <span><i class="fas fa-shield-halved"></i> ${item.tag || 'Legal Term'}</span>
+                <div style="font-size:12px; color:#718096; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
+                    <span><i class="fas fa-book" style="color:var(--primary);"></i> ${item.ref}</span>
+                    <span><i class="fas fa-tag" style="color:#a0aec0;"></i> ${item.tag || item.category}</span>
                 </div>
-                <div style="margin-top:14px;">
+                <div>
                     <a href="dictionary/${item.slug}.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     `).join('');
 
+    // Generate Alphabet pills
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const azPillsHtml = `<button class="az-pill active" onclick="filterLetter('ALL', this)">ALL</button>` + 
+        alphabet.map(let => `<button class="az-pill" onclick="filterLetter('${let}', this)">${let}</button>`).join('');
+
+    // Minified dataset for client-side instant search across 1200+ terms
+    const clientDataset = dictionary.map(d => ({
+        s: d.slug,
+        t: d.term,
+        c: d.category,
+        d: d.simpleDef,
+        r: d.ref,
+        g: d.tag || d.category
+    }));
+
     const hubHtml = `
-    ${renderHead('Legal Dictionary | NYAYI Legal AI', 'Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.', 'Nyayi, Legal Dictionary India, law glossary, legal terms, IPC sections, BNS codes', '/dictionary.html')}
+    ${renderHead('Indian Legal Dictionary – 1,200+ Legal Terms Explained | NYAYI', 'Explore the comprehensive Indian Legal Dictionary by NYAYI. Instant search and plain-language legal definitions across Criminal Law, BNS 2023, BNSS, Evidence, Civil Code, Constitutional Writs, Property, Contracts, and Latin Maxims.', 'Indian Legal Dictionary, legal terms India, law glossary, BNS IPC sections, legal definitions India, legal jargon explained', '/dictionary.html')}
     ${renderHeader('dictionary', 0)}
 
-    <section class="page-header">
+    <!-- HERO HEADER -->
+    <section class="page-header" style="padding-bottom: 40px;">
         <div class="container" data-aos="zoom-in">
-            <h1>Legal <span>Dictionary</span></h1>
-            <p>Simplified explanations for legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.</p>
+            <span class="cp-role" style="display:inline-block; margin-bottom:12px;">AUTHORITATIVE LEGAL REFERENCE</span>
+            <h1>Indian Legal <span>Dictionary</span></h1>
+            <p style="max-width:820px; margin:0 auto 25px; font-size:1.15rem; color:#555;">Understand Indian legal terminology in clear, accessible language. Search over 1,200+ legal terms across Criminal Law (BNS/BNSS), Civil Procedure, Constitutional Rights, Property, Contracts, Family Law, Cyber Law, and Latin Maxims.</p>
             
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="dictSearch" onkeyup="filterDict()" placeholder="Search terms (e.g. Cognizable, Bail, FIR, Habeas Corpus)...">
+            <!-- SEARCH BOX -->
+            <div class="dict-search-wrapper" data-aos="fade-up">
+                <i class="fas fa-search dict-search-icon"></i>
+                <input type="text" id="dictSearchInput" class="dict-search-input" oninput="handleDictSearch()" placeholder="Search 1,200+ legal terms (e.g. FIR, Bail, Anticipatory Bail, Habeas Corpus, Affidavit)...">
+                <button id="dictClearBtn" class="dict-clear-btn" onclick="clearDictSearch()"><i class="fas fa-times"></i></button>
             </div>
 
-            <div class="filter-tags">
-                <button class="filter-btn active" onclick="filterCat('all', this)">All Terms</button>
+            <!-- ALPHABET NAVIGATION BAR -->
+            <div class="az-nav-container" data-aos="fade-up">
+                <div class="az-nav-bar" id="azNavBar">
+                    ${azPillsHtml}
+                </div>
+            </div>
+
+            <!-- CATEGORY FILTER CHIPS -->
+            <div class="filter-tags" style="margin-top:15px;" data-aos="fade-up">
+                <button class="filter-btn active" onclick="filterCat('all', this)">All Categories</button>
                 <button class="filter-btn" onclick="filterCat('Criminal Law', this)">Criminal Law</button>
-                <button class="filter-btn" onclick="filterCat('Constitutional Law', this)">Constitutional</button>
+                <button class="filter-btn" onclick="filterCat('Criminal Procedure', this)">Criminal Procedure</button>
+                <button class="filter-btn" onclick="filterCat('Constitutional Law', this)">Constitutional Law</button>
                 <button class="filter-btn" onclick="filterCat('Civil Law', this)">Civil & Property</button>
+                <button class="filter-btn" onclick="filterCat('Evidence Law', this)">Evidence Law</button>
+                <button class="filter-btn" onclick="filterCat('Contract Law', this)">Contract Law</button>
                 <button class="filter-btn" onclick="filterCat('Cyber Law', this)">Cyber & Tech</button>
+                <button class="filter-btn" onclick="filterCat('Family Law', this)">Family Law</button>
+                <button class="filter-btn" onclick="filterCat('Consumer Law', this)">Consumer Law</button>
+                <button class="filter-btn" onclick="filterCat('Arbitration & ADR', this)">Arbitration & ADR</button>
+                <button class="filter-btn" onclick="filterCat('Latin Legal Terms', this)">Latin Maxims</button>
             </div>
         </div>
     </section>
 
-    <section class="features-section">
+    <!-- ESSENTIAL / POPULAR LEGAL TERMS -->
+    <section style="padding:50px 0 30px; background:#ffffff; border-bottom:1px solid #edf2f7;">
         <div class="container">
-            <div class="dict-grid" id="dictGrid">
-                ${dictCardsHtml}
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:30px;">
+                <h2 style="font-size:1.8rem;">Essential <span>Legal Terms</span></h2>
+                <p style="font-size:0.95rem;">Key legal terms frequently encountered in Indian police stations, courts, notices, and agreements.</p>
+            </div>
+            <div class="dict-grid" style="grid-template-columns: repeat(4, 1fr);" data-aos="fade-up">
+                ${popularCardsHtml}
             </div>
         </div>
     </section>
 
+    <!-- MAIN DICTIONARY SHOWCASE -->
+    <section class="features-section" style="padding:50px 0 80px; background:var(--bg-light);">
+        <div class="container">
+            
+            <!-- STATS COUNTER BAR -->
+            <div class="dict-stats-bar" data-aos="fade-up">
+                <div class="dict-count-badge">
+                    <i class="fas fa-book-bookmark" style="color:var(--primary);"></i>
+                    Showing <span id="dictCurrentCount" class="dict-count-num">${dictionary.length}</span> Legal Terms
+                </div>
+                <div id="dictStatusText" style="font-size:13.5px; color:#666; font-weight:600;">
+                    Alphabetically Organized A–Z • Verified Indian Legal Context
+                </div>
+            </div>
+
+            <!-- DICTIONARY CARDS GRID -->
+            <div class="dict-grid" id="dictGrid">
+                ${initialCardsHtml}
+            </div>
+
+            <!-- EMPTY STATE (HIDDEN BY DEFAULT) -->
+            <div id="dictEmptyState" class="dict-empty-state" style="display:none;">
+                <div class="dict-empty-icon"><i class="fas fa-search-minus"></i></div>
+                <h3 style="font-size:20px; font-weight:800; margin-bottom:8px;">No legal terms match your search</h3>
+                <p style="font-size:14.5px; color:#666; max-width:500px; margin:0 auto 20px;">We couldn't find any terms matching your keywords or filter combination. Try adjusting your search query or browse our A–Z alphabet index.</p>
+                <button onclick="clearDictSearch()" class="btn-outline" style="padding:10px 24px; font-size:14px;"><i class="fas fa-rotate-left"></i> Reset All Filters</button>
+            </div>
+
+            <!-- LOAD MORE BUTTON -->
+            <div id="loadMoreContainer" class="load-more-container">
+                <button class="btn-load-more" onclick="loadMoreTerms()">
+                    <i class="fas fa-plus-circle"></i> Load More Terms (<span id="remainingCount">${dictionary.length - 48}</span> Remaining)
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPLORE BY LEGAL CATEGORIES -->
+    <section style="padding:70px 0; background:#ffffff; border-top:1px solid #e2e8f0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Explore by <span>Area of Law</span></h2>
+                <p>Browse legal terminology categorized by statutory domain and court specialization.</p>
+            </div>
+            <div class="audience-grid" data-aos="fade-up">
+                <div class="aud-card" onclick="filterCat('Criminal Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-gavel"></i></div>
+                    <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Criminal Law & BNS</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">FIRs, bail, arrest rights, non-bailable offences, BNS 2023 codes, and criminal procedure.</p>
+                </div>
+                <div class="aud-card" onclick="filterCat('Constitutional Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-landmark"></i></div>
+                    <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Constitutional Writs</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Habeas Corpus, Mandamus, Certiorari, Fundamental Rights, Article 32, and High Court writs.</p>
+                </div>
+                <div class="aud-card" onclick="filterCat('Civil Law', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-building"></i></div>
+                    <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Civil Code & Property</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Injunctions, plaints, decrees, adverse possession, sale deeds, easements, and CPC rules.</p>
+                </div>
+                <div class="aud-card" onclick="filterCat('Latin Legal Terms', this); document.getElementById('dictGrid').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+                    <div style="width:42px; height:42px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;"><i class="fas fa-scroll"></i></div>
+                    <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">Latin Maxims</h3>
+                    <p style="font-size:13.5px; color:#555; margin:0; line-height:1.6;">Actus Reus, Mens Rea, Res Judicata, Audi Alteram Partem, Prima Facie, and locus standi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY LEGAL TERMINOLOGY MATTERS -->
+    <section style="padding:70px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="spotlight-grid">
+                <div data-aos="fade-up">
+                    <span class="cp-role" style="margin-bottom:10px;">EDUCATIONAL PHILOSOPHY</span>
+                    <h2 style="font-size:2.2rem; font-weight:900; margin-bottom:16px;">Demystifying Legal Jargon for Everyone</h2>
+                    <p style="font-size:15px; color:#555; line-height:1.8; margin-bottom:20px;">Legal documents, police complaints, court notices, and contracts are often written in complex statutory language. NYAYI's Legal Dictionary bridges the gap between formal legal terminology and everyday plain language.</p>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="display:flex; align-items:center; gap:12px;"><i class="fas fa-check-circle" style="color:var(--primary); font-size:18px;"></i> <span style="font-size:14.5px; font-weight:700; color:#333;">Statutory Section References (BNS 2023, BNSS, BSA, IPC, CrPC, CPC)</span></div>
+                        <div style="display:flex; align-items:center; gap:12px;"><i class="fas fa-check-circle" style="color:var(--primary); font-size:18px;"></i> <span style="font-size:14.5px; font-weight:700; color:#333;">Hypothetical Real-World Examples for Practical Context</span></div>
+                        <div style="display:flex; align-items:center; gap:12px;"><i class="fas fa-check-circle" style="color:var(--primary); font-size:18px;"></i> <span style="font-size:14.5px; font-weight:700; color:#333;">Direct Internal Connections to Legal Guides & Fundamental Rights</span></div>
+                    </div>
+                </div>
+                <div class="trust-banner-box" data-aos="fade-up" style="margin-top:0;">
+                    <div style="font-size:14px; font-weight:800; color:var(--primary); text-transform:uppercase; tracking:1px; margin-bottom:10px;"><i class="fas fa-shield-halved"></i> Reliable Reference</div>
+                    <h3 style="font-size:1.8rem; font-weight:800; margin-bottom:14px;">Built Around Indian Jurisprudence</h3>
+                    <p style="font-size:14px; color:#cbd5e0; line-height:1.7; margin-bottom:20px;">Every entry in the NYAYI Dictionary is researched against active Indian statutes, Supreme Court judgments, and modern legal procedural codes.</p>
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="padding:12px 28px; font-size:14px;"><i class="fas fa-robot"></i> Research with NYAYI AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section style="padding:70px 0; background:#ffffff;">
+        <div class="container" style="max-width:850px;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Dictionary <span>FAQs</span></h2>
+                <p>Common questions regarding Indian legal terminology and dictionary usage.</p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:14px;">
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Are old IPC section terms still included in the dictionary?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes. Since historical legal documents, past court judgments, and existing legal notices frequently cite old IPC or CrPC sections, our dictionary explains both classic terminology and updated Bharatiya Nyaya Sanhita (BNS) & Bharatiya Nagarik Suraksha Sanhita (BNSS) equivalents.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>How do I search for a term starting with a specific letter?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Click any letter (A through Z) in the top Alphabet Navigation Bar to instantly filter terms belonging to that letter. Click "ALL" to return to full view.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does the dictionary cover Latin legal maxims used in Indian courts?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes. We provide dedicated coverage for Latin maxims frequently cited in Indian High Courts and the Supreme Court, including <em>Actus Reus</em>, <em>Mens Rea</em>, <em>Res Judicata</em>, <em>Audi Alteram Partem</em>, <em>Habeas Corpus</em>, and <em>Mandamus</em>.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Can I read full detailed explanations for individual terms?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes. Every dictionary card includes a "Read Full Explanation →" link that opens a dedicated indexable page containing statutory references, plain-language meanings, real-world examples, and related legal concepts.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EMBEDDED FAST CLIENT-SIDE SEARCH ENGINE SCRIPT -->
     <script>
-        function filterDict() {
-            const query = document.getElementById('dictSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('#dictGrid .dict-card');
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(query) ? 'flex' : 'none';
-            });
-        }
-        function filterCat(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        window.NYAYI_DICT = ${JSON.stringify(clientDataset)};
+        let currentLetter = 'ALL';
+        let currentCategory = 'all';
+        let renderedCount = 48;
+
+        function filterLetter(letter, btn) {
+            document.querySelectorAll('.az-pill').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const cards = document.querySelectorAll('#dictGrid .dict-card');
-            cards.forEach(card => {
-                const itemCat = card.getAttribute('data-category');
-                if(cat === 'all' || itemCat.toLowerCase().includes(cat.toLowerCase())) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+            currentLetter = letter;
+            renderedCount = 48;
+            renderFilteredDict();
+        }
+
+        function filterCat(cat, btn) {
+            document.querySelectorAll('.filter-tags .filter-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            currentCategory = cat;
+            renderedCount = 48;
+            renderFilteredDict();
+        }
+
+        function handleDictSearch() {
+            const input = document.getElementById('dictSearchInput');
+            const clearBtn = document.getElementById('dictClearBtn');
+            clearBtn.style.display = input.value.trim() ? 'flex' : 'none';
+            renderedCount = 48;
+            renderFilteredDict();
+        }
+
+        function clearDictSearch() {
+            const input = document.getElementById('dictSearchInput');
+            input.value = '';
+            document.getElementById('dictClearBtn').style.display = 'none';
+            currentLetter = 'ALL';
+            currentCategory = 'all';
+            document.querySelectorAll('.az-pill').forEach(b => b.classList.remove('active'));
+            const firstPill = document.querySelector('.az-pill');
+            if(firstPill) firstPill.classList.add('active');
+            document.querySelectorAll('.filter-tags .filter-btn').forEach(b => b.classList.remove('active'));
+            const firstCat = document.querySelector('.filter-tags .filter-btn');
+            if(firstCat) firstCat.classList.add('active');
+            renderedCount = 48;
+            renderFilteredDict();
+        }
+
+        function renderFilteredDict() {
+            const query = (document.getElementById('dictSearchInput')?.value || '').toLowerCase().trim();
+            const grid = document.getElementById('dictGrid');
+            const emptyState = document.getElementById('dictEmptyState');
+            const countBadge = document.getElementById('dictCurrentCount');
+            const loadMoreBtn = document.getElementById('loadMoreContainer');
+            const remainingSpan = document.getElementById('remainingCount');
+
+            const filtered = window.NYAYI_DICT.filter(item => {
+                // Letter filter
+                if (currentLetter !== 'ALL') {
+                    const firstChar = item.t.charAt(0).toUpperCase();
+                    if (firstChar !== currentLetter) return false;
                 }
+                // Category filter
+                if (currentCategory !== 'all') {
+                    if (!item.c.toLowerCase().includes(currentCategory.toLowerCase())) return false;
+                }
+                // Query filter
+                if (query) {
+                    const fullText = (item.t + ' ' + item.c + ' ' + item.d + ' ' + item.r + ' ' + item.g).toLowerCase();
+                    if (!fullText.includes(query)) return false;
+                }
+                return true;
             });
+
+            countBadge.textContent = filtered.length.toLocaleString();
+
+            if (filtered.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                loadMoreBtn.style.display = 'none';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            grid.innerHTML = slice.map(function(item) {
+                return '<div class="dict-card">' +
+                    '<div>' +
+                        '<div class="dict-card-header">' +
+                            '<h3>' + item.t + '</h3>' +
+                            '<span class="badge-cat">' + item.c + '</span>' +
+                        '</div>' +
+                        '<p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:15px;">' + item.d + '</p>' +
+                    '</div>' +
+                    '<div>' +
+                        '<div style="font-size:12px; color:#718096; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">' +
+                            '<span><i class="fas fa-book" style="color:var(--primary);"></i> ' + item.r + '</span>' +
+                            '<span><i class="fas fa-tag" style="color:#a0aec0;"></i> ' + item.g + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                            '<a href="dictionary/' + item.s + '.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+
+            if (filtered.length > renderedCount) {
+                loadMoreBtn.style.display = 'block';
+                remainingSpan.textContent = (filtered.length - renderedCount).toLocaleString();
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        function loadMoreTerms() {
+            renderedCount += 48;
+            renderFilteredDict();
         }
     </script>
 
@@ -894,54 +1179,133 @@ function buildDictionary() {
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'dictionary.html'), hubHtml, 'utf8');
-    console.log('Generated: dictionary.html');
+    console.log('Generated: dictionary.html (1,200+ Terms Enabled)');
 
-    // Individual Term Pages
+    // Individual Term Pages for ALL 1,231 terms
     dictionary.forEach(item => {
+        const relatedPillsHtml = (item.relatedTerms || []).map(relSlug => {
+            const found = dictionary.find(d => d.slug === relSlug);
+            const title = found ? found.term : relSlug.replace(/-/g, ' ');
+            return `<a href="${relSlug}.html" class="cat-pill" style="font-size:13px; margin:4px;"><i class="fas fa-link" style="color:var(--primary);"></i> ${title}</a>`;
+        }).join('');
+
+        const termSchema = {
+            "@context": "https://schema.org",
+            "@type": "DefinedTerm",
+            "name": item.term,
+            "description": item.simpleDef,
+            "inDefinedTermSet": "https://nyayi.in/dictionary.html",
+            "termCode": item.slug
+        };
+
+        const breadcrumbsSchema = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Legal Dictionary", "item": "https://nyayi.in/dictionary.html" },
+                { "@type": "ListItem", "position": 3, "name": item.term, "item": `https://nyayi.in/dictionary/${item.slug}.html` }
+            ]
+        };
+
         const termHtml = `
-        ${renderHead(`${item.term} - Meaning & Legal Definition`, item.simpleDef, `${item.term}, ${item.category}, Indian Law, BNS IPC definition`, `/dictionary/${item.slug}.html`, 1)}
+        ${renderHead(`${item.term} – Meaning, Legal Definition & Examples | NYAYI`, item.simpleDef, `${item.term}, ${item.category}, Indian Law, BNS IPC section definition, legal dictionary India`, `/dictionary/${item.slug}.html`, 1)}
         ${renderHeader('dictionary', 1)}
 
+        <!-- BREADCRUMBS & HERO HEADER -->
         <section class="page-header" style="padding-bottom:40px; text-align:left;">
             <div class="container" data-aos="fade-up">
-                <a href="../dictionary.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Dictionary</a>
-                <span class="cp-role" style="margin-top:20px; display:inline-block;">${item.category}</span>
-                <h1 style="margin:10px 0 20px; font-size:3rem;">${item.term}</h1>
-                <p style="margin:0; font-size:1.2rem; max-width:100%; color:#555;">${item.simpleDef}</p>
+                <div style="font-size:13.5px; color:#718096; margin-bottom:16px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <a href="../index.html" style="color:#4a5568; font-weight:600;"><i class="fas fa-home"></i> Home</a>
+                    <span>/</span>
+                    <a href="../dictionary.html" style="color:#4a5568; font-weight:600;">Legal Dictionary</a>
+                    <span>/</span>
+                    <span style="color:var(--primary-dark); font-weight:700;">${item.term}</span>
+                </div>
+                <span class="cp-role" style="display:inline-block; margin-bottom:10px;">${item.category}</span>
+                <h1 style="margin:5px 0 16px; font-size:2.8rem; font-weight:900;">${item.term}</h1>
+                <p style="margin:0; font-size:1.15rem; max-width:100%; color:#4a5568; line-height:1.7;">${item.simpleDef}</p>
             </div>
         </section>
 
+        <!-- TERM CONTENT BODY -->
         <section style="padding:60px 0 100px; background:#fff;">
-            <div class="container" style="max-width:900px;">
-                <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
-                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Legal Meaning & Statutory Context</h2>
-                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#555;">${item.legalMeaning}</p>
-
-                    <h2 style="font-size:24px; margin-bottom:12px; font-weight:800;">Detailed Plain-Language Explanation</h2>
-                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#555;">${item.explanation}</p>
-
-                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:24px; border-radius:12px; margin-bottom:30px;">
-                        <h3 style="font-size:18px; color:var(--primary-dark); margin-bottom:8px; font-weight:800;"><i class="fas fa-lightbulb"></i> Practical Example</h3>
-                        <p style="margin:0; color:#333;">${item.example}</p>
+            <div class="container" style="max-width:920px;">
+                <div style="background:var(--white); border:1px solid #e2e8f0; border-radius:24px; padding:40px; box-shadow:0 10px 35px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    
+                    <div style="display:flex; gap:10px; margin-bottom:30px; flex-wrap:wrap;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-tag"></i> ${item.category}</span>
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px; background:#edf2f7; color:#2d3748;"><i class="fas fa-book"></i> ${item.ref}</span>
                     </div>
 
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid #edf2f7; padding-top:24px;">
-                        <div>
-                            <strong style="color:var(--dark); font-size:14px;">Where Used:</strong>
-                            <p style="font-size:14px; margin:4px 0 0; color:#666;">${item.whereUsed}</p>
+                    <h2 style="font-size:22px; margin-bottom:12px; font-weight:800; color:var(--dark);">Statutory & Legal Meaning</h2>
+                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#4a5568;">${item.legalMeaning}</p>
+
+                    <h2 style="font-size:22px; margin-bottom:12px; font-weight:800; color:var(--dark);">Plain-Language Explanation</h2>
+                    <p style="font-size:16px; margin-bottom:30px; line-height:1.8; color:#4a5568;">${item.explanation}</p>
+
+                    <!-- PRACTICAL EXAMPLE -->
+                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:24px; border-radius:16px; margin-bottom:35px; box-shadow:0 4px 15px rgba(0,200,83,0.05);">
+                        <h3 style="font-size:18px; color:var(--primary-dark); margin-bottom:10px; font-weight:800; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-lightbulb"></i> Practical Example in Indian Law
+                        </h3>
+                        <p style="margin:0; font-size:15px; color:#2d3748; line-height:1.7;">${item.example}</p>
+                    </div>
+
+                    <!-- METADATA GRID -->
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid #edf2f7; padding-top:24px; margin-bottom:35px;">
+                        <div style="background:#f7fafc; padding:18px; border-radius:14px; border:1px solid #edf2f7;">
+                            <strong style="color:var(--dark); font-size:14px; display:block; margin-bottom:4px;"><i class="fas fa-building-columns" style="color:var(--primary);"></i> Where Applied:</strong>
+                            <span style="font-size:14px; color:#4a5568;">${item.whereUsed}</span>
                         </div>
-                        <div>
-                            <strong style="color:var(--dark); font-size:14px;">Statutory Reference:</strong>
-                            <p style="font-size:14px; margin:4px 0 0; color:#666;">${item.ref}</p>
+                        <div style="background:#f7fafc; padding:18px; border-radius:14px; border:1px solid #edf2f7;">
+                            <strong style="color:var(--dark); font-size:14px; display:block; margin-bottom:4px;"><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> Statutory Reference:</strong>
+                            <span style="font-size:14px; color:#4a5568;">${item.ref}</span>
                         </div>
                     </div>
+
+                    <!-- RELATED TERMS -->
+                    ${relatedPillsHtml ? `
+                        <div style="border-top:1px solid #edf2f7; padding-top:24px; margin-bottom:30px;">
+                            <h3 style="font-size:17px; font-weight:800; margin-bottom:12px; color:var(--dark);"><i class="fas fa-diagram-project" style="color:var(--primary);"></i> Related Legal Terms</h3>
+                            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                                ${relatedPillsHtml}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <!-- RELATED RESOURCES -->
+                    <div style="border-top:1px solid #edf2f7; padding-top:24px;">
+                        <h3 style="font-size:17px; font-weight:800; margin-bottom:14px; color:var(--dark);"><i class="fas fa-compass" style="color:var(--primary);"></i> Related NYAYI Legal Resources</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                            <a href="../guides.html" class="cat-pill" style="display:flex; align-items:center; gap:10px; padding:14px 20px; justify-content:space-between; border-radius:14px;">
+                                <span><i class="fas fa-file-contract" style="color:var(--primary);"></i> Step-by-Step Legal Guides</span>
+                                <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+                            </a>
+                            <a href="../rights.html" class="cat-pill" style="display:flex; align-items:center; gap:10px; padding:14px 20px; justify-content:space-between; border-radius:14px;">
+                                <span><i class="fas fa-shield-halved" style="color:var(--primary);"></i> Citizen Rights Portal</span>
+                                <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div style="margin-top:50px; text-align:center;">
-                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai"><i class="fas fa-robot"></i> Ask NYAYI AI About ${item.term}</a>
+                <!-- LAUNCH AI CTA -->
+                <div style="margin-top:40px; text-align:center;">
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:16px 36px; font-size:16px;">
+                        <i class="fas fa-robot"></i> Research "${item.term}" with NYAYI AI
+                    </a>
                 </div>
             </div>
         </section>
+
+        <script type="application/ld+json">
+        ${JSON.stringify(termSchema, null, 2)}
+        </script>
+        <script type="application/ld+json">
+        ${JSON.stringify(breadcrumbsSchema, null, 2)}
+        </script>
 
         ${renderFooter(1)}
         `;
