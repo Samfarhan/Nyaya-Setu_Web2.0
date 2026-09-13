@@ -239,7 +239,7 @@ function renderFooter(depth = 0) {
                     <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
-                    <li><a href="${p}privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="${p}privacy.html">Privacy Policy</a></li>
                     <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
@@ -2568,6 +2568,7 @@ function buildRights() {
         .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
         .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
@@ -4717,9 +4718,12 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
         .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="rights\.html/g, 'href="../rights.html')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
+        .replace(/href="articles\//g, 'href="../articles/')
+        .replace(/href="legal-guides\//g, 'href="../legal-guides/')
         .replace(/href="laws\//g, 'href="');
     fs.writeFileSync(path.join(ROOT_DIR, 'laws/index.html'), lawsSubfolderHub, 'utf8');
 
@@ -6343,6 +6347,7 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
         .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
@@ -6436,9 +6441,985 @@ function buildFeaturesAndOther() {
     ${renderFooter(0)}
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'privacy-policy.html'), disclaimerHtml, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), disclaimerHtml, 'utf8');
+
+    // Privacy Page Schema
+    const privacySchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Privacy Policy | NYAYI",
+        "url": "https://nyayi.in/privacy.html",
+        "description": "Read NYAYI's Privacy Policy to understand how information is collected, used, protected and handled across the NYAYI website.",
+        "inLanguage": "en-IN",
+        "publisher": {
+            "@type": "Organization",
+            "name": "NYAYI Legal Knowledge Foundation",
+            "url": "https://nyayi.in/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://nyayi.in/privacy.html" }
+            ]
+        }
+    };
+
+    const privacyHub = `
+    ${renderHead('Privacy Policy | NYAYI', 'Read NYAYI\'s Privacy Policy to understand how information is collected, used, protected and handled across the NYAYI website.', 'NYAYI privacy policy, NYAYI privacy, Indian legal website privacy policy, legal AI privacy, privacy policy India legal technology', '/privacy.html', 0)}
+    ${renderHeader('home', 0)}
+
+    <script type="application/ld+json">
+    ${JSON.stringify(privacySchema, null, 2)}
+    </script>
+
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding: 165px 0 60px; background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 80%);">
+        <div class="container" style="max-width: 960px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; border:1px solid rgba(0,200,83,0.25);">
+                <i class="fas fa-shield-halved" style="color:var(--primary);"></i> NYAYI TRUST CENTER
+            </span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px; margin-bottom:18px;">
+                Your <span style="background: linear-gradient(135deg, var(--primary), #009624); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Privacy.</span><br>Our Responsibility.
+            </h1>
+            <p style="max-width:820px; margin:0 auto 24px; font-size:1.18rem; color:#4a5568; line-height:1.75;">
+                NYAYI is built to make legal information easier to understand. This Privacy Policy explains, in clear language, how we handle information when you use our website and services.
+            </p>
+
+            <!-- METADATA BADGES -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-calendar-check" style="color:#00C853;"></i> Last Updated: September 13, 2026
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-certificate" style="color:#00C853;"></i> Version 2.0 Transparency Standard
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-shield-virus" style="color:#00C853;"></i> Zero First-Party Tracking Cookies
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 — QUICK PRIVACY SUMMARY ("PRIVACY AT A GLANCE") -->
+    <section style="padding:60px 0; background:#f8fafc; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7;" id="glance">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:32px;">
+                <h2>Privacy at a <span>Glance</span></h2>
+                <p>A quick, transparent summary of how information is treated on NYAYI.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;" data-aos="fade-up">
+                <!-- CARD 1 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">01</span>
+                        <i class="fas fa-database" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">WHAT WE COLLECT</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Only information reasonably necessary for the services and interactions you choose to use.</p>
+                </div>
+
+                <!-- CARD 2 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">02</span>
+                        <i class="fas fa-gears" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">WHY WE USE IT</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">To operate, maintain, improve and secure NYAYI.</p>
+                </div>
+
+                <!-- CARD 3 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">03</span>
+                        <i class="fas fa-user-check" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">YOUR CONTROL</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">You can contact us regarding your personal information and privacy questions.</p>
+                </div>
+
+                <!-- CARD 4 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">04</span>
+                        <i class="fas fa-lock" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">YOUR SECURITY</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">We use reasonable technical and organizational measures appropriate to the information we handle.</p>
+                </div>
+
+                <!-- CARD 5 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">05</span>
+                        <i class="fas fa-network-wired" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">THIRD-PARTY SERVICES</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Some services may process information according to their own privacy policies.</p>
+                </div>
+
+                <!-- CARD 6 -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">06</span>
+                        <i class="fas fa-sliders" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">YOUR CHOICES</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">You can control certain browser, cookie and communication preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — VISUAL TIMELINE: HOW INFORMATION MOVES -->
+    <section style="padding:70px 0; background:#ffffff;" id="data-flow">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="cp-role" style="background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; display:inline-block; margin-bottom:10px;">
+                    <i class="fas fa-diagram-project"></i> DATA ARCHITECTURE TRANSPARENCY
+                </span>
+                <h2>How Information <span>Moves</span></h2>
+                <p>Understanding the architectural path of information when you explore NYAYI.</p>
+            </div>
+
+            <div class="privacy-flow-grid" data-aos="fade-up">
+                <div class="privacy-flow-step">
+                    <div class="privacy-flow-icon"><i class="fas fa-user"></i></div>
+                    <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">Step 01</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">YOU</h4>
+                    <p style="font-size:12px; color:#666; margin:0; line-height:1.5;">You visit nyayi.in via an encrypted HTTPS connection.</p>
+                </div>
+
+                <div class="privacy-flow-step">
+                    <div class="privacy-flow-icon"><i class="fas fa-globe"></i></div>
+                    <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">Step 02</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">NYAYI WEBSITE</h4>
+                    <p style="font-size:12px; color:#666; margin:0; line-height:1.5;">Static pages load securely into your device browser.</p>
+                </div>
+
+                <div class="privacy-flow-step">
+                    <div class="privacy-flow-icon"><i class="fas fa-microchip"></i></div>
+                    <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">Step 03</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">LOCAL EXECUTION</h4>
+                    <p style="font-size:12px; color:#666; margin:0; line-height:1.5;">Law & dictionary search filters run in your browser memory.</p>
+                </div>
+
+                <div class="privacy-flow-step">
+                    <div class="privacy-flow-icon"><i class="fas fa-server"></i></div>
+                    <span style="font-size:11px; font-weight:800; color:#00C853; text-transform:uppercase;">Step 04</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:6px 0 4px;">SECURE CDNs</h4>
+                    <p style="font-size:12px; color:#666; margin:0; line-height:1.5;">Reputable edge CDNs serve static typography and icons.</p>
+                </div>
+
+                <div class="privacy-flow-step" style="background:#f0fdf4; border-color:var(--primary);">
+                    <div class="privacy-flow-icon" style="background:#00C853; color:#fff;"><i class="fas fa-clock-rotate-left"></i></div>
+                    <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase;">Step 05</span>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--primary-dark); margin:6px 0 4px;">PURPOSE RETENTION</h4>
+                    <p style="font-size:12px; color:#555; margin:0; line-height:1.5;">Technical logs rotate and expire automatically by policy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04 — OUR PRIVACY PRINCIPLES -->
+    <section style="padding:70px 0; background:var(--bg-light); border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7;" id="principles">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Privacy <span>Principles</span></h2>
+                <p>The operational standards guiding our development and content delivery.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:18px;" data-aos="fade-up">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; text-align:center;">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin:0 auto 12px;"><i class="fas fa-compress"></i></div>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:0 0 6px;">MINIMIZATION</h4>
+                    <p style="font-size:12.5px; color:#555; margin:0; line-height:1.55;">Collect and process information only as reasonably necessary for requested services.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; text-align:center;">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin:0 auto 12px;"><i class="fas fa-eye"></i></div>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:0 0 6px;">TRANSPARENCY</h4>
+                    <p style="font-size:12.5px; color:#555; margin:0; line-height:1.55;">Explain data handling openly in plain English without misleading or buried terms.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; text-align:center;">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin:0 auto 12px;"><i class="fas fa-shield-halved"></i></div>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:0 0 6px;">SECURITY</h4>
+                    <p style="font-size:12.5px; color:#555; margin:0; line-height:1.55;">Use reasonable technical and organizational safeguards appropriate to the data handled.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; text-align:center;">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin:0 auto 12px;"><i class="fas fa-sliders"></i></div>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:0 0 6px;">CONTROL</h4>
+                    <p style="font-size:12.5px; color:#555; margin:0; line-height:1.55;">Respect applicable privacy choices, contact preferences, and user privacy rights.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; text-align:center;">
+                    <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin:0 auto 12px;"><i class="fas fa-scale-balanced"></i></div>
+                    <h4 style="font-size:15px; font-weight:800; color:var(--dark); margin:0 0 6px;">RESPONSIBILITY</h4>
+                    <p style="font-size:12.5px; color:#555; margin:0; line-height:1.55;">Regularly audit practices and refine safeguards as our digital ecosystem grows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 — TWO-COLUMN DETAILED POLICY CONTENT (STICKY TOC + 16 SECTIONS) -->
+    <section style="padding:80px 0 100px; background:#ffffff;" id="policy-content">
+        <div class="container">
+            
+            <!-- MOBILE TOC ACCORDION TOGGLE -->
+            <div class="privacy-mobile-toc-bar" onclick="togglePrivacyMobileToc()">
+                <div class="toc-bar-inner">
+                    <span><i class="fas fa-list-ol" style="color:var(--primary); margin-right:8px;"></i> Table of Contents (16 Sections)</span>
+                    <i class="fas fa-chevron-down" id="mobileTocChevron"></i>
+                </div>
+                <div class="privacy-mobile-toc-dropdown" id="privacyMobileTocDropdown">
+                    <ul class="privacy-toc-list">
+                        <li><a href="#sec-1" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">1</span> About This Policy</a></li>
+                        <li><a href="#sec-2" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">2</span> Information We Collect</a></li>
+                        <li><a href="#sec-3" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">3</span> How We Use Information</a></li>
+                        <li><a href="#sec-4" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">4</span> Legal / AI Queries</a></li>
+                        <li><a href="#sec-5" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">5</span> Consent & Legal Basis</a></li>
+                        <li><a href="#sec-6" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">6</span> Cookies & Technologies</a></li>
+                        <li><a href="#sec-7" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">7</span> Analytics & Measurement</a></li>
+                        <li><a href="#sec-8" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">8</span> Third-Party Services</a></li>
+                        <li><a href="#sec-9" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">9</span> When Information Is Shared</a></li>
+                        <li><a href="#sec-10" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">10</span> Data Security</a></li>
+                        <li><a href="#sec-11" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">11</span> Data Retention</a></li>
+                        <li><a href="#sec-12" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">12</span> Your Privacy Rights</a></li>
+                        <li><a href="#sec-13" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">13</span> Children's Privacy</a></li>
+                        <li><a href="#sec-14" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">14</span> Links to Other Websites</a></li>
+                        <li><a href="#sec-15" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">15</span> International Transfers</a></li>
+                        <li><a href="#sec-16" class="privacy-toc-link" onclick="closePrivacyMobileToc()"><span class="toc-num">16</span> Changes & Updates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="privacy-layout">
+                <!-- DESKTOP STICKY SIDEBAR -->
+                <aside class="privacy-sidebar" aria-label="Privacy Policy Table of Contents">
+                    <div class="privacy-toc-title">
+                        <i class="fas fa-list-ol" style="color:var(--primary);"></i> On This Page
+                    </div>
+                    <ul class="privacy-toc-list" id="privacyDesktopToc">
+                        <li><a href="#sec-1" class="privacy-toc-link"><span class="toc-num">1</span> About This Policy</a></li>
+                        <li><a href="#sec-2" class="privacy-toc-link"><span class="toc-num">2</span> Information We Collect</a></li>
+                        <li><a href="#sec-3" class="privacy-toc-link"><span class="toc-num">3</span> How We Use Information</a></li>
+                        <li><a href="#sec-4" class="privacy-toc-link"><span class="toc-num">4</span> Legal / AI Queries</a></li>
+                        <li><a href="#sec-5" class="privacy-toc-link"><span class="toc-num">5</span> Consent & Legal Basis</a></li>
+                        <li><a href="#sec-6" class="privacy-toc-link"><span class="toc-num">6</span> Cookies & Technologies</a></li>
+                        <li><a href="#sec-7" class="privacy-toc-link"><span class="toc-num">7</span> Analytics & Measurement</a></li>
+                        <li><a href="#sec-8" class="privacy-toc-link"><span class="toc-num">8</span> Third-Party Services</a></li>
+                        <li><a href="#sec-9" class="privacy-toc-link"><span class="toc-num">9</span> Data Sharing</a></li>
+                        <li><a href="#sec-10" class="privacy-toc-link"><span class="toc-num">10</span> Data Security</a></li>
+                        <li><a href="#sec-11" class="privacy-toc-link"><span class="toc-num">11</span> Data Retention</a></li>
+                        <li><a href="#sec-12" class="privacy-toc-link"><span class="toc-num">12</span> Your Privacy Rights</a></li>
+                        <li><a href="#sec-13" class="privacy-toc-link"><span class="toc-num">13</span> Children's Privacy</a></li>
+                        <li><a href="#sec-14" class="privacy-toc-link"><span class="toc-num">14</span> External Links</a></li>
+                        <li><a href="#sec-15" class="privacy-toc-link"><span class="toc-num">15</span> International Transfers</a></li>
+                        <li><a href="#sec-16" class="privacy-toc-link"><span class="toc-num">16</span> Changes to Policy</a></li>
+                    </ul>
+                </aside>
+
+                <!-- MAIN POLICY CONTENT STREAM -->
+                <main class="privacy-content" style="min-width:0;">
+
+                    <!-- SECTION 1: ABOUT THIS POLICY -->
+                    <article class="privacy-section-card" id="sec-1" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-file-contract"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">1. About This Privacy Policy</h2>
+                                <p class="privacy-sec-subtitle">Scope of application, organizational identity, and property boundaries.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            This Privacy Policy governs the access, browsing, and use of the primary web portal located at <strong>https://nyayi.in</strong> ("NYAYI", "we", "us", or "our"), operated as an Indian legal knowledge, statutory documentation, and citizen education initiative.
+                        </p>
+                        <p class="privacy-text">
+                            Our primary objective is to make Indian statutory codes, constitutional provisions, legal procedures, and citizen rights accessible in clear, plain language. This policy details how we treat information when you interact with our website, explore our legal dictionary, read act breakdowns, and communicate with our research team.
+                        </p>
+                        <div class="privacy-highlight-box" style="border-left-color:#0284c7; background:#f0f9ff;">
+                            <p style="color:#0369a1;">
+                                <strong><i class="fas fa-circle-info"></i> Important Property Distinction:</strong><br>
+                                <strong>NYAYI.IN</strong> and <strong>ai.nyayi.in</strong> are separate web properties. Information handled by the AI web application (ai.nyayi.in) is processed within its distinct technical architecture and may be governed by additional notices, session terms, or specialized computational policies applicable specifically to that service. This document applies directly to the public knowledge repository at nyayi.in.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 2: INFORMATION WE COLLECT -->
+                    <article class="privacy-section-card" id="sec-2" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-database"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">2. Information We Collect</h2>
+                                <p class="privacy-sec-subtitle">A precise breakdown of direct and technical data categories.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            We believe in rigorous data minimization. We only collect or process information that is reasonably necessary to deliver the website's educational content, maintain cybersecurity, and respond to communications you voluntarily initiate.
+                        </p>
+                        
+                        <h3 style="font-size:1.15rem; font-weight:800; color:var(--dark); margin:20px 0 10px;">A. Information You Provide Directly</h3>
+                        <p class="privacy-text">
+                            NYAYI.IN does not require user account registration, profile creation, or password management to access our legal content. You may voluntarily provide information to us when you:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li>Contact our support numbers via telephone (+91 9598042676 or +91 7393905299).</li>
+                            <li>Send direct messages or comments to our official Instagram channel (@nyayi.ai).</li>
+                            <li>Send editorial feedback, typo reports, or statutory citation inquiries to our team.</li>
+                        </ul>
+                        <p class="privacy-text">
+                            Such voluntary communications typically include your phone number, social handle, name (if disclosed), and the substance of your inquiry.
+                        </p>
+
+                        <h3 style="font-size:1.15rem; font-weight:800; color:var(--dark); margin:24px 0 10px;">B. Information Processed Automatically</h3>
+                        <p class="privacy-text">
+                            Depending on the web hosting, server network infrastructure, and security edge layers in use, certain standard technical connection parameters are processed automatically when your web browser requests files from our servers:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li>Internet Protocol (IP) address (processed transiently for routing and DDoS mitigation).</li>
+                            <li>Browser type, version, and rendering engine.</li>
+                            <li>Operating system and device category (desktop, tablet, or mobile).</li>
+                            <li>Referring URL, requested page URL, and exact timestamp of HTTP request.</li>
+                            <li>HTTP response status codes and byte transfer volumes.</li>
+                        </ul>
+
+                        <h3 style="font-size:1.15rem; font-weight:800; color:var(--dark); margin:24px 0 10px;">C. Information from Third-Party Services</h3>
+                        <p class="privacy-text">
+                            When your web browser loads static assets hosted on reputable global content delivery networks (CDNs) — such as Google Fonts or FontAwesome — those third-party networks receive standard technical HTTP request headers required to deliver the stylesheet or font file to your screen.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 3: HOW WE USE INFORMATION -->
+                    <article class="privacy-section-card" id="sec-3" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-compass"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">3. How We Use Information</h2>
+                                <p class="privacy-sec-subtitle">Purposes and operational objectives of data processing.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            We do not engage in commercial data profiling or ad targeting. Information processed through NYAYI.IN is used exclusively for the following legitimate purposes:
+                        </p>
+
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin:20px 0;">
+                            <div style="background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                                <strong style="color:var(--primary-dark); font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-check-circle"></i> Service Delivery</strong>
+                                <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Serving static HTML pages, rendering legal dictionary explainers, and delivering responsive layouts to your device.</p>
+                            </div>
+
+                            <div style="background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                                <strong style="color:var(--primary-dark); font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-shield-halved"></i> Security & Integrity</strong>
+                                <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Detecting abusive bot traffic, preventing Distributed Denial of Service (DDoS) attacks, and maintaining platform uptime.</p>
+                            </div>
+
+                            <div style="background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                                <strong style="color:var(--primary-dark); font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-comments"></i> Citizen Communication</strong>
+                                <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Responding directly to citizen questions, feedback, and technical assistance requests submitted voluntarily.</p>
+                            </div>
+
+                            <div style="background:#f8fafc; border:1px solid #edf2f7; border-radius:16px; padding:20px;">
+                                <strong style="color:var(--primary-dark); font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-scale-balanced"></i> Statutory Compliance</strong>
+                                <p style="font-size:13px; color:#4a5568; margin:0; line-height:1.6;">Fulfilling mandatory obligations under applicable Indian laws, judicial orders, or lawful authority directives.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 4: LEGAL / AI QUERIES -->
+                    <article class="privacy-section-card" id="sec-4" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-scale-unbalanced"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">4. Information You Enter Into Legal Tools</h2>
+                                <p class="privacy-sec-subtitle">How search queries work and important safety guidance for citizens.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Users frequently interact with the search bars across our Legal Dictionary, Laws Library, and Legal Guides hubs to research specific statutes, sections, and legal situations.
+                        </p>
+
+                        <div class="privacy-highlight-box">
+                            <p>
+                                <strong><i class="fas fa-laptop-code"></i> Client-Side Search Architecture:</strong><br>
+                                On NYAYI.IN, searches performed in the Legal Dictionary, Laws Library, and Legal Guides search bars execute entirely within your device's web browser using JavaScript filters against pre-compiled static datasets. <strong>Your search terms on these pages are NOT transmitted to a remote search database or logged against your identity by nyayi.in.</strong>
+                            </p>
+                        </div>
+
+                        <h3 style="font-size:1.15rem; font-weight:800; color:var(--dark); margin:20px 0 10px;">Citizen Prudence & Sensitive Information</h3>
+                        <p class="privacy-text">
+                            When describing legal questions, scenarios, or disputes — whether on community channels or when utilizing conversational AI interfaces such as ai.nyayi.in:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li><strong>Do not enter confidential identity credentials</strong> such as your Aadhaar number, PAN, passport details, or banking PINs.</li>
+                            <li><strong>Do not enter unredacted sensitive court documents</strong> containing sealed testimony or private matrimonial filings.</li>
+                            <li><strong>Frame questions hypothetically</strong> (e.g., <em>"What is the statutory timeline for filing a consumer complaint for a delayed delivery?"</em> instead of sharing personal transaction passwords).</li>
+                        </ul>
+                    </article>
+
+                    <!-- SECTION 5: CONSENT & LEGAL BASIS -->
+                    <article class="privacy-section-card" id="sec-5" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-handshake"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">5. Consent & Legal Basis</h2>
+                                <p class="privacy-sec-subtitle">Lawful grounds for technical and operational data handling.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Under applicable legal standards, our processing of information is founded upon clear, legitimate operational grounds:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li><strong>Voluntary Consent:</strong> When you choose to call our phone lines or send us social media messages, you consent to our use of that communication to respond to your query.</li>
+                            <li><strong>Performance of Requested Services:</strong> Delivering requested statutory articles, search indexes, and mobile layouts to your device.</li>
+                            <li><strong>Legitimate Operational & Security Interests:</strong> Protecting the website against cyberattacks, spam, unauthorized scraping, and infrastructure exploitation.</li>
+                            <li><strong>Statutory Compliance:</strong> Ensuring our platform operates within the bounds of Indian cyber laws, including the Information Technology Act 2000 and applicable intermediary guidelines.</li>
+                        </ul>
+                        <p class="privacy-text" style="font-size:13.5px; color:#718096;">
+                            <em>Note: We do not claim universal application of foreign regulatory frameworks. We operate primarily under the laws of the Republic of India.</em>
+                        </p>
+                    </article>
+
+                    <!-- SECTION 6: COOKIES & SIMILAR TECHNOLOGIES -->
+                    <article class="privacy-section-card" id="sec-6" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-cookie-bite"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">6. Cookies & Similar Technologies</h2>
+                                <p class="privacy-sec-subtitle">Transparent inventory of storage and caching technologies.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Cookies are small text files placed on your device by websites you visit. Many commercial websites use cookies for user tracking, persistent sessions, and behavioral advertising.
+                        </p>
+                        <div class="privacy-highlight-box" style="border-left-color:#16a34a; background:#f0fdf4;">
+                            <p style="color:#15803d;">
+                                <strong><i class="fas fa-check-circle"></i> Zero First-Party Tracking Cookies:</strong><br>
+                                NYAYI.IN does NOT set any first-party cookies, advertising cookies, or persistent profiling cookies on your computer or mobile device. You can browse the entire repository with total cookie-blocking enabled in your browser without losing functionality.
+                            </p>
+                        </div>
+
+                        <div class="privacy-table-wrapper">
+                            <table class="privacy-table">
+                                <thead>
+                                    <tr>
+                                        <th>Technology / Asset</th>
+                                        <th>Purpose</th>
+                                        <th>Type</th>
+                                        <th>Duration</th>
+                                        <th>Provider</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Browser HTTP Cache</strong></td>
+                                        <td>Stores static CSS, JS, and images locally so subsequent page views load instantly.</td>
+                                        <td>Local Cache</td>
+                                        <td>Managed by Browser</td>
+                                        <td>User's Web Browser</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Google Fonts CDN</strong></td>
+                                        <td>Delivers the Urbanist typography stylesheet and font files cleanly.</td>
+                                        <td>CDN Asset</td>
+                                        <td>Session / Cached</td>
+                                        <td>Google LLC</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cloudflare cdnjs</strong></td>
+                                        <td>Delivers the FontAwesome vector icons used across navigation badges.</td>
+                                        <td>CDN Asset</td>
+                                        <td>Session / Cached</td>
+                                        <td>Cloudflare, Inc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Unpkg CDN</strong></td>
+                                        <td>Delivers the lightweight AOS scroll animation stylesheet and JavaScript.</td>
+                                        <td>CDN Asset</td>
+                                        <td>Session / Cached</td>
+                                        <td>npm / Cloudflare</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 7: ANALYTICS & PERFORMANCE MEASUREMENT -->
+                    <article class="privacy-section-card" id="sec-7" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">7. Analytics & Performance Measurement</h2>
+                                <p class="privacy-sec-subtitle">Honest audit of performance tracking tools.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Many platforms install third-party tracking scripts to monitor cursor movements, heatmaps, and demographic profiles.
+                        </p>
+                        <p class="privacy-text">
+                            <strong>NYAYI.IN does NOT currently have Google Analytics, Meta Pixel, Hotjar, Microsoft Clarity, or any third-party behavioral analytics scripts installed.</strong> We do not track you across other websites or construct personal user profiles.
+                        </p>
+                        <p class="privacy-text">
+                            Any future implementation of analytics will strictly prioritize aggregated, privacy-preserving metrics and will be documented in this section prior to deployment.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 8: THIRD-PARTY SERVICES -->
+                    <article class="privacy-section-card" id="sec-8" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-network-wired"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">8. Third-Party Services</h2>
+                                <p class="privacy-sec-subtitle">Verified external infrastructure providers and privacy references.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            To ensure low latency, high availability, and secure page delivery across India, NYAYI.IN relies on select reputable global infrastructure partners:
+                        </p>
+
+                        <div class="privacy-table-wrapper">
+                            <table class="privacy-table">
+                                <thead>
+                                    <tr>
+                                        <th>Provider</th>
+                                        <th>Operational Purpose</th>
+                                        <th>Data Handled</th>
+                                        <th>Privacy Policy Reference</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Google Fonts</strong></td>
+                                        <td>Font stylesheet & font binary delivery</td>
+                                        <td>IP address, browser user-agent</td>
+                                        <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--primary-dark); font-weight:700;">Google Privacy Policy &rarr;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cloudflare cdnjs</strong></td>
+                                        <td>Open-source icon asset distribution</td>
+                                        <td>Standard HTTP request headers</td>
+                                        <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" style="color:var(--primary-dark); font-weight:700;">Cloudflare Privacy &rarr;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Unpkg (npm)</strong></td>
+                                        <td>AOS animation library script delivery</td>
+                                        <td>Standard HTTP request headers</td>
+                                        <td><a href="https://docs.npmjs.com/policies/privacy" target="_blank" rel="noopener" style="color:var(--primary-dark); font-weight:700;">npm Privacy Policy &rarr;</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>GitHub Pages</strong></td>
+                                        <td>Static web hosting & edge network routing</td>
+                                        <td>Server connection & security logs</td>
+                                        <td><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" style="color:var(--primary-dark); font-weight:700;">GitHub Statement &rarr;</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 9: WHEN INFORMATION MAY BE SHARED -->
+                    <article class="privacy-section-card" id="sec-9" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-share-nodes"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">9. When Information May Be Shared</h2>
+                                <p class="privacy-sec-subtitle">Circumstances under which data may be disclosed.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            <strong>We do NOT sell, rent, trade, or monetize personal information.</strong> Information is only shared under the following limited, legally necessary circumstances:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li><strong>Infrastructure Providers:</strong> With hosting, DNS, and security edge providers strictly to transmit web packets and maintain service availability.</li>
+                            <li><strong>Legal & Statutory Obligations:</strong> Where disclosure is required by applicable law, such as in response to a verified court summons, warrant, or formal statutory notice from an authorized Indian law enforcement agency.</li>
+                            <li><strong>Protection of Rights:</strong> Where disclosure is necessary to investigate potential security violations, enforce terms of service, or protect the physical safety and digital integrity of NYAYI and its users.</li>
+                            <li><strong>Organizational Restructuring:</strong> In the event of a merger, institutional transfer, or reorganization of the NYAYI Legal Knowledge Foundation, information would continue to be subject to this Privacy Policy.</li>
+                        </ul>
+                    </article>
+
+                    <!-- SECTION 10: DATA SECURITY (DARK GLASSMORPHISM SECTION) -->
+                    <article class="privacy-section-card" id="sec-10" data-aos="fade-up" style="background: radial-gradient(circle at 50% 0%, #17231c 0%, #0c120f 100%); color:#ffffff; border-color:rgba(0,200,83,0.3);">
+                        <div class="privacy-sec-header" style="border-bottom-color:rgba(255,255,255,0.1);">
+                            <div class="privacy-sec-icon" style="background:rgba(0,200,83,0.2); color:#00C853;"><i class="fas fa-lock"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title" style="color:#ffffff;">10. Data Security</h2>
+                                <p class="privacy-sec-subtitle" style="color:#a0aec0;">Technical protections, static safety, and honest limitations.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text" style="color:#cbd5e1;">
+                            We take reasonable technical and administrative measures designed to protect information from unauthorized access, loss, misuse, or alteration:
+                        </p>
+
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin:24px 0;">
+                            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+                                <strong style="color:#00C853; font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-key"></i> HTTPS / TLS 256-Bit</strong>
+                                <p style="font-size:13px; color:#94a3b8; margin:0; line-height:1.6;">All web traffic to nyayi.in is strictly encrypted in transit using modern Transport Layer Security (TLS).</p>
+                            </div>
+
+                            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+                                <strong style="color:#00C853; font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-shield-virus"></i> Static Architecture</strong>
+                                <p style="font-size:13px; color:#94a3b8; margin:0; line-height:1.6;">No exposed dynamic SQL databases or server-side user sessions, minimizing vulnerable attack vectors.</p>
+                            </div>
+
+                            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+                                <strong style="color:#00C853; font-size:14.5px; display:block; margin-bottom:6px;"><i class="fas fa-user-shield"></i> Access Controls</strong>
+                                <p style="font-size:13px; color:#94a3b8; margin:0; line-height:1.6;">Repository deployments are protected by multi-factor authentication and strict branch permissions.</p>
+                            </div>
+                        </div>
+
+                        <div style="background:rgba(0,200,83,0.08); border-left:4px solid #00C853; border-radius:12px; padding:16px 20px; margin-top:20px;">
+                            <p style="color:#e2e8f0; font-size:13.5px; margin:0; line-height:1.7;">
+                                <strong><i class="fas fa-triangle-exclamation" style="color:#00C853;"></i> Important Security Reality:</strong><br>
+                                While we employ rigorous engineering measures, no method of electronic transmission over the Internet or digital storage architecture can be guaranteed to be 100% impenetrable. We encourage users to maintain vigilance when sharing information online.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 11: DATA RETENTION -->
+                    <article class="privacy-section-card" id="sec-11" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">11. How Long We Keep Information</h2>
+                                <p class="privacy-sec-subtitle">Retention parameters and data lifecycle principles.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            We retain information only for as long as necessary to fulfill the specific purposes for which it was gathered, or as required by applicable statutory requirements:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li><strong>Telephone & Social Inquiries:</strong> Voluntary communication records are retained only as long as active correspondence requires, after which they are archived or deleted.</li>
+                            <li><strong>Hosting Network Logs:</strong> Technical connection logs maintained at the web server / CDN level are automatically rotated and expunged in accordance with standard infrastructure lifecycle schedules.</li>
+                            <li><strong>Legal Hold Requirements:</strong> Where a formal statutory or judicial directive mandates log preservation, records are retained strictly in compliance with applicable law.</li>
+                        </ul>
+                    </article>
+
+                    <!-- SECTION 12: YOUR PRIVACY RIGHTS -->
+                    <article class="privacy-section-card" id="sec-12" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-user-shield"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">12. Your Privacy Rights</h2>
+                                <p class="privacy-sec-subtitle">Citizen entitlements, access, correction, and grievance mechanisms.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Depending on your jurisdiction and applicable data protection legislation, you may have specific rights regarding personal information you have shared with us:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:20px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li><strong>Right of Information & Access:</strong> The right to request confirmation of whether we process any personal data relating to you and to request a copy.</li>
+                            <li><strong>Right to Correction:</strong> The right to request correction or updating of inaccurate or outdated contact information.</li>
+                            <li><strong>Right to Deletion:</strong> The right to request the deletion of personal communications you have sent to our team, subject to lawful retention exceptions.</li>
+                            <li><strong>Right to Withdraw Consent:</strong> The right to withdraw consent for voluntary correspondence at any time.</li>
+                            <li><strong>Grievance Redressal:</strong> The right to submit questions or complaints regarding our data practices directly to our legal team.</li>
+                        </ul>
+
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:18px; padding:24px; text-align:center;">
+                            <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:0 0 8px;">Have a Privacy Question or Request?</h4>
+                            <p style="font-size:13.5px; color:#666; margin:0 0 16px;">Reach out directly to the NYAYI Legal Team with your specific query.</p>
+                            <a href="contact.html" class="btn-ai" style="padding:10px 24px; font-size:13.5px; display:inline-flex; align-items:center; gap:8px;">
+                                <i class="fas fa-envelope"></i> Contact NYAYI Legal Team &rarr;
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 13: CHILDREN'S PRIVACY -->
+                    <article class="privacy-section-card" id="sec-13" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-children"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">13. Children's Privacy</h2>
+                                <p class="privacy-sec-subtitle">Educational audience parameters and protection of minors.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI is an educational legal portal designed to foster civic awareness of Indian statutory codes. Our website is not directed at children under the age of 18 for contractual purposes or formal legal advice.
+                        </p>
+                        <p class="privacy-text">
+                            We do not knowingly collect personal identifiable information from children under 18. If a parent or guardian becomes aware that a minor has provided personal details through our contact channels, please contact us immediately, and we will take prompt steps to expunge such records.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 14: LINKS TO OTHER WEBSITES -->
+                    <article class="privacy-section-card" id="sec-14" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">14. Links to Other Websites</h2>
+                                <p class="privacy-sec-subtitle">External references, court portals, and third-party policies.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI articles, legal guides, and statutory explainers frequently contain external links to authoritative legal resources, including:
+                        </p>
+                        <ul style="padding-left:22px; margin-bottom:18px; color:#4a5568; line-height:1.75; font-size:14.5px;">
+                            <li>The Supreme Court of India portal (sci.gov.in) and High Court digital registries.</li>
+                            <li>e-Courts Services (ecourts.gov.in) and National Judicial Data Grid (NJDG).</li>
+                            <li>Government legislative repositories (indiacode.nic.in, legislative.gov.in).</li>
+                            <li>Indian Kanoon and related academic legal repositories.</li>
+                        </ul>
+                        <p class="privacy-text">
+                            These external websites operate entirely independently of NYAYI. We have no control over their content, security standards, or privacy policies. When you click an external link, you leave NYAYI.IN and are subject to that external site's terms.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 15: INTERNATIONAL DATA TRANSFERS -->
+                    <article class="privacy-section-card" id="sec-15" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-earth-americas"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">15. International Data Processing</h2>
+                                <p class="privacy-sec-subtitle">Global CDN distribution and edge server routing.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI is an Indian legal platform developed primarily for citizens, students, and legal professionals within India.
+                        </p>
+                        <p class="privacy-text">
+                            However, because our static web assets and security firewalls are distributed via global edge networks (such as Cloudflare and GitHub), technical packet requests may be routed through edge servers located in various regions worldwide to ensure lightning-fast page load times and robust DDoS protection.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 16: CHANGES TO THIS POLICY -->
+                    <article class="privacy-section-card" id="sec-16" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-pen-ruler"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">16. Changes to This Privacy Policy</h2>
+                                <p class="privacy-sec-subtitle">Revision lifecycle, notice of updates, and archived versions.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            We may update this Privacy Policy from time to time to reflect modifications in our platform architecture, statutory legal updates, or emerging technological practices.
+                        </p>
+                        <p class="privacy-text">
+                            When changes occur, the updated policy will be posted on this page with an updated "Last Updated" timestamp at the top and bottom of the document. For substantial revisions affecting data handling, a prominent notification banner will be displayed across the website header.
+                        </p>
+                        <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:14px; padding:16px 20px; margin-top:20px;">
+                            <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-history"></i> Historical Log:</strong>
+                            <p style="font-size:13.5px; color:#2d3748; margin:4px 0 0;">
+                                Version 2.0 published on <strong>September 13, 2026</strong>. Replaces all previous disclaimers and establishes the standardized NYAYI Trust Center framework.
+                            </p>
+                        </div>
+                    </article>
+
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 — SUBSTANTIAL 12-QUESTION FAQ ACCORDION -->
+    <section style="padding:90px 0; background:#f8fafc; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7;" id="faq">
+        <div class="container" style="max-width:880px;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Common questions regarding data handling, cookies, AI separation, and your privacy rights.</p>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:14px;">
+                
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What information does NYAYI collect?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI.IN collects only the information reasonably necessary to operate the website. We do not require account registration or passwords. We only receive personal information that you voluntarily provide when calling our support team or sending us direct messages, alongside standard transient server connection headers (IP address, browser type) processed automatically for network delivery.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI store legal questions?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>On the main NYAYI.IN website, search queries in the Legal Dictionary and Laws Library run entirely in your local browser memory using client-side JavaScript. They are not transmitted to or stored in a remote search database by nyayi.in. If you choose to use the conversational AI application at ai.nyayi.in, queries submitted there are processed by that separate application under its own specialized terms.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI sell personal information?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No. NYAYI does not sell, rent, trade, or monetize personal information. We have no advertising networks, data brokers, or commercial profiling partners.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI use cookies?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI.IN does NOT set first-party tracking cookies or advertising cookies. The website functions entirely through static assets. Your browser may locally cache stylesheets, fonts, and scripts to speed up loading times, which you can clear at any time in your browser settings.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI use analytics?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No third-party analytics trackers (such as Google Analytics, Meta Pixel, or Hotjar) are currently installed on NYAYI.IN. We do not track your digital activities across the web.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Who can access my information?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Only authorized members of the NYAYI Technical & Editorial Team have access to voluntary citizen communications (such as phone calls or Instagram messages). Technical routing data is processed strictly by reputable infrastructure providers (like GitHub and Cloudflare) to deliver web packets securely.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>How can I request deletion of my information?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>You can request deletion of any voluntary contact information you have shared with us by reaching out to our team through our official contact page (nyayi.in/contact.html) or telephone (+91 9598042676 / +91 7393905299). We will promptly review and process your request.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>How can I correct my information?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>If you have communicated with us and need to update your phone number, name, or inquiry details, simply reach out to our team via our official contact channels with your updated information.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Is my information encrypted?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes. All traffic to and from NYAYI.IN is encrypted in transit using 256-bit HTTPS/TLS encryption. This protects the data exchanged between your device and our web servers against eavesdropping and tampering.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI share information with third parties?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>We do not share personal information with third parties except as strictly necessary for core infrastructure delivery (trusted CDNs and hosting) or when legally compelled by a valid court order or statutory directive under Indian law.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Is NYAYI.IN the same as ai.nyayi.in?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No. NYAYI.IN is the public static knowledge portal hosting statutory acts, dictionary explainers, and legal guides. The conversational AI tool at ai.nyayi.in operates as an independent web property on a separate subdomain with its own computational architecture.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>How can I contact NYAYI about privacy?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>You can contact our official team directly via telephone (+91 9598042676 or +91 7393905299), message our official Instagram (@nyayi.ai), or visit our official Contact Us page at nyayi.in/contact.html.</p></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 — OFFICIAL CONTACT & PRIVACY INQUIRY PANEL -->
+    <section style="padding:80px 0; background:#ffffff;" id="contact">
+        <div class="container" style="max-width:880px;" data-aos="fade-up">
+            <div style="background:radial-gradient(circle at 50% 0%, #f0fdf4 0%, #ffffff 80%); border:2px solid #e2e8f0; border-radius:28px; padding:45px 35px; text-align:center; box-shadow:0 10px 35px rgba(0,0,0,0.03);">
+                <div style="width:56px; height:56px; background:rgba(0,200,83,0.12); color:var(--primary-dark); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 18px;">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h2 style="font-size:2.2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Questions About Your Privacy?</h2>
+                <p style="font-size:15px; color:#4a5568; max-width:680px; margin:0 auto 26px; line-height:1.75;">
+                    If you have a question, concern, or request relating to this Privacy Policy or the handling of your information, contact NYAYI through our official contact channels.
+                </p>
+
+                <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:28px;">
+                    <a href="tel:9598042676" class="btn-outline" style="padding:12px 24px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fas fa-phone-alt" style="color:var(--primary);"></i> +91 9598042676
+                    </a>
+                    <a href="tel:7393905299" class="btn-outline" style="padding:12px 24px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fas fa-phone-alt" style="color:var(--primary);"></i> +91 7393905299
+                    </a>
+                    <a href="https://instagram.com/nyayi.ai" target="_blank" class="btn-outline" style="padding:12px 24px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fab fa-instagram" style="color:#e1306c;"></i> @nyayi.ai
+                    </a>
+                    <a href="contact.html" class="btn-ai" style="padding:12px 28px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fas fa-paper-plane"></i> Contact Us &rarr;
+                    </a>
+                </div>
+
+                <div style="border-top:1px solid #edf2f7; padding-top:20px; font-size:13px; color:#718096;">
+                    <span>NYAYI Trust Center &bull; Document Version 2.0 &bull; Last Updated: September 13, 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENT SCRIPT FOR INTERSECTION OBSERVER & ACCORDION -->
+    <script>
+        // Smooth scroll with offset for fixed floating navbar
+        function scrollToPrivacySec(targetId) {
+            const el = document.getElementById(targetId);
+            if (el) {
+                const navHeight = 110;
+                const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        }
+
+        // Mobile TOC Dropdown Toggle
+        function togglePrivacyMobileToc() {
+            const dd = document.getElementById('privacyMobileTocDropdown');
+            const chev = document.getElementById('mobileTocChevron');
+            if (dd) {
+                dd.classList.toggle('open');
+                if (chev) {
+                    chev.style.transform = dd.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+
+        function closePrivacyMobileToc() {
+            const dd = document.getElementById('privacyMobileTocDropdown');
+            const chev = document.getElementById('mobileTocChevron');
+            if (dd) {
+                dd.classList.remove('open');
+                if (chev) chev.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Intersection Observer for Active TOC Highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card');
+
+            if ('IntersectionObserver' in window && sections.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach(link => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    rootMargin: '-100px 0px -60% 0px',
+                    threshold: 0
+                });
+
+                sections.forEach(sec => observer.observe(sec));
+            }
+
+            // Bind click handlers to TOC links for smooth scrolling with offset
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        scrollToPrivacySec(targetId);
+                    }
+                });
+            });
+        });
+
+        // FAQ ACCORDION TOGGLE
+        function toggleFaq(el) {
+            const isExpanded = el.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+                const body = item.querySelector('.faq-body');
+                if (body) body.style.maxHeight = null;
+            });
+            if (!isExpanded) {
+                el.classList.add('active');
+                const icon = el.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+                const body = el.querySelector('.faq-body');
+                if (body) body.style.maxHeight = body.scrollHeight + 'px';
+            }
+        }
+    </script>
+
+    ${renderFooter(0)}
+    `;
+
+    fs.writeFileSync(path.join(ROOT_DIR, 'privacy.html'), privacyHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'privacy-policy.html'), privacyHub, 'utf8');
+    console.log('Generated: privacy.html & privacy-policy.html');
+
 
         // Articles & Editorial Journal Data Model (24+ Verified Articles)
     const expandedArticles = [
@@ -7820,6 +8801,7 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/app\.html"/g, 'href="../app.html"')
         .replace(/href="\.\/contact\.html"/g, 'href="../contact.html"')
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
+        .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="articles\//g, 'href="');
     fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogSubfolderHub, 'utf8');
@@ -7943,6 +8925,7 @@ function buildFeaturesAndOther() {
         'https://nyayi.in/articles.html',
         'https://nyayi.in/contact.html',
         'https://nyayi.in/app.html',
+        'https://nyayi.in/privacy.html',
         'https://nyayi.in/legal-disclaimer.html',
         ...dictionary.map(d => `https://nyayi.in/dictionary/${d.slug}.html`),
         ...rights.map(r => `https://nyayi.in/know-your-rights/${r.slug}.html`),
