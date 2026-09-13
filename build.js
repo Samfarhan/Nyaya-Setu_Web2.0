@@ -83,6 +83,12 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <meta name="twitter:description" content="${description}">
     <meta name="twitter:image" content="https://nyayi.in/images/logo.png">
 
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="${relPrefix}favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${relPrefix}favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${relPrefix}apple-touch-icon.png">
+    <link rel="shortcut icon" href="${relPrefix}favicon.ico">
+
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
