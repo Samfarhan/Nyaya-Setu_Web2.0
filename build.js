@@ -1353,165 +1353,729 @@ function buildDictionary() {
 // 3. BUILD KNOW YOUR RIGHTS HUB & CATEGORY PAGES
 function buildRights() {
     const hubHtml = `
-    ${renderHead('Know Your Rights | Citizen Protections in India', 'Understand your legal rights against arbitrary arrest, police overreach, consumer fraud, cybercrime, and workplace harassment.', 'Know Your Rights India, police rights, arrest rights, womens rights India, consumer rights', '/rights.html')}
+    ${renderHead('Know Your Rights – Indian Citizen Legal Rights & Constitutional Hub | NYAYI', 'Comprehensive Indian Citizen Rights Hub. Understand fundamental rights, police arrest safeguards, women protections, consumer rights, tenant laws, cyber privacy, workplace rights, NALSA legal aid, and landmark Supreme Court rulings.', 'Know Your Rights India, fundamental rights India, police arrest rights, consumer rights India, women rights India, tenant rights India, cyber rights, NALSA free legal aid', '/rights.html')}
     ${renderHeader('rights', 0)}
 
-    <!-- HERO SECTION -->
-    <section class="page-header">
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding-bottom: 50px;">
         <div class="container" data-aos="zoom-in">
-            <h1>Know Your <span>Rights</span></h1>
-            <p>Empowering Indian citizens with actionable constitutional safeguards, police protocol guidance, and practical legal protections.</p>
-        </div>
-    </section>
-
-    <!-- FUNDAMENTAL PILLARS SECTION -->
-    <section class="fund-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up" style="color:white;">
-                <h2 style="color:white;">Constitutional <span>Fundamental Pillars</span></h2>
-                <p style="color:#aaa;">Core fundamental guarantees enshrined under Part III of the Constitution of India.</p>
-            </div>
-
-            <div class="fund-grid">
-                <div class="fund-item" data-aos="fade-up">
-                    <span class="fund-num">ARTICLE 14</span>
-                    <h4>Right to Equality</h4>
-                    <p>Equal protection of laws and equality before the law for all citizens without discrimination.</p>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="fund-num">ARTICLE 19</span>
-                    <h4>Freedom of Speech</h4>
-                    <p>Protects freedom of speech, expression, peaceful assembly, and trade across India.</p>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="fund-num">ARTICLE 21</span>
-                    <h4>Protection of Life & Liberty</h4>
-                    <p>No person shall be deprived of personal liberty except according to procedure established by law.</p>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="300">
-                    <span class="fund-num">ARTICLE 32</span>
-                    <h4>Constitutional Remedies</h4>
-                    <p>Guarantees the right to move the Supreme Court via writs for enforcement of fundamental rights.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RIGHTS CATEGORY BENTO GRID -->
-    <section style="padding:100px 0; background:white;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Explore Rights <span>by Category</span></h2>
-                <p>Detailed breakdowns of your statutory rights in daily legal situations.</p>
-            </div>
-
-            <div class="rights-bento">
-                <div class="r-card r-dark" data-aos="fade-right">
-                    <div class="r-icon"><i class="fas fa-handcuffs"></i></div>
-                    <h3>Police & Arrest Safeguards</h3>
-                    <ul class="r-list">
-                        <li>Right to know grounds of arrest immediately (BNSS Sec 35).</li>
-                        <li>Right to inform a family member or advocate within 12 hours of custody.</li>
-                        <li>Mandatory medical examination by a certified doctor every 48 hours.</li>
-                    </ul>
-                    <a href="know-your-rights/arrest-rights.html" class="card-link" style="color:var(--primary); margin-top:auto;">Read Arrest Rights Guide <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="r-card r-tall" data-aos="fade-left">
-                    <div class="r-icon"><i class="fas fa-person-dress"></i></div>
-                    <h3>Women's Legal Protections</h3>
-                    <ul class="r-list">
-                        <li>Women cannot be arrested after sunset & before sunrise without Magistrate permission.</li>
-                        <li>Search of a woman must be conducted strictly by a female officer with decency.</li>
-                        <li>Zero FIR registration permitted at any police station across India.</li>
-                        <li>Workplace Sexual Harassment Complaint safeguards under POSH Act 2013.</li>
-                    </ul>
-                    <a href="know-your-rights/womens-rights.html" class="card-link" style="margin-top:auto;">Explore Women's Rights <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="r-card" data-aos="fade-up">
-                    <div class="r-icon"><i class="fas fa-shield-halved"></i></div>
-                    <h3>Cyber & Digital Privacy</h3>
-                    <ul class="r-list">
-                        <li>Right to data protection and privacy under Article 21 (Puttaswamy Ruling).</li>
-                        <li>National Cyber Helpline 1930 for emergency financial fraud freezing.</li>
-                    </ul>
-                    <a href="know-your-rights/cyber-rights.html" class="card-link" style="margin-top:auto;">View Cyber Rights <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="r-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="r-icon"><i class="fas fa-bag-shopping"></i></div>
-                    <h3>Consumer Rights</h3>
-                    <ul class="r-list">
-                        <li>Right to refund, replacement, or compensation under Consumer Protection Act 2019.</li>
-                        <li>Protection against misleading ads and false MRP surcharges.</li>
-                    </ul>
-                    <a href="know-your-rights/consumer-rights.html" class="card-link" style="margin-top:auto;">View Consumer Rights <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ACTION BANNER -->
-    <section style="padding:0 0 90px;">
-        <div class="container">
-            <div class="banner-panel" data-aos="zoom-in">
-                <div class="bp-left">
-                    <h3>Unsure of Your <span>Current Situation?</span></h3>
-                    <p>Ask NYAYI AI to analyze your case against relevant Indian laws in real time.</p>
-                </div>
-                <a href="https://ai.nyayi.in" target="_blank" class="bp-right-btn">
-                    <i class="fas fa-robot"></i> Ask AI Assistant
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px;">AUTHORITATIVE CITIZEN HANDBOOK & CONSTITUTIONAL LEARNING HUB</span>
+            <h1 style="font-size:3.2rem; font-weight:900; line-height:1.2;">Know Your Rights. <br><span>Know Your Power.</span></h1>
+            <p style="max-width:860px; margin:0 auto 30px; font-size:1.2rem; color:#4a5568; line-height:1.8;">
+                Explore the rights, protections, and legal principles that shape everyday life in India — explained in clear, practical, authoritative language.
+            </p>
+            <div class="hero-btns" style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+                <a href="#quick-nav" class="btn-ai" style="padding:16px 36px; font-size:16px;">
+                    <i class="fas fa-compass"></i> Explore Your Rights
+                </a>
+                <a href="#study-mode" class="btn-outline" style="padding:16px 36px; font-size:16px;">
+                    <i class="fas fa-graduation-cap"></i> Start Constitution Study Mode
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- LANDMARK SUPREME COURT PRECEDENTS -->
-    <section class="precedents-section" style="padding:90px 0; background:#fcfcfc;">
+    <!-- STICKY RIGHTS EXPLORER NAVIGATION -->
+    <div class="sticky-rights-nav">
+        <div class="container">
+            <div class="rights-nav-scroll">
+                <a href="#quick-nav" class="rights-nav-item active"><i class="fas fa-th-large"></i> Overview</a>
+                <a href="#what-are-rights" class="rights-nav-item"><i class="fas fa-scale-balanced"></i> Right Defined</a>
+                <a href="#constitution-foundation" class="rights-nav-item"><i class="fas fa-landmark"></i> Constitution</a>
+                <a href="#article-explorer" class="rights-nav-item"><i class="fas fa-book-bookmark"></i> Article Explorer</a>
+                <a href="#rights-categories" class="rights-nav-item"><i class="fas fa-layer-group"></i> Categories</a>
+                <a href="#real-life-rights" class="rights-nav-item"><i class="fas fa-street-view"></i> Everyday Situations</a>
+                <a href="#police-rights" class="rights-nav-item"><i class="fas fa-handcuffs"></i> Police & Arrest</a>
+                <a href="#consumer-rights" class="rights-nav-item"><i class="fas fa-bag-shopping"></i> Consumer</a>
+                <a href="#womens-rights" class="rights-nav-item"><i class="fas fa-person-dress"></i> Women's Rights</a>
+                <a href="#childrens-rights" class="rights-nav-item"><i class="fas fa-child"></i> Children</a>
+                <a href="#tenant-rights" class="rights-nav-item"><i class="fas fa-building"></i> Tenant & Property</a>
+                <a href="#cyber-rights" class="rights-nav-item"><i class="fas fa-shield-halved"></i> Cyber Rights</a>
+                <a href="#workplace-rights" class="rights-nav-item"><i class="fas fa-briefcase"></i> Workplace</a>
+                <a href="#legal-aid" class="rights-nav-item"><i class="fas fa-gavel"></i> Legal Aid</a>
+                <a href="#violation-flow" class="rights-nav-item"><i class="fas fa-list-check"></i> Violation Steps</a>
+                <a href="#action-plans" class="rights-nav-item"><i class="fas fa-user-shield"></i> Action Plans</a>
+                <a href="#study-mode" class="rights-nav-item"><i class="fas fa-graduation-cap"></i> Study Mode</a>
+                <a href="#knowledge-check" class="rights-nav-item"><i class="fas fa-circle-question"></i> Quiz</a>
+                <a href="#faq" class="rights-nav-item"><i class="fas fa-comments"></i> FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 — RIGHTS QUICK NAVIGATION -->
+    <section style="padding:70px 0 40px; background:#ffffff;" id="quick-nav">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Landmark <span>Supreme Court</span> Precedents</h2>
-                <p>Key apex court rulings that establish enforceable safeguards for Indian citizens.</p>
+                <h2>Explore Your <span>Rights</span></h2>
+                <p>Quick access visual navigation across 10 primary legal protection domains in India.</p>
             </div>
 
-            <div class="prec-grid">
-                <div class="prec-card" data-aos="fade-up">
-                    <span class="prec-case">D.K. Basu v. State of West Bengal (1997)</span>
-                    <h4>Mandatory Arrest & Custody Protocols</h4>
-                    <p>Established strict mandatory protocols for arrest and interrogation: visible identification tags for police, written arrest memo, informing family within 12h, and medical checks every 48 hours.</p>
-                </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;" data-aos="fade-up">
+                <a href="#constitution-foundation" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-landmark"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Constitutional Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Part III guarantees, Articles 14–32, and writ remedies.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
 
-                <div class="prec-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="prec-case">K.S. Puttaswamy v. Union of India (2017)</span>
-                    <h4>Fundamental Right to Privacy</h4>
-                    <p>A 9-judge constitutional bench declared privacy as a fundamental right under Article 21, protecting personal data, communications, and bodily autonomy against state surveillance.</p>
-                </div>
+                <a href="#police-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-handcuffs"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Police & Arrest</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">BNSS arrest grounds, custody rules, bail & 24h Magistrate production.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
 
-                <div class="prec-card" data-aos="fade-up">
-                    <span class="prec-case">Lalita Kumari v. Govt. of UP (2014)</span>
-                    <h4>Mandatory Registration of FIR</h4>
-                    <p>Held that registration of an FIR is mandatory under Section 154 CrPC / BNSS Sec 173 if information discloses the commission of a cognizable offence, with no preliminary inquiry permitted in such cases.</p>
-                </div>
+                <a href="#consumer-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-bag-shopping"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Consumer Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Refunds, replacements, misleading ads & CPA 2019 commissions.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
 
-                <div class="prec-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="prec-case">Arnesh Kumar v. State of Bihar (2014)</span>
-                    <h4>Notice Before Arrest for Offences Under 7 Years</h4>
-                    <p>Prohibited routine arrests in offences punishable with up to 7 years imprisonment without serving a Section 41A CrPC notice of appearance, preventing arbitrary police harassment.</p>
+                <a href="#womens-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-person-dress"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Women's Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">POSH Act, Domestic Violence Act, Zero FIR & sunset arrest bans.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#childrens-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-child"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Children's Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">RTE Act education, POCSO protections & child labour bans.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#cyber-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Cyber & Digital</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Online fraud 1930 helpline, identity theft & Puttaswamy privacy.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#tenant-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-building"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Tenant & Property</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Eviction notices, deposit returns, utilities & rent agreements.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#workplace-rights" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Workplace Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Minimum wages, termination notices, EPF social security & POSH.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#legal-aid" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-gavel"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Legal Aid</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Free legal representation under Article 39A & NALSA/DLSA.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="#violation-flow" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-list-check"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Civil Rights</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Action steps when rights are breached or infringed by authorities.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Section <i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — WHAT ARE YOUR RIGHTS? -->
+    <section style="padding:80px 0; background:var(--bg-light);" id="what-are-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>What Exactly Is a <span>Legal Right?</span></h2>
+                <p>Understanding the essential distinction between entitlements, protections, and enforcement remedies under Indian Jurisprudence.</p>
+            </div>
+
+            <div style="max-width:960px; margin:0 auto;" data-aos="fade-up">
+                <div style="background:#ffffff; border-radius:28px; padding:45px; border:1px solid #e2e8f0; box-shadow:0 10px 35px rgba(0,0,0,0.02); margin-bottom:35px;">
+                    <p style="font-size:1.15rem; color:#333; line-height:1.8; margin-bottom:20px;">
+                        A <strong>Legal Right</strong> is an interest recognized and protected by a rule of law, carrying a corresponding legal duty upon others (including state authorities and private entities) to respect it. Unlike a mere privilege or permission, a legal right gives an individual the power to demand compliance and seek formal enforcement through judicial forums.
+                    </p>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin:30px 0;">
+                        <div style="background:#f7fafc; padding:22px; border-radius:18px; border-left:4px solid var(--primary);">
+                            <strong style="color:var(--dark); font-size:16px; display:block; margin-bottom:8px;"><i class="fas fa-crown" style="color:var(--primary);"></i> Right vs Privilege</strong>
+                            <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">A privilege is a conditional permission granted by authority that can be revoked. A legal right is an inviolable entitlement guaranteed by law.</p>
+                        </div>
+                        <div style="background:#f7fafc; padding:22px; border-radius:18px; border-left:4px solid #3182ce;">
+                            <strong style="color:var(--dark); font-size:16px; display:block; margin-bottom:8px;"><i class="fas fa-landmark" style="color:#3182ce;"></i> Constitutional vs Statutory Rights</strong>
+                            <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Constitutional rights (Part III) are guaranteed against state infringement by the Constitution. Statutory rights are created by Parliament or State Acts (e.g. Consumer Protection Act).</p>
+                        </div>
+                    </div>
+
+                    <!-- VISUAL 3-STEP HIERARCHY -->
+                    <h3 style="font-size:20px; font-weight:800; margin:35px 0 20px; color:var(--dark); text-align:center;">The Enforceable Triad of Legal Empowerment</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
+                        <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:25px; border-radius:20px; text-align:center;">
+                            <span style="font-size:11px; font-weight:900; color:var(--primary-dark); letter-spacing:1.5px;">STEP 01</span>
+                            <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:8px 0 10px;">RIGHT</h4>
+                            <p style="font-size:14px; color:#4a5568; margin:0; line-height:1.6;">The fundamental entitlement or freedom guaranteed to you by law (e.g. Right to Life & Personal Liberty under Article 21).</p>
+                        </div>
+                        <div style="background:#ebf8ff; border:1px solid #bee3f8; padding:25px; border-radius:20px; text-align:center;">
+                            <span style="font-size:11px; font-weight:900; color:#2b6cb0; letter-spacing:1.5px;">STEP 02</span>
+                            <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:8px 0 10px;">PROTECTION</h4>
+                            <p style="font-size:14px; color:#4a5568; margin:0; line-height:1.6;">The statutory boundary preventing police overreach, arbitrary detention, or unlawful commercial fraud.</p>
+                        </div>
+                        <div style="background:#faf5ff; border:1px solid #e9d8fd; padding:25px; border-radius:20px; text-align:center;">
+                            <span style="font-size:11px; font-weight:900; color:#6b46c1; letter-spacing:1.5px;">STEP 03</span>
+                            <h4 style="font-size:20px; font-weight:800; color:var(--dark); margin:8px 0 10px;">REMEDY</h4>
+                            <p style="font-size:14px; color:#4a5568; margin:0; line-height:1.6;">The legal tool to enforce breached rights (e.g. Writ Petitions under Art 32/226, Injunctions, or Consumer Commission Claims).</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTERACTIVE REAL SCENARIOS -->
-    <section class="scenarios-section" style="padding:90px 0 120px; background:white;">
+    <!-- 04 — CONSTITUTIONAL FOUNDATION -->
+    <section class="fund-section" id="constitution-foundation">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="color:white;">
+                <h2 style="color:white;">The Constitution: <span>Foundation of Your Rights</span></h2>
+                <p style="color:#aaa;">The supreme law of India establishing inviolable fundamental guarantees, state obligations, and constitutional remedies.</p>
+            </div>
+
+            <div class="fund-grid">
+                <div class="fund-item" data-aos="fade-up">
+                    <span class="fund-num">PART III • ARTICLES 12–35</span>
+                    <h4>Fundamental Rights</h4>
+                    <p>Enforceable constitutional guarantees binding upon the Parliament, State Legislatures, Police, and Executive Authorities.</p>
+                </div>
+                <div class="fund-item" data-aos="fade-up" data-aos-delay="100">
+                    <span class="fund-num">PART IV • ARTICLES 36–51</span>
+                    <h4>Directive Principles</h4>
+                    <p>Fundamental principles for state governance directing public welfare, free legal aid (Art 39A), and social equality.</p>
+                </div>
+                <div class="fund-item" data-aos="fade-up" data-aos-delay="200">
+                    <span class="fund-num">PART IV-A • ARTICLE 51A</span>
+                    <h4>Fundamental Duties</h4>
+                    <p>Moral obligations on every citizen to abide by the Constitution, uphold national sovereignty, and safeguard public property.</p>
+                </div>
+                <div class="fund-item" data-aos="fade-up" data-aos-delay="300">
+                    <span class="fund-num">ARTICLES 32 & 226</span>
+                    <h4>Constitutional Remedies</h4>
+                    <p>Guarantees direct access to the Supreme Court (Art 32) and High Courts (Art 226) for issuing Writs against rights violations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 — FUNDAMENTAL RIGHTS & ARTICLE EXPLORER -->
+    <section style="padding:90px 0; background:#ffffff;" id="article-explorer">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Interactive <span>Article Explorer</span></h2>
+                <p>Examine the core Constitutional Articles protecting citizen freedom, personal liberty, and due process in India.</p>
+            </div>
+
+            <!-- ARTICLE TAB SWITCHER -->
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:30px; flex-wrap:wrap;" data-aos="fade-up">
+                <button class="filter-btn active" onclick="switchArticleTab('art14', this)">Article 14 (Equality)</button>
+                <button class="filter-btn" onclick="switchArticleTab('art19', this)">Article 19 (Freedoms)</button>
+                <button class="filter-btn" onclick="switchArticleTab('art21', this)">Article 21 (Life & Liberty)</button>
+                <button class="filter-btn" onclick="switchArticleTab('art22', this)">Article 22 (Arrest Safeguards)</button>
+                <button class="filter-btn" onclick="switchArticleTab('art32', this)">Article 32 (Writ Remedies)</button>
+            </div>
+
+            <!-- ARTICLE CONTENT CARDS -->
+            <div style="max-width:920px; margin:0 auto;" data-aos="fade-up">
+                
+                <!-- ARTICLE 14 CARD -->
+                <div id="art14" class="article-tab-content" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-scale-balanced"></i> PART III • RIGHT TO EQUALITY</span>
+                        <span style="font-size:13px; font-weight:800; color:var(--primary-dark);"><i class="fas fa-building-columns"></i> Binds All State Authorities</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Article 14 — Right to Equality</h3>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:20px;">
+                        <em>"The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India."</em>
+                    </p>
+                    <div style="background:#f7fafc; border-left:4px solid var(--primary); padding:20px; border-radius:14px; margin-bottom:20px;">
+                        <strong style="color:var(--dark); font-size:15px;"><i class="fas fa-circle-check" style="color:var(--primary);"></i> Why It Matters to You:</strong>
+                        <p style="font-size:14.5px; color:#555; margin:6px 0 0; line-height:1.6;">Prohibits arbitrary government action, discriminatory police treatment, or unequal enforcement of statutes. Every citizen and non-citizen stands equal before court proceedings.</p>
+                    </div>
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:18px; border-radius:14px;">
+                        <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-lightbulb"></i> Practical Example:</strong>
+                        <span style="font-size:14px; color:#2d3748;"> If a municipal authority selectively demolishes one vendor's shop while exempting identical adjacent shops without due notice, Article 14 enables challenging the action for arbitrary discrimination.</span>
+                    </div>
+                </div>
+
+                <!-- ARTICLE 19 CARD -->
+                <div id="art19" class="article-tab-content" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-comment-dots"></i> PART III • RIGHT TO FREEDOM</span>
+                        <span style="font-size:13px; font-weight:800; color:var(--primary-dark);"><i class="fas fa-shield"></i> 6 Fundamental Freedoms</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Article 19 — Six Fundamental Freedoms</h3>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:20px;">
+                        Guarantees 6 basic freedoms to citizens: (a) Speech & Expression, (b) Peaceful Assembly, (c) Forming Associations/Unions, (d) Free Movement across India, (e) Residing anywhere in India, and (g) Practicing any lawful profession or trade.
+                    </p>
+                    <div style="background:#f7fafc; border-left:4px solid var(--primary); padding:20px; border-radius:14px; margin-bottom:20px;">
+                        <strong style="color:var(--dark); font-size:15px;"><i class="fas fa-circle-check" style="color:var(--primary);"></i> Reasonable Restrictions:</strong>
+                        <p style="font-size:14.5px; color:#555; margin:6px 0 0; line-height:1.6;">Freedoms are subject to reasonable restrictions under Articles 19(2)–19(6) in the interests of national sovereignty, public order, decency, or defamation laws.</p>
+                    </div>
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:18px; border-radius:14px;">
+                        <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-lightbulb"></i> Practical Example:</strong>
+                        <span style="font-size:14px; color:#2d3748;"> Expressing critical political views online or running an online e-commerce business across state borders is protected under Article 19(1)(a) and 19(1)(g).</span>
+                    </div>
+                </div>
+
+                <!-- ARTICLE 21 CARD -->
+                <div id="art21" class="article-tab-content" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-heart-pulse"></i> PART III • PERSONAL LIBERTY</span>
+                        <span style="font-size:13px; font-weight:800; color:var(--primary-dark);"><i class="fas fa-star"></i> Expansive Judicial Interpretation</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Article 21 — Protection of Life and Personal Liberty</h3>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:20px;">
+                        <em>"No person shall be deprived of his life or personal liberty except according to procedure established by law."</em>
+                    </p>
+                    <div style="background:#f7fafc; border-left:4px solid var(--primary); padding:20px; border-radius:14px; margin-bottom:20px;">
+                        <strong style="color:var(--dark); font-size:15px;"><i class="fas fa-circle-check" style="color:var(--primary);"></i> Rights Derived Under Article 21:</strong>
+                        <p style="font-size:14.5px; color:#555; margin:6px 0 0; line-height:1.6;">Supreme Court jurisprudence has expanded Article 21 to include: Right to Privacy (Puttaswamy 2017), Right to Free Legal Aid (Maneka Gandhi 1978), Right to Clean Water & Air, Right to Livelihood, and Speedier Trial.</p>
+                    </div>
+                    <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:18px; border-radius:14px;">
+                        <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-lightbulb"></i> Practical Example:</strong>
+                        <span style="font-size:14px; color:#2d3748;"> If an undertrial prisoner is detained without trial for longer than the maximum statutory sentence, Article 21 guarantees immediate release on bail.</span>
+                    </div>
+                </div>
+
+                <!-- ARTICLE 22 CARD -->
+                <div id="art22" class="article-tab-content" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-handcuffs"></i> PART III • ARREST PROCEDURAL GUARANTEES</span>
+                        <span style="font-size:13px; font-weight:800; color:var(--primary-dark);"><i class="fas fa-gavel"></i> BNSS Code Alignment</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Article 22 — Protection Against Arrest and Detention</h3>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:20px;">
+                        Establishes 4 mandatory safeguards for arrested persons: (1) Informed immediately of grounds of arrest, (2) Right to consult and be defended by a legal practitioner, (3) Production before nearest Magistrate within 24 hours (excluding travel time), (4) Prohibition of detention beyond 24 hours without Judicial Magistrate authorization.
+                    </p>
+                    <div style="background:#f7fafc; border-left:4px solid var(--primary); padding:20px; border-radius:14px; margin-bottom:20px;">
+                        <strong style="color:var(--dark); font-size:15px;"><i class="fas fa-circle-check" style="color:var(--primary);"></i> Statutory Mandate (BNSS 2023):</strong>
+                        <p style="font-size:14.5px; color:#555; margin:6px 0 0; line-height:1.6;">Reaffirmed under Section 35, 38, and 58 of Bharatiya Nagarik Suraksha Sanhita (BNSS 2023).</p>
+                    </div>
+                </div>
+
+                <!-- ARTICLE 32 CARD -->
+                <div id="art32" class="article-tab-content" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.03);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                        <span class="badge-cat" style="font-size:13px; padding:6px 14px;"><i class="fas fa-gavel"></i> PART III • CONSTITUTIONAL REMEDIES</span>
+                        <span style="font-size:13px; font-weight:800; color:var(--primary-dark);"><i class="fas fa-heart"></i> "Heart & Soul of Constitution"</span>
+                    </div>
+                    <h3 style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:12px;">Article 32 — Right to Constitutional Remedies</h3>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:20px;">
+                        Dr. B.R. Ambedkar termed Article 32 the <em>"Heart and Soul of the Constitution."</em> It empowers citizens to directly petition the Supreme Court of India for issuing 5 Constitutional Writs (Habeas Corpus, Mandamus, Prohibition, Quo Warranto, Certiorari) when any Fundamental Right is violated.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 — RIGHTS BY CATEGORY -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="rights-categories">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Explore Rights <span>by Category</span></h2>
+                <p>Detailed breakdown of statutory citizen entitlements across primary legal areas in India.</p>
+            </div>
+
+            <div class="rights-bento" data-aos="fade-up">
+                <div class="r-card r-dark">
+                    <div class="r-icon"><i class="fas fa-handcuffs"></i></div>
+                    <h3>Police & Custodial Protections</h3>
+                    <ul class="r-list">
+                        <li>Right to know reasons for arrest immediately (BNSS Sec 35).</li>
+                        <li>Right to inform a family member/lawyer within 12 hours (BNSS Sec 36).</li>
+                        <li>Mandatory medical examination every 48 hours in custody (BNSS Sec 53).</li>
+                        <li>Prohibition of torture or coerced confessions under threat.</li>
+                    </ul>
+                    <a href="#police-rights" class="card-link" style="color:var(--primary); margin-top:auto;">Read Detailed Police Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="r-card r-tall">
+                    <div class="r-icon"><i class="fas fa-person-dress"></i></div>
+                    <h3>Women's Statutory Protections</h3>
+                    <ul class="r-list">
+                        <li>Prohibition of arrest between sunset & sunrise (BNSS Sec 43).</li>
+                        <li>Mandatory female officer for bodily search of women.</li>
+                        <li>Zero FIR registration permitted anywhere across India.</li>
+                        <li>POSH Act 2013 workplace harassment protections.</li>
+                        <li>Domestic Violence Act 2005 protection & residence orders.</li>
+                        <li>Maternity Benefit Act (26 weeks paid leave entitlement).</li>
+                    </ul>
+                    <a href="#womens-rights" class="card-link" style="margin-top:auto;">Explore Women's Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="r-card">
+                    <div class="r-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Cyber & Data Privacy</h3>
+                    <ul class="r-list">
+                        <li>Fundamental Right to Privacy under Article 21.</li>
+                        <li>National Cyber Fraud Golden Hour Helpline 1930.</li>
+                        <li>Identity theft protection under IT Act Section 66C.</li>
+                    </ul>
+                    <a href="#cyber-rights" class="card-link" style="margin-top:auto;">View Cyber Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="r-card">
+                    <div class="r-icon"><i class="fas fa-bag-shopping"></i></div>
+                    <h3>Consumer Safeguards</h3>
+                    <ul class="r-list">
+                        <li>Right to refund or replacement for defective goods (CPA 2019).</li>
+                        <li>Protection against misleading ads & deceptive e-commerce practices.</li>
+                    </ul>
+                    <a href="#consumer-rights" class="card-link" style="margin-top:auto;">View Consumer Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 — RIGHTS IN REAL-LIFE SITUATIONS -->
+    <section style="padding:90px 0; background:#ffffff;" id="real-life-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Your Rights <span>Don't Stay in Textbooks</span></h2>
+                <p>Everyday real-life scenarios where statutory protections safeguard citizens in India.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
+                
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:28px;">
+                    <span class="card-tag">EVERYDAY SCENARIO 01</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:10px 0 12px;">Stopped by Police for Checking</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:14px;"><strong>Your Rights:</strong> Officers cannot inspect your private phone messages or search personal bags without formal search warrants or suspected crime registration. Digital DL/RC on DigiLocker is legally valid.</p>
+                    <a href="#action-plans" style="font-size:13.5px; font-weight:800; color:var(--primary);">View Full Action Plan <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:28px;">
+                    <span class="card-tag">EVERYDAY SCENARIO 02</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:10px 0 12px;">Online Banking / UPI Fraud</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:14px;"><strong>Your Rights:</strong> Reporting to helpline 1930 within 1 hour enables bank transaction freezing under RBI guidelines and National Cyber Crime Reporting Portal protocols.</p>
+                    <a href="#action-plans" style="font-size:13.5px; font-weight:800; color:var(--primary);">View Full Action Plan <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:28px;">
+                    <span class="card-tag">EVERYDAY SCENARIO 03</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:10px 0 12px;">Defective Product Refused by Seller</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:14px;"><strong>Your Rights:</strong> Sellers cannot disclaim liability through "No Refund" stamps. Under CPA 2019, manufacturers and sellers are jointly liable for product defects.</p>
+                    <a href="#action-plans" style="font-size:13.5px; font-weight:800; color:var(--primary);">View Full Action Plan <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:22px; padding:28px;">
+                    <span class="card-tag">EVERYDAY SCENARIO 04</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:10px 0 12px;">Landlord Withholds Security Deposit</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin-bottom:14px;"><strong>Your Rights:</strong> Landlords cannot lock out tenants or cut off water/electricity without Rent Authority court orders. Deductions require itemized repair bills.</p>
+                    <a href="#action-plans" style="font-size:13.5px; font-weight:800; color:var(--primary);">View Full Action Plan <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 08 — POLICE & ARREST RIGHTS -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="police-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Police & Arrest <span>Rights (BNSS 2023)</span></h2>
+                <p>Statutory safeguards governing police questioning, search protocols, bail entitlements, and FIR registration.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-file-contract" style="color:var(--primary);"></i> Grounds of Arrest (BNSS Sec 35)</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Police officers must inform the arrestee immediately of the exact offence and statutory grounds for arrest, providing a written copy of the arrest memo.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-phone" style="color:var(--primary);"></i> Right to Inform Family (BNSS Sec 36)</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Arrested persons have the mandatory right to inform a family member, relative, or nominated advocate of their arrest location within 12 hours.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-clock" style="color:var(--primary);"></i> 24-Hour Magistrate Rule (BNSS Sec 58)</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">No police officer can detain an arrested person in custody beyond 24 hours without producing them before the nearest Judicial Magistrate.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-notes-medical" style="color:var(--primary);"></i> Medical Examination (BNSS Sec 53)</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Arrested persons must be medically examined by a certified medical practitioner immediately upon arrest and every 48 hours during police custody.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 09 — CONSUMER RIGHTS -->
+    <section style="padding:90px 0; background:#ffffff;" id="consumer-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Consumer Rights <span>(CPA 2019)</span></h2>
+                <p>Statutory remedies against defective goods, deficient services, misleading ads, and unfair contract terms.</p>
+            </div>
+
+            <!-- VISUAL 5-STEP CONSUMER SEQUENCE -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:16px; text-align:center;" data-aos="fade-up">
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 01</span>
+                    <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:6px 0;">DOCUMENT</h4>
+                    <p style="font-size:12.5px; color:#666; margin:0;">Preserve invoice, payment receipts & warranty cards.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 02</span>
+                    <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:6px 0;">NOTICE</h4>
+                    <p style="font-size:12.5px; color:#666; margin:0;">Send formal email or notice to seller/manufacturer.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 03</span>
+                    <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:6px 0;">HELPLINE</h4>
+                    <p style="font-size:12.5px; color:#666; margin:0;">Lodge complaint on National Consumer Helpline (1915).</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 04</span>
+                    <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:6px 0;">E-DAAKHIL</h4>
+                    <p style="font-size:12.5px; color:#666; margin:0;">File online consumer complaint via e-Daakhil portal.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 05</span>
+                    <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:6px 0;">COMMISSION</h4>
+                    <p style="font-size:12.5px; color:#666; margin:0;">Claim refund, replacement & compensation in Consumer Forum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 — WOMEN'S RIGHTS -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="womens-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Women's Legal <span>Protections</span></h2>
+                <p>Statutory safeguards under criminal codes, POSH Act 2013, and Domestic Violence Act 2005.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-moon" style="color:var(--primary);"></i> Sunset & Sunrise Arrest Rule</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Under BNSS Section 43, no woman can be arrested after sunset and before sunrise, except in extraordinary circumstances with prior written permission of a Judicial Magistrate.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-building" style="color:var(--primary);"></i> POSH Act Workplace Safeguards</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Every workplace with 10+ employees must constitute an Internal Complaints Committee (ICC) to investigate sexual harassment complaints within 90 days.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-house-chimney-user" style="color:var(--primary);"></i> Domestic Violence Protection</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Protection of Women from Domestic Violence Act 2005 grants rights to shared household residence, protection orders, and interim monetary relief.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11 — CHILDREN'S RIGHTS -->
+    <section style="padding:90px 0; background:#ffffff;" id="childrens-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Children's <span>Legal Protections</span></h2>
+                <p>Constitutional and statutory rights safeguarding education, safety, and child welfare in India.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:20px; padding:26px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-graduation-cap" style="color:var(--primary);"></i> Article 21A • RTE Act 2009</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Guarantees free and compulsory education to all children aged 6 to 14 years in nearby schools.</p>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:20px; padding:26px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-shield-cat" style="color:var(--primary);"></i> POCSO Act 2012</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Strict protection against child sexual abuse with mandatory reporting duties and child-friendly court trials.</p>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:20px; padding:26px;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-ban" style="color:var(--primary);"></i> Child Labour Prohibition</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Complete ban on employment of children below 14 years in all occupations and hazardous processes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 — TENANT & PROPERTY RIGHTS -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="tenant-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Tenant & Property <span>Rights</span></h2>
+                <p>Legal safeguards governing rental agreements, security deposit returns, and eviction protocols.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-key" style="color:var(--primary);"></i> Security Deposit Refund</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Landlords must refund security deposits upon tenancy expiration minus reasonable agreed repairs backed by itemized receipts.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-ban" style="color:var(--primary);"></i> Protection Against Forced Eviction</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Tenants cannot be forcibly dispossessed or locked out without a formal eviction decree from the local Rent Authority/Court.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:28px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:10px;"><i class="fas fa-plug-circle-bolt" style="color:var(--primary);"></i> Utility Cutoff Prohibitions</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0;">Landlords cannot disconnect essential utility services (water, electricity) to force a tenant out during rent disputes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13 — CYBER & DIGITAL RIGHTS -->
+    <section style="padding:90px 0; background:#ffffff;" id="cyber-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Cyber & Digital <span>Rights</span></h2>
+                <p>Digital privacy rights, online financial fraud response, and identity theft protections under Indian law.</p>
+            </div>
+
+            <div style="background:linear-gradient(135deg, #0a0a0a 0%, #171717 100%); border-radius:28px; padding:45px; color:white;" data-aos="fade-up">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+                    <div>
+                        <span class="card-tag" style="background:rgba(0,200,83,0.15); color:var(--primary);">EMERGENCY CYBER FRAUD HELPLINE</span>
+                        <h3 style="font-size:2.2rem; font-weight:900; color:white; margin:10px 0;">Call 1930 Within Golden Hour</h3>
+                        <p style="color:#aaa; font-size:1.05rem; max-width:650px; margin:0; line-height:1.6;">
+                            If you fall victim to online banking, UPI, or credit card fraud, immediately dial <strong>1930</strong> or register a complaint at <code>cybercrime.gov.in</code> to freeze transacted stolen funds before withdrawal.
+                        </p>
+                    </div>
+                    <a href="https://cybercrime.gov.in" target="_blank" class="btn-ai" style="padding:16px 32px; font-size:15px; flex-shrink:0;">
+                        <i class="fas fa-globe"></i> Visit National Cyber Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14 — WORKPLACE / LABOUR RIGHTS -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="workplace-rights">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Workplace & Labour <span>Rights</span></h2>
+                <p>Statutory wage entitlements, social security benefits, and employment termination rules.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px;" data-aos="fade-up">
+                <div style="background:#ffffff; border-radius:20px; padding:26px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-money-bill-wave" style="color:var(--primary);"></i> Minimum Wages & Timely Pay</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Employers must pay agreed wages by the 7th or 10th of every month under the Payment of Wages Act.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:26px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-file-signature" style="color:var(--primary);"></i> Notice Period & Severance</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Arbitrary instant termination without contractual notice or severance pay violates labour standards.</p>
+                </div>
+                <div style="background:#ffffff; border-radius:20px; padding:26px; border:1px solid #e2e8f0;">
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:8px;"><i class="fas fa-piggy-bank" style="color:var(--primary);"></i> EPF & Social Security</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Employees in covered establishments have statutory rights to Employee Provident Fund (EPF) and ESI healthcare.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15 — LEGAL AID & ACCESS TO JUSTICE -->
+    <section style="padding:90px 0; background:#ffffff;" id="legal-aid">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Justice Should Not Depend Only on <span>What You Can Afford</span></h2>
+                <p>Constitutional mandate for free legal services under Article 39A and NALSA statutory frameworks.</p>
+            </div>
+
+            <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:28px; padding:40px;" data-aos="fade-up">
+                <h3 style="font-size:1.8rem; font-weight:900; color:var(--dark); margin-bottom:14px;">Free Legal Aid Entitlements (NALSA / DLSA)</h3>
+                <p style="font-size:1.05rem; color:#333; line-height:1.8; margin-bottom:20px;">
+                    Under Article 39A of the Constitution of India and the Legal Services Authorities Act 1987, free legal representation, advocate services, court fee exemptions, and drafting aid are guaranteed to:
+                </p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+                    <div style="background:#ffffff; padding:18px; border-radius:14px; border:1px solid #c6f6d5;">
+                        <strong style="color:var(--primary-dark); font-size:14.5px;"><i class="fas fa-check-circle"></i> Women & Children</strong>
+                        <p style="font-size:13px; color:#555; margin:4px 0 0;">All women and children regardless of income level.</p>
+                    </div>
+                    <div style="background:#ffffff; padding:18px; border-radius:14px; border:1px solid #c6f6d5;">
+                        <strong style="color:var(--primary-dark); font-size:14.5px;"><i class="fas fa-check-circle"></i> Custody Detainees</strong>
+                        <p style="font-size:13px; color:#555; margin:4px 0 0;">Anyone in police custody or undertrial prisoners.</p>
+                    </div>
+                    <div style="background:#ffffff; padding:18px; border-radius:14px; border:1px solid #c6f6d5;">
+                        <strong style="color:var(--primary-dark); font-size:14.5px;"><i class="fas fa-check-circle"></i> Low-Income Citizens</strong>
+                        <p style="font-size:13px; color:#555; margin:4px 0 0;">Persons fulfilling state income threshold limits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 16 — HOW TO ACT WHEN YOUR RIGHTS ARE VIOLATED -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="violation-flow">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>If You Believe Your <span>Rights Have Been Violated</span></h2>
+                <p>A structured 6-step practical roadmap for documenting overreach and seeking formal legal remedies.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;" data-aos="fade-up">
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 01</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">STAY SAFE & CALM</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Avoid physical confrontation. Politely request officer/person identification details and state clearly that you know your rights.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 02</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">DOCUMENT DETAILS</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Write down exact date, time, location, officer names, vehicle numbers, and witness contact information immediately.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 03</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">PRESERVE EVIDENCE</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Save photos, videos, CCTV footage, transaction receipts, medical report copies, and digital chat logs.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 04</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">IDENTIFY AUTHORITY</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Determine appropriate forum: Police SP / Magistrate for crime, NCH/e-Daakhil for consumer, ICC for POSH, or Human Rights Commission.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 05</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">FILE FORMAL COMPLAINT</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Lodge a written complaint with formal postal acknowledgement (Registered AD) or official electronic portal tracking number.</p>
+                </div>
+                <div class="flow-step-card">
+                    <span class="flow-step-badge">STEP 06</span>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0;">SEEK LEGAL HELP</h3>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.6;">Consult an advocate or approach your District Legal Services Authority (DLSA) for filing Writ Petitions or Court Injunctions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17 — REAL SCENARIO ACTION PLANS -->
+    <section class="scenarios-section" style="padding:90px 0 120px; background:white;" id="action-plans">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Action Plan in <span>Real Scenarios</span></h2>
-                <p>Click on any scenario to reveal practical step-by-step instructions.</p>
+                <p>Click on any scenario to reveal practical step-by-step instructions and evidence requirements.</p>
             </div>
 
             <div class="scenario-grid">
+                
                 <div class="scenario-item" data-aos="fade-up">
                     <div class="scenario-header" onclick="toggleScenario(this)">
                         <h3>
@@ -1523,7 +2087,7 @@ function buildRights() {
                     <div class="scenario-body">
                         <div class="scenario-body-content">
                             <ol class="scenario-steps">
-                                <li>Remain calm, pull over safely, and politely request the officer's name and identity badge.</li>
+                                <li>Remain calm, pull over safely, and politely request the officer's name and badge details.</li>
                                 <li>Present valid digital driving license and vehicle registration through DigiLocker or mParivahan apps (statutorily valid under IT Act & MV Act).</li>
                                 <li>Officers cannot seize your mobile phone or search personal bags without a formal search authorization or registered crime suspicion.</li>
                                 <li>If challaned, demand an official electronic e-challan or printed receipt—never pay cash without a government challan receipt.</li>
@@ -1533,6 +2097,25 @@ function buildRights() {
                 </div>
 
                 <div class="scenario-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="scenario-header" onclick="toggleScenario(this)">
+                        <h3>
+                            <div class="s-icon-bubble"><i class="fas fa-file-shield"></i></div>
+                            Police Refuse to Register Your FIR Complaint
+                        </h3>
+                        <i class="fas fa-chevron-down scenario-icon"></i>
+                    </div>
+                    <div class="scenario-body">
+                        <div class="scenario-body-content">
+                            <ol class="scenario-steps">
+                                <li>Under Section 173 BNSS (154 CrPC) & Lalita Kumari ruling, FIR registration is mandatory for cognizable offences.</li>
+                                <li>If station officer refuses, send written complaint by Registered Post to the Superintendent of Police (SP) under BNSS 173(4).</li>
+                                <li>If SP fails to act, file an application before Judicial Magistrate under BNSS Section 175(3) for court order directing FIR registration.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scenario-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="scenario-header" onclick="toggleScenario(this)">
                         <h3>
                             <div class="s-icon-bubble"><i class="fas fa-headset"></i></div>
@@ -1552,7 +2135,7 @@ function buildRights() {
                     </div>
                 </div>
 
-                <div class="scenario-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="scenario-item" data-aos="fade-up" data-aos-delay="300">
                     <div class="scenario-header" onclick="toggleScenario(this)">
                         <h3>
                             <div class="s-icon-bubble"><i class="fas fa-house-chimney-crack"></i></div>
@@ -1571,10 +2154,173 @@ function buildRights() {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- 18 — CONSTITUTION STUDY MODE -->
+    <section style="padding:90px 0; background:linear-gradient(135deg, #050505 0%, #121212 100%); color:white;" id="study-mode">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="color:white;">
+                <span class="cp-role" style="background:rgba(0,200,83,0.15); color:var(--primary); display:inline-block; margin-bottom:12px;">SIGNATURE NYAYI FEATURE</span>
+                <h2 style="color:white;">Constitution <span>Study Mode</span></h2>
+                <p style="color:#aaa;">Interactive learning deck engineered for law students, competitive exams, and legal literacy.</p>
+            </div>
+
+            <div style="max-width:850px; margin:0 auto; background:#181818; border:1px solid #333; border-radius:28px; padding:40px;" data-aos="fade-up">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+                    <span id="studyCardNum" style="font-size:13px; font-weight:900; color:var(--primary); letter-spacing:1px;">STUDY CARD 1 OF 5</span>
+                    <span style="font-size:12.5px; color:#888;">PART III • FUNDAMENTAL RIGHTS</span>
+                </div>
+
+                <div id="studyDeckContainer">
+                    <h3 id="studyTitle" style="font-size:2rem; font-weight:900; color:white; margin-bottom:14px;">Article 14 — Equality Before Law</h3>
+                    <p id="studyBody" style="font-size:1.05rem; color:#ccc; line-height:1.8; margin-bottom:24px;">
+                        Article 14 guarantees that the State shall not deny equality before law or equal protection of laws to any person within India. It strikes down arbitrary state classification and ensures equal treatment in court proceedings.
+                    </p>
+                    <div style="background:rgba(0,200,83,0.08); border-left:4px solid var(--primary); padding:18px; border-radius:12px; margin-bottom:24px;">
+                        <strong style="color:var(--primary); font-size:14px;">Quick Revision Note:</strong>
+                        <p id="studyNote" style="font-size:14px; color:#ddd; margin:4px 0 0;">Article 14 incorporates the British concept of 'Rule of Law' (Dicey) and the American concept of 'Equal Protection of Laws'.</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #333; padding-top:20px;">
+                    <button onclick="prevStudyCard()" class="btn-outline" style="color:white; border-color:#444; padding:10px 24px; font-size:14px;"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button onclick="nextStudyCard()" class="btn-ai" style="padding:10px 24px; font-size:14px;">Next Card <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 19 — KNOWLEDGE CHECK / QUIZ -->
+    <section style="padding:90px 0; background:#ffffff;" id="knowledge-check">
+        <div class="container" style="max-width:850px;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How Well Do You <span>Know Your Rights?</span></h2>
+                <p>Interactive academic self-assessment quiz on Indian constitutional rights and legal protections.</p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:28px; padding:40px;" data-aos="fade-up">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <span style="font-size:13px; font-weight:800; color:var(--primary-dark);" id="quizProgress">QUESTION 1 OF 5</span>
+                    <span style="font-size:13px; font-weight:800; color:#4a5568;">Score: <span id="quizScore">0</span>/5</span>
+                </div>
+
+                <h3 id="quizQuestion" style="font-size:1.3rem; font-weight:800; color:var(--dark); margin-bottom:24px;">
+                    Which Constitutional Article guarantees the Right to Life and Personal Liberty in India?
+                </h3>
+
+                <div style="display:flex; flex-direction:column; gap:12px;" id="quizOptions">
+                    <button class="quiz-option-btn" onclick="checkQuizAnswer(0)"><span>A) Article 14</span> <i class="fas fa-circle-notch"></i></button>
+                    <button class="quiz-option-btn" onclick="checkQuizAnswer(1)"><span>B) Article 19</span> <i class="fas fa-circle-notch"></i></button>
+                    <button class="quiz-option-btn" onclick="checkQuizAnswer(2)"><span>C) Article 21</span> <i class="fas fa-circle-notch"></i></button>
+                    <button class="quiz-option-btn" onclick="checkQuizAnswer(3)"><span>D) Article 32</span> <i class="fas fa-circle-notch"></i></button>
+                </div>
+
+                <div id="quizFeedback" style="display:none; margin-top:24px; padding:18px; border-radius:16px; font-size:14.5px; line-height:1.6;"></div>
+
+                <div style="margin-top:24px; text-align:right;">
+                    <button id="quizNextBtn" onclick="nextQuizQuestion()" class="btn-ai" style="display:none; padding:10px 24px; font-size:14px;">Next Question <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 20 — COMMON QUESTIONS (FAQs) -->
+    <section style="padding:90px 0; background:var(--bg-light);" id="faq">
+        <div class="container" style="max-width:850px;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Rights <span>FAQs</span></h2>
+                <p>Common citizen questions regarding constitutional protections and statutory remedies in India.</p>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:14px;">
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What is the main difference between Fundamental Rights and Statutory Rights?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Fundamental Rights are constitutional guarantees enshrined in Part III of the Constitution (Articles 12–35) that cannot be infringed by ordinary legislation. Statutory Rights are created by specific Acts of Parliament (e.g. Consumer Protection Act, POSH Act) and can be modified by legislative amendments.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>What should I do if a police officer refuses to register my FIR?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Under BNSS Section 173(4) (CrPC 154(3)), you can send the written complaint by Registered Post to the Superintendent of Police (SP). If no action is taken, you can file an application before the Judicial Magistrate under BNSS Section 175(3) for an order directing the police to register the FIR.</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Can police officers inspect my phone or private messages during a vehicle check?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>No. Police officers cannot randomly search your private mobile messages or personal files without a formal search warrant or registered crime investigation suspicion under Section 21 (Right to Privacy).</p></div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Who is eligible for free legal aid under NALSA in India?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Under Section 12 of the Legal Services Authorities Act 1987, free legal aid is available to all women, children, members of SC/ST communities, undertrial prisoners, victims of human trafficking or disaster, and low-income citizens fulfilling state income criteria.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 21 — RELATED NYAYI RESOURCES -->
+    <section style="padding:90px 0; background:#ffffff;" id="related">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Related <span>NYAYI Resources</span></h2>
+                <p>Connect to relevant legal knowledge engines across the NYAYI ecosystem.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;" data-aos="fade-up">
+                <a href="dictionary.html" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-book-bookmark"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Legal Dictionary</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Search 1,200+ Indian legal terms and statutory references.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Dictionary <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="laws.html" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-landmark"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Indian Laws Library</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Explore statutory act analyses of BNS 2023, BNSS & Constitution.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Laws Library <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="guides.html" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-file-lines"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Legal Guides</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Step-by-step procedural guides for FIRs, bail, and cyber complaints.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Legal Guides <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="features.html" class="right-cat-tile">
+                    <div>
+                        <div class="tile-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Platform Features</h3>
+                        <p style="font-size:13px; color:#666; margin:0; line-height:1.5;">Explore BNS/IPC converters, AI search, and drafting utilities.</p>
+                    </div>
+                    <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Explore Features <i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 22 — FINAL CTA -->
+    <section style="padding:0 0 100px;" id="final-cta">
+        <div class="container">
+            <div style="background:linear-gradient(135deg, #000000 0%, #151515 100%); border-radius:35px; padding:60px; text-align:center; border:1px solid #222; box-shadow:0 30px 60px rgba(0,0,0,0.3);" data-aos="zoom-in">
+                <span class="cp-role" style="background:rgba(0,200,83,0.15); color:var(--primary); display:inline-block; margin-bottom:14px;">KNOW YOUR RIGHTS • TAKE YOUR NEXT STEP</span>
+                <h2 style="font-size:2.8rem; font-weight:900; color:white; margin-bottom:16px; letter-spacing:-1px;">Know Your Rights.<br><span>Take Your Next Step With Clarity.</span></h2>
+                <p style="font-size:1.15rem; color:#aaa; max-width:700px; margin:0 auto 30px; line-height:1.8;">Explore legal knowledge, practical guides, and technology-assisted tools built around Indian legal needs.</p>
+                <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+                    <a href="dictionary.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Explore Legal Dictionary</a>
+                    <a href="guides.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-file-lines"></i> Explore Legal Guides</a>
+                    <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:16px 36px; font-size:15px;"><i class="fas fa-robot"></i> Launch NYAYI AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SCRIPTS -->
     <script>
         function toggleScenario(headerElement) {
             const scenarioItem = headerElement.parentElement;
@@ -1591,6 +2337,170 @@ function buildRights() {
                 body.style.maxHeight = body.scrollHeight + "px";
             }
         }
+
+        function switchArticleTab(tabId, btn) {
+            document.querySelectorAll('.article-tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('#article-explorer .filter-btn').forEach(b => b.classList.remove('active'));
+            const target = document.getElementById(tabId);
+            if (target) target.style.display = 'block';
+            if (btn) btn.classList.add('active');
+        }
+
+        // CONSTITUTION STUDY MODE CARDS
+        const studyCards = [
+            {
+                num: "STUDY CARD 1 OF 5",
+                title: "Article 14 — Equality Before Law",
+                body: "Article 14 guarantees that the State shall not deny equality before law or equal protection of laws to any person within India. It strikes down arbitrary state classification and ensures equal treatment in court proceedings.",
+                note: "Article 14 incorporates the British concept of 'Rule of Law' (Dicey) and the American concept of 'Equal Protection of Laws'."
+            },
+            {
+                num: "STUDY CARD 2 OF 5",
+                title: "Article 19 — Six Fundamental Freedoms",
+                body: "Guarantees 6 essential freedoms to citizens: Speech & Expression, Peaceful Assembly, Associations, Free Movement, Residence, and Profession. All are subject to reasonable statutory restrictions under Articles 19(2)–19(6).",
+                note: "Freedom of Press is implicitly derived under Article 19(1)(a) Speech & Expression (Romesh Thappar 1950)."
+            },
+            {
+                num: "STUDY CARD 3 OF 5",
+                title: "Article 21 — Life & Personal Liberty",
+                body: "Prohibits deprivation of life or personal liberty except according to procedure established by law. Expanded by Supreme Court to include Right to Privacy, Clean Environment, Speedier Trial, and Livelihood.",
+                note: "Maneka Gandhi v. Union of India (1978) held that procedure depriving liberty must be 'just, fair, and reasonable'."
+            },
+            {
+                num: "STUDY CARD 4 OF 5",
+                title: "Article 22 — Protection Against Custodial Arrest",
+                body: "Guarantees immediate information of grounds of arrest, right to consult an advocate, and mandatory production before Judicial Magistrate within 24 hours of arrest.",
+                note: "Reaffirmed under Section 35, 38, and 58 of Bharatiya Nagarik Suraksha Sanhita (BNSS 2023)."
+            },
+            {
+                num: "STUDY CARD 5 OF 5",
+                title: "Article 32 — Right to Constitutional Remedies",
+                body: "Empowers citizens to move the Supreme Court directly via Writs (Habeas Corpus, Mandamus, Prohibition, Quo Warranto, Certiorari) for enforcing Fundamental Rights.",
+                note: "Dr. Ambedkar termed Article 32 the 'Heart and Soul of the Constitution'."
+            }
+        ];
+        let currentStudyIdx = 0;
+        function updateStudyCard() {
+            const card = studyCards[currentStudyIdx];
+            document.getElementById('studyCardNum').textContent = card.num;
+            document.getElementById('studyTitle').textContent = card.title;
+            document.getElementById('studyBody').textContent = card.body;
+            document.getElementById('studyNote').textContent = card.note;
+        }
+        function nextStudyCard() {
+            currentStudyIdx = (currentStudyIdx + 1) % studyCards.length;
+            updateStudyCard();
+        }
+        function prevStudyCard() {
+            currentStudyIdx = (currentStudyIdx - 1 + studyCards.length) % studyCards.length;
+            updateStudyCard();
+        }
+
+        // KNOWLEDGE QUIZ WIDGET
+        const quizData = [
+            {
+                q: "Which Constitutional Article guarantees the Right to Life and Personal Liberty in India?",
+                opts: ["A) Article 14", "B) Article 19", "C) Article 21", "D) Article 32"],
+                correct: 2,
+                exp: "Correct! Article 21 protects life and personal liberty, expanded to cover privacy, clean environment, and speedy trial."
+            },
+            {
+                q: "Within how many hours must an arrested person be produced before a Magistrate?",
+                opts: ["A) 12 Hours", "B) 24 Hours", "C) 48 Hours", "D) 72 Hours"],
+                correct: 1,
+                exp: "Correct! Under Article 22(2) and BNSS Section 58, production before a Magistrate within 24 hours is mandatory."
+            },
+            {
+                q: "What is the emergency national toll-free helpline number for reporting financial cyber fraud?",
+                opts: ["A) 100", "B) 1091", "C) 1930", "D) 112"],
+                correct: 2,
+                exp: "Correct! 1930 is the National Cyber Financial Fraud Helpline for freezing stolen funds during the golden hour."
+            },
+            {
+                q: "Can a woman be arrested after sunset and before sunrise under general circumstances?",
+                opts: ["A) Yes, anytime", "B) No, prohibited under BNSS Sec 43 without Magistrate order", "C) Only by male officers", "D) Only on weekends"],
+                correct: 1,
+                exp: "Correct! Under BNSS Section 43, arresting a woman between sunset and sunrise requires prior written Judicial Magistrate permission."
+            },
+            {
+                q: "Which Constitutional Article directs the State to provide free legal aid to eligible citizens?",
+                opts: ["A) Article 14", "B) Article 21A", "C) Article 39A", "D) Article 51A"],
+                correct: 2,
+                exp: "Correct! Article 39A mandates the State to secure equal justice and free legal aid through NALSA and DLSAs."
+            }
+        ];
+        let quizIdx = 0;
+        let quizScore = 0;
+
+        function renderQuizQuestion() {
+            const q = quizData[quizIdx];
+            document.getElementById('quizProgress').textContent = 'QUESTION ' + (quizIdx + 1) + ' OF ' + quizData.length;
+            document.getElementById('quizQuestion').textContent = q.q;
+            const optsContainer = document.getElementById('quizOptions');
+            optsContainer.innerHTML = q.opts.map((opt, i) => 
+                '<button class="quiz-option-btn" onclick="checkQuizAnswer(' + i + ')"><span>' + opt + '</span> <i class="fas fa-circle-notch"></i></button>'
+            ).join('');
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('quizNextBtn').style.display = 'none';
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            const q = quizData[quizIdx];
+            const btns = document.querySelectorAll('.quiz-option-btn');
+            btns.forEach(b => b.disabled = true);
+            const feedback = document.getElementById('quizFeedback');
+
+            if (selectedIdx === q.correct) {
+                btns[selectedIdx].classList.add('correct');
+                quizScore++;
+                document.getElementById('quizScore').textContent = quizScore;
+                feedback.style.background = '#e8f5e9';
+                feedback.style.color = '#1b5e20';
+                feedback.style.border = '1px solid #c6f6d5';
+                feedback.innerHTML = '<strong><i class="fas fa-check-circle"></i> Correct!</strong> ' + q.exp;
+            } else {
+                btns[selectedIdx].classList.add('wrong');
+                btns[q.correct].classList.add('correct');
+                feedback.style.background = '#fff5f5';
+                feedback.style.color = '#c53030';
+                feedback.style.border = '1px solid #fed7d7';
+                feedback.innerHTML = '<strong><i class="fas fa-circle-xmark"></i> Incorrect.</strong> ' + q.exp;
+            }
+            feedback.style.display = 'block';
+            document.getElementById('quizNextBtn').style.display = 'inline-flex';
+        }
+
+        function nextQuizQuestion() {
+            quizIdx++;
+            if (quizIdx < quizData.length) {
+                renderQuizQuestion();
+            } else {
+                document.getElementById('quizProgress').textContent = 'QUIZ COMPLETED!';
+                document.getElementById('quizQuestion').textContent = 'Congratulations! You completed the Citizen Rights Knowledge Check.';
+                document.getElementById('quizOptions').innerHTML = '<div style="text-align:center; padding:30px; background:#fff; border-radius:20px;"><h4 style="font-size:24px; font-weight:800; color:var(--primary-dark);">Your Final Score: ' + quizScore + ' / ' + quizData.length + '</h4><p style="font-size:15px; color:#555; margin-top:8px;">You have demonstrated strong awareness of Indian constitutional rights and legal safeguards.</p></div>';
+                document.getElementById('quizFeedback').style.display = 'none';
+                document.getElementById('quizNextBtn').style.display = 'none';
+            }
+        }
+
+        // HIGHLIGHT ACTIVE STICKY NAV ITEM ON SCROLL
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id], div[id]');
+            const navItems = document.querySelectorAll('.rights-nav-item');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
     </script>
 
     ${renderFooter(0)}
