@@ -139,11 +139,11 @@ function renderHeader(activePage = '', depth = 0) {
                     <a href="${p}articles.html" class="dropdown-toggle ${isBlogActive ? 'active' : ''}">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a></li>
-                        <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a></li>
-                        <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a></li>
-                    </ul>
+                    <div class="dropdown-panel">
+                        <a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
+                        <a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
+                        <a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                    </div>
                 </li>
                 <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
