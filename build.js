@@ -30,7 +30,7 @@ const orgSchema = {
         "@type": "Person",
         "name": "Farhan Khan"
     },
-    "description": "India's most advanced AI legal assistant providing reliable legal advice on BNS, IPC, FIRs, cyber fraud, and rights."
+    "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 };
 
 const webSiteSchema = {
@@ -47,7 +47,7 @@ const webSiteSchema = {
 
 // COMMON RENDERING HELPERS
 function renderHead(title, description, keywords, pathUrl, depth = 0) {
-    const canonical = `https://nyayi.in${pathUrl}`;
+    const canonical = pathUrl === '/' ? 'https://nyayi.in/' : `https://nyayi.in${pathUrl}`;
     const relPrefix = depth === 1 ? '../' : './';
     const cleanTitle = title.includes('NYAYI') || title.includes('Nyayi') ? title : `${title} | Nyayi Legal AI`;
     const schemas = [orgSchema, webSiteSchema];
@@ -66,12 +66,17 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="${canonical}">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="${canonical}">
     <meta property="og:title" content="${cleanTitle}">
     <meta property="og:description" content="${description}">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${cleanTitle}">
+    <meta name="twitter:description" content="${description}">
+    <meta name="twitter:image" content="https://nyayi.in/images/logo.png">
 
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -88,30 +93,48 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
 
 function renderHeader(activePage = '', depth = 0) {
     const p = depth === 1 ? '../' : './';
+    const homeUrl = depth === 1 ? '../' : './';
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="${p}index.html" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
-        <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
-        <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
-        <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Rights</a>
-        <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Laws Library</a>
-        <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
-        <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}">Articles & Updates</a>
-        <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
-        <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
-            <i class="fas fa-rocket"></i> Launch Web AI
-        </a>
+        
+        <div class="menu-group">
+            <span class="menu-group-title">NAVIGATE</span>
+            <a href="${homeUrl}" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
+            <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
+            <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a>
+            <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
+            <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
+            <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Indian Laws</a>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-group-title">COMPANY</span>
+            <a href="${homeUrl}#about" onclick="toggleMenu()">About</a>
+            <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-group-title">APP</span>
+            <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-group-title">PRIMARY ACTION</span>
+            <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
+                <i class="fas fa-rocket"></i> Launch Web AI
+            </a>
+        </div>
     </div>
 
     <header>
         <div class="nav-capsule">
-            <a href="${p}index.html" class="logo">
+            <a href="${homeUrl}" class="logo">
                 <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="${p}index.html" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
+                <li><a href="${homeUrl}" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
@@ -133,11 +156,11 @@ function renderHeader(activePage = '', depth = 0) {
 
 function renderArchitectsSection() {
     return `
-    <section class="creators-section">
+    <section class="creators-section" id="architects">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>The <span>Architects</span></h2>
-                <p>Connect with the minds behind the technological revolution.</p>
+                <h2>THE <span>ARCHITECTS</span></h2>
+                <p>Meet the people building NYAYI.</p>
             </div>
             
             <div class="creators-grid">
@@ -167,40 +190,51 @@ function renderArchitectsSection() {
 
 function renderFooter(depth = 0) {
     const p = depth === 1 ? '../' : './';
+    const homeUrl = depth === 1 ? '../' : './';
     return `
     <footer>
-        <div class="container footer-grid">
+        <div class="container footer-grid" style="grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1fr;">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+                <p>India's modern legal knowledge platform bridging citizens and law through structured research and artificial intelligence.</p>
             </div>
             <div class="footer-col">
-                <h4>Platform</h4>
+                <h4>PLATFORM</h4>
                 <ul>
-                    <li><a href="${p}index.html">Home</a></li>
+                    <li><a href="${homeUrl}">Home</a></li>
                     <li><a href="${p}features.html">Features</a></li>
                     <li><a href="${p}app.html">Mobile App</a></li>
-                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Knowledge</h4>
+                <h4>LEGAL KNOWLEDGE</h4>
                 <ul>
-                    <li><a href="${p}dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="${p}rights.html">Know Rights</a></li>
-                    <li><a href="${p}laws.html">Laws Library</a></li>
+                    <li><a href="${p}dictionary.html">Dictionary</a></li>
+                    <li><a href="${p}rights.html">Know Your Rights</a></li>
+                    <li><a href="${p}laws.html">Indian Laws</a></li>
                     <li><a href="${p}guides.html">Legal Guides</a></li>
-                    <li><a href="${p}articles.html">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact & Support</h4>
+                <h4>RESOURCES</h4>
                 <ul>
-                    <li><a href="${p}contact.html">Contact Us</a></li>
-                    <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
-                    <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
+                    <li><a href="${homeUrl}#about">About NYAYI</a></li>
+                    <li><a href="${p}contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>LEGAL</h4>
+                <ul>
                     <li><a href="${p}privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
                     <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="${p}cookie-policy.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>AI</h4>
+                <ul>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:800;"><i class="fas fa-rocket"></i> Launch NYAYI AI</a></li>
                 </ul>
             </div>
         </div>
@@ -236,7 +270,7 @@ function renderFooter(depth = 0) {
             });
         }
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header, .pillar-card, .term-pill, .step-card, .philosophy-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -259,43 +293,29 @@ function renderFooter(depth = 0) {
 
 // 1. GENERATE HOMEPAGE (index.html)
 function buildHomepage() {
-    const dictCards = dictionary.slice(0, 6).map(item => `
-        <div class="info-card" data-aos="fade-up">
-            <div>
-                <span class="card-tag">${item.category}</span>
-                <h3 style="margin-top:4px;">${item.term}</h3>
-                <p>${item.simpleDef}</p>
-            </div>
-            <a href="dictionary/${item.slug}.html" class="card-link">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
-        </div>
-    `).join('');
-
-    const rightsCards = rights.map(item => `
-        <div class="info-card" data-aos="fade-up">
-            <div>
-                <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-            </div>
-            <a href="know-your-rights/${item.slug}.html" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
-        </div>
-    `).join('');
+    const popularTermNames = ['FIR', 'Bail', 'Arrest', 'Anticipatory Bail', 'Legal Notice', 'Injunction', 'Affidavit', 'Jurisdiction', 'Appeal', 'Warrant', 'Complaint', 'Evidence'];
+    const popularTermsPills = popularTermNames.map(termName => {
+        const found = dictionary.find(d => d.term.toLowerCase() === termName.toLowerCase() || d.term.toLowerCase().includes(termName.toLowerCase()));
+        const slug = found ? found.slug : 'fir';
+        return `<a href="dictionary/${slug}.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${termName}</a>`;
+    }).join('');
 
     const html = `
-    ${renderHead('NYAYI | India\'s #1 Legal AI', 'Nyayi (NYAYI) is India\'s most advanced AI legal assistant. Get instant, reliable legal advice on Indian laws, FIRs, cyber fraud, and rights.', 'Nyayi, Indian Legal AI, AI lawyer India, free legal advice India, BNS 2023, IPC sections, cyber crime help, Indian Constitution', '/')}
+    ${renderHead('NYAYI – Indian Legal Knowledge & AI-Powered Legal Assistance', 'NYAYI is a modern Indian legal knowledge platform. Understand Indian law, discover your legal rights, explore legal terms, read legal guides, and access AI legal assistance.', 'Nyayi, Indian Legal AI, AI lawyer India, free legal advice India, BNS 2023, IPC sections, cyber crime help, Indian Constitution', '/')}
     ${renderHeader('home', 0)}
 
+    <!-- 1. HERO SECTION -->
     <section class="hero">
         <div class="container hero-content" data-aos="zoom-in">
-            <h1>Legal Intelligence <br> <span>Reimagined.</span></h1>
-            <p>Explore cutting-edge AI tools engineered to simplify the complex matrix of the Indian legal system. From context-aware research to dynamic document workflows—get precise, fast, and secure guidance instantly.</p>
+            <h1>Legal Knowledge. <br> <span>Made Simple.</span></h1>
+            <p>NYAYI is a modern Indian legal knowledge platform. Easily understand Indian law, discover your fundamental rights, explore legal terminology, read practical guides, and access AI-assisted legal research.</p>
             
             <div class="hero-btns">
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-ai">
-                    <i class="fas fa-robot"></i> Start AI Chat
+                    <i class="fas fa-robot"></i> Launch NYAYI AI
                 </a>
-                <a href="features.html" class="btn-outline">
-                    <i class="fas fa-layer-group"></i> Explore Features
+                <a href="#explore-knowledge" class="btn-outline">
+                    <i class="fas fa-compass"></i> Explore Legal Knowledge
                 </a>
             </div>
 
@@ -307,99 +327,427 @@ function buildHomepage() {
                     </div>
                     <div class="msg msg-user">How do I map an old crime to the new laws?</div>
                     <div class="msg msg-ai">
-                        You can use our integrated <strong>IPC & BNS Converter</strong> to map any old section directly to its active counterpart in the new Bharatiya Nyaya Sanhita instantly.
+                        You can use our integrated <strong>IPC & BNS Converter</strong> to map any old section directly to its active counterpart in the new Bharatiya Nyaya Sanhita (BNS) instantly.
                     </div>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- STATS STRIP -->
+    <!-- 2. STATS STRIP -->
     <section class="stats-strip">
         <div class="container stats-grid">
-            <div data-aos="fade-up"><span class="stat-badge">#1 IN INDIA</span><div class="stat-num">511+</div><div class="stat-label">IPC & BNS Sections Covered</div></div>
-            <div data-aos="fade-up" data-aos-delay="100"><span class="stat-badge">MULTILINGUAL</span><div class="stat-num">22+</div><div class="stat-label">Indian Languages</div></div>
-            <div data-aos="fade-up" data-aos-delay="200"><span class="stat-badge">SECURE</span><div class="stat-num">100%</div><div class="stat-label">Data Privacy Guard</div></div>
-            <div data-aos="fade-up" data-aos-delay="300"><span class="stat-badge">AI DRIVEN</span><div class="stat-num">24/7</div><div class="stat-label">Instant Solution Delivery</div></div>
+            <div data-aos="fade-up"><span class="stat-badge">STATUTORY COVERAGE</span><div class="stat-num">511+</div><div class="stat-label">IPC & BNS Sections Covered</div></div>
+            <div data-aos="fade-up" data-aos-delay="100"><span class="stat-badge">MULTILINGUAL</span><div class="stat-num">22+</div><div class="stat-label">Indian Languages Supported</div></div>
+            <div data-aos="fade-up" data-aos-delay="200"><span class="stat-badge">DATA SAFETY</span><div class="stat-num">100%</div><div class="stat-label">Privacy-Conscious Architecture</div></div>
+            <div data-aos="fade-up" data-aos-delay="300"><span class="stat-badge">AI POWERED</span><div class="stat-num">24/7</div><div class="stat-label">Instant Knowledge Access</div></div>
         </div>
     </section>
 
-    <!-- BENTO GRID -->
-    <section class="bento-section">
+    <!-- 3. WHAT IS NYAYI? SECTION -->
+    <section style="padding:110px 0; background:#ffffff;" id="about">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Powerful <span>Legal Tools</span></h2>
-                <p>Advanced computational engines designed to empower the modern citizen.</p>
+                <h2>What is <span>NYAYI?</span></h2>
+                <p>Demystifying the Indian legal ecosystem through structured research, plain-language guides, and modern technology.</p>
             </div>
-
-            <div class="bento-grid">
-                <div class="b-card b-dark" data-aos="fade-right">
-                    <div class="b-icon"><i class="fas fa-search-location"></i></div>
-                    <h3>Smart Case Search</h3>
-                    <p>Describe your situation in simple stories or casual phrases. Our custom neural network scans the entire Indian Penal Code (IPC), Constitution, and active court precedents to reveal the exact legal sections and penalties relevant to you.</p>
-                </div>
-                <div class="b-card" data-aos="fade-left">
-                    <div class="b-icon"><i class="fas fa-file-contract"></i></div>
-                    <h3>Dynamic Document Drafting</h3>
-                    <p>Create legally tight documents instantly. Generate a formal Draft FIR or customized Rent Agreements tailored to your specific inputs inside 30 seconds.</p>
-                </div>
-                <div class="b-card" data-aos="fade-left" data-aos-delay="100">
-                    <div class="b-icon"><i class="fas fa-calculator"></i></div>
-                    <h3>Challan & Code Utilities</h3>
-                    <p>Calculate road liabilities instantly with our Traffic Fine Calculator, or cross-check statutory transformations smoothly through the active IPC & BNS Converter.</p>
+            
+            <div style="max-width:900px; margin:0 auto; background:var(--bg-light); border:1px solid #eaeaea; border-radius:35px; padding:50px; box-shadow:0 15px 40px rgba(0,0,0,0.02);" data-aos="fade-up">
+                <p style="font-size:1.15rem; color:#444; line-height:1.9; margin-bottom:24px;">
+                    <strong>NYAYI</strong> is an advanced Indian legal information platform built to make complex statutory frameworks, constitutional rights, and court procedures accessible to every citizen. By organizing legal jargon into structured dictionaries, actionable rights breakdowns, and step-by-step procedure guides, NYAYI bridges the gap between everyday citizens and the law.
+                </p>
+                <p style="font-size:1.1rem; color:#555; line-height:1.8; margin-bottom:24px;">
+                    Whether you are researching the new Bharatiya Nyaya Sanhita (BNS 2023), understanding police bail protocols, checking consumer safeguards, or filing a digital cyber complaint—NYAYI provides reliable, structured knowledge at your fingertips.
+                </p>
+                <div style="background:#fff; border-left:4px solid var(--primary); padding:20px 25px; border-radius:15px; margin-top:25px;">
+                    <strong style="color:var(--dark); font-size:15px;"><i class="fas fa-circle-info" style="color:var(--primary);"></i> Important Advocate Disclaimer:</strong>
+                    <p style="font-size:14px; color:#666; margin:6px 0 0; line-height:1.6;">
+                        NYAYI is an informational research tool designed to build legal awareness and literacy. NYAYI does not provide formal legal representation, litigation advice, or replace licensed advocates.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: LEGAL DICTIONARY PREVIEW -->
-    <section style="padding:90px 0; background:white;">
+    <!-- 4. EXPLORE LEGAL KNOWLEDGE SECTION (4 PILLARS) -->
+    <section style="padding:100px 0; background:#f9fbf9;" id="explore-knowledge">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Searchable Legal <span>Dictionary</span></h2>
-                <p>Demystifying Latin maxims, procedural terms, and court jargon in plain English & Hindi.</p>
+                <h2>Explore <span>Legal Knowledge</span></h2>
+                <p>Four primary knowledge pillars engineered for citizen empowerment and legal literacy.</p>
             </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card" data-aos="fade-up">
+                    <div>
+                        <div class="pillar-icon"><i class="fas fa-book-bookmark"></i></div>
+                        <h3>Legal Dictionary</h3>
+                        <p>Simplified explanations for Latin maxims, BNS/IPC sections, procedural terms, and court jargon in plain English.</p>
+                    </div>
+                    <a href="dictionary.html" class="card-link">Explore Dictionary <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="pillar-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3>Know Your Rights</h3>
+                        <p>Actionable constitutional safeguards and statutory protections against arbitrary detention, police overreach, and fraud.</p>
+                    </div>
+                    <a href="rights.html" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="pillar-icon"><i class="fas fa-scale-balanced"></i></div>
+                        <h3>Indian Laws</h3>
+                        <p>Structured breakdowns of major Indian acts, BNS 2023, BNSS 2023, BSA 2023, and the Constitution of India.</p>
+                    </div>
+                    <a href="laws.html" class="card-link">Explore Indian Laws <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="pillar-icon"><i class="fas fa-file-lines"></i></div>
+                        <h3>Legal Guides</h3>
+                        <p>Step-by-step practical walk-throughs breaking down police FIRs, bail procedures, cyber fraud reports, and notices.</p>
+                    </div>
+                    <a href="guides.html" class="card-link">Explore Guides <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. LEGAL DICTIONARY HOMEPAGE SECTION -->
+    <section style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Legal <span>Dictionary</span></h2>
+                <p>Legal terminology can feel overwhelming. NYAYI explains important legal terms in accessible language.</p>
+            </div>
+
+            <div class="search-box" data-aos="fade-up" style="margin-bottom:30px;">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search legal terms (e.g. FIR, Bail, Injunction, Affidavit)..." onclick="window.location.href='dictionary.html'">
+            </div>
+
+            <div class="terms-preview-grid" data-aos="fade-up" data-aos-delay="100">
+                ${popularTermsPills}
+            </div>
+
+            <div style="text-align:center; margin-top:20px;" data-aos="fade-up">
+                <a href="dictionary.html" class="btn-outline">
+                    <i class="fas fa-book-open"></i> Explore Full Legal Dictionary <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. KNOW YOUR RIGHTS SECTION -->
+    <section style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Know Your <span>Rights</span></h2>
+                <p>Understanding basic legal rights helps citizens confidently navigate everyday legal situations.</p>
+            </div>
+
             <div class="card-grid">
-                ${dictCards}
+                <div class="info-card" data-aos="fade-up">
+                    <div>
+                        <div class="card-icon"><i class="fas fa-handcuffs"></i></div>
+                        <h3>Police & Arrest Rights</h3>
+                        <p>Statutory rights during arrest: grounds of arrest notification (BNSS Sec 35), right to inform family within 12h, and medical exam mandates.</p>
+                    </div>
+                    <a href="know-your-rights/arrest-rights.html" class="card-link">Read Arrest Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="card-icon"><i class="fas fa-person-dress"></i></div>
+                        <h3>Women's Legal Safeguards</h3>
+                        <p>Special constitutional protections, prohibition of arrest after sunset without Magistrate approval, Zero FIR rights, and POSH Act mandates.</p>
+                    </div>
+                    <a href="know-your-rights/womens-rights.html" class="card-link">Read Women's Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="card-icon"><i class="fas fa-shield-cat"></i></div>
+                        <h3>Cyber & Digital Privacy</h3>
+                        <p>Right to data privacy under Article 21, financial fraud emergency reporting (National Helpline 1930), and IT Act protections.</p>
+                    </div>
+                    <a href="know-your-rights/cyber-rights.html" class="card-link">Read Cyber Rights <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div style="text-align:center; margin-top:40px;">
-                <a href="dictionary.html" class="btn-outline">Browse All Legal Terms <i class="fas fa-arrow-right"></i></a>
+
+            <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+                <a href="rights.html" class="btn-outline">
+                    <i class="fas fa-shield-halved"></i> Explore All Rights Guides <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: KNOW YOUR RIGHTS -->
-    <section style="padding:90px 0; background:var(--bg-light);">
+    <!-- 7. INDIAN LAWS SECTION -->
+    <section style="padding:100px 0; background:#ffffff;">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Know Your Fundamental <span>Rights</span></h2>
-                <p>Knowledge is your first line of defense against illegal detention, police overreach, and consumer exploitation.</p>
+                <h2>Indian <span>Laws</span></h2>
+                <p>Structured breakdowns of important Indian statutory acts and legal frameworks in accessible language.</p>
             </div>
-            <div class="card-grid">
-                ${rightsCards}
+
+            <div class="laws-grid">
+                <div class="law-card" data-aos="fade-up">
+                    <div>
+                        <span class="card-tag">Supreme Law</span>
+                        <h3 style="margin-top:10px;">Constitution of India</h3>
+                        <p>The supreme legal document establishing fundamental rights, state directive principles, and governance frameworks.</p>
+                    </div>
+                    <a href="laws/constitution.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="law-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <span class="card-tag">Criminal Law (2023)</span>
+                        <h3 style="margin-top:10px;">Bharatiya Nyaya Sanhita (BNS)</h3>
+                        <p>The modern criminal code replacing the Indian Penal Code 1860, modernizing offences, punishments, and cyber laws.</p>
+                    </div>
+                    <a href="laws/bns.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="law-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <span class="card-tag">Procedure Code (2023)</span>
+                        <h3 style="margin-top:10px;">Bharatiya Nagarik Suraksha Sanhita (BNSS)</h3>
+                        <p>Replaces the CrPC 1973, establishing timelines for trial, digital FIR registration, and arrest protocols.</p>
+                    </div>
+                    <a href="laws/bnss.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+                <a href="laws.html" class="btn-outline">
+                    <i class="fas fa-landmark"></i> Explore Laws Library <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: THE ARCHITECTS -->
+    <!-- 8. LEGAL GUIDES SECTION -->
+    <section style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Step-by-Step <span>Legal Guides</span></h2>
+                <p>Practical legal education breaking down complex court and police procedures into clear actionable steps.</p>
+            </div>
+
+            <div class="guides-grid">
+                <div class="guide-card" data-aos="fade-up">
+                    <div>
+                        <span class="card-tag">Police Procedure • 5 Min</span>
+                        <h3 style="margin-top:8px;">How to File an FIR</h3>
+                        <p>Complete step-by-step process for registering a First Information Report at a police station or online portal.</p>
+                    </div>
+                    <a href="legal-guides/how-to-file-an-fir.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="guide-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <span class="card-tag">Court Process • 7 Min</span>
+                        <h3 style="margin-top:8px;">Understanding Bail</h3>
+                        <p>Clear explainer on bailable vs non-bailable offences, anticipatory bail applications under BNSS 482, and bond requirements.</p>
+                    </div>
+                    <a href="legal-guides/understanding-anticipatory-bail.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="guide-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <span class="card-tag">Cyber Helpline • 4 Min</span>
+                        <h3 style="margin-top:8px;">What to Do After Online Fraud</h3>
+                        <p>Immediate steps to freeze bank transfers via 1930 helpline and lodge official reports on cybercrime.gov.in.</p>
+                    </div>
+                    <a href="legal-guides/how-to-report-cyber-crime.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+                <a href="guides.html" class="btn-outline">
+                    <i class="fas fa-file-lines"></i> View All Practical Guides <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FEATURES SECTION -->
+    <section class="features-section" style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Product <span>Capabilities</span></h2>
+                <p>Refined computational utilities engineered to simplify legal workflows.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Smart Case Search</h3>
+                        <p>Express legal concerns in simple conversational language to map descriptions directly to IPC, BNS, and court provisions.</p>
+                    </div>
+                    <span class="fc-tag">AI Powered</span>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-arrow-right-arrow-left"></i></div>
+                        <h3>IPC & BNS Converter</h3>
+                        <p>Seamlessly translate classic Indian Penal Code (IPC) sections into their updated Bharatiya Nyaya Sanhita (BNS) equivalents.</p>
+                    </div>
+                    <span class="fc-tag">Statutory Utility</span>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="fc-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Draft FIR Generator</h3>
+                        <p>Generate structured, legally sound First Information Report (FIR) drafts by answering guided incident prompts.</p>
+                    </div>
+                    <span class="fc-tag">Auto-Drafting</span>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+                <a href="features.html" class="btn-outline">
+                    <i class="fas fa-layer-group"></i> Explore All Features <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. HOW NYAYI WORKS SECTION -->
+    <section style="padding:100px 0; background:var(--bg-light);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How NYAYI <span>Works</span></h2>
+                <p>A simple four-step process for accessing legal knowledge and computational research.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card" data-aos="fade-up">
+                    <span class="step-num">STEP 01</span>
+                    <h3>Explore</h3>
+                    <p>Find legal concepts, citizen rights, statutory acts, and practical procedure guides.</p>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="step-num">STEP 02</span>
+                    <h3>Understand</h3>
+                    <p>Read simplified plain-language explanations, precedents, and step-by-step walk-throughs.</p>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="step-num">STEP 03</span>
+                    <h3>Learn</h3>
+                    <p>Explore statutory references, BNS/IPC code mappings, and constitutional protections.</p>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <span class="step-num">STEP 04</span>
+                    <h3>Use NYAYI AI</h3>
+                    <p>For AI-assisted legal research and conversational guidance, launch <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">ai.nyayi.in</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. WHY NYAYI SECTION -->
+    <section style="padding:100px 0; background:#ffffff;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why <span>NYAYI?</span></h2>
+                <p>Core principles guiding our legal information architecture and user experience.</p>
+            </div>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-card" data-aos="fade-up">
+                    <div class="ph-icon"><i class="fas fa-universal-access"></i></div>
+                    <h3>Accessible Knowledge</h3>
+                    <p>Demystifying complex legal terminology into simple, structured plain-language explanations for all citizens.</p>
+                </div>
+                <div class="philosophy-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ph-icon"><i class="fas fa-flag-usa" style="display:none;"></i><i class="fas fa-scale-unbalanced-flip"></i></div>
+                    <h3>Indian Legal Context</h3>
+                    <p>Tailored specifically to the Constitution of India, Bharatiya Nyaya Sanhita (BNS 2023), and Indian Supreme Court rulings.</p>
+                </div>
+                <div class="philosophy-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ph-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Modern Technology</h3>
+                    <p>Powered by legal-grade neural algorithms, real-time code converters, and fast client-side searching.</p>
+                </div>
+                <div class="philosophy-card" data-aos="fade-up">
+                    <div class="ph-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>Privacy-Conscious</h3>
+                    <p>Informational queries are processed dynamically without requiring personal identification or intrusive tracking.</p>
+                </div>
+                <div class="philosophy-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ph-icon"><i class="fas fa-language"></i></div>
+                    <h3>Multilingual Support</h3>
+                    <p>Supporting legal query processing across 22+ official Indian languages with context awareness.</p>
+                </div>
+                <div class="philosophy-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ph-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Citizen Empowerment</h3>
+                    <p>Building legal literacy so citizens understand their rights before approaching courts or police authorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. THE ARCHITECTS (MANDATORY) -->
     ${renderArchitectsSection()}
 
-    <!-- SECTION: FAQ ACCORDION -->
-    <section class="faq-section">
+    <!-- 13. FAQ SECTION -->
+    <section class="faq-section" id="faq">
         <div class="container">
-            <div class="section-header" data-aos="fade-up"><h2>Frequently Asked <span>Questions</span></h2></div>
+            <div class="section-header" data-aos="fade-up">
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Common questions about NYAYI legal knowledge platform and AI features.</p>
+            </div>
+            
             <div class="faq-grid">
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
-                    <div class="faq-header"><h3>Is Nyayi free for citizens?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>Yes, our core mission is accessibility. Features like Case Search, Dictionary, Converter utilities, and Basic Drafting are completely free for public use.</p></div>
+                    <div class="faq-header"><h3>What is NYAYI?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI is a modern Indian legal knowledge platform designed to simplify Indian law, constitutional rights, statutory acts (BNS/IPC), and legal procedures for citizens.</p></div>
                 </div>
+
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-header"><h3>Is my data secure and private?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>We prioritize absolute privacy. We use industry-standard encryption protocols for all data operations. Your queries are processed dynamically but never personally linked, stored, or distributed.</p></div>
+                    <div class="faq-header"><h3>Who is NYAYI for?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI is for common citizens, law students, researchers, consumers, and business owners seeking clear, accessible information regarding Indian laws and legal rights.</p></div>
                 </div>
+
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-header"><h3>Does this platform replace an advocate?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p><strong>No.</strong> Nyayi is an informational tool built for research and legal literacy. For formal court representations, active litigation advice, or official filings, you must consult a licensed advocate.</p></div>
+                    <div class="faq-header"><h3>What kind of legal information does NYAYI provide?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI provides a searchable Legal Dictionary, Know Your Rights guides, statutory act breakdowns (BNS, BNSS, BSA, Constitution), practical procedure guides (FIRs, Bail, Cybercrime), and IPC/BNS converter tools.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>Does NYAYI replace a lawyer?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p><strong>No.</strong> NYAYI is an informational research and legal literacy tool. For formal court representation, official litigation advice, or legal document execution, you must consult a licensed advocate.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>Where can I access NYAYI AI?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>The AI research engine operates as a separate dedicated web application accessible at <a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">ai.nyayi.in</a> by clicking any "Launch NYAYI AI" button.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-header"><h3>What areas of Indian law are covered?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>NYAYI covers Criminal Law (BNS/IPC), Criminal Procedure (BNSS/CrPC), Evidence (BSA), Constitutional Law, Cyber Law (IT Act), Consumer Protection, Property/Tenancy norms, and Traffic MV Act regulations.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
+                    <div class="faq-header"><h3>How can I explore legal terms?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>You can visit our dedicated <a href="dictionary.html" style="color:var(--primary); font-weight:700;">Legal Dictionary</a> page to search terms live or filter by categories like Criminal, Civil, Constitutional, or Cyber law.</p></div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-header"><h3>Is NYAYI available on mobile?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-body"><p>Yes, NYAYI is fully responsive and optimized for mobile devices. You can also explore our <a href="app.html" style="color:var(--primary); font-weight:700;">Mobile App</a> page for direct smartphone access.</p></div>
                 </div>
             </div>
         </div>
@@ -423,6 +771,19 @@ function buildHomepage() {
             }
         }
     </script>
+
+    <!-- 14. FINAL CLOSING NYAYI AI CTA -->
+    <section class="cta-section" style="padding:0 0 110px;">
+        <div class="container">
+            <div class="cta-box" data-aos="zoom-in">
+                <h2>Need More Than Information?</h2>
+                <p>Explore NYAYI AI for AI-assisted legal research and conversational guidance.</p>
+                <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:18px; padding:18px 45px; margin-top:10px;">
+                    <i class="fas fa-rocket"></i> Launch NYAYI AI
+                </a>
+            </div>
+        </div>
+    </section>
 
     ${renderFooter(0)}
     `;
@@ -1193,7 +1554,7 @@ function buildFeaturesAndOther() {
 
     // Sitemap & Robots
     const urls = [
-        'https://nyayi.in/index.html',
+        'https://nyayi.in/',
         'https://nyayi.in/features.html',
         'https://nyayi.in/dictionary.html',
         'https://nyayi.in/rights.html',
