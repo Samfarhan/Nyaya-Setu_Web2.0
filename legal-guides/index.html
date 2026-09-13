@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=8.0">
+    <link rel="stylesheet" href="../css/styles.css?v=9.0">
     
     <script type="application/ld+json">
 {
@@ -129,7 +129,7 @@
     </header>
 
     <!-- SECTION 1: HERO HEADER -->
-    <section class="page-header" style="padding: 70px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+    <section class="page-header" style="padding: 165px 0 60px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
         <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
                 <i class="fas fa-compass"></i> Practical Legal Knowledge
@@ -154,7 +154,7 @@
     <!-- SECTION 2: INTERACTIVE GUIDE SEARCH ENGINE -->
     <section style="padding: 30px 0; background: #fff; border-bottom: 1px solid #edf2f7;">
         <div class="container" style="max-width: 1000px;">
-            <div class="guide-search-wrapper" style="position:relative;">
+            <div class="guide-search-wrapper" style="position:relative; display:block; width:100%; max-width:900px; margin:0 auto;">
                 <i class="fas fa-search guide-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px;"></i>
                 <input type="text" id="guideSearchInput" class="guide-search-input" oninput="handleGuideSearch()" placeholder="Search FIR, Bail, Cyber Crime, Consumer Complaint, Tenant Rights, RERA..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
                 <button id="guideClearBtn" onclick="clearGuideSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:18px; display:none;">
@@ -2838,6 +2838,7 @@
                 AOS.init({ duration: 800, once: true, offset: 30 });
             }
         });
+        window.addEventListener("load", function() { window.scrollTo(0, 0); });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -2879,7 +2880,11 @@
         const cursorOutline = document.querySelector('.cursor-outline');
 
         if (cursorDot && cursorOutline) {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
             window.addEventListener('mousemove', function(e) {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
                 const posX = e.clientX;
                 const posY = e.clientY;
                 cursorDot.style.left = `${posX}px`;

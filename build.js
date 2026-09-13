@@ -93,7 +93,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=8.0">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=9.0">
     
     ${schemaScripts}
 </head>
@@ -264,6 +264,7 @@ function renderFooter(depth = 0) {
                 AOS.init({ duration: 800, once: true, offset: 30 });
             }
         });
+        window.addEventListener("load", function() { window.scrollTo(0, 0); });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -305,7 +306,11 @@ function renderFooter(depth = 0) {
         const cursorOutline = document.querySelector('.cursor-outline');
 
         if (cursorDot && cursorOutline) {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
             window.addEventListener('mousemove', function(e) {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
                 const posX = e.clientX;
                 const posY = e.clientY;
                 cursorDot.style.left = \`\${posX}px\`;
@@ -892,7 +897,7 @@ function buildDictionary() {
     ${renderHeader('dictionary', 0)}
 
     <!-- HERO HEADER -->
-    <section class="page-header" style="padding-bottom: 40px;">
+    <section class="page-header" style="padding: 165px 0 50px;">
         <div class="container" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:12px;">AUTHORITATIVE LEGAL REFERENCE</span>
             <h1>Indian Legal <span>Dictionary</span></h1>
@@ -1274,7 +1279,7 @@ function buildDictionary() {
         ${renderHeader('dictionary', 1)}
 
         <!-- BREADCRUMBS & HERO HEADER -->
-        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+        <section class="page-header" style="padding: 160px 0 40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <div style="font-size:13.5px; color:#718096; margin-bottom:16px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                     <a href="../index.html" style="color:#4a5568; font-weight:600;"><i class="fas fa-home"></i> Home</a>
@@ -1382,7 +1387,7 @@ function buildRights() {
     ${renderHeader('rights', 0)}
 
     <!-- 01 — HERO SECTION -->
-    <section class="page-header" id="hero" style="padding-bottom: 50px;">
+    <section class="page-header" id="hero" style="padding: 165px 0 50px;">
         <div class="container" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:14px;">AUTHORITATIVE CITIZEN HANDBOOK & CONSTITUTIONAL LEARNING HUB</span>
             <h1 style="font-size:3.2rem; font-weight:900; line-height:1.2;">Know Your Rights. <br><span>Know Your Power.</span></h1>
@@ -2577,7 +2582,7 @@ function buildRights() {
         ${renderHead(`${item.title} | NYAYI Rights Guide`, item.description, `${item.title}, legal rights India, citizen protections`, `/know-your-rights/${item.slug}.html`, 1)}
         ${renderHeader('rights', 1)}
 
-        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+        <section class="page-header" style="padding: 160px 0 40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <a href="../rights.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Rights Overview</a>
                 <h1 style="margin:16px 0 20px; font-size:3rem;">${item.title}</h1>
@@ -3805,7 +3810,7 @@ function buildFeaturesAndOther() {
     </script>
 
     <!-- 01 — HERO SECTION -->
-    <section class="page-header" id="hero" style="padding-bottom: 50px;">
+    <section class="page-header" id="hero" style="padding: 165px 0 50px;">
         <div class="container" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.15); color:var(--primary-dark); font-weight:800;">
                 <i class="fas fa-book-scale" style="color:var(--primary);"></i> INDIAN LEGAL KNOWLEDGE BASE
@@ -4569,7 +4574,7 @@ function buildFeaturesAndOther() {
         ${renderHead(`${item.title} (${item.shortName}) | Act Analysis`, item.purpose, `${item.title}, ${item.shortName}, Indian law`, `/laws/${item.slug}.html`, 1)}
         ${renderHeader('laws', 1)}
 
-        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+        <section class="page-header" style="padding: 160px 0 40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <a href="../laws.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Laws Library</a>
                 <span class="cp-role" style="margin-top:20px; display:inline-block;">Enacted / Enforced: ${item.year}</span>
@@ -5233,7 +5238,7 @@ function buildFeaturesAndOther() {
     ${renderHeader('guides', 0)}
 
     <!-- SECTION 1: HERO HEADER -->
-    <section class="page-header" style="padding: 70px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+    <section class="page-header" style="padding: 165px 0 60px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
         <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
                 <i class="fas fa-compass"></i> Practical Legal Knowledge
@@ -5258,7 +5263,7 @@ function buildFeaturesAndOther() {
     <!-- SECTION 2: INTERACTIVE GUIDE SEARCH ENGINE -->
     <section style="padding: 30px 0; background: #fff; border-bottom: 1px solid #edf2f7;">
         <div class="container" style="max-width: 1000px;">
-            <div class="guide-search-wrapper" style="position:relative;">
+            <div class="guide-search-wrapper" style="position:relative; display:block; width:100%; max-width:900px; margin:0 auto;">
                 <i class="fas fa-search guide-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px;"></i>
                 <input type="text" id="guideSearchInput" class="guide-search-input" oninput="handleGuideSearch()" placeholder="Search FIR, Bail, Cyber Crime, Consumer Complaint, Tenant Rights, RERA..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
                 <button id="guideClearBtn" onclick="clearGuideSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:18px; display:none;">
@@ -6207,7 +6212,7 @@ function buildFeaturesAndOther() {
         ${renderHead(`${item.title} | NYAYI Practical Legal Guide`, item.summary, `${item.title}, legal procedure guide India, BNS BNSS 2023`, `/legal-guides/${item.slug}.html`, 1)}
         ${renderHeader('guides', 1)}
 
-        <section class="page-header" style="padding-bottom:40px; text-align:left;">
+        <section class="page-header" style="padding: 160px 0 40px; text-align:left;">
             <div class="container" data-aos="fade-up">
                 <a href="../guides.html" style="font-weight:700; color:var(--primary-dark); font-size:14px; text-decoration:none;"><i class="fas fa-arrow-left"></i> Back to Legal Guides Hub</a>
                 <div style="margin-top:20px;">
@@ -6993,7 +6998,7 @@ function buildFeaturesAndOther() {
     ${renderHeader('articles', 0)}
 
     <!-- SECTION 1: HERO HEADER -->
-    <section class="page-header" style="padding: 150px 0 50px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
+    <section class="page-header" style="padding: 165px 0 60px; background: linear-gradient(180deg, #f4f7f6 0%, #ffffff 100%);">
         <div class="container" style="text-align: center; max-width: 900px;" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:16px; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 18px; border-radius:30px; font-size:13px; letter-spacing:1px; text-transform:uppercase;">
                 <i class="fas fa-newspaper"></i> NYAYI Legal Journal

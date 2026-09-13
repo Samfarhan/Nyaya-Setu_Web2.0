@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=8.0">
+    <link rel="stylesheet" href="../css/styles.css?v=9.0">
     
     <script type="application/ld+json">
 {
@@ -129,7 +129,7 @@
     </header>
 
     <!-- 01 — HERO SECTION -->
-    <section class="page-header" id="hero" style="padding-bottom: 50px;">
+    <section class="page-header" id="hero" style="padding: 165px 0 50px;">
         <div class="container" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:14px;">AUTHORITATIVE CITIZEN HANDBOOK & CONSTITUTIONAL LEARNING HUB</span>
             <h1 style="font-size:3.2rem; font-weight:900; line-height:1.2;">Know Your Rights. <br><span>Know Your Power.</span></h1>
@@ -1356,6 +1356,7 @@
                 AOS.init({ duration: 800, once: true, offset: 30 });
             }
         });
+        window.addEventListener("load", function() { window.scrollTo(0, 0); });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -1397,7 +1398,11 @@
         const cursorOutline = document.querySelector('.cursor-outline');
 
         if (cursorDot && cursorOutline) {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
             window.addEventListener('mousemove', function(e) {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
                 const posX = e.clientX;
                 const posY = e.clientY;
                 cursorDot.style.left = `${posX}px`;

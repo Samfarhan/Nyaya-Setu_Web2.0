@@ -39,13 +39,17 @@ body {
 
 /* ---- CUSTOM CURSOR ---- */
 .cursor-dot, .cursor-outline {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
     transform: translate(-50%, -50%);
     border-radius: 50%; 
     z-index: 9999999 !important; 
     pointer-events: none !important;
+    user-select: none !important;
+    opacity: 0;
+    transition: opacity 0.25s ease, width 0.2s, height 0.2s, background-color 0.2s;
+    will-change: transform, left, top;
 }
 .cursor-dot { 
     width: 8px; 
@@ -439,7 +443,7 @@ header {
 
 /* ---- PAGE HERO & HEADERS ---- */
 .hero, .page-header {
-    padding: 170px 0 70px; 
+    padding: 165px 0 70px !important; 
     text-align: center;
     background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 70%);
 }
@@ -3677,7 +3681,7 @@ header {
 
 /* 1. HERO HEADER TOP PADDING (PREVENTS FIXED NAVBAR OVERLAP) */
 .page-header, .hero {
-    padding-top: 150px !important;
+    padding-top: 165px !important;
 }
 
 /* 2. RICH SEARCH INPUT & BUTTON STYLING */

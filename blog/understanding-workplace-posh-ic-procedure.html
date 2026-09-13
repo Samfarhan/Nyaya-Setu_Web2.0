@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=8.0">
+    <link rel="stylesheet" href="../css/styles.css?v=9.0">
     
     <script type="application/ld+json">
 {
@@ -282,6 +282,7 @@
                 AOS.init({ duration: 800, once: true, offset: 30 });
             }
         });
+        window.addEventListener("load", function() { window.scrollTo(0, 0); });
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -323,7 +324,11 @@
         const cursorOutline = document.querySelector('.cursor-outline');
 
         if (cursorDot && cursorOutline) {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
             window.addEventListener('mousemove', function(e) {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
                 const posX = e.clientX;
                 const posY = e.clientY;
                 cursorDot.style.left = `${posX}px`;
