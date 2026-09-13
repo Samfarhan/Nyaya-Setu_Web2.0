@@ -6083,40 +6083,64 @@ function buildFeaturesAndOther() {
     fs.writeFileSync(path.join(ROOT_DIR, 'legal-guides/index.html'), guidesHub.replace(/legal-guides\//g, '').replace(/\.\/css\//g, '../css/'), 'utf8');
 
 
-    guides.forEach(item => {
+    expandedGuides.forEach(item => {
+        const steps = item.steps || [
+            { num: 1, heading: "Initial Assessment & Legal Framework", text: (item.learn && item.learn[0]) ? item.learn[0] : "Identify the applicable statutory provisions, rights, and relevant jurisdiction under BNS/BNSS 2023." },
+            { num: 2, heading: "Gathering Evidence & Preparing Documentation", text: (item.learn && item.learn[1]) ? item.learn[1] : "Compile necessary receipts, notices, communications, and official documentation to build your legal file." },
+            { num: 3, heading: "Formal Statutory Action & Legal Recourse", text: (item.learn && item.learn[2]) ? item.learn[2] : "Submit formal complaints, send statutory notices, or file petitions before competent court or tribunal." }
+        ];
+        const warnings = item.warnings || [
+            "Ensure all statements submitted to police or court authorities are accurate and supported by admissible evidence under Bharatiya Sakshya Adhiniyam (BSA 2023)."
+        ];
+
         const pageHtml = `
-        ${renderHead(`${item.title} | NYAYI Guide`, item.summary, `${item.title}, legal procedure guide India`, `/legal-guides/${item.slug}.html`, 1)}
+        ${renderHead(`${item.title} | NYAYI Practical Legal Guide`, item.summary, `${item.title}, legal procedure guide India, BNS BNSS 2023`, `/legal-guides/${item.slug}.html`, 1)}
         ${renderHeader('guides', 1)}
 
         <section class="page-header" style="padding-bottom:40px; text-align:left;">
             <div class="container" data-aos="fade-up">
-                <a href="../guides.html" style="font-weight:700; color:var(--primary-dark); font-size:14px;"><i class="fas fa-arrow-left"></i> Back to Legal Guides</a>
-                <span class="cp-role" style="margin-top:20px; display:inline-block;">${item.category}</span>
-                <h1 style="margin:10px 0 20px; font-size:3rem;">${item.title}</h1>
-                <p style="margin:0; font-size:1.2rem; color:#555; max-width:100%;">${item.summary}</p>
+                <a href="../guides.html" style="font-weight:700; color:var(--primary-dark); font-size:14px; text-decoration:none;"><i class="fas fa-arrow-left"></i> Back to Legal Guides Hub</a>
+                <div style="margin-top:20px;">
+                    <span class="cp-role" style="display:inline-block; background:#e8f5e9; color:#00C853; font-weight:800; padding:6px 16px; border-radius:20px; font-size:13px; text-transform:uppercase;">${item.category} • ${item.readTime || '5 MIN READ'}</span>
+                </div>
+                <h1 style="margin:12px 0 20px; font-size:2.8rem; font-weight:900; line-height:1.2; color:#111;">${item.title}</h1>
+                <p style="margin:0; font-size:1.15rem; color:#555; max-width:850px; line-height:1.6;">${item.summary}</p>
             </div>
         </section>
 
         <section style="padding:60px 0 100px; background:#fff;">
             <div class="container" style="max-width:900px;">
                 <div style="background:var(--white); border:1px solid #eee; border-radius:24px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
-                    <h2 style="font-size:24px; margin-bottom:24px; font-weight:800;">Step-by-Step Procedure</h2>
-                    ${item.steps.map(s => `
+                    <h2 style="font-size:24px; margin-bottom:28px; font-weight:900; color:#111;">Step-by-Step Practical Procedure</h2>
+                    ${steps.map(s => `
                         <div style="display:flex; gap:20px; margin-bottom:28px;">
-                            <div style="width:40px; height:40px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; flex-shrink:0;">${s.num}</div>
+                            <div style="width:42px; height:42px; background:#00C853; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; flex-shrink:0; font-size:16px;">${s.num}</div>
                             <div>
-                                <h3 style="font-size:18px; margin-bottom:6px; font-weight:800;">${s.heading}</h3>
-                                <p style="font-size:15px; color:#555; margin:0;">${s.text}</p>
+                                <h3 style="font-size:18px; margin-bottom:6px; font-weight:800; color:#111;">${s.heading}</h3>
+                                <p style="font-size:15px; color:#555; margin:0; line-height:1.6;">${s.text}</p>
                             </div>
                         </div>
                     `).join('')}
 
-                    ${item.warnings.length ? `
-                        <div style="background:#fff5f5; border-left:4px solid #e53e3e; padding:20px; border-radius:12px; margin-top:30px;">
-                            <strong style="color:#c53030;"><i class="fas fa-exclamation-triangle"></i> Important Warning:</strong>
-                            ${item.warnings.map(w => `<p style="margin:6px 0 0; color:#9b2c2c; font-size:14px;">${w}</p>`).join('')}
+                    ${warnings.length ? `
+                        <div style="background:#fff5f5; border-left:4px solid #e53e3e; padding:20px 24px; border-radius:14px; margin-top:32px;">
+                            <strong style="color:#c53030; font-size:15px;"><i class="fas fa-exclamation-triangle"></i> Statutory Advisory & Warning:</strong>
+                            ${warnings.map(w => `<p style="margin:6px 0 0; color:#9b2c2c; font-size:14px; line-height:1.6;">${w}</p>`).join('')}
                         </div>
                     ` : ''}
+
+                    <div style="margin-top:32px; background:#f8fafc; border-radius:16px; padding:24px; border:1px solid #e2e8f0;">
+                        <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:12px;"><i class="fas fa-graduation-cap" style="color:#00C853;"></i> What You Learn in This Guide:</h3>
+                        <ul style="padding-left:20px; font-size:14px; color:#2d3748; line-height:1.7; margin:0;">
+                            ${(item.learn || []).map(l => `<li>${l}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div style="margin-top:36px; text-align:center;">
+                        <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="display:inline-flex; align-items:center; gap:10px; background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 4px 14px rgba(0,200,83,0.3);">
+                            <i class="fas fa-robot"></i> Research "${item.title}" with NYAYI AI
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
