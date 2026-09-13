@@ -26,6 +26,11 @@ const orgSchema = {
     "name": "Nyayi Legal AI",
     "url": "https://nyayi.in/",
     "logo": "https://nyayi.in/images/logo.png",
+    "sameAs": [
+        "https://instagram.com/nyayi.ai",
+        "https://instagram.com/sajj1507",
+        "https://instagram.com/kamran.irll"
+    ],
     "founder": {
         "@type": "Person",
         "name": "Farhan Khan"
@@ -97,34 +102,17 @@ function renderHeader(activePage = '', depth = 0) {
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        
-        <div class="menu-group">
-            <span class="menu-group-title">NAVIGATE</span>
-            <a href="${homeUrl}" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
-            <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
-            <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a>
-            <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
-            <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
-            <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Indian Laws</a>
-        </div>
-
-        <div class="menu-group">
-            <span class="menu-group-title">COMPANY</span>
-            <a href="${homeUrl}#about" onclick="toggleMenu()">About</a>
-            <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
-        </div>
-
-        <div class="menu-group">
-            <span class="menu-group-title">APP</span>
-            <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
-        </div>
-
-        <div class="menu-group">
-            <span class="menu-group-title">PRIMARY ACTION</span>
-            <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
-                <i class="fas fa-rocket"></i> Launch Web AI
-            </a>
-        </div>
+        <a href="${homeUrl}" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
+        <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
+        <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
+        <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
+        <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Laws Library</a>
+        <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
+        <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}">Articles & Updates</a>
+        <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
+            <i class="fas fa-rocket"></i> Launch Web AI
+        </a>
     </div>
 
     <header>
@@ -193,48 +181,44 @@ function renderFooter(depth = 0) {
     const homeUrl = depth === 1 ? '../' : './';
     return `
     <footer>
-        <div class="container footer-grid" style="grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1fr;">
+        <div class="container footer-grid">
             <div class="footer-brand">
                 <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
-                <p>India's modern legal knowledge platform bridging citizens and law through structured research and artificial intelligence.</p>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+                <div style="margin-top:18px;">
+                    <a href="https://instagram.com/nyayi.ai" target="_blank" style="display:inline-flex; align-items:center; gap:8px; color:white; font-size:13.5px; font-weight:700; text-decoration:none; background:rgba(255,255,255,0.08); padding:8px 18px; border-radius:30px; border:1px solid rgba(255,255,255,0.15); transition:0.3s;">
+                        <i class="fab fa-instagram" style="color:#e1306c; font-size:16px;"></i> @nyayi.ai
+                    </a>
+                </div>
             </div>
             <div class="footer-col">
-                <h4>PLATFORM</h4>
+                <h4>Platform</h4>
                 <ul>
                     <li><a href="${homeUrl}">Home</a></li>
                     <li><a href="${p}features.html">Features</a></li>
                     <li><a href="${p}app.html">Mobile App</a></li>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>LEGAL KNOWLEDGE</h4>
+                <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="${p}dictionary.html">Dictionary</a></li>
-                    <li><a href="${p}rights.html">Know Your Rights</a></li>
-                    <li><a href="${p}laws.html">Indian Laws</a></li>
+                    <li><a href="${p}dictionary.html">Legal Dictionary</a></li>
+                    <li><a href="${p}rights.html">Know Rights</a></li>
+                    <li><a href="${p}laws.html">Laws Library</a></li>
                     <li><a href="${p}guides.html">Legal Guides</a></li>
+                    <li><a href="${p}articles.html">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>RESOURCES</h4>
+                <h4>Contact & Support</h4>
                 <ul>
-                    <li><a href="${homeUrl}#about">About NYAYI</a></li>
-                    <li><a href="${p}contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>LEGAL</h4>
-                <ul>
+                    <li><a href="${p}contact.html">Contact Us</a></li>
+                    <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
+                    <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
+                    <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
                     <li><a href="${p}privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
                     <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="${p}cookie-policy.html">Cookie Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>AI</h4>
-                <ul>
-                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:800;"><i class="fas fa-rocket"></i> Launch NYAYI AI</a></li>
                 </ul>
             </div>
         </div>
@@ -670,7 +654,7 @@ function buildHomepage() {
                     <p>Demystifying complex legal terminology into simple, structured plain-language explanations for all citizens.</p>
                 </div>
                 <div class="philosophy-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="ph-icon"><i class="fas fa-flag-usa" style="display:none;"></i><i class="fas fa-scale-unbalanced-flip"></i></div>
+                    <div class="ph-icon"><i class="fas fa-landmark"></i></div>
                     <h3>Indian Legal Context</h3>
                     <p>Tailored specifically to the Constitution of India, Bharatiya Nyaya Sanhita (BNS 2023), and Indian Supreme Court rulings.</p>
                 </div>
