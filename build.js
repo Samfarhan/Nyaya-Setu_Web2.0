@@ -93,7 +93,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=6.0">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=8.0">
     
     ${schemaScripts}
 </head>
@@ -1110,7 +1110,7 @@ function buildDictionary() {
             const input = document.getElementById('dictSearchInput');
             const clearBtn = document.getElementById('dictClearBtn');
             const val = input ? input.value.trim() : '';
-            if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+            if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
             renderedCount = val ? 500 : 60;
             renderFilteredDict();
         }
@@ -3836,10 +3836,10 @@ function buildFeaturesAndOther() {
             </div>
 
             <!-- SEARCH BOX -->
-            <div class="law-search-wrapper" data-aos="fade-up">
-                <i class="fas fa-search law-search-icon"></i>
-                <input type="text" id="lawSearchInput" class="law-search-input" oninput="handleLawSearch()" placeholder="Search by law name, section, topic or keyword (e.g. BNS, Consumer, Cyber, Motor Vehicles, RTI)...">
-                <button id="lawClearBtn" class="law-clear-btn" onclick="clearLawSearch()"><i class="fas fa-times"></i></button>
+            <div class="law-search-wrapper dict-search-wrapper article-search-wrapper" data-aos="fade-up" style="position:relative; display:block; width:100%; max-width:900px; margin:0 auto 20px;">
+                <i class="fas fa-search law-search-icon dict-search-icon article-search-icon" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); color:#00C853; font-size:20px; pointer-events:none; z-index:10;"></i>
+                <input type="text" id="lawSearchInput" class="law-search-input dict-search-input article-search-input" oninput="handleLawSearch()" placeholder="Search by law name, section, topic or keyword (e.g. BNS, Consumer, Cyber, Motor Vehicles, RTI)..." style="display:block; width:100% !important; max-width:900px !important; box-sizing:border-box !important; padding:18px 50px 18px 60px !important; font-size:16px !important; background:#ffffff !important; border:2px solid #e2e8f0 !important; border-radius:16px !important; outline:none !important; box-shadow:0 4px 20px rgba(0,0,0,0.05) !important; color:#111 !important;">
+                <button id="lawClearBtn" class="law-clear-btn dict-clear-btn article-clear-btn" onclick="clearLawSearch()" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:none; border:none; color:#a0aec0; cursor:pointer; font-size:20px; display:none; z-index:10; padding:0;"><i class="fas fa-times-circle"></i></button>
             </div>
 
             <!-- POPULAR SEARCH CHIPS -->
@@ -4381,7 +4381,7 @@ function buildFeaturesAndOther() {
 
             if (!grid) return;
 
-            const words = query.split(/\s+/).filter(w => w.length > 0);
+            const words = query.split(/\\s+/).filter(w => w.length > 0);
 
             const filtered = window.NYAYI_LAWS.filter(item => {
                 if (currentLawCat !== 'all' && item.catKey !== currentLawCat) return false;
