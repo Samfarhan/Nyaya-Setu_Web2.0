@@ -240,7 +240,8 @@ function renderFooter(depth = 0) {
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
                     <li><a href="${p}privacy.html">Privacy Policy</a></li>
-                    <li><a href="${p}legal-disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
+                    <li><a href="${p}disclaimer.html">Legal Disclaimer</a></li>
                 </ul>
             </div>
         </div>
@@ -2570,6 +2571,8 @@ function buildRights() {
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
         .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
+        .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
         .replace(/href="guides\.html/g, 'href="../guides.html')
@@ -4720,6 +4723,8 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
         .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
+        .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
         .replace(/href="rights\.html/g, 'href="../rights.html')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="articles\//g, 'href="../articles/')
@@ -6349,6 +6354,8 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
         .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
+        .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
         .replace(/href="rights\.html/g, 'href="../rights.html')
@@ -6427,7 +6434,7 @@ function buildFeaturesAndOther() {
 
     // Policy Pages
     const disclaimerHtml = `
-    ${renderHead('Legal Disclaimer | NYAYI Legal AI', 'Important disclaimer: NYAYI provides legal information, not professional advocate representation.', 'NYAYI disclaimer', '/legal-disclaimer.html', 0)}
+    ${renderHead('Legal Disclaimer | NYAYI', 'Important disclaimer: NYAYI provides legal information, not professional advocate representation.', 'NYAYI disclaimer', '/disclaimer.html', 0)}
     ${renderHeader('home', 0)}
     <section class="page-header">
         <div class="container" style="max-width:800px;" data-aos="zoom-in">
@@ -6440,9 +6447,984 @@ function buildFeaturesAndOther() {
     </section>
     ${renderFooter(0)}
     `;
-    fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHtml, 'utf8');
+
+    // Legal Disclaimer Schema
+    const disclaimerSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Legal Disclaimer | NYAYI",
+        "url": "https://nyayi.in/disclaimer.html",
+        "description": "NYAYI Legal Disclaimer. NYAYI provides technology-assisted legal information and educational tools, not formal advocate representation or legal advice.",
+        "inLanguage": "en-IN",
+        "publisher": {
+            "@type": "Organization",
+            "name": "NYAYI Legal Knowledge Foundation",
+            "url": "https://nyayi.in/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Legal Disclaimer", "item": "https://nyayi.in/disclaimer.html" }
+            ]
+        }
+    };
+
+    const disclaimerHub = `
+    ${renderHead('Legal Disclaimer | NYAYI', 'NYAYI Legal Disclaimer. NYAYI provides technology-assisted legal information and educational tools, not formal advocate representation or legal advice.', 'NYAYI legal disclaimer, legal information India, AI legal disclaimer, advocate consultation, Indian law guidance, BNS disclaimer', '/disclaimer.html', 0)}
+    ${renderHeader('home', 0)}
+
+    <script type="application/ld+json">
+    ${JSON.stringify(disclaimerSchema, null, 2)}
+    </script>
+
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding: 165px 0 60px; background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 80%);">
+        <div class="container" style="max-width: 960px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; border:1px solid rgba(0,200,83,0.25);">
+                <i class="fas fa-balance-scale" style="color:var(--primary);"></i> LEGAL DISCLAIMER
+            </span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px; margin-bottom:18px;">
+                Information Helps.<br><span style="background: linear-gradient(135deg, var(--primary), #009624); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Professional Judgment</span> Matters.
+            </h1>
+            <p style="max-width:840px; margin:0 auto 24px; font-size:1.18rem; color:#4a5568; line-height:1.75;">
+                NYAYI is built to make Indian law, statutory rights, and judicial procedures accessible to all citizens. However, general legal information is not legal advice. This Legal Disclaimer outlines the scope, educational nature, and boundaries of our platform.
+            </p>
+
+            <!-- METADATA BADGES -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-calendar-check" style="color:#00C853;"></i> Last Updated: September 13, 2026
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-shield-halved" style="color:#00C853;"></i> Official Advisory Standard
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-book-bookmark" style="color:#00C853;"></i> Informational Scope Only
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN DISCLAIMER BODY & TOC LAYOUT -->
+    <section style="padding: 40px 0 90px; background: #fafbfc;">
+        <div class="container" style="max-width: 1200px;">
+
+            <!-- 02 — PRIMARY ADVISORY NOTICE (BLACK GLASSMORPHIC BANNER) -->
+            <div style="background: radial-gradient(circle at 50% 0%, #17231c 0%, #0c120f 100%); color: #ffffff; border-radius: 24px; padding: 36px; margin-bottom: 40px; border: 1px solid rgba(0,200,83,0.3); box-shadow: 0 15px 35px rgba(0,0,0,0.15);" data-aos="fade-up">
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+                    <div style="width:44px; height:44px; border-radius:12px; background:rgba(0,200,83,0.2); color:#00C853; display:flex; align-items:center; justify-content:center; font-size:20px;">
+                        <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <span style="font-size:11px; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#00C853;">Primary Advisory Notice</span>
+                        <h2 style="font-size:1.6rem; font-weight:900; color:#ffffff; margin:0;">Please Read Before Using NYAYI</h2>
+                    </div>
+                </div>
+                <p style="font-size:15px; color:#cbd5e1; line-height:1.8; margin-bottom:16px;">
+                    NYAYI provides technology-assisted legal information, educational guides, statutory references, and automated exploration tools. <strong>Nothing on NYAYI constitutes formal legal advice, creates an advocate-client relationship, or establishes a fiduciary duty of any kind.</strong>
+                </p>
+                <p style="font-size:15px; color:#cbd5e1; line-height:1.8; margin-bottom:24px;">
+                    Do not rely solely on self-directed online information for decisions involving personal liberty, criminal defense, statutory limitation periods, active court litigation, or substantial property and financial transactions. Every legal situation depends on unique facts, specific jurisdiction, and timely procedural filings.
+                </p>
+                <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <a href="./contact.html" class="btn btn-primary" style="padding:12px 26px; font-weight:800; border-radius:14px; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-tie"></i> Consult a Licensed Advocate &rarr;
+                    </a>
+                    <a href="#lawyer-scenarios" style="color:#00C853; font-weight:700; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        When should you speak to a lawyer? <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- MOBILE TOC ACCORDION BAR -->
+            <div class="privacy-mobile-toc-bar" onclick="toggleDisclaimerMobileToc()">
+                <div class="toc-bar-inner">
+                    <span><i class="fas fa-list-ol" style="color:var(--primary); margin-right:8px;"></i> Table of Contents (18 Sections)</span>
+                    <i class="fas fa-chevron-down" id="disclaimerTocChevron"></i>
+                </div>
+                <div class="privacy-mobile-toc-dropdown" id="disclaimerMobileTocDropdown">
+                    <a href="#sec-1" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">1</span> General Legal Information</a>
+                    <a href="#sec-2" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">2</span> NYAYI Is Not Your Lawyer</a>
+                    <a href="#sec-3" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">3</span> AI-Assisted Legal Information</a>
+                    <a href="#sec-4" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">4</span> NYAYI.IN & AI.NYAYI.IN</a>
+                    <a href="#sec-5" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">5</span> Statutory Evolution & Updates</a>
+                    <a href="#sec-6" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">6</span> Statutory References & Codes</a>
+                    <a href="#sec-7" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">7</span> Case Law & Judicial Decisions</a>
+                    <a href="#sec-8" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">8</span> Legal Guides & Procedure</a>
+                    <a href="#sec-9" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">9</span> Document & Drafting Tools</a>
+                    <a href="#sec-10" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">10</span> Calculators & Estimations</a>
+                    <a href="#sec-11" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">11</span> No Guarantee of Legal Outcome</a>
+                    <a href="#sec-12" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">12</span> Urgent & Emergency Situations</a>
+                    <a href="#sec-13" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">13</span> Your Due Diligence</a>
+                    <a href="#sec-14" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">14</span> External Sources & Portals</a>
+                    <a href="#sec-15" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">15</span> Accuracy & Error Reporting</a>
+                    <a href="#sec-16" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">16</span> Privacy & Data Handling</a>
+                    <a href="#sec-17" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">17</span> Terms of Use</a>
+                    <a href="#sec-18" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">18</span> Your Acceptance of Terms</a>
+                    <a href="#lawyer-scenarios" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">&bull;</span> When to Consult a Lawyer</a>
+                    <a href="#faq" class="privacy-toc-link" onclick="closeDisclaimerMobileToc()"><span class="toc-num">&bull;</span> Disclaimer FAQs</a>
+                </div>
+            </div>
+
+            <!-- TWO COLUMN DESKTOP GRID -->
+            <div class="privacy-layout">
+
+                <!-- STICKY SIDEBAR TOC -->
+                <aside class="privacy-sidebar">
+                    <div class="privacy-toc-title">
+                        <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> Disclaimer Navigation
+                    </div>
+                    <ul class="privacy-toc-list">
+                        <li><a href="#sec-1" class="privacy-toc-link"><span class="toc-num">1</span> General Legal Info</a></li>
+                        <li><a href="#sec-2" class="privacy-toc-link"><span class="toc-num">2</span> Not Your Lawyer</a></li>
+                        <li><a href="#sec-3" class="privacy-toc-link"><span class="toc-num">3</span> AI-Assisted Info</a></li>
+                        <li><a href="#sec-4" class="privacy-toc-link"><span class="toc-num">4</span> NYAYI.IN & AI Separation</a></li>
+                        <li><a href="#sec-5" class="privacy-toc-link"><span class="toc-num">5</span> Statutory Evolution</a></li>
+                        <li><a href="#sec-6" class="privacy-toc-link"><span class="toc-num">6</span> Statutory References</a></li>
+                        <li><a href="#sec-7" class="privacy-toc-link"><span class="toc-num">7</span> Case Law Decisions</a></li>
+                        <li><a href="#sec-8" class="privacy-toc-link"><span class="toc-num">8</span> Legal Guides Scope</a></li>
+                        <li><a href="#sec-9" class="privacy-toc-link"><span class="toc-num">9</span> Document Templates</a></li>
+                        <li><a href="#sec-10" class="privacy-toc-link"><span class="toc-num">10</span> Calculators & Estimates</a></li>
+                        <li><a href="#sec-11" class="privacy-toc-link"><span class="toc-num">11</span> No Outcome Guarantee</a></li>
+                        <li><a href="#sec-12" class="privacy-toc-link"><span class="toc-num">12</span> Urgent Emergencies</a></li>
+                        <li><a href="#sec-13" class="privacy-toc-link"><span class="toc-num">13</span> Your Due Diligence</a></li>
+                        <li><a href="#sec-14" class="privacy-toc-link"><span class="toc-num">14</span> External Sources</a></li>
+                        <li><a href="#sec-15" class="privacy-toc-link"><span class="toc-num">15</span> Accuracy & Feedback</a></li>
+                        <li><a href="#sec-16" class="privacy-toc-link"><span class="toc-num">16</span> Privacy & Data</a></li>
+                        <li><a href="#sec-17" class="privacy-toc-link"><span class="toc-num">17</span> Terms of Use</a></li>
+                        <li><a href="#sec-18" class="privacy-toc-link"><span class="toc-num">18</span> Acceptance of Terms</a></li>
+                        <li style="margin-top:10px; border-top:1px solid #edf2f7; padding-top:10px;"><a href="#lawyer-scenarios" class="privacy-toc-link" style="color:var(--primary-dark);"><span class="toc-num"><i class="fas fa-user-tie" style="font-size:10px;"></i></span> When to See a Lawyer</a></li>
+                        <li><a href="#faq" class="privacy-toc-link"><span class="toc-num"><i class="fas fa-question" style="font-size:10px;"></i></span> Frequently Asked Questions</a></li>
+                    </ul>
+                </aside>
+
+                <!-- 18 SUBSTANTIVE ARTICLES -->
+                <div class="privacy-content">
+
+                    <!-- SECTION 1 -->
+                    <article class="privacy-section-card" id="sec-1" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-circle-info"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">1. General Legal Information</h2>
+                                <p class="privacy-sec-subtitle">Informational, educational, and public literacy purpose.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI is an open-access Indian legal literacy platform created to help citizens understand statutes, fundamental rights, legal procedures, and terminology. All content—including statutory summaries, procedural overviews, legal dictionary entries, and educational articles—is published solely for general informational purposes.
+                        </p>
+                        <p class="privacy-text">
+                            Under <strong>Article 39A of the Constitution of India</strong>, access to legal awareness is essential for equal justice. NYAYI promotes this civic goal by making complex legal language intelligible. However, general information cannot anticipate every factual nuance or procedural contingency. Nothing on this website constitutes legal advice, legal opinion, or personalized instruction.
+                        </p>
+                        <div class="privacy-highlight-box">
+                            <p><strong>Core Rule:</strong> NYAYI provides legal information to help you understand the law. It does not provide legal advice on how to act in your specific court case or legal dispute.</p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 2 -->
+                    <article class="privacy-section-card" id="sec-2" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-user-slash"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">2. NYAYI Is Not Your Lawyer</h2>
+                                <p class="privacy-sec-subtitle">Absence of advocate-client, confidential, or fiduciary relationship.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI is an independent legal technology and knowledge platform. It is not a law firm, does not practice law, does not solicit legal business, and does not represent clients in court or before any administrative tribunal.
+                        </p>
+                        <p class="privacy-text">
+                            Browsing this website, utilizing search tools, exploring legal topics, or communicating through contact forms does <strong>NOT</strong> create an advocate-client relationship under the <strong>Advocates Act, 1961</strong> or the rules established by the <strong>Bar Council of India</strong>. Communications with NYAYI are not protected by advocate-client legal privilege under Section 126 of the Indian Evidence Act, 1872 or Section 132 of the Bharatiya Sakshya Adhiniyam, 2023.
+                        </p>
+                        <p class="privacy-text">
+                            Indian legal proceedings involve distinct procedural requirements across the Supreme Court of India, 25 High Courts, hundreds of District Courts, consumer commissions, and specialized tribunals (such as NCLT, NGT, and DRT). Each court has its own Appellate Side and Original Side rules, court fees, and filing practices that only an enrolled advocate familiar with your local jurisdiction can navigate.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 3 -->
+                    <article class="privacy-section-card" id="sec-3" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">3. AI-Assisted Legal Information</h2>
+                                <p class="privacy-sec-subtitle">Scope, technical nature, and acknowledged limitations of automated systems.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI leverages artificial intelligence, natural language processing, and semantic search to organize statutory provisions, explain intricate jargon, and assist users in finding relevant topics. While engineered for high contextual accuracy, artificial intelligence tools have inherent technical boundaries:
+                        </p>
+                        <ul style="margin: 0 0 16px 20px; font-size: 15px; color: #4a5568; line-height: 1.8;">
+                            <li><strong>Possibility of Errors or Hallucinations:</strong> Generative AI models can occasionally produce inaccurate interpretations, misattribute quotes, or generate plausible-sounding but non-existent statutory citations.</li>
+                            <li><strong>Statutory Conflation:</strong> AI may conflate repealed statutes (such as the Indian Penal Code, 1860 or Code of Criminal Procedure, 1973) with newly enacted laws (such as the Bharatiya Nyaya Sanhita, 2023 or Bharatiya Nagarik Suraksha Sanhita, 2023).</li>
+                            <li><strong>Context Blindness:</strong> AI models cannot examine confidential evidence, evaluate witness credibility, analyze cross-examination risks, or consider local judicial temperament.</li>
+                        </ul>
+                        <div class="privacy-highlight-box" style="border-left-color: #f59e0b; background: #fffbeb;">
+                            <p><strong>Mandatory Independent Verification:</strong> Never file any document in court, respond to a police summon, or execute a legal agreement based purely on an AI-generated output. Every response must be cross-verified against official gazettes or evaluated by a licensed advocate.</p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 4 -->
+                    <article class="privacy-section-card" id="sec-4" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-network-wired"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">4. NYAYI.IN & AI.NYAYI.IN (Platform Distinction)</h2>
+                                <p class="privacy-sec-subtitle">Explicit technical, functional, and operational separation.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Users should clearly recognize the technical division between our two distinct web destinations:
+                        </p>
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin:16px 0 20px;">
+                            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.02);">
+                                <span style="font-size:11px; font-weight:800; color:var(--primary-dark); text-transform:uppercase; letter-spacing:0.5px;">Public Knowledge Hub</span>
+                                <h4 style="margin:6px 0 10px; font-size:16px; color:#1a202c;">NYAYI.IN</h4>
+                                <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                                    A static educational portal hosting verified statutory indexes, fundamental rights guides, legal dictionary terms, procedural breakdowns, and research articles. No interactive user prompt data is stored or processed.
+                                </p>
+                            </div>
+                            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.02);">
+                                <span style="font-size:11px; font-weight:800; color:#2563eb; text-transform:uppercase; letter-spacing:0.5px;">Interactive AI Assistant</span>
+                                <h4 style="margin:6px 0 10px; font-size:16px; color:#1a202c;">AI.NYAYI.IN</h4>
+                                <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                                    A separate, interactive web application featuring real-time conversational AI, document exploration, and legal calculation tools. Operates on independent infrastructure under its own platform session terms.
+                                </p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Neither platform merges into the other. Static reference materials on NYAYI.IN remain curated editorial assets, while AI.NYAYI.IN handles dynamic query processing under distinct technical safeguards.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 5 -->
+                    <article class="privacy-section-card" id="sec-5" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-arrows-spin"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">5. Laws, Regulations & Notifications Change</h2>
+                                <p class="privacy-sec-subtitle">The continuous lifecycle of legislation, amendments, and court interpretations.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Law is dynamic. Statutes, subordinate rules, regulatory circulars, and judicial interpretations evolve continuously. A statutory provision valid today may be amended by Parliament, struck down by the Supreme Court of India, or modified by State-specific notifications tomorrow.
+                        </p>
+
+                        <!-- VISUAL FLOW: STATUTE EVOLUTION -->
+                        <div class="statute-flow-grid">
+                            <div class="statute-flow-card">
+                                <div style="font-size:11px; font-weight:900; color:#00C853; text-transform:uppercase; margin-bottom:4px;">Stage 01</div>
+                                <div style="font-size:15px; font-weight:800; color:#1a202c;">Primary Law</div>
+                                <p style="font-size:12px; color:#718096; margin:4px 0 0;">Act passed by Parliament or State Legislature</p>
+                            </div>
+                            <div class="statute-flow-card">
+                                <div style="font-size:11px; font-weight:900; color:#00C853; text-transform:uppercase; margin-bottom:4px;">Stage 02</div>
+                                <div style="font-size:15px; font-weight:800; color:#1a202c;">Amendments</div>
+                                <p style="font-size:12px; color:#718096; margin:4px 0 0;">Legislative revisions, repeal acts, and schedule updates</p>
+                            </div>
+                            <div class="statute-flow-card">
+                                <div style="font-size:11px; font-weight:900; color:#00C853; text-transform:uppercase; margin-bottom:4px;">Stage 03</div>
+                                <div style="font-size:15px; font-weight:800; color:#1a202c;">Rules & Orders</div>
+                                <p style="font-size:12px; color:#718096; margin:4px 0 0;">Executive notifications, circulars, and gazette orders</p>
+                            </div>
+                            <div class="statute-flow-card">
+                                <div style="font-size:11px; font-weight:900; color:#00C853; text-transform:uppercase; margin-bottom:4px;">Stage 04</div>
+                                <div style="font-size:15px; font-weight:800; color:#1a202c;">Court Rulings</div>
+                                <p style="font-size:12px; color:#718096; margin:4px 0 0;">Constitutional bench judgments and ratio decidendi</p>
+                            </div>
+                            <div class="statute-flow-card" style="border-color:var(--primary); background:#f0fdf4;">
+                                <div style="font-size:11px; font-weight:900; color:#00C853; text-transform:uppercase; margin-bottom:4px;">Current Position</div>
+                                <div style="font-size:15px; font-weight:800; color:#0f5132;">Live Doctrine</div>
+                                <p style="font-size:12px; color:#15803d; margin:4px 0 0;">The exact legal position applicable today</p>
+                            </div>
+                        </div>
+
+                        <p class="privacy-text">
+                            <strong>Prospective vs. Retrospective Effect:</strong> Substantive criminal laws in India apply prospectively under Article 20(1) of the Constitution. Offenses committed prior to July 1, 2024 continue to be prosecuted under the Indian Penal Code, 1860, while offenses committed on or after July 1, 2024 fall under the Bharatiya Nyaya Sanhita, 2023. NYAYI articles explore both sets of laws side-by-side for pedagogical comparison, but the appropriate statute governing your specific case depends strictly on the date of occurrence.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 6 -->
+                    <article class="privacy-section-card" id="sec-6" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-book-scale"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">6. Statutory References & Transition Codes</h2>
+                                <p class="privacy-sec-subtitle">Interpretation of BNS, BNSS, BSA, IPC, CrPC, and Indian Constitution references.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            With the historic implementation of the three new criminal statutes—<strong>Bharatiya Nyaya Sanhita (BNS) 2023</strong>, <strong>Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023</strong>, and <strong>Bharatiya Sakshya Adhiniyam (BSA) 2023</strong>—replacing the Indian Penal Code 1860, Code of Criminal Procedure 1973, and Indian Evidence Act 1872, Indian jurisprudence is undergoing a comprehensive transition.
+                        </p>
+                        <p class="privacy-text">
+                            Any section-to-section correlation tables, IPC-to-BNS mapping utilities, or concordance charts provided on NYAYI are for structural orientation only. Because drafting nuances, threshold values, fine amounts, and procedural definitions were altered during legislative enactment, users must read the authentic text published in the <strong>Gazette of India</strong> rather than assuming identical correspondence between old and new section numbers.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 7 -->
+                    <article class="privacy-section-card" id="sec-7" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-gavel"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">7. Case Law & Judicial Decisions</h2>
+                                <p class="privacy-sec-subtitle">Ratio decidendi, obiter dicta, and the necessity of reviewing full bench judgments.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Judicial rulings summarized on NYAYI reflect the core legal principles (<em>ratio decidendi</em>) articulated by the Supreme Court of India or various High Courts. However:
+                        </p>
+                        <ul style="margin: 0 0 16px 20px; font-size: 15px; color: #4a5568; line-height: 1.8;">
+                            <li>Summaries omit procedural history, evidentiary exhibits, and nuanced factual distinctions that heavily influenced the judicial outcome.</li>
+                            <li>Judicial remarks made in passing (<em>obiter dicta</em>) are not binding precedent under Article 141 of the Constitution, even though they may appear prominently in media or online summaries.</li>
+                            <li>A decision may have been reviewed, stayed, referred to a larger constitutional bench, or modified by subsequent legislation.</li>
+                        </ul>
+                        <p class="privacy-text">
+                            Advocates and researchers should always review the official certified judgment copy from <strong>sci.gov.in</strong> or official High Court portals before citing a precedent in any pleading or proceeding.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 8 -->
+                    <article class="privacy-section-card" id="sec-8" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-compass"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">8. Legal Guides Are Educational</h2>
+                                <p class="privacy-sec-subtitle">Practical caveats regarding state-specific procedural rules and local variations.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI publishes guides covering practical scenarios such as filing a police complaint (FIR), registering a consumer grievance, submitting an RTI application, or responding to a civil notice.
+                        </p>
+                        <p class="privacy-text">
+                            These guides outline typical procedural steps under Central statutes. However, State Police Regulations, High Court Rules, District Court practices, and municipal bylaws vary considerably across India. For example, court fee stamps, e-filing mandates, attestation rules, and territorial jurisdiction thresholds differ between states. Our guides cannot account for every local court directive or registry objection.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 9 -->
+                    <article class="privacy-section-card" id="sec-9" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-file-lines"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">9. Document & Drafting Tools</h2>
+                                <p class="privacy-sec-subtitle">Educational starting points rather than certified court-ready pleadings.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Sample legal drafts, notice templates, affidavits, and agreement outlines available on NYAYI are for structural illustration only. They are not guaranteed to be legally enforceable, complete, or suitable for your specific circumstances.
+                        </p>
+                        <div class="privacy-highlight-box" style="border-left-color: #ef4444; background: #fef2f2;">
+                            <p><strong>Warning:</strong> Submitting a generic template to a court, police authority, or government office without proper legal scrutiny, verification affidavits, valid court fee stamps, and tailored factual pleadings can result in rejection, registry objections, or fatal prejudice to your legal rights.</p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 10 -->
+                    <article class="privacy-section-card" id="sec-10" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-calculator"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">10. Calculators & Automated Results</h2>
+                                <p class="privacy-sec-subtitle">Informational mathematical projections and estimation boundaries.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Calculators on NYAYI (such as limitation period calculators, statutory gratuity formulas, or court fee calculators) provide informational estimates based on standard mathematical formulas and general statutory provisions.
+                        </p>
+                        <p class="privacy-text">
+                            They cannot account for court holidays, local vacation exclusions under Section 4 of the Limitation Act 1963, discretionary condonation of delay under Section 5, specific High Court Fee Acts, or judicial adjustments in maintenance determinations. Users must calculate statutory deadlines with extreme caution and professional verification.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 11 -->
+                    <article class="privacy-section-card" id="sec-11" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-ban"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">11. No Guarantee of Legal Outcome</h2>
+                                <p class="privacy-sec-subtitle">Absolute absence of outcome warranties for disputes, bail, or litigation.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI makes no warranty, guarantee, or representation regarding the outcome of any legal dispute, criminal complaint, bail application, civil litigation, consumer case, or administrative proceeding.
+                        </p>
+                        <p class="privacy-text">
+                            In the Indian judicial framework, outcomes depend entirely on competent judicial magistrates, judges, and tribunals evaluating admissible evidence, witness credibility, legal advocacy, and judicial discretion. No algorithm, AI platform, or static website can predict or guarantee a judicial result.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 12 -->
+                    <article class="privacy-section-card" id="sec-12" data-aos="fade-up" style="background: radial-gradient(circle at 50% 0%, #fff5f5 0%, #ffffff 100%); border-color:#fecaca;">
+                        <div class="privacy-sec-header" style="border-bottom-color:#fee2e2;">
+                            <div class="privacy-sec-icon" style="background:rgba(239,68,68,0.1); color:#ef4444;"><i class="fas fa-truck-medical"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title" style="color:#991b1b;">12. Urgent & Emergency Situations</h2>
+                                <p class="privacy-sec-subtitle" style="color:#b91c1c;">Direct contact directory for official 24/7 Indian emergency helplines.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            <strong>NYAYI is NOT an emergency service.</strong> If you or someone you know is in immediate danger, facing unlawful arrest, undergoing physical violence, or experiencing an emergency, do NOT rely on this website. Immediately contact official law enforcement or emergency helplines:
+                        </p>
+
+                        <!-- EMERGENCY GRID -->
+                        <div class="emergency-grid">
+                            <div class="emergency-card">
+                                <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">112</div>
+                                <div style="font-weight:800; color:#1a202c; font-size:15px;">National Emergency</div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Police, Fire & Medical Support (All India)</p>
+                            </div>
+                            <div class="emergency-card">
+                                <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1090 / 181</div>
+                                <div style="font-weight:800; color:#1a202c; font-size:15px;">Women Helpline</div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Women in Distress & Domestic Safety</p>
+                            </div>
+                            <div class="emergency-card">
+                                <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1930</div>
+                                <div style="font-weight:800; color:#1a202c; font-size:15px;">Cyber Crime Helpline</div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Financial Frauds & Cyber Harassment</p>
+                            </div>
+                            <div class="emergency-card">
+                                <div style="font-size:28px; font-weight:900; color:#00C853; margin-bottom:4px;">15100</div>
+                                <div style="font-weight:800; color:#1a202c; font-size:15px;">NALSA Legal Aid</div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Free Legal Services for Eligible Citizens</p>
+                            </div>
+                        </div>
+
+                        <p class="privacy-text" style="font-size:13.5px; color:#7f1d1d; margin-top:10px;">
+                            For free legal representation under the Legal Services Authorities Act 1987, citizens from eligible sections can visit their District Legal Services Authority (DLSA) or High Court Legal Services Committee.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 13 -->
+                    <article class="privacy-section-card" id="sec-13" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">13. Your Due Diligence</h2>
+                                <p class="privacy-sec-subtitle">User obligation to independently verify timelines, facts, and filing requirements.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            Every user assumes full personal responsibility for verifying information accessed on NYAYI. When dealing with legal controversies:
+                        </p>
+                        <ul style="margin: 0 0 16px 20px; font-size: 15px; color: #4a5568; line-height: 1.8;">
+                            <li>Verify exact statutory limitation periods under the Limitation Act 1963. Allowing a statutory limitation period to lapse can permanently bar your remedy in court.</li>
+                            <li>Check the authentic date of legal enactments and ensure that amendments published in the Official Gazette are considered.</li>
+                            <li>Confirm whether specialized alternate dispute resolution (such as pre-institution mediation under Section 12A of the Commercial Courts Act 2015) is mandatory before initiating legal proceedings.</li>
+                        </ul>
+                    </article>
+
+                    <!-- SECTION 14 -->
+                    <article class="privacy-section-card" id="sec-14" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">14. External Sources & Portals</h2>
+                                <p class="privacy-sec-subtitle">Independence of official court repositories and external government sites.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI frequently provides reference links to authoritative government portals such as the Supreme Court of India (<em>sci.gov.in</em>), eCourts Services (<em>ecourts.gov.in</em>), India Code (<em>indiacode.nic.in</em>), and the National Cyber Crime Reporting Portal (<em>cybercrime.gov.in</em>).
+                        </p>
+                        <p class="privacy-text">
+                            These hyperlinks are offered purely for educational convenience. NYAYI has no control over external servers, content accuracy, server uptime, or privacy standards of third-party domains. Linking to an external site does not imply an official endorsement or affiliation.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 15 -->
+                    <article class="privacy-section-card" id="sec-15" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-pen-nib"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">15. Accuracy & Error Reporting</h2>
+                                <p class="privacy-sec-subtitle">Continuous editorial monitoring and public error reporting channel.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            NYAYI's editorial team continuously reviews content to maintain high standards of clarity and factual fidelity. However, considering the sheer volume and pace of legal developments, unintended typographical errors, outdated section citations, or formatting oversights may occasionally occur.
+                        </p>
+                        <p class="privacy-text">
+                            We encourage advocates, academicians, law students, and citizens to report any factual inaccuracies or outdated references. Please submit feedback via our <a href="./contact.html" style="color:var(--primary-dark); font-weight:700;">Contact & Support Form</a>. Our editorial board examines all reports diligently and updates materials on a regular cycle.
+                        </p>
+                    </article>
+
+                    <!-- SECTION 16 -->
+                    <article class="privacy-section-card" id="sec-16" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-shield-halved"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">16. Privacy & Data Handling</h2>
+                                <p class="privacy-sec-subtitle">Protection of user privacy and cross-reference to the NYAYI Trust Center.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            We take data privacy seriously. Browsing NYAYI.IN does not require personal registration, account creation, or payment credentials. We do not sell user data, track personal browsing habits across the web, or collect confidential legal communications.
+                        </p>
+                        <p class="privacy-text">
+                            To review our complete policy regarding web storage, server infrastructure, CDN performance, and citizen privacy rights under Indian law, please consult our full Privacy Policy:
+                        </p>
+                        <div style="margin-top:14px;">
+                            <a href="./privacy.html" class="btn btn-outline" style="border:1px solid var(--primary); color:var(--primary-dark); font-weight:800; padding:10px 22px; border-radius:12px; display:inline-flex; align-items:center; gap:8px;">
+                                <i class="fas fa-shield-halved"></i> Read NYAYI Privacy Policy &rarr;
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 17 -->
+                    <article class="privacy-section-card" id="sec-17" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-file-contract"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">17. Terms of Use</h2>
+                                <p class="privacy-sec-subtitle">Contractual framework governing platform access and intellectual property.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            This Legal Disclaimer constitutes an integral part of NYAYI's terms governing website usage, acceptable use parameters, intellectual property ownership, and liability limitations.
+                        </p>
+                        <p class="privacy-text">
+                            To examine our detailed operational terms, user obligations, and intellectual property provisions, please review our Terms of Use document:
+                        </p>
+                        <div style="margin-top:14px;">
+                            <a href="./terms-of-use.html" class="btn btn-outline" style="border:1px solid var(--primary); color:var(--primary-dark); font-weight:800; padding:10px 22px; border-radius:12px; display:inline-flex; align-items:center; gap:8px;">
+                                <i class="fas fa-file-contract"></i> Read Terms of Use &rarr;
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 18 -->
+                    <article class="privacy-section-card" id="sec-18" data-aos="fade-up">
+                        <div class="privacy-sec-header">
+                            <div class="privacy-sec-icon"><i class="fas fa-handshake"></i></div>
+                            <div>
+                                <h2 class="privacy-sec-title">18. Your Acceptance of Terms</h2>
+                                <p class="privacy-sec-subtitle">Clear terms of user acknowledgment and continuing use.</p>
+                            </div>
+                        </div>
+                        <p class="privacy-text">
+                            By accessing, reading, searching, or otherwise using NYAYI, you expressly confirm that you have read, comprehended, and agreed to this Legal Disclaimer in its entirety.
+                        </p>
+                        <p class="privacy-text">
+                            You acknowledge that NYAYI is solely an educational legal information initiative and that any reliance on materials obtained through the website is done strictly at your own voluntary discretion. If you do not agree with these principles or limitations, you must refrain from using NYAYI.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- 04 — WHEN SHOULD YOU SPEAK TO A LAWYER? (11 SCENARIOS VISUAL GRID) -->
+            <section id="lawyer-scenarios" style="margin-top: 60px; scroll-margin-top: 110px;" data-aos="fade-up">
+                <div style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
+                    <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
+                        <i class="fas fa-user-tie"></i> PROFESSIONAL CONSULTATION GUIDE
+                    </span>
+                    <h2 style="font-size:2.4rem; font-weight:900; letter-spacing:-1px; color:#1a202c; margin-bottom:12px;">
+                        When Should You Speak to a Lawyer?
+                    </h2>
+                    <p style="font-size:1.05rem; color:#4a5568; line-height:1.7;">
+                        While legal literacy empowers citizens to understand the legal landscape, specific situations require the professional representation of a licensed advocate enrolled with the Bar Council of India.
+                    </p>
+                </div>
+
+                <div class="lawyer-scenario-grid">
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#dc2626; margin-bottom:12px;"><i class="fas fa-handcuffs"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">1. Criminal Allegations & FIRs</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            If an FIR is registered against you, or if you receive a notice for appearance under Section 35 of the BNSS (former Section 41A CrPC), consult an advocate immediately before recording any statements.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#dc2626; margin-bottom:12px;"><i class="fas fa-shield-halved"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">2. Arrest, Detention & Bail</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            In situations involving custodial arrest, remand hearings, anticipatory bail applications under Section 482 BNSS (former 438 CrPC), or regular bail, prompt legal representation is critical to preserving personal liberty.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#2563eb; margin-bottom:12px;"><i class="fas fa-envelope-open-text"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">3. Court Summons & Notices</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Receiving a summons from a Civil Court, Judicial Magistrate, Consumer Commission, or Tribunal requires filing a formal vakalatnama and written statement within strict statutory deadlines.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#f59e0b; margin-bottom:12px;"><i class="fas fa-hourglass-half"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">4. Statutory Limitation Deadlines</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            If your claim has impending deadlines under the Limitation Act 1963, such as 30 days for Section 138 NI Act notices or 90 days for statutory appeals, delayed action can extinguish your right to seek relief.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#00C853; margin-bottom:12px;"><i class="fas fa-building-wheat"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">5. Real Estate & Property Disputes</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Land title investigations, ancestral property partition suits, tenant eviction proceedings, and registry boundary disputes require meticulous examination of revenue records and encumbrance certificates.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#9333ea; margin-bottom:12px;"><i class="fas fa-people-roof"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">6. Matrimonial & Family Matters</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Divorce petitions, child custody arrangements, domestic violence protection orders, and maintenance claims under Section 144 BNSS (former 125 CrPC) require sensitive and specialized family law guidance.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#0891b2; margin-bottom:12px;"><i class="fas fa-briefcase"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">7. Employment Termination & Rights</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Unlawful dismissal, denial of statutory gratuity or provident fund dues, non-compete disputes, and workplace harassment (POSH) proceedings call for strategic labor and employment advocacy.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#ea580c; margin-bottom:12px;"><i class="fas fa-car-burst"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">8. Accident Claims (MACT)</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Seeking compensation before the Motor Accident Claims Tribunal requires formal multiplier calculations, medical disability proof, and insurance liability assessment.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#475569; margin-bottom:12px;"><i class="fas fa-file-signature"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">9. Commercial Contracts & Startups</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Negotiating shareholder agreements, intellectual property assignments, debt restructuring, or commercial arbitration clauses demands customized corporate legal drafting.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#4338ca; margin-bottom:12px;"><i class="fas fa-scale-unbalanced-flip"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">10. Tax & Regulatory Inquiries</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Responding to show cause notices from GST authorities, Income Tax assessment orders, or regulatory inquiries from SEBI and RBI requires specialized tax and regulatory counsel.
+                        </p>
+                    </div>
+
+                    <div class="lawyer-scenario-card">
+                        <div style="font-size:24px; color:#059669; margin-bottom:12px;"><i class="fas fa-stamp"></i></div>
+                        <h3 style="font-size:17px; font-weight:800; color:#1a202c; margin-bottom:8px;">11. Serving Formal Legal Notices</h3>
+                        <p style="font-size:13.5px; color:#4a5568; line-height:1.6; margin:0;">
+                            Drafting and dispatching statutory demand notices (such as under Section 80 CPC or consumer protection provisions) sets the evidentiary baseline for any future lawsuit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CALLOUT BOX -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid var(--primary); border-radius:16px; padding:24px; margin-top:24px; box-shadow:0 4px 15px rgba(0,0,0,0.02);">
+                    <p style="margin:0; font-size:15px; color:#2d3748; line-height:1.75; font-weight:600;">
+                        <i class="fas fa-quote-left" style="color:var(--primary); margin-right:8px;"></i>
+                        When the legal consequences are serious—affecting your personal liberty, family welfare, financial security, or commercial standing—professional legal advice from an advocate enrolled with the Bar Council of India is worth far more than relying on general online summaries.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 05 — FREQUENTLY ASKED QUESTIONS (10 ACCORDION ITEMS) -->
+            <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent;" data-aos="fade-up">
+                <div class="section-title">
+                    <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
+                        <i class="fas fa-circle-question"></i> CLARIFICATIONS & ANSWERS
+                    </span>
+                    <h2>Legal Disclaimer FAQ</h2>
+                    <p>Common questions regarding the legal scope, AI capabilities, and advisory boundaries of NYAYI.</p>
+                </div>
+
+                <div class="faq-accordion" style="max-width:900px; margin:0 auto;">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Is NYAYI a law firm or legal consultancy?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                No. NYAYI is an independent technology and legal literacy initiative. We are not a law firm, do not practice law, do not solicit clients under the Bar Council of India Rules, and do not provide court representation or individualized legal counsel.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Does using NYAYI create an advocate-client relationship?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                No. Browsing our portal, exploring statutes, using search tools, or interacting with automated features does not establish an advocate-client or fiduciary relationship. Communications with NYAYI are not protected by statutory legal professional privilege.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Can I rely on NYAYI instead of hiring an advocate?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                No. NYAYI is designed to help you understand basic legal concepts, procedures, and statutory rights so you can be an informed citizen. It cannot evaluate factual evidence, draft customized court pleadings, or argue before a judge. You should always engage a qualified advocate for real-world legal matters.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Can AI make mistakes in legal information?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                Yes. While our artificial intelligence models are calibrated for high contextual relevance, AI can occasionally misinterpret complex statutory clauses, overlook recent state amendments, or generate imprecise section correlations. All AI-generated outputs must be verified against official gazette publications and primary statutes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>How often are the laws and guides on NYAYI updated?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                Our legal research division continuously reviews parliamentary enactments, state gazettes, and Supreme Court rulings to maintain accurate content. However, because Indian legislation and subordinate rules are constantly evolving, users must independently verify the current legal position with the Official Gazette.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Does NYAYI guarantee the outcome of my legal case?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                No. Judicial outcomes in the Indian justice system depend strictly on admissible evidence, oral advocacy, procedural compliance, and judicial discretion. NYAYI offers zero guarantees, warranties, or assurances of any case outcome, FIR registration, bail grant, or civil relief.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>Are the document formats and templates court-ready?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                No. Templates, sample draft notices, and agreement formats are illustrative educational starting points. Formal court pleadings require compliance with specific High Court and District Court filing rules, precise verification affidavits, court fee calculations, and tailored statements of fact.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>What should I do if I am facing an immediate arrest or legal emergency?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                In an emergency, immediately dial <strong>112</strong> (National Emergency Helpline) or visit your nearest police station. For free emergency legal aid, eligible citizens can contact NALSA at <strong>15100</strong>. Do not waste critical time browsing websites during an emergency.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>What is the difference between NYAYI.IN and AI.NYAYI.IN?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                NYAYI.IN is the public static knowledge portal hosting curated statutes, rights guides, legal dictionary terms, and editorial articles. AI.NYAYI.IN is a separate, interactive conversational AI application with distinct technical architecture, processing parameters, and terms.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 10 -->
+                    <div class="faq-item" onclick="toggleDisclaimerFaq(this)">
+                        <div class="faq-header">
+                            <h3>How can I report an error or suggest an update to legal content on NYAYI?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-body">
+                            <div class="faq-body-inner">
+                                We welcome review from advocates, academicians, and citizens. If you identify an outdated citation, factual inaccuracy, or typographical error, please notify our team via our <a href="./contact.html" style="color:var(--primary-dark); font-weight:700;">Contact Us</a> page. Our research team examines every submission promptly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </section>
+
+    <!-- 06 — INTERACTIVE FLOATING "DISCLAIMER GUIDE" CAPSULE & MODAL -->
+    <div class="disclaimer-floating-badge" onclick="openDisclaimerModal()">
+        <i class="fas fa-scale-balanced" style="color:#00C853;"></i>
+        <span>⚖️ Disclaimer Guide</span>
+    </div>
+
+    <div class="disclaimer-modal-overlay" id="disclaimerModalOverlay" onclick="handleDisclaimerOverlayClick(event)">
+        <div class="disclaimer-modal-box">
+            <button class="disclaimer-modal-close" onclick="closeDisclaimerModal()" aria-label="Close Disclaimer Guide">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                <div style="width:42px; height:42px; border-radius:12px; background:rgba(0,200,83,0.15); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-size:18px;">
+                    <i class="fas fa-scale-balanced"></i>
+                </div>
+                <div>
+                    <h3 style="font-size:1.25rem; font-weight:900; margin:0; color:#1a202c;">4 Tenets of NYAYI</h3>
+                    <p style="font-size:12.5px; color:#718096; margin:2px 0 0;">Essential principles for using this legal knowledge platform</p>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:14px; margin:20px 0;">
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="color:#00C853; font-size:16px; margin-top:2px;"><i class="fas fa-circle-check"></i></div>
+                    <div>
+                        <strong style="font-size:14px; color:#1a202c; display:block;">NYAYI provides information, not legal advice</strong>
+                        <span style="font-size:13px; color:#4a5568; line-height:1.5;">We explain general legal concepts and rights; we do not advise you on how to handle your specific case.</span>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="color:#00C853; font-size:16px; margin-top:2px;"><i class="fas fa-circle-check"></i></div>
+                    <div>
+                        <strong style="font-size:14px; color:#1a202c; display:block;">AI and automated tools can make mistakes</strong>
+                        <span style="font-size:13px; color:#4a5568; line-height:1.5;">Always cross-reference statutory citations, BNS numbers, and AI summaries with primary gazettes.</span>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="color:#00C853; font-size:16px; margin-top:2px;"><i class="fas fa-circle-check"></i></div>
+                    <div>
+                        <strong style="font-size:14px; color:#1a202c; display:block;">Laws and procedures change continuously</strong>
+                        <span style="font-size:13px; color:#4a5568; line-height:1.5;">From IPC to BNS, legislation evolves through parliamentary amendments and landmark judicial rulings.</span>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="color:#00C853; font-size:16px; margin-top:2px;"><i class="fas fa-circle-check"></i></div>
+                    <div>
+                        <strong style="font-size:14px; color:#1a202c; display:block;">Important matters require professional verification</strong>
+                        <span style="font-size:13px; color:#4a5568; line-height:1.5;">When your liberty, property, or legal rights are at stake, consult an advocate enrolled with the Bar Council of India.</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeDisclaimerModal()" class="btn btn-primary" style="width:100%; padding:12px; font-weight:800; border-radius:12px; margin-top:8px;">
+                I Understand & Acknowledge
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR DISCLAIMER INTERACTIVITY -->
+    <script>
+        function toggleDisclaimerMobileToc() {
+            const dd = document.getElementById('disclaimerMobileTocDropdown');
+            const icon = document.getElementById('disclaimerTocChevron');
+            if (dd) {
+                dd.classList.toggle('open');
+                if (icon) {
+                    icon.style.transform = dd.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+
+        function closeDisclaimerMobileToc() {
+            const dd = document.getElementById('disclaimerMobileTocDropdown');
+            const icon = document.getElementById('disclaimerTocChevron');
+            if (dd) {
+                dd.classList.remove('open');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Active Section Highlight on Scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.privacy-sidebar .privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card');
+
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 140;
+                    if (window.pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // FAQ Accordion
+        function toggleDisclaimerFaq(el) {
+            const isOpen = el.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+                const body = item.querySelector('.faq-body');
+                if (body) body.style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                el.classList.add('active');
+                const icon = el.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+                const body = el.querySelector('.faq-body');
+                if (body) body.style.maxHeight = body.scrollHeight + 'px';
+            }
+        }
+
+        // Disclaimer Guide Modal
+        function openDisclaimerModal() {
+            const modal = document.getElementById('disclaimerModalOverlay');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDisclaimerModal() {
+            const modal = document.getElementById('disclaimerModalOverlay');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function handleDisclaimerOverlayClick(e) {
+            if (e.target.id === 'disclaimerModalOverlay') {
+                closeDisclaimerModal();
+            }
+        }
+    </script>
+
+    ${renderFooter(0)}
+    `;
+
+    fs.writeFileSync(path.join(ROOT_DIR, 'disclaimer.html'), disclaimerHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHub, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), disclaimerHtml, 'utf8');
+    console.log('Generated: disclaimer.html & legal-disclaimer.html');
+
 
     // Privacy Page Schema
     const privacySchema = {
@@ -8803,6 +9785,8 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/privacy-policy\.html"/g, 'href="../privacy-policy.html"')
         .replace(/href="\.\/privacy\.html"/g, 'href="../privacy.html"')
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
+        .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
+        .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
         .replace(/href="articles\//g, 'href="');
     fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogSubfolderHub, 'utf8');
 
@@ -8926,6 +9910,7 @@ function buildFeaturesAndOther() {
         'https://nyayi.in/contact.html',
         'https://nyayi.in/app.html',
         'https://nyayi.in/privacy.html',
+        'https://nyayi.in/disclaimer.html',
         'https://nyayi.in/legal-disclaimer.html',
         ...dictionary.map(d => `https://nyayi.in/dictionary/${d.slug}.html`),
         ...rights.map(r => `https://nyayi.in/know-your-rights/${r.slug}.html`),
