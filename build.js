@@ -31,10 +31,18 @@ const orgSchema = {
         "https://instagram.com/sajj1507",
         "https://instagram.com/kamran.irll"
     ],
-    "founder": {
-        "@type": "Person",
-        "name": "NYAYI Legal Knowledge Foundation"
-    },
+    "founder": [
+        {
+            "@type": "Person",
+            "name": "Farhan Khan",
+            "jobTitle": "Founder & Lead Developer"
+        },
+        {
+            "@type": "Person",
+            "name": "Kamran Sheikh",
+            "jobTitle": "Co-Founder & Legal Researcher"
+        }
+    ],
     "description": "India's modern legal knowledge platform providing reliable legal research, terminology explainers, BNS/IPC converters, and rights guides."
 };
 
@@ -66,7 +74,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <title>${cleanTitle}</title>
     <meta name="description" content="${description}">
     <meta name="keywords" content="${keywords}">
-    <meta name="author" content="NYAYI Legal Editorial Board">
+    <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
     <link rel="canonical" href="${canonical}">
@@ -176,8 +184,8 @@ function renderArchitectsSection() {
             <div class="creators-grid">
                 <div class="creator-profile" data-aos="fade-up">
                     <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>NYAYI Legal Technology Division</h3>
-                    <span class="cp-role">AI Systems & Digital Infrastructure</span>
+                    <h3>Farhan Khan</h3>
+                    <span class="cp-role">Founder & Lead Developer</span>
                     <div class="cp-actions">
                         <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
                         <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 9598042676</a>
@@ -186,8 +194,8 @@ function renderArchitectsSection() {
                 
                 <div class="creator-profile" data-aos="fade-up" data-aos-delay="100">
                     <div class="cp-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>NYAYI Legal Research Council</h3>
-                    <span class="cp-role">Statutory Research & Code Mapping</span>
+                    <h3>Kamran Sheikh</h3>
+                    <span class="cp-role">Co-Founder & Legal Researcher</span>
                     <div class="cp-actions">
                         <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
                         <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 7393905299</a>
@@ -246,7 +254,7 @@ function renderFooter(depth = 0) {
             </div>
         </div>
         <div class="copyright">
-            <div>&copy; 2026 NYAYI — Official Indian Legal Knowledge Platform. All Rights Reserved.</div>
+            <div>&copy; 2026 NYAYI. Designed & Developed by Farhan Khan. All Rights Reserved.</div>
             <div class="powered-tag">Powered by WebGlut</div>
         </div>
     </footer>
@@ -3171,13 +3179,13 @@ function buildFeaturesAndOther() {
 
     // Contact Page
     const contactHtml = `
-    ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with the official NYAYI Legal Editorial Board & Technical Support Desk.', 'Contact NYAYI, NYAYI legal support, NYAYI contact', '/contact.html')}
+    ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
     ${renderHeader('home', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
             <h1>Get in <span>Touch</span></h1>
-            <p>Have questions or feedback? Reach out directly to the official NYAYI Legal Team.</p>
+            <p>Have questions or feedback? Reach out directly to Farhan Khan & Kamran Sheikh, the creators of NYAYI.</p>
         </div>
     </section>
 
