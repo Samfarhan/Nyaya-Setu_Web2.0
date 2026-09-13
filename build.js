@@ -88,7 +88,6 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
 
 function renderHeader(activePage = '', depth = 0) {
     const p = depth === 1 ? '../' : './';
-    const isBlogActive = ['blog', 'laws', 'guides', 'articles'].includes(activePage);
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
@@ -116,35 +115,10 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li class="nav-dropdown">
-                    <a href="${p}articles.html" class="dropdown-trigger ${isBlogActive ? 'active' : ''}">
-                        Blog <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="${p}laws.html" class="dropdown-item ${activePage === 'laws' ? 'active' : ''}">
-                            <div class="dd-icon"><i class="fas fa-book-bookmark"></i></div>
-                            <div class="dd-text">
-                                <strong>Laws Library</strong>
-                                <span>BNS, BNSS, BSA & Constitution</span>
-                            </div>
-                        </a>
-                        <a href="${p}guides.html" class="dropdown-item ${activePage === 'guides' ? 'active' : ''}">
-                            <div class="dd-icon"><i class="fas fa-list-check"></i></div>
-                            <div class="dd-text">
-                                <strong>Legal Guides</strong>
-                                <span>Practical procedural walk-throughs</span>
-                            </div>
-                        </a>
-                        <a href="${p}articles.html" class="dropdown-item ${activePage === 'articles' ? 'active' : ''}">
-                            <div class="dd-icon"><i class="fas fa-newspaper"></i></div>
-                            <div class="dd-text">
-                                <strong>Articles & Insights</strong>
-                                <span>Editorial updates & legal tech analysis</span>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}"><i class="fas fa-mobile-screen"></i> Mobile App</a></li>
+                <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}">Laws</a></li>
+                <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}">Guides</a></li>
+                <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}">Articles</a></li>
+                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center;">
@@ -172,8 +146,8 @@ function renderArchitectsSection() {
                     <h3>Farhan Khan</h3>
                     <span class="cp-role">Founder & Lead Developer</span>
                     <div class="cp-actions">
-                        <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
-                        <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                        <a href="https://instagram.com/sajj1507" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
+                        <a href="tel:9598042676" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 9598042676</a>
                     </div>
                 </div>
                 
@@ -182,8 +156,8 @@ function renderArchitectsSection() {
                     <h3>Kamran Sheikh</h3>
                     <span class="cp-role">Lead Legal Researcher</span>
                     <div class="cp-actions">
-                        <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View</a>
-                        <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                        <a href="https://instagram.com/kamran.irll" target="_blank" class="cp-btn"><i class="fab fa-instagram"></i> View Profile</a>
+                        <a href="tel:7393905299" class="cp-btn secondary"><i class="fas fa-phone-alt"></i> Call +91 7393905299</a>
                     </div>
                 </div>
             </div>
@@ -246,31 +220,35 @@ function renderFooter(depth = 0) {
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
+            if (menu) menu.classList.toggle('active');
         }
 
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = \`\${posX}px\`;
-            cursorDot.style.top = \`\${posY}px\`;
-            cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
-        });
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', function(e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = \`\${posX}px\`;
+                cursorDot.style.top = \`\${posY}px\`;
+                cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
+            });
+        }
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .dropdown-item, .nav-dropdown, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
         const scrollTopBtn = document.querySelector('.scroll-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
-            else scrollTopBtn.classList.remove('active');
-        });
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+                else scrollTopBtn.classList.remove('active');
+            });
+        }
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -421,7 +399,7 @@ function buildHomepage() {
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
                     <div class="faq-header"><h3>Does this platform replace an advocate?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p><strong>No.</strong> Nyayi is an informational tool built for research and legal literacy. For formal court representations, active litigation advice, or official filings, you can browse verified advocates through our dedicated lawyer portal.</p></div>
+                    <div class="faq-body"><p><strong>No.</strong> Nyayi is an informational tool built for research and legal literacy. For formal court representations, active litigation advice, or official filings, you must consult a licensed advocate.</p></div>
                 </div>
             </div>
         </div>
@@ -455,7 +433,7 @@ function buildHomepage() {
 
 // 2. GENERATE DICTIONARY HUB & TERM PAGES
 function buildDictionary() {
-    const termCards = dictionary.map(item => `
+    const dictCardsHtml = dictionary.map(item => `
         <div class="dict-card" data-category="${item.category}" data-aos="fade-up">
             <div>
                 <div class="dict-header">
@@ -464,16 +442,20 @@ function buildDictionary() {
                 </div>
                 <p>${item.simpleDef}</p>
             </div>
-            <div class="dict-meta">
-                <span><i class="fas fa-book"></i> ${item.ref}</span>
-                <span><i class="fas fa-shield-halved"></i> ${item.tag || item.category}</span>
-                <a href="dictionary/${item.slug}.html" class="card-link">Explore <i class="fas fa-arrow-right"></i></a>
+            <div>
+                <div class="dict-meta">
+                    <span><i class="fas fa-book"></i> ${item.ref}</span>
+                    <span><i class="fas fa-shield-halved"></i> ${item.tag || 'Legal Term'}</span>
+                </div>
+                <div style="margin-top:14px;">
+                    <a href="dictionary/${item.slug}.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
     `).join('');
 
     const hubHtml = `
-    ${renderHead('Legal Dictionary | Nyayi Legal AI', 'Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.', 'Nyayi, Legal Dictionary India, law glossary, legal terms, IPC sections, BNS codes', '/dictionary.html')}
+    ${renderHead('Legal Dictionary | NYAYI Legal AI', 'Nyayi Legal Dictionary: Simplified explanations for Indian legal jargon, Latin maxims, BNS/IPC sections, and constitutional terms.', 'Nyayi, Legal Dictionary India, law glossary, legal terms, IPC sections, BNS codes', '/dictionary.html')}
     ${renderHeader('dictionary', 0)}
 
     <section class="page-header">
@@ -496,10 +478,10 @@ function buildDictionary() {
         </div>
     </section>
 
-    <section style="padding:40px 0 100px; background:#fff;">
+    <section class="features-section">
         <div class="container">
             <div class="dict-grid" id="dictGrid">
-                ${termCards}
+                ${dictCardsHtml}
             </div>
         </div>
     </section>
@@ -518,7 +500,8 @@ function buildDictionary() {
             btn.classList.add('active');
             const cards = document.querySelectorAll('#dictGrid .dict-card');
             cards.forEach(card => {
-                if(cat === 'all' || card.getAttribute('data-category') === cat) {
+                const itemCat = card.getAttribute('data-category');
+                if(cat === 'all' || itemCat.toLowerCase().includes(cat.toLowerCase())) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -593,122 +576,109 @@ function buildRights() {
     ${renderHead('Know Your Rights | Citizen Protections in India', 'Understand your legal rights against arbitrary arrest, police overreach, consumer fraud, cybercrime, and workplace harassment.', 'Know Your Rights India, police rights, arrest rights, womens rights India, consumer rights', '/rights.html')}
     ${renderHeader('rights', 0)}
 
+    <!-- HERO SECTION -->
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
-            <h1>Your Shield. <span>Your Rights.</span></h1>
-            <p>Know your fundamental and legal rights as an Indian citizen under the Constitution and active criminal procedure laws.</p>
-            <div class="hero-btns" style="margin-bottom:0;">
-                <a href="https://ai.nyayi.in" target="_blank" class="btn-ai"><i class="fas fa-robot"></i> Start AI Consultation</a>
-                <a href="#rightsGrid" class="btn-outline"><i class="fas fa-shield-halved"></i> Explore Safeguards</a>
-            </div>
+            <h1>Know Your <span>Rights</span></h1>
+            <p>Empowering Indian citizens with actionable constitutional safeguards, police protocol guidance, and practical legal protections.</p>
         </div>
     </section>
 
-    <!-- CONSTITUTION ARTICLES STRIP -->
+    <!-- FUNDAMENTAL PILLARS SECTION -->
     <section class="fund-section">
         <div class="container">
-            <div class="section-header" style="margin-bottom:40px;" data-aos="fade-up">
-                <h2 style="color:white; font-size:2.8rem;">Constitutional <span>Pillars</span></h2>
-                <p style="color:#aaa;">Foundational articles protecting citizen liberty, equality, and dignity.</p>
+            <div class="section-header" data-aos="fade-up" style="color:white;">
+                <h2 style="color:white;">Constitutional <span>Fundamental Pillars</span></h2>
+                <p style="color:#aaa;">Core fundamental guarantees enshrined under Part III of the Constitution of India.</p>
             </div>
+
             <div class="fund-grid">
                 <div class="fund-item" data-aos="fade-up">
-                    <span class="fund-num">ARTICLE 21</span>
-                    <h4>Right to Life & Liberty</h4>
-                    <p>Guarantees personal freedom, human dignity, and privacy against state overreach.</p>
+                    <span class="fund-num">ARTICLE 14</span>
+                    <h4>Right to Equality</h4>
+                    <p>Equal protection of laws and equality before the law for all citizens without discrimination.</p>
                 </div>
                 <div class="fund-item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="fund-num">ARTICLE 22</span>
-                    <h4>Protection Against Arrest</h4>
-                    <p>Mandates informing grounds of arrest, right to counsel, and magistrate production within 24h.</p>
-                </div>
-                <div class="fund-item" data-aos="fade-up" data-aos-delay="200">
                     <span class="fund-num">ARTICLE 19</span>
                     <h4>Freedom of Speech</h4>
-                    <p>Protects speech, peaceful assembly, freedom of movement, and lawful trade across India.</p>
+                    <p>Protects freedom of speech, expression, peaceful assembly, and trade across India.</p>
+                </div>
+                <div class="fund-item" data-aos="fade-up" data-aos-delay="200">
+                    <span class="fund-num">ARTICLE 21</span>
+                    <h4>Protection of Life & Liberty</h4>
+                    <p>No person shall be deprived of personal liberty except according to procedure established by law.</p>
                 </div>
                 <div class="fund-item" data-aos="fade-up" data-aos-delay="300">
                     <span class="fund-num">ARTICLE 32</span>
                     <h4>Constitutional Remedies</h4>
-                    <p>Direct right to approach the Supreme Court via Habeas Corpus, Mandamus, and Certiorari.</p>
+                    <p>Guarantees the right to move the Supreme Court via writs for enforcement of fundamental rights.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RIGHTS BENTO GRID -->
-    <section class="rights-grid-section" id="rightsGrid" style="padding:100px 0; background:#fcfcfc;">
+    <!-- RIGHTS CATEGORY BENTO GRID -->
+    <section style="padding:100px 0; background:white;">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Essential <span>Legal Protections</span></h2>
-                <p>Actionable protections every citizen should know when dealing with authorities, online threats, and consumer transactions.</p>
+                <h2>Explore Rights <span>by Category</span></h2>
+                <p>Detailed breakdowns of your statutory rights in daily legal situations.</p>
             </div>
 
             <div class="rights-bento">
                 <div class="r-card r-dark" data-aos="fade-right">
-                    <div>
-                        <div class="r-icon"><i class="fas fa-handcuffs"></i></div>
-                        <h3>Police & Arrest Safeguards</h3>
-                        <ul class="r-list">
-                            <li>Police must display clear identification and name badges before any search or arrest.</li>
-                            <li>A formal Arrest Memo must be prepared with date, time, and witness signature.</li>
-                            <li>You have the constitutional right to inform a family member or advocate immediately.</li>
-                            <li>Mandatory medical examination by a certified doctor every 48 hours in custody.</li>
-                        </ul>
-                    </div>
-                    <a href="know-your-rights/arrest-rights.html" class="card-link" style="color:var(--primary); font-size:15px; margin-top:20px;">Read Full Arrest Rights Guide <i class="fas fa-arrow-right"></i></a>
+                    <div class="r-icon"><i class="fas fa-handcuffs"></i></div>
+                    <h3>Police & Arrest Safeguards</h3>
+                    <ul class="r-list">
+                        <li>Right to know grounds of arrest immediately (BNSS Sec 35).</li>
+                        <li>Right to inform a family member or advocate within 12 hours of custody.</li>
+                        <li>Mandatory medical examination by a certified doctor every 48 hours.</li>
+                    </ul>
+                    <a href="know-your-rights/arrest-rights.html" class="card-link" style="color:var(--primary); margin-top:auto;">Read Arrest Rights Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="r-card r-tall" data-aos="fade-left">
-                    <div>
-                        <div class="r-icon"><i class="fas fa-person-dress"></i></div>
-                        <h3>Women's Protections</h3>
-                        <ul class="r-list">
-                            <li>Women cannot be arrested between sunset and sunrise except in exceptional circumstances with judicial magistrate prior sanction.</li>
-                            <li>Arrest and body search of a female must strictly be performed only by a female officer.</li>
-                            <li>Zero FIR mandate: Police cannot refuse to register sexual offence complaints on jurisdiction grounds.</li>
-                            <li>Protection from domestic violence (PWDVA Act) and workplace harassment (POSH Act).</li>
-                        </ul>
-                    </div>
-                    <a href="know-your-rights/womens-rights.html" class="card-link" style="color:var(--primary-dark); font-size:15px; margin-top:20px;">Read Women's Rights Guide <i class="fas fa-arrow-right"></i></a>
+                    <div class="r-icon"><i class="fas fa-person-dress"></i></div>
+                    <h3>Women's Legal Protections</h3>
+                    <ul class="r-list">
+                        <li>Women cannot be arrested after sunset & before sunrise without Magistrate permission.</li>
+                        <li>Search of a woman must be conducted strictly by a female officer with decency.</li>
+                        <li>Zero FIR registration permitted at any police station across India.</li>
+                        <li>Workplace Sexual Harassment Complaint safeguards under POSH Act 2013.</li>
+                    </ul>
+                    <a href="know-your-rights/womens-rights.html" class="card-link" style="margin-top:auto;">Explore Women's Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="r-card" data-aos="fade-up">
-                    <div>
-                        <div class="r-icon"><i class="fas fa-shield-virus"></i></div>
-                        <h3>Cyber & Digital Rights</h3>
-                        <ul class="r-list">
-                            <li>Immediate financial freeze by reporting UPI or banking fraud on national helpline <strong>1930</strong>.</li>
-                            <li>Right to privacy against unauthorized data leaks and digital harassment under IT Act.</li>
-                            <li>Right to report deepfakes, morphing, and online stalking anonymously on cybercrime.gov.in.</li>
-                        </ul>
-                    </div>
-                    <a href="know-your-rights/cyber-rights.html" class="card-link" style="font-size:15px; margin-top:20px;">Read Cyber Rights Guide <i class="fas fa-arrow-right"></i></a>
+                    <div class="r-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Cyber & Digital Privacy</h3>
+                    <ul class="r-list">
+                        <li>Right to data protection and privacy under Article 21 (Puttaswamy Ruling).</li>
+                        <li>National Cyber Helpline 1930 for emergency financial fraud freezing.</li>
+                    </ul>
+                    <a href="know-your-rights/cyber-rights.html" class="card-link" style="margin-top:auto;">View Cyber Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="r-card" data-aos="fade-up" data-aos-delay="100">
-                    <div>
-                        <div class="r-icon"><i class="fas fa-basket-shopping"></i></div>
-                        <h3>Consumer Safeguards</h3>
-                        <ul class="r-list">
-                            <li>Protection against deceptive advertisements, unfair trade practices, and spurious goods.</li>
-                            <li>File online consumer claims via E-Daakhil portal without mandatory advocate representation.</li>
-                            <li>Statutory right to product liability compensation for defects causing financial or bodily harm.</li>
-                        </ul>
-                    </div>
-                    <a href="know-your-rights/consumer-rights.html" class="card-link" style="font-size:15px; margin-top:20px;">Read Consumer Guide <i class="fas fa-arrow-right"></i></a>
+                    <div class="r-icon"><i class="fas fa-bag-shopping"></i></div>
+                    <h3>Consumer Rights</h3>
+                    <ul class="r-list">
+                        <li>Right to refund, replacement, or compensation under Consumer Protection Act 2019.</li>
+                        <li>Protection against misleading ads and false MRP surcharges.</li>
+                    </ul>
+                    <a href="know-your-rights/consumer-rights.html" class="card-link" style="margin-top:auto;">View Consumer Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ACTION BANNER PANEL -->
-    <section style="padding:40px 0 80px; background:#fcfcfc;">
+    <!-- ACTION BANNER -->
+    <section style="padding:0 0 90px;">
         <div class="container">
             <div class="banner-panel" data-aos="zoom-in">
                 <div class="bp-left">
                     <h3>Unsure of Your <span>Current Situation?</span></h3>
-                    <p>Ask NYAYI AI to analyze your case facts against relevant Indian laws, court precedents, and rights in real time.</p>
+                    <p>Ask NYAYI AI to analyze your case against relevant Indian laws in real time.</p>
                 </div>
                 <a href="https://ai.nyayi.in" target="_blank" class="bp-right-btn">
                     <i class="fas fa-robot"></i> Ask AI Assistant
@@ -717,8 +687,8 @@ function buildRights() {
         </div>
     </section>
 
-    <!-- LANDMARK PRECEDENTS -->
-    <section class="precedents-section">
+    <!-- LANDMARK SUPREME COURT PRECEDENTS -->
+    <section class="precedents-section" style="padding:90px 0; background:#fcfcfc;">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Landmark <span>Supreme Court</span> Precedents</h2>
@@ -753,8 +723,8 @@ function buildRights() {
         </div>
     </section>
 
-    <!-- INTERACTIVE SCENARIOS -->
-    <section class="scenarios-section" style="padding:80px 0 100px; background:white;">
+    <!-- INTERACTIVE REAL SCENARIOS -->
+    <section class="scenarios-section" style="padding:90px 0 120px; background:white;">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Action Plan in <span>Real Scenarios</span></h2>
@@ -892,7 +862,7 @@ function buildRights() {
 
 // 4. BUILD FEATURES, CONTACT, APP, LAWS, GUIDES, POLICIES
 function buildFeaturesAndOther() {
-    // Features Page with original 6 feature cards and CTA box
+    // Features Page
     const featuresHtml = `
     ${renderHead('Features | NYAYI Legal AI', 'Explore features of NYAYI: BNS IPC Converter, FIR Drafter, Case Search, 22+ Languages, and AI Legal Terminal.', 'NYAYI features, IPC BNS converter, draft FIR generator, AI legal assistant', '/features.html')}
     ${renderHeader('features', 0)}
@@ -907,7 +877,6 @@ function buildFeaturesAndOther() {
     <section class="features-section">
         <div class="container">
             <div class="features-grid">
-                
                 <div class="feature-card" data-aos="fade-up">
                     <div>
                         <div class="fc-icon"><i class="fas fa-brain"></i></div>
@@ -961,7 +930,6 @@ function buildFeaturesAndOther() {
                     </div>
                     <span class="fc-tag">Multilingual AI</span>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1019,7 +987,7 @@ function buildFeaturesAndOther() {
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'app.html'), appHtml, 'utf8');
 
-    // Laws Hub: generate laws.html and laws/index.html
+    // Laws Hub
     const lawsHub = `
     ${renderHead('Indian Laws Library | NYAYI Legal AI', 'Comprehensive guide to major Indian acts, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Constitutional laws.', 'Indian Laws Library, BNS 2023, BNSS 2023, BSA 2023, Constitution of India', '/laws.html', 0)}
     ${renderHeader('laws', 0)}
@@ -1091,7 +1059,7 @@ function buildFeaturesAndOther() {
         fs.writeFileSync(path.join(ROOT_DIR, `laws/${item.slug}.html`), pageHtml, 'utf8');
     });
 
-    // Guides Hub: generate guides.html and legal-guides/index.html
+    // Guides Hub
     const guidesHub = `
     ${renderHead('Legal Guides | Practical Procedures in India', 'Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, and understanding court procedures.', 'Legal Guides India, how to file FIR, cyber crime report guide, bail process India', '/guides.html', 0)}
     ${renderHeader('guides', 0)}

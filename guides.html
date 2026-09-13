@@ -83,35 +83,10 @@
                 <li><a href="./features.html" class="">Features</a></li>
                 <li><a href="./dictionary.html" class="">Dictionary</a></li>
                 <li><a href="./rights.html" class="">Rights</a></li>
-                <li class="nav-dropdown">
-                    <a href="./articles.html" class="dropdown-trigger active">
-                        Blog <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="./laws.html" class="dropdown-item ">
-                            <div class="dd-icon"><i class="fas fa-book-bookmark"></i></div>
-                            <div class="dd-text">
-                                <strong>Laws Library</strong>
-                                <span>BNS, BNSS, BSA & Constitution</span>
-                            </div>
-                        </a>
-                        <a href="./guides.html" class="dropdown-item active">
-                            <div class="dd-icon"><i class="fas fa-list-check"></i></div>
-                            <div class="dd-text">
-                                <strong>Legal Guides</strong>
-                                <span>Practical procedural walk-throughs</span>
-                            </div>
-                        </a>
-                        <a href="./articles.html" class="dropdown-item ">
-                            <div class="dd-icon"><i class="fas fa-newspaper"></i></div>
-                            <div class="dd-text">
-                                <strong>Articles & Insights</strong>
-                                <span>Editorial updates & legal tech analysis</span>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li><a href="./app.html" style="color:var(--primary);" class=""><i class="fas fa-mobile-screen"></i> Mobile App</a></li>
+                <li><a href="./laws.html" class="">Laws</a></li>
+                <li><a href="./guides.html" class="active">Guides</a></li>
+                <li><a href="./articles.html" class="">Articles</a></li>
+                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center;">
@@ -218,31 +193,35 @@
 
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
+            if (menu) menu.classList.toggle('active');
         }
 
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', function(e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+            });
+        }
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .dropdown-item, .nav-dropdown, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
         const scrollTopBtn = document.querySelector('.scroll-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) scrollTopBtn.classList.add('active');
-            else scrollTopBtn.classList.remove('active');
-        });
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+                else scrollTopBtn.classList.remove('active');
+            });
+        }
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
