@@ -3991,40 +3991,6 @@ function buildFeaturesAndOther() {
         </div>
     </section>
 
-    <!-- 09 — STUDY MODE ("STUDY INDIAN LAW") -->
-    <section style="padding:90px 0; background:#ffffff;" id="study-mode">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="cp-role" style="display:inline-block; margin-bottom:10px; background:rgba(0,200,83,0.1); color:var(--primary-dark);">SIGNATURE LEARNING TOOL</span>
-                <h2>Study <span>Indian Law</span></h2>
-                <p>Interactive educational flashcards engineered for law students, competitive exams, and legal literacy.</p>
-            </div>
-
-            <div style="max-width:860px; margin:0 auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:28px; padding:40px; box-shadow:0 12px 35px rgba(0,0,0,0.02);" data-aos="fade-up">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
-                    <span id="lawStudyCardNum" style="font-size:13px; font-weight:900; color:var(--primary-dark); letter-spacing:1px;">STUDY CARD 1 OF 7</span>
-                    <span style="font-size:12.5px; color:#718096; font-weight:700;">JURISPRUDENCE & STATUTORY CONCEPTS</span>
-                </div>
-
-                <div id="lawStudyDeckContainer">
-                    <h3 id="lawStudyTitle" style="font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:14px;">Mens Rea — Guilty Mind</h3>
-                    <p id="lawStudyBody" style="font-size:1.05rem; color:#4a5568; line-height:1.8; margin-bottom:24px;">
-                        <em>Mens Rea</em> is the mental element or criminal intent required to establish criminal liability. Under Indian criminal law (BNS 2023), an act alone does not create guilt unless accompanied by a guilty intention, knowledge, or recklessness.
-                    </p>
-                    <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:18px; border-radius:14px; margin-bottom:24px;">
-                        <strong style="color:var(--primary-dark); font-size:14px;"><i class="fas fa-lightbulb"></i> Key Revision Note:</strong>
-                        <p id="lawStudyNote" style="font-size:14px; color:#2d3748; margin:4px 0 0;">Latin Legal Maxim: <em>Actus non facit reum nisi mens sit rea</em> (The act does not make one guilty unless the mind is guilty).</p>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #e2e8f0; padding-top:20px;">
-                    <button onclick="prevLawStudyCard()" class="btn-outline" style="padding:10px 24px; font-size:14px;"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button onclick="nextLawStudyCard()" class="btn-ai" style="padding:10px 24px; font-size:14px;">Next Concept <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 10 — LAW COMPARISON SECTION -->
     <section style="padding:90px 0; background:var(--bg-light);" id="comparisons">
         <div class="container">
@@ -4259,7 +4225,7 @@ function buildFeaturesAndOther() {
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
                     <div class="faq-header"><h3>Can I use the Laws Library for legal academic study?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>Yes! The library includes interactive Study Mode flashcards, comparative framework charts, and key constitutional article breakdowns designed for law students and exam preparation.</p></div>
+                    <div class="faq-body"><p>Yes! The library includes interactive statutory cards, comparative framework charts, and key constitutional article breakdowns designed for law students and exam preparation.</p></div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
@@ -4471,66 +4437,27 @@ function buildFeaturesAndOther() {
             document.body.style.overflow = '';
         }
 
-        // STUDY MODE FLASHCARDS
-        const lawStudyCards = [
-            {
-                num: "STUDY CARD 1 OF 7",
-                title: "Mens Rea — Guilty Mind",
-                body: "Mens Rea is the mental intent required to establish criminal liability. Under Indian criminal law (BNS 2023), an act alone does not create guilt unless accompanied by a guilty intention, knowledge, or criminal recklessness.",
-                note: "Maxim: Actus non facit reum nisi mens sit rea (An act does not make one guilty unless the mind is guilty)."
-            },
-            {
-                num: "STUDY CARD 2 OF 7",
-                title: "Actus Reus — Guilty Act",
-                body: "Actus Reus is the physical conduct, omission, or prohibited result that constitutes the overt criminal act required by statute.",
-                note: "Both Actus Reus and Mens Rea must coincide at the time of committing the offence."
-            },
-            {
-                num: "STUDY CARD 3 OF 7",
-                title: "Cognizable vs Non-Cognizable Offences",
-                body: "Cognizable offences (e.g., BNS murder, theft) permit police arrest without a warrant and mandatory FIR registration (BNSS Sec 173). Non-cognizable offences require Judicial Magistrate authorization.",
-                note: "Defined under Section 2(g) and 2(o) of Bharatiya Nagarik Suraksha Sanhita (BNSS 2023)."
-            },
-            {
-                num: "STUDY CARD 4 OF 7",
-                title: "Bailable vs Non-Bailable Offences",
-                body: "In Bailable offences, bail is a matter of statutory right (BNSS Sec 478). In Non-Bailable offences, granting bail is subject to judicial discretion based on offence severity.",
-                note: "Anticipatory bail for apprehending non-bailable arrest is governed under BNSS Section 484."
-            },
-            {
-                num: "STUDY CARD 5 OF 7",
-                title: "Strict & Absolute Liability",
-                body: "Strict liability imposes legal responsibility without proving Mens Rea (e.g. hazardous industry leaks, traffic violations). Absolute liability admits no statutory exceptions (M.C. Mehta v. Union of India).",
-                note: "Crucial principle under Environmental Protection Act 1986 and industrial safety statutes."
-            },
-            {
-                num: "STUDY CARD 6 OF 7",
-                title: "Prima Facie — On the Face of It",
-                body: "A legal claim or evidence that is sufficient at first impression to establish a fact or raise a presumption unless rebutted by contrary evidence in court.",
-                note: "Used by Magistrates when deciding whether to issue summons or frame charges under BNSS."
-            },
-            {
-                num: "STUDY CARD 7 OF 7",
-                title: "Promissory Estoppel",
-                body: "An equitable doctrine preventing a party (or Government authority) from reneging on a clear promise if another party acted upon that promise to their detriment.",
-                note: "Frequently invoked in administrative law and government tender contracts."
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLawModal();
+        });
+
+        // FAQ ACCORDION TOGGLE
+        function toggleFaq(el) {
+            const isExpanded = el.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+                const body = item.querySelector('.faq-body');
+                if (body) body.style.maxHeight = null;
+            });
+            if (!isExpanded) {
+                el.classList.add('active');
+                const icon = el.querySelector('.faq-icon');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+                const body = el.querySelector('.faq-body');
+                if (body) body.style.maxHeight = body.scrollHeight + 'px';
             }
-        ];
-        let currentLawStudyIdx = 0;
-        function updateLawStudyCard() {
-            const card = lawStudyCards[currentLawStudyIdx];
-            document.getElementById('lawStudyCardNum').textContent = card.num;
-            document.getElementById('lawStudyTitle').textContent = card.title;
-            document.getElementById('lawStudyBody').textContent = card.body;
-            document.getElementById('lawStudyNote').textContent = card.note;
-        }
-        function nextLawStudyCard() {
-            currentLawStudyIdx = (currentLawStudyIdx + 1) % lawStudyCards.length;
-            updateLawStudyCard();
-        }
-        function prevLawStudyCard() {
-            currentLawStudyIdx = (currentLawStudyIdx - 1 + lawStudyCards.length) % lawStudyCards.length;
-            updateLawStudyCard();
         }
     </script>
 

@@ -2818,5 +2818,58 @@ footer {
     }
 }
 
+/* FAQ ACCORDION STYLES */
+.faq-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+.faq-item:hover {
+    border-color: var(--primary);
+    box-shadow: 0 6px 20px rgba(0, 200, 83, 0.08);
+}
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+.faq-header h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0;
+    line-height: 1.4;
+}
+.faq-icon {
+    color: var(--primary-dark);
+    transition: transform 0.3s ease;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.3s ease;
+    opacity: 0;
+}
+.faq-item.active .faq-body {
+    opacity: 1;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #edf2f7;
+}
+.faq-body p {
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
 
 
