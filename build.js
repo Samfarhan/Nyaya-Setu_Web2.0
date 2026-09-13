@@ -6076,6 +6076,7 @@ function buildFeaturesAndOther() {
         if (modal) modal.style.display = 'none';
     }
     </script>
+    ${renderFooter(0)}
     `;
 
     fs.writeFileSync(path.join(ROOT_DIR, 'guides.html'), guidesHub, 'utf8');

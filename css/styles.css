@@ -18,7 +18,10 @@
     padding: 0; 
     box-sizing: border-box; 
     -webkit-tap-highlight-color: transparent; 
-    cursor: none; 
+}
+
+a, button, input[type="submit"], input[type="button"], select, .card-link, .btn-ai, .btn-outline, .btn-launch, .cat-card, .chip-btn {
+    cursor: pointer;
 }
 
 html, body { 
@@ -60,6 +63,11 @@ body.hovering .cursor-outline {
     height: 60px; 
     background-color: rgba(0, 200, 83, 0.1); 
     border-color: transparent;
+}
+@media (max-width: 768px) {
+    .cursor-dot, .cursor-outline {
+        display: none !important;
+    }
 }
 
 /* ---- FLOATING NAVBAR ---- */

@@ -2776,3 +2776,128 @@
     }
     </script>
     
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2><i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span></h2>
+                <p>Bridging the gap between the common man and the law through advanced Artificial Intelligence.</p>
+                <div style="margin-top:18px;">
+                    <a href="https://instagram.com/nyayi.ai" target="_blank" style="display:inline-flex; align-items:center; gap:8px; color:white; font-size:13.5px; font-weight:700; text-decoration:none; background:rgba(255,255,255,0.08); padding:8px 18px; border-radius:30px; border:1px solid rgba(255,255,255,0.15); transition:0.3s;">
+                        <i class="fab fa-instagram" style="color:#e1306c; font-size:16px;"></i> @nyayi.ai
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="./">Home</a></li>
+                    <li><a href="./features.html">Features</a></li>
+                    <li><a href="./app.html">Mobile App</a></li>
+                    <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Knowledge</h4>
+                <ul>
+                    <li><a href="./dictionary.html">Legal Dictionary</a></li>
+                    <li><a href="./rights.html">Know Rights</a></li>
+                    <li><a href="./laws.html">Laws Library</a></li>
+                    <li><a href="./guides.html">Legal Guides</a></li>
+                    <li><a href="./articles.html">Articles & Updates</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact & Support</h4>
+                <ul>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                    <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
+                    <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
+                    <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
+                    <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="./legal-disclaimer.html">Legal Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div>&copy; 2026 Nyayi AI. Designed & Developed by Farhan Khan.</div>
+            <div class="powered-tag">Powered by WebGlut</div>
+        </div>
+    </footer>
+
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) menu.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
+            if (!faqItem) return;
+            const body = faqItem.querySelector('.faq-body');
+            const isActive = faqItem.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const b = item.querySelector('.faq-body');
+                if (b) b.style.maxHeight = null;
+            });
+
+            if (!isActive && body) {
+                faqItem.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        }
+
+        function toggleBlogDropdown(e) {
+            if (e) e.stopPropagation();
+            const drop = document.getElementById('blogDropdown');
+            if (drop) drop.classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const drop = document.getElementById('blogDropdown');
+            if (drop && !drop.contains(e.target)) {
+                drop.classList.remove('open');
+            }
+        });
+
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', function(e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+            });
+        }
+
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header, .pillar-card, .term-pill, .step-card, .philosophy-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('active');
+                else scrollTopBtn.classList.remove('active');
+            });
+        }
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+    
