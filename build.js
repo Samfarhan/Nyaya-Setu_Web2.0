@@ -1289,7 +1289,7 @@ function buildDictionary() {
                     </div>
 
                     <!-- METADATA GRID -->
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid #edf2f7; padding-top:24px; margin-bottom:35px;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; border-top:1px solid #edf2f7; padding-top:24px; margin-bottom:35px;">
                         <div style="background:#f7fafc; padding:18px; border-radius:14px; border:1px solid #edf2f7;">
                             <strong style="color:var(--dark); font-size:14px; display:block; margin-bottom:4px;"><i class="fas fa-building-columns" style="color:var(--primary);"></i> Where Applied:</strong>
                             <span style="font-size:14px; color:#4a5568;">${item.whereUsed}</span>

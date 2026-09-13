@@ -2161,10 +2161,28 @@ footer {
 @media (max-width: 1024px) {
     .dict-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
+
+@media (max-width: 768px) {
+    .az-pill { min-width: 36px; height: 36px; font-size: 12.5px; padding: 0 10px; }
+    .dict-search-input { font-size: 14.5px; padding: 16px 44px 16px 48px; }
+    .dict-search-icon { left: 18px; font-size: 16px; }
+    .dict-clear-btn { right: 14px; width: 26px; height: 26px; }
+    .dict-card { padding: 20px; border-radius: 16px; }
+    .dict-card-header h3 { font-size: 1.05rem; }
+}
+
 @media (max-width: 640px) {
     .dict-grid { grid-template-columns: 1fr; gap: 16px; }
-    .dict-search-input { font-size: 14.5px; padding: 15px 44px 15px 46px; }
-    .dict-stats-bar { flex-direction: column; gap: 10px; text-align: center; }
+    .dict-search-input { font-size: 13.5px; padding: 14px 40px 14px 44px; border-radius: 40px; }
+    .dict-stats-bar { flex-direction: column; gap: 10px; text-align: center; padding: 14px 18px; }
+    .dict-empty-state { padding: 40px 16px; border-radius: 18px; }
+    .btn-load-more { width: 100%; justify-content: center; padding: 14px 20px; font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+    .az-nav-bar { gap: 4px; padding: 8px 2px 10px; }
+    .dict-card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .badge-cat { align-self: flex-start; }
 }
 
 
