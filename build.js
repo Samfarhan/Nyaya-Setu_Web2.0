@@ -1064,7 +1064,7 @@ function buildDictionary() {
 
         function filterLetter(letter, btn) {
             document.querySelectorAll('.az-pill').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            if(btn) btn.classList.add('active');
             currentLetter = letter;
             renderedCount = 48;
             renderFilteredDict();
@@ -1081,15 +1081,16 @@ function buildDictionary() {
         function handleDictSearch() {
             const input = document.getElementById('dictSearchInput');
             const clearBtn = document.getElementById('dictClearBtn');
-            clearBtn.style.display = input.value.trim() ? 'flex' : 'none';
+            if (clearBtn) clearBtn.style.display = (input && input.value.trim()) ? 'flex' : 'none';
             renderedCount = 48;
             renderFilteredDict();
         }
 
         function clearDictSearch() {
             const input = document.getElementById('dictSearchInput');
-            input.value = '';
-            document.getElementById('dictClearBtn').style.display = 'none';
+            if (input) input.value = '';
+            const clearBtn = document.getElementById('dictClearBtn');
+            if (clearBtn) clearBtn.style.display = 'none';
             currentLetter = 'ALL';
             currentCategory = 'all';
             document.querySelectorAll('.az-pill').forEach(b => b.classList.remove('active'));
@@ -1110,6 +1111,8 @@ function buildDictionary() {
             const loadMoreBtn = document.getElementById('loadMoreContainer');
             const remainingSpan = document.getElementById('remainingCount');
 
+            if (!grid) return;
+
             const filtered = window.NYAYI_DICT.filter(item => {
                 // Letter filter
                 if (currentLetter !== 'ALL') {
@@ -1122,23 +1125,25 @@ function buildDictionary() {
                 }
                 // Query filter
                 if (query) {
-                    const fullText = (item.t + ' ' + item.c + ' ' + item.d + ' ' + item.r + ' ' + item.g).toLowerCase();
+                    const fullText = (item.t + ' ' + item.c + ' ' + item.d + ' ' + item.r + ' ' + (item.g || '')).toLowerCase();
                     if (!fullText.includes(query)) return false;
                 }
                 return true;
             });
 
-            countBadge.textContent = filtered.length.toLocaleString();
+            if (countBadge) countBadge.textContent = filtered.length.toLocaleString();
 
             if (filtered.length === 0) {
                 grid.style.display = 'none';
-                emptyState.style.display = 'block';
-                loadMoreBtn.style.display = 'none';
+                if (emptyState) emptyState.style.display = 'block';
+                if (loadMoreBtn) loadMoreBtn.style.display = 'none';
                 return;
             }
 
             grid.style.display = 'grid';
-            emptyState.style.display = 'none';
+            if (emptyState) emptyState.style.display = 'none';
+
+            const slice = filtered.slice(0, renderedCount);
 
             grid.innerHTML = slice.map(function(item) {
                 return '<div class="dict-card">' +
@@ -1152,7 +1157,7 @@ function buildDictionary() {
                     '<div>' +
                         '<div style="font-size:12px; color:#718096; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">' +
                             '<span><i class="fas fa-book" style="color:var(--primary);"></i> ' + item.r + '</span>' +
-                            '<span><i class="fas fa-tag" style="color:#a0aec0;"></i> ' + item.g + '</span>' +
+                            '<span><i class="fas fa-tag" style="color:#a0aec0;"></i> ' + (item.g || item.c) + '</span>' +
                         '</div>' +
                         '<div>' +
                             '<a href="dictionary/' + item.s + '.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>' +
@@ -1161,11 +1166,13 @@ function buildDictionary() {
                 '</div>';
             }).join('');
 
-            if (filtered.length > renderedCount) {
-                loadMoreBtn.style.display = 'block';
-                remainingSpan.textContent = (filtered.length - renderedCount).toLocaleString();
-            } else {
-                loadMoreBtn.style.display = 'none';
+            if (loadMoreBtn) {
+                if (filtered.length > renderedCount) {
+                    loadMoreBtn.style.display = 'block';
+                    if (remainingSpan) remainingSpan.textContent = (filtered.length - renderedCount).toLocaleString();
+                } else {
+                    loadMoreBtn.style.display = 'none';
+                }
             }
         }
 
@@ -1173,6 +1180,18 @@ function buildDictionary() {
             renderedCount += 48;
             renderFilteredDict();
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (q) {
+                const input = document.getElementById('dictSearchInput');
+                if (input) {
+                    input.value = q;
+                    handleDictSearch();
+                }
+            }
+        });
     </script>
 
     ${renderFooter(0)}
