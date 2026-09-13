@@ -99,6 +99,8 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
 function renderHeader(activePage = '', depth = 0) {
     const p = depth === 1 ? '../' : './';
     const homeUrl = depth === 1 ? '../' : './';
+    const isBlogActive = ['laws', 'guides', 'articles', 'blog'].includes(activePage);
+
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
@@ -106,9 +108,16 @@ function renderHeader(activePage = '', depth = 0) {
         <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
         <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
         <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
-        <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}">Laws Library</a>
-        <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}">Legal Guides</a>
-        <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}">Articles & Updates</a>
+        
+        <div class="mobile-group">
+            <span class="mobile-group-label"><i class="fas fa-newspaper" style="color:var(--primary);"></i> Blog & Resources</span>
+            <div class="mobile-group-links">
+                <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
+                <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
+                <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
+            </div>
+        </div>
+
         <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
             <i class="fas fa-rocket"></i> Launch Web AI
@@ -126,9 +135,16 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}">Laws</a></li>
-                <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}">Guides</a></li>
-                <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}">Articles</a></li>
+                <li class="nav-dropdown">
+                    <a href="${p}articles.html" class="dropdown-toggle ${isBlogActive ? 'active' : ''}">
+                        Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a></li>
+                        <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a></li>
+                        <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a></li>
+                    </ul>
+                </li>
                 <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
 
