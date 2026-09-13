@@ -105,7 +105,7 @@ header {
 
 .nav-links { 
     display: flex; 
-    gap: 16px; 
+    gap: 22px; 
     list-style: none; 
     margin: 0; 
     padding: 0; 
@@ -115,12 +115,92 @@ header {
     text-decoration: none; 
     color: #444; 
     font-weight: 700; 
-    font-size: 14px; 
+    font-size: 15px; 
     transition: 0.3s; 
     white-space: nowrap;
 }
 .nav-links a:hover, .nav-links a.active { 
     color: var(--primary); 
+}
+
+/* ---- NAV DROPDOWN ---- */
+.nav-item-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.nav-item-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.dropdown-icon {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+}
+.nav-item-dropdown:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    min-width: 210px;
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.dropdown-menu a {
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: #333 !important;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.dropdown-menu a i {
+    color: var(--primary);
+    font-size: 15px;
+    width: 18px;
+    text-align: center;
+}
+.dropdown-menu a:hover {
+    background: #f0fdf4;
+    color: var(--primary-dark) !important;
+    transform: translateX(3px);
 }
 
 /* PREMIUM LAUNCH BUTTON */

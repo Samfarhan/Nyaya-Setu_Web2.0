@@ -64,7 +64,7 @@
         <a href="../dictionary.html" onclick="toggleMenu()">Dictionary</a>
         <a href="../rights.html" onclick="toggleMenu()">Rights</a>
         <a href="../laws.html" onclick="toggleMenu()">Laws Library</a>
-        <a href="../guides.html" onclick="toggleMenu()">Guides</a>
+        <a href="../guides.html" onclick="toggleMenu()">Legal Guides</a>
         <a href="../articles.html" onclick="toggleMenu()">Articles</a>
         <a href="../contact.html" onclick="toggleMenu()">Contact</a>
         <a href="../app.html" style="color:var(--primary);">Mobile App</a>
@@ -82,9 +82,16 @@
                 <li><a href="../features.html" class="">Features</a></li>
                 <li><a href="../dictionary.html" class="">Dictionary</a></li>
                 <li><a href="../rights.html" class="">Rights</a></li>
-                <li><a href="../laws.html" class="">Laws</a></li>
-                <li><a href="../guides.html" class="active">Guides</a></li>
-                <li><a href="../articles.html" class="">Articles</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="../articles.html" class="active">
+                        Blog <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../laws.html"><i class="fas fa-landmark"></i> Laws Library</a></li>
+                        <li><a href="../guides.html"><i class="fas fa-book-open"></i> Legal Guides</a></li>
+                        <li><a href="../articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+                    </ul>
+                </li>
                 <li><a href="../contact.html" class="">Contact</a></li>
                 <li><a href="../app.html" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
@@ -226,7 +233,7 @@
             cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dropdown-menu a, .nav-item-dropdown');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));

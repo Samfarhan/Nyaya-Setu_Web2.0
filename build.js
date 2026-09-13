@@ -88,6 +88,8 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
 
 function renderHeader(activePage = '', depth = 0) {
     const p = depth === 1 ? '../' : './';
+    const isBlogActive = ['blog', 'laws', 'guides', 'articles'].includes(activePage);
+
     return `
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
@@ -96,7 +98,7 @@ function renderHeader(activePage = '', depth = 0) {
         <a href="${p}dictionary.html" onclick="toggleMenu()">Dictionary</a>
         <a href="${p}rights.html" onclick="toggleMenu()">Rights</a>
         <a href="${p}laws.html" onclick="toggleMenu()">Laws Library</a>
-        <a href="${p}guides.html" onclick="toggleMenu()">Guides</a>
+        <a href="${p}guides.html" onclick="toggleMenu()">Legal Guides</a>
         <a href="${p}articles.html" onclick="toggleMenu()">Articles</a>
         <a href="${p}contact.html" onclick="toggleMenu()">Contact</a>
         <a href="${p}app.html" style="color:var(--primary);">Mobile App</a>
@@ -114,9 +116,16 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
                 <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
                 <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
-                <li><a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}">Laws</a></li>
-                <li><a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}">Guides</a></li>
-                <li><a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}">Articles</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="${p}articles.html" class="${isBlogActive ? 'active' : ''}">
+                        Blog <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${p}laws.html"><i class="fas fa-landmark"></i> Laws Library</a></li>
+                        <li><a href="${p}guides.html"><i class="fas fa-book-open"></i> Legal Guides</a></li>
+                        <li><a href="${p}articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+                    </ul>
+                </li>
                 <li><a href="${p}contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
                 <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
@@ -230,7 +239,7 @@ function renderFooter(depth = 0) {
             cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
         });
 
-        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card');
+        const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dropdown-menu a, .nav-item-dropdown');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
