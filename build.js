@@ -1248,11 +1248,11 @@ function buildFeaturesAndOther() {
     ${renderHeader('features', 0)}
 
     <!-- 1. HERO SECTION -->
-    <section class="page-header" style="padding-bottom: 40px;">
+    <section class="page-header" style="padding-bottom: 30px;">
         <div class="container" data-aos="zoom-in">
             <span class="cp-role" style="display:inline-block; margin-bottom:12px;">THE NYAYI TOOLKIT</span>
             <h1>Powerful Legal Tools. <br><span>Built for India.</span></h1>
-            <p style="max-width:800px; margin:0 auto 30px;">NYAYI brings together practical legal tools, statutory research utilities, document drafting templates, and regional language access designed around Indian legal information needs.</p>
+            <p style="max-width:780px; margin:0 auto 30px; font-size:1.15rem; color:#555;">NYAYI brings together practical legal tools, statutory research utilities, document drafting templates, and regional language access designed around Indian legal information needs.</p>
             
             <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
                 <a href="#overview" class="btn-outline">
@@ -1262,9 +1262,13 @@ function buildFeaturesAndOther() {
                     <i class="fas fa-rocket"></i> Launch NYAYI AI
                 </a>
             </div>
+        </div>
+    </section>
 
-            <!-- SECTION 10: CATEGORY QUICK NAV -->
-            <div class="category-nav-bar" data-aos="fade-up" data-aos-delay="100">
+    <!-- SECTION 10: CATEGORY QUICK NAV -->
+    <section style="background:var(--bg-light); padding:20px 0; border-bottom:1px solid #e2e8f0;">
+        <div class="container">
+            <div class="category-nav-bar" data-aos="fade-up">
                 <a href="#overview" class="cat-pill"><i class="fas fa-layer-group"></i> All Tools</a>
                 <a href="#research" class="cat-pill"><i class="fas fa-brain"></i> Legal Research</a>
                 <a href="#converters" class="cat-pill"><i class="fas fa-arrow-right-arrow-left"></i> Statutory Converters</a>
@@ -1280,7 +1284,7 @@ function buildFeaturesAndOther() {
     </section>
 
     <!-- 2. CORE FEATURE OVERVIEW GRID -->
-    <section class="features-section" id="overview" style="padding:80px 0; background:var(--white);">
+    <section class="features-section" id="overview" style="padding:90px 0; background:var(--white);">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Platform <span>Capabilities Overview</span></h2>
@@ -1292,12 +1296,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-brain"></i></div>
                         <h3>Smart Case Search</h3>
-                        <p style="margin-bottom:12px;">Express legal concerns in simple conversational language. The neural core maps descriptions directly to relevant IPC, BNS, and Constitutional provisions.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Natural language query mapping<br>
-                            <strong>WHY IT HELPS:</strong> Eliminates dense legal search jargon<br>
-                            <strong>FOR:</strong> Citizens, Students & Legal Professionals
-                        </div>
+                        <p>Express legal concerns in simple conversational language. The neural core maps descriptions directly to relevant IPC, BNS, and Constitutional provisions.</p>
                     </div>
                     <span class="fc-tag">AI Powered</span>
                 </div>
@@ -1306,12 +1305,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-arrow-right-arrow-left"></i></div>
                         <h3>IPC & BNS Converter</h3>
-                        <p style="margin-bottom:12px;">Seamlessly translate classic Indian Penal Code (IPC 1860) sections into their updated Bharatiya Nyaya Sanhita (BNS 2023) counterparts in real-time.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Instant IPC ↔ BNS statutory lookup<br>
-                            <strong>WHY IT HELPS:</strong> Resolves criminal law code confusion<br>
-                            <strong>FOR:</strong> Advocates, Law Students & Police Officers
-                        </div>
+                        <p>Seamlessly translate classic Indian Penal Code (IPC 1860) sections into their updated Bharatiya Nyaya Sanhita (BNS 2023) counterparts in real-time.</p>
                     </div>
                     <span class="fc-tag">Statutory Utility</span>
                 </div>
@@ -1320,12 +1314,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-file-signature"></i></div>
                         <h3>Draft FIR Generator</h3>
-                        <p style="margin-bottom:12px;">Generate structured, legally sound First Information Report (FIR) drafts by answering guided prompts about incident details and timelines.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Guided complaint draft structuring<br>
-                            <strong>WHY IT HELPS:</strong> Ensures clear factual police reports<br>
-                            <strong>FOR:</strong> Complainants & Legal Aid Seekers
-                        </div>
+                        <p>Generate structured, legally sound First Information Report (FIR) drafts by answering guided prompts about incident details and timelines.</p>
                     </div>
                     <span class="fc-tag">Auto-Drafting</span>
                 </div>
@@ -1334,12 +1323,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-building-user"></i></div>
                         <h3>Rent Agreement Drafter</h3>
-                        <p style="margin-bottom:12px;">Create customizable rental contracts formatted to standard Indian real estate tenancy norms and state registration guidelines.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Structured residential lease drafting<br>
-                            <strong>WHY IT HELPS:</strong> Protects landlord & tenant rights<br>
-                            <strong>FOR:</strong> Tenants, Property Owners & Brokers
-                        </div>
+                        <p>Create customizable rental contracts formatted to standard Indian real estate tenancy norms and state registration guidelines.</p>
                     </div>
                     <span class="fc-tag">Document Builder</span>
                 </div>
@@ -1348,12 +1332,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-calculator"></i></div>
                         <h3>Traffic Fine Calculator</h3>
-                        <p style="margin-bottom:12px;">Calculate fine amounts, legal liabilities, and court summons risks based on the active Motor Vehicles Amendment Act.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Instant MV Act violation estimator<br>
-                            <strong>WHY IT HELPS:</strong> Clarifies compounding fines vs court risks<br>
-                            <strong>FOR:</strong> Vehicle Owners & Commuters
-                        </div>
+                        <p>Calculate fine amounts, legal liabilities, and court summons risks based on the active Motor Vehicles Amendment Act.</p>
                     </div>
                     <span class="fc-tag">Instant Calculator</span>
                 </div>
@@ -1362,12 +1341,7 @@ function buildFeaturesAndOther() {
                     <div>
                         <div class="fc-icon"><i class="fas fa-language"></i></div>
                         <h3>22+ Indian Languages</h3>
-                        <p style="margin-bottom:12px;">Query, process, and read legal outputs in 22+ official Indian languages with context-aware voice query support.</p>
-                        <div style="font-size:12.5px; color:#666; line-height:1.6; border-top:1px solid #edf2f7; padding-top:10px;">
-                            <strong>WHAT IT DOES:</strong> Vernacular translation & speech input<br>
-                            <strong>WHY IT HELPS:</strong> Democratizes legal access across India<br>
-                            <strong>FOR:</strong> Non-English Speaking Citizens
-                        </div>
+                        <p>Query, process, and read legal outputs in 22+ official Indian languages with context-aware voice query support.</p>
                     </div>
                     <span class="fc-tag">Multilingual AI</span>
                 </div>
@@ -1432,9 +1406,9 @@ function buildFeaturesAndOther() {
                     <span style="font-size:12px; font-weight:800; color:#718096; text-transform:uppercase; letter-spacing:1px;">Legacy Code (1860)</span>
                     <h3 style="font-size:22px; font-weight:900; margin:8px 0; color:#2d3748;">Indian Penal Code (IPC)</h3>
                     <div style="border-top:1px solid #eee; padding-top:12px; margin-top:12px;">
-                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 302:</strong> Murder</p>
-                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 420:</strong> Cheating & Dishonesty</p>
-                        <p style="margin:4px 0; font-size:14px;"><strong>IPC Section 376:</strong> Sexual Assault / Rape</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>IPC Section 302:</strong> Punishment for Murder</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>IPC Section 420:</strong> Cheating & Dishonestly Inducing Delivery</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>IPC Section 376:</strong> Punishment for Sexual Assault</p>
                     </div>
                 </div>
 
@@ -1446,9 +1420,9 @@ function buildFeaturesAndOther() {
                     <span style="font-size:12px; font-weight:900; color:var(--primary-dark); text-transform:uppercase; letter-spacing:1px;">Active Code (2023)</span>
                     <h3 style="font-size:22px; font-weight:900; margin:8px 0; color:var(--primary-dark);">Bharatiya Nyaya Sanhita (BNS)</h3>
                     <div style="border-top:1px solid rgba(0,200,83,0.2); padding-top:12px; margin-top:12px;">
-                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 103:</strong> Murder</p>
-                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 318:</strong> Cheating & Dishonesty</p>
-                        <p style="margin:4px 0; font-size:14px;"><strong>BNS Section 64:</strong> Sexual Assault / Rape</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>BNS Section 103:</strong> Punishment for Murder</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>BNS Section 318:</strong> Cheating & Dishonestly Inducing Delivery</p>
+                        <p style="margin:6px 0; font-size:14px;"><strong>BNS Section 64:</strong> Punishment for Sexual Assault</p>
                     </div>
                 </div>
             </div>
@@ -1485,7 +1459,7 @@ function buildFeaturesAndOther() {
                 <div class="draft-card" data-aos="fade-up" data-aos-delay="100">
                     <div>
                         <div style="width:44px; height:44px; background:rgba(0,200,83,0.15); color:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
-                            <i class="fas fa-house-chimney-user"></i>
+                            <i class="fas fa-house-user"></i>
                         </div>
                         <h3 style="font-size:19px; font-weight:800; color:#fff; margin-bottom:8px;">Rent Agreement Drafter</h3>
                         <p style="font-size:14px; color:#a0aec0; line-height:1.6;">Generate standard residential lease drafts containing deposit terms, lock-in clauses, and eviction notice guidelines.</p>
@@ -1535,7 +1509,7 @@ function buildFeaturesAndOther() {
             <div class="spotlight-grid" style="margin-top:40px;">
                 <div class="mock-ui-card" data-aos="fade-right">
                     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #edf2f7; padding-bottom:14px; margin-bottom:20px;">
-                        <h3 style="font-size:18px; font-weight:800; margin:0;"><i class="fas fa-car-burst" style="color:var(--primary);"></i> Traffic Fine & Summons Estimator</h3>
+                        <h3 style="font-size:18px; font-weight:800; margin:0;"><i class="fas fa-car" style="color:var(--primary);"></i> Traffic Fine & Summons Estimator</h3>
                         <span class="badge-cat">MV Act 2019</span>
                     </div>
 
@@ -1596,7 +1570,7 @@ function buildFeaturesAndOther() {
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Tamil (தமிழ்)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Telugu (తెలుగు)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Gujarati (ગુજરાતી)</span>
-                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Kannada (ಕನ್ನಡ)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Kannada (કન્નડ)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Malayalam (മലയാളം)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Punjabi (ਪੰਜਾਬੀ)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Odia (ଓଡ଼ିଆ)</span>
@@ -1664,7 +1638,7 @@ function buildFeaturesAndOther() {
             <div class="audience-grid">
                 <div class="aud-card" data-aos="fade-up">
                     <div style="width:44px; height:44px; background:rgba(0,200,83,0.1); color:var(--primary-dark); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">
-                        <i class="fas fa-users-gear"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <h3 style="font-size:18px; font-weight:800; margin-bottom:10px;">For Citizens</h3>
                     <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">Understand fundamental rights during police interactions, file consumer complaints, calculate traffic fines, and draft FIR complaints.</p>
@@ -1724,7 +1698,7 @@ function buildFeaturesAndOther() {
                 
                 <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
                     <div>
-                        <h4 style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:6px;"><i class="fas fa-info-circle"></i> Information Only</h4>
+                        <h4 style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:6px;"><i class="fas fa-circle-info"></i> Information Only</h4>
                         <p style="font-size:13.5px; color:#cbd5e0; margin:0; line-height:1.6;">Tools provide legal information and structured drafting support, not advocate representation.</p>
                     </div>
                     <div>
