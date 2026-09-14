@@ -1,15 +1,15 @@
 <div align="center">
 
-# ðŸ›ï¸ Nyayi (à¤¨à¥à¤¯à¤¾à¤¯à¥€) â€” Official Public Legal Portal
+# 🏛️ Nyayi (न्यायी) — Official Public Legal Portal
 
 <p align="center">
-  <strong>India's Comprehensive Legal Literacy Hub â€¢ BNS/IPC Dictionaries â€¢ Constitutional Rights Guide</strong>
+  <strong>India's Comprehensive Legal Literacy Hub | BNS/IPC Dictionaries | Constitutional Rights Guide</strong>
 </p>
 
 <p align="center">
-  <a href="https://nyayi.in"><img src="https://img.shields.io/badge/ðŸŒ_Visit_Portal-nyayi.in-10b981?style=for-the-badge&logo=safari&logoColor=white" alt="Visit nyayi.in" /></a>
-  <a href="https://ai.nyayi.in"><img src="https://img.shields.io/badge/ðŸ¤–_AI_Engine-ai.nyayi.in-0ea5e9?style=for-the-badge&logo=googlechrome&logoColor=white" alt="AI Engine" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/ðŸ›¡ï¸_License-Proprietary-red?style=for-the-badge" alt="License" /></a>
+  <a href="https://nyayi.in"><img src="https://img.shields.io/badge/Official_Portal-nyayi.in-10b981?style=for-the-badge&logo=safari&logoColor=white" alt="Visit nyayi.in" /></a>
+  <a href="https://ai.nyayi.in"><img src="https://img.shields.io/badge/AI_Engine-ai.nyayi.in-0ea5e9?style=for-the-badge&logo=googlechrome&logoColor=white" alt="AI Engine" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License" /></a>
 </p>
 
 <p align="center">
@@ -24,21 +24,21 @@
 
 ---
 
-## ðŸ“– About the Platform
+## 📖 About the Platform
 
 **`nyayi.in`** is the public-facing knowledge portal and gateway for the **Nyayi Legal AI Ecosystem**. Designed for maximum accessibility, search engine indexing, and mobile responsiveness, it empowers Indian citizens to research laws, understand procedural rights, and seamlessly authenticate into the **Nyayi Neural Engine**.
 
-### ðŸŒŸ Key Sections & Portals
-- ðŸ“š **Indian Legal Dictionary:** Searchable index of legal terminology in plain Hindi and English.
-- ðŸ“œ **Statutory Navigators:** Comprehensive cross-walk comparing the new **Bharatiya Nyaya Sanhita (BNS)** with legacy IPC sections.
-- ðŸ›¡ï¸ **Know Your Rights:** Deep-dive guides on Arrest Rights, Bail, Police Procedures, Women Safety, and Cyber Fraud.
-- âš–ï¸ **Legal Guides & Procedural Manuals:** Step-by-step instructions for consumer disputes, tenancy, and digital recovery.
-- ðŸ” **Unified Authentication Portal (`auth.html`):** Persistent multi-provider sign-in via Google OAuth, GitHub, and Resend Email OTP.
-- ðŸ“œ **Full Legal Transparency:** Comprehensive Privacy Policy, Terms of Use, and 18-Section Statutory Legal Disclaimer.
+### 🌟 Key Sections & Portals
+- 📚 **Indian Legal Dictionary:** Searchable index of legal terminology in plain Hindi and English.
+- 📜 **Statutory Navigators:** Comprehensive cross-walk comparing the new **Bharatiya Nyaya Sanhita (BNS)** with legacy IPC sections.
+- 🛡️ **Know Your Rights:** Deep-dive guides on Arrest Rights, Bail, Police Procedures, Women Safety, and Cyber Fraud.
+- ⚖️ **Legal Guides & Procedural Manuals:** Step-by-step instructions for consumer disputes, tenancy, and digital recovery.
+- 🔐 **Unified Authentication Portal (`auth.html`):** Persistent multi-provider sign-in via Google OAuth, GitHub, and Resend Email OTP.
+- 📜 **Full Legal Transparency:** Comprehensive Privacy Policy, Terms of Use, and 18-Section Statutory Legal Disclaimer.
 
 ---
 
-## ðŸ’» Tech Stack & Web Architecture
+## 💻 Tech Stack & Web Architecture
 
 <div align="center">
 
@@ -53,14 +53,14 @@
 
 ---
 
-## ðŸ‘¨â€ðŸ’» Architects & Leadership
+## 👨‍💻 Architects & Leadership
 
 <div align="center">
 
 <img src="https://github.com/Samfarhan.png" width="100px" style="border-radius:50%; border: 3px solid #10b981;" alt="Farhan Khan" /><br/>
 
 ### **Farhan Khan**
-*Founder & Lead Architect â€” Nyayi AI Ecosystem*  
+*Founder & Lead Architect — Nyayi AI Ecosystem*  
 BCA (Bachelor of Computer Applications)
 
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/@he_yappz)
@@ -73,11 +73,11 @@ BCA (Bachelor of Computer Applications)
 
 ---
 
-## ðŸ”’ Copyright & Legal Notice
+## 🔒 Copyright & Legal Notice
 
 Copyright (c) 2026 **Farhan Khan**. All Rights Reserved.  
 See [LICENSE](LICENSE) for proprietary licensing and usage rights.
 
 <div align="center">
-  <sub>Nyayi.in â€” Empowering 1.4 Billion Citizens with Legal Justice.</sub>
+  <sub>Nyayi.in — Empowering 1.4 Billion Citizens with Legal Justice.</sub>
 </div>
