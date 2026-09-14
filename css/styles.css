@@ -2881,6 +2881,7 @@ footer {
     box-shadow: 0 6px 20px rgba(0, 200, 83, 0.08);
 }
 .faq-header {
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

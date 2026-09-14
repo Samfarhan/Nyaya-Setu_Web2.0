@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css?v=10.0">
+    <link rel="stylesheet" href="./css/styles.css?v=11.0">
     
     <script type="application/ld+json">
 {
@@ -557,26 +557,26 @@
 
                         <!-- EMERGENCY GRID -->
                         <div class="emergency-grid">
-                            <div class="emergency-card">
+                            <a href="tel:112" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">112</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">National Emergency</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Police, Fire & Medical Support (All India)</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Police, Fire & Medical Support (Tap to Call)</p>
+                            </a>
+                            <a href="tel:1090" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1090 / 181</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">Women Helpline</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Women in Distress & Domestic Safety</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Women in Distress & Safety (Tap to Call)</p>
+                            </a>
+                            <a href="tel:1930" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1930</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">Cyber Crime Helpline</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Financial Frauds & Cyber Harassment</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Financial Frauds & Cyber Report (Tap to Call)</p>
+                            </a>
+                            <a href="tel:15100" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#00C853; margin-bottom:4px;">15100</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">NALSA Legal Aid</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Free Legal Services for Eligible Citizens</p>
-                            </div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Free Legal Aid Toll-Free (Tap to Call)</p>
+                            </a>
                         </div>
 
                         <p class="privacy-text" style="font-size:13.5px; color:#7f1d1d; margin-top:10px;">
@@ -815,7 +815,7 @@
             </section>
 
             <!-- 05 — FREQUENTLY ASKED QUESTIONS (10 ACCORDION ITEMS) -->
-            <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent;" data-aos="fade-up">
+            <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent; scroll-margin-top: 110px;" data-aos="fade-up">
                 <div class="section-title">
                     <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
                         <i class="fas fa-circle-question"></i> CLARIFICATIONS & ANSWERS
@@ -1042,25 +1042,30 @@
 
         // Active Section Highlight on Scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const tocLinks = document.querySelectorAll('.privacy-sidebar .privacy-toc-link');
-            const sections = document.querySelectorAll('.privacy-section-card');
+            const tocLinks = document.querySelectorAll('.privacy-sidebar .privacy-toc-link, #disclaimerMobileTocDropdown .privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card, #lawyer-scenarios, #faq');
 
-            window.addEventListener('scroll', function() {
+            function updateDisclaimerToc() {
                 let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 140;
-                    if (window.pageYOffset >= sectionTop) {
+                    const rect = section.getBoundingClientRect();
+                    const absoluteTop = rect.top + scrollPos - 140;
+                    if (scrollPos >= absoluteTop) {
                         current = section.getAttribute('id');
                     }
                 });
 
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
+                    if (current && link.getAttribute('href') === '#' + current) {
                         link.classList.add('active');
                     }
                 });
-            });
+            }
+
+            window.addEventListener('scroll', updateDisclaimerToc, { passive: true });
+            updateDisclaimerToc();
         });
 
         // FAQ Accordion
@@ -1148,6 +1153,7 @@
                     <li><a href="./privacy.html">Privacy Policy</a></li>
                     <li><a href="./terms-of-use.html">Terms of Use</a></li>
                     <li><a href="./disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="./cookie-policy.html">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -1179,20 +1185,33 @@
         }
 
         function toggleFaq(element) {
-            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
-            if (!faqItem) return;
-            const body = faqItem.querySelector('.faq-body');
-            const isActive = faqItem.classList.contains('active');
-
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                const b = item.querySelector('.faq-body');
-                if (b) b.style.maxHeight = null;
-            });
-
-            if (!isActive && body) {
-                faqItem.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
+            // Pattern 1: .faq-item with .faq-body (used by index, dictionary, rights, laws, articles)
+            const faqItem = element.closest ? element.closest('.faq-item') : null;
+            if (faqItem) {
+                const body = faqItem.querySelector('.faq-body');
+                const isActive = faqItem.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const b = item.querySelector('.faq-body');
+                    if (b) b.style.maxHeight = null;
+                });
+                if (!isActive && body) {
+                    faqItem.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+                return;
+            }
+            // Pattern 2: button > nextElementSibling (used by guides, privacy, disclaimer FAQs)
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            if (content) {
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
             }
         }
 

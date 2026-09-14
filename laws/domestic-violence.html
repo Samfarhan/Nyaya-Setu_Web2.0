@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=10.0">
+    <link rel="stylesheet" href="../css/styles.css?v=11.0">
     
     <script type="application/ld+json">
 {
@@ -215,6 +215,7 @@
                     <li><a href="../privacy.html">Privacy Policy</a></li>
                     <li><a href="../terms-of-use.html">Terms of Use</a></li>
                     <li><a href="../disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="../cookie-policy.html">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -246,20 +247,33 @@
         }
 
         function toggleFaq(element) {
-            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
-            if (!faqItem) return;
-            const body = faqItem.querySelector('.faq-body');
-            const isActive = faqItem.classList.contains('active');
-
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                const b = item.querySelector('.faq-body');
-                if (b) b.style.maxHeight = null;
-            });
-
-            if (!isActive && body) {
-                faqItem.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
+            // Pattern 1: .faq-item with .faq-body (used by index, dictionary, rights, laws, articles)
+            const faqItem = element.closest ? element.closest('.faq-item') : null;
+            if (faqItem) {
+                const body = faqItem.querySelector('.faq-body');
+                const isActive = faqItem.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const b = item.querySelector('.faq-body');
+                    if (b) b.style.maxHeight = null;
+                });
+                if (!isActive && body) {
+                    faqItem.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+                return;
+            }
+            // Pattern 2: button > nextElementSibling (used by guides, privacy, disclaimer FAQs)
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            if (content) {
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
             }
         }
 

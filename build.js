@@ -101,7 +101,7 @@ function renderHead(title, description, keywords, pathUrl, depth = 0) {
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=10.0">
+    <link rel="stylesheet" href="${relPrefix}css/styles.css?v=11.0">
     
     ${schemaScripts}
 </head>
@@ -250,6 +250,7 @@ function renderFooter(depth = 0) {
                     <li><a href="${p}privacy.html">Privacy Policy</a></li>
                     <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
                     <li><a href="${p}disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="${p}cookie-policy.html">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -281,20 +282,33 @@ function renderFooter(depth = 0) {
         }
 
         function toggleFaq(element) {
-            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
-            if (!faqItem) return;
-            const body = faqItem.querySelector('.faq-body');
-            const isActive = faqItem.classList.contains('active');
-
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                const b = item.querySelector('.faq-body');
-                if (b) b.style.maxHeight = null;
-            });
-
-            if (!isActive && body) {
-                faqItem.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
+            // Pattern 1: .faq-item with .faq-body (used by index, dictionary, rights, laws, articles)
+            const faqItem = element.closest ? element.closest('.faq-item') : null;
+            if (faqItem) {
+                const body = faqItem.querySelector('.faq-body');
+                const isActive = faqItem.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const b = item.querySelector('.faq-body');
+                    if (b) b.style.maxHeight = null;
+                });
+                if (!isActive && body) {
+                    faqItem.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+                return;
+            }
+            // Pattern 2: button > nextElementSibling (used by guides, privacy, disclaimer FAQs)
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            if (content) {
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
             }
         }
 
@@ -351,10 +365,23 @@ function renderFooter(depth = 0) {
 
 // 1. GENERATE HOMEPAGE (index.html)
 function buildHomepage() {
-    const popularTermNames = ['FIR', 'Bail', 'Arrest', 'Anticipatory Bail', 'Legal Notice', 'Injunction', 'Affidavit', 'Jurisdiction', 'Appeal', 'Warrant', 'Complaint', 'Evidence'];
+        const popularTermNames = ['FIR', 'Bail', 'Arrest', 'Anticipatory Bail', 'Legal Notice', 'Injunction', 'Affidavit', 'Jurisdiction', 'Appeal', 'Warrant', 'Complaint', 'Evidence'];
+    const popularTermMap = {
+        'FIR': 'fir',
+        'Bail': 'bail',
+        'Arrest': 'arrest',
+        'Anticipatory Bail': 'anticipatory-bail',
+        'Legal Notice': 'legal-notice',
+        'Injunction': 'injunction',
+        'Affidavit': 'affidavit',
+        'Jurisdiction': 'jurisdiction',
+        'Appeal': 'appeal',
+        'Warrant': 'warrant',
+        'Complaint': 'consumer-complaint',
+        'Evidence': 'evidence'
+    };
     const popularTermsPills = popularTermNames.map(termName => {
-        const found = dictionary.find(d => d.term.toLowerCase() === termName.toLowerCase() || d.term.toLowerCase().includes(termName.toLowerCase()));
-        const slug = found ? found.slug : 'fir';
+        const slug = popularTermMap[termName] || (dictionary.find(d => d.term.toLowerCase() === termName.toLowerCase()) || {}).slug || 'fir';
         return `<a href="dictionary/${slug}.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${termName}</a>`;
     }).join('');
 
@@ -1165,7 +1192,9 @@ function buildDictionary() {
                 }
                 // Category filter
                 if (currentCategory !== 'all') {
-                    if (!item.c.toLowerCase().includes(currentCategory.toLowerCase())) return false;
+                    if (currentCategory === 'Civil Law') {
+                        if (!item.c.toLowerCase().includes('civil') && !item.c.toLowerCase().includes('property')) return false;
+                    } else if (!item.c.toLowerCase().includes(currentCategory.toLowerCase())) return false;
                 }
                 // Query filter
                 if (query) {
@@ -2565,6 +2594,7 @@ function buildRights() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'rights.html'), hubHtml, 'utf8');
     let rightsSubfolderHub = hubHtml
+        .replace(/href="\.\/"/g, 'href="../"')
         .replace(/href="\.\/css\//g, 'href="../css/')
         .replace(/href="\.\/favicon/g, 'href="../favicon')
         .replace(/href="\.\/apple/g, 'href="../apple')
@@ -2581,6 +2611,7 @@ function buildRights() {
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
         .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
+        .replace(/href="\.\/cookie-policy\.html"/g, 'href="../cookie-policy.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
         .replace(/href="guides\.html/g, 'href="../guides.html')
@@ -2959,7 +2990,7 @@ function buildFeaturesAndOther() {
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Tamil (தமிழ்)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Telugu (తెలుగు)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Gujarati (ગુજરાતી)</span>
-                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Kannada (કન્નડ)</span>
+                <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Kannada (ಕನ್ನಡ)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Malayalam (മലയാളം)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Punjabi (ਪੰਜਾਬੀ)</span>
                 <span class="lang-chip"><i class="fas fa-language" style="color:var(--primary);"></i> Odia (ଓଡ଼ିଆ)</span>
@@ -3180,7 +3211,7 @@ function buildFeaturesAndOther() {
     // Contact Page
     const contactHtml = `
     ${renderHead('Contact Support | NYAYI Legal AI', 'Get in touch with Farhan Khan & Kamran Sheikh regarding NYAYI platform support or feedback.', 'Contact NYAYI, Farhan Khan contact, Kamran Sheikh contact', '/contact.html')}
-    ${renderHeader('home', 0)}
+    ${renderHeader('contact', 0)}
 
     <section class="page-header">
         <div class="container" data-aos="zoom-in">
@@ -4717,6 +4748,7 @@ function buildFeaturesAndOther() {
     `;
     fs.writeFileSync(path.join(ROOT_DIR, 'laws.html'), lawsHub, 'utf8');
     let lawsSubfolderHub = lawsHub
+        .replace(/href="\.\/"/g, 'href="../"')
         .replace(/href="\.\/css\//g, 'href="../css/')
         .replace(/href="\.\/favicon/g, 'href="../favicon')
         .replace(/href="\.\/apple/g, 'href="../apple')
@@ -4733,6 +4765,7 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
         .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
+        .replace(/href="\.\/cookie-policy\.html"/g, 'href="../cookie-policy.html"')
         .replace(/href="rights\.html/g, 'href="../rights.html')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="articles\//g, 'href="../articles/')
@@ -6348,6 +6381,7 @@ function buildFeaturesAndOther() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'guides.html'), guidesHub, 'utf8');
     let guidesSubfolderHub = guidesHub
+        .replace(/href="\.\/"/g, 'href="../"')
         .replace(/href="\.\/css\//g, 'href="../css/')
         .replace(/href="\.\/favicon/g, 'href="../favicon')
         .replace(/href="\.\/apple/g, 'href="../apple')
@@ -6364,6 +6398,7 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
         .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
+        .replace(/href="\.\/cookie-policy\.html"/g, 'href="../cookie-policy.html"')
         .replace(/href="dictionary\.html/g, 'href="../dictionary.html')
         .replace(/href="laws\.html/g, 'href="../laws.html')
         .replace(/href="rights\.html/g, 'href="../rights.html')
@@ -6477,6 +6512,826 @@ function buildFeaturesAndOther() {
             ]
         }
     };
+
+        // Terms of Use Schema
+    const termsSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Terms of Use | NYAYI",
+        "url": "https://nyayi.in/terms-of-use.html",
+        "description": "Read NYAYI's Terms of Use governing access to the platform, AI technology boundaries, intellectual property, and user responsibilities under Indian Law.",
+        "inLanguage": "en-IN",
+        "publisher": {
+            "@type": "Organization",
+            "name": "NYAYI Legal Knowledge Foundation",
+            "url": "https://nyayi.in/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Terms of Use", "item": "https://nyayi.in/terms-of-use.html" }
+            ]
+        }
+    };
+
+
+    const termsOfUseHub = `
+    ${renderHead('Terms of Use | NYAYI', 'Read NYAYI\'s Terms of Use governing access to the platform, AI technology boundaries, intellectual property, and user responsibilities under Indian Law.', 'NYAYI terms of use, terms and conditions India, legal tech terms of service, NYAYI platform rules, legal AI disclaimer of warranties', '/terms-of-use.html', 0)}
+    ${renderHeader('home', 0)}
+
+    <script type="application/ld+json">
+    ${JSON.stringify(termsSchema, null, 2)}
+    </script>
+
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding: 165px 0 60px; background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 80%);">
+        <div class="container" style="max-width: 960px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; border:1px solid rgba(0,200,83,0.25);">
+                <i class="fas fa-file-contract" style="color:var(--primary);"></i> DIGITAL SERVICE AGREEMENT
+            </span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px; margin-bottom:18px;">
+                Terms of <span style="background: linear-gradient(135deg, var(--primary), #009624); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Use.</span><br>Rules of Engagement.
+            </h1>
+            <p style="max-width:820px; margin:0 auto 24px; font-size:1.18rem; color:#4a5568; line-height:1.75;">
+                These Terms of Use govern your access to and use of the NYAYI platform, websites, tools, statutory databases, and automated legal exploration technologies under Indian jurisdiction.
+            </p>
+
+            <!-- METADATA BADGES -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-calendar-check" style="color:#00C853;"></i> Last Updated: September 13, 2026
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-gavel" style="color:#00C853;"></i> Governed by Indian Law
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-shield-check" style="color:#00C853;"></i> IT Act 2000 Compliant
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 — TERMS AT A GLANCE -->
+    <section style="padding:60px 0; background:#f8fafc; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7;" id="glance">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:32px;">
+                <h2>Terms at a <span>Glance</span></h2>
+                <p>Key pillars governing your use of NYAYI explained in plain language.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;" data-aos="fade-up">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">01</span>
+                        <i class="fas fa-book-open" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">EDUCATIONAL PURPOSE</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">NYAYI is a legal literacy platform. Content does not constitute formal advocate advice or representation.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">02</span>
+                        <i class="fas fa-robot" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">AI BOUNDARIES</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Automated responses are probabilistic technology aids. Independent verification with primary statutes is required.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">03</span>
+                        <i class="fas fa-ban" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">NO SCRAPING OR ABUSE</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Automated bulk harvesting, rate-limit bypassing, and commercial mirroring without authorization are strictly prohibited.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">04</span>
+                        <i class="fas fa-scale-balanced" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">INDIAN JURISDICTION</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">These Terms are executed under Indian law. Any legal proceedings are subject to the courts of New Delhi, India.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — MAIN POLICY CONTAINER WITH TOC SIDEBAR -->
+    <section class="privacy-layout" style="padding: 80px 0 120px;">
+        <div class="container" style="display:flex; gap:50px; align-items:flex-start;">
+            
+            <!-- STICKY SIDEBAR NAVIGATION -->
+            <aside class="privacy-sidebar" id="termsDesktopToc">
+                <div class="privacy-sidebar-inner" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.03);">
+                    <div style="font-size:12px; font-weight:900; color:#00C853; letter-spacing:1px; margin-bottom:14px; text-transform:uppercase;">Table of Contents</div>
+                    <ul class="privacy-toc-list" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+                        <li><a href="#sec-1" class="privacy-toc-link active"><span class="toc-num">01</span> Binding Agreement</a></li>
+                        <li><a href="#sec-2" class="privacy-toc-link"><span class="toc-num">02</span> Informational Purpose</a></li>
+                        <li><a href="#sec-3" class="privacy-toc-link"><span class="toc-num">03</span> User Eligibility</a></li>
+                        <li><a href="#sec-4" class="privacy-toc-link"><span class="toc-num">04</span> User Conduct</a></li>
+                        <li><a href="#sec-5" class="privacy-toc-link"><span class="toc-num">05</span> AI Tool Boundaries</a></li>
+                        <li><a href="#sec-6" class="privacy-toc-link"><span class="toc-num">06</span> Intellectual Property</a></li>
+                        <li><a href="#sec-7" class="privacy-toc-link"><span class="toc-num">07</span> Prohibited Uses</a></li>
+                        <li><a href="#sec-8" class="privacy-toc-link"><span class="toc-num">08</span> External Links</a></li>
+                        <li><a href="#sec-9" class="privacy-toc-link"><span class="toc-num">09</span> Warranty Disclaimer</a></li>
+                        <li><a href="#sec-10" class="privacy-toc-link"><span class="toc-num">10</span> Liability Limits</a></li>
+                        <li><a href="#sec-11" class="privacy-toc-link"><span class="toc-num">11</span> Indemnification</a></li>
+                        <li><a href="#sec-12" class="privacy-toc-link"><span class="toc-num">12</span> Governing Law</a></li>
+                        <li><a href="#faq" class="privacy-toc-link"><span class="toc-num">13</span> Terms FAQ</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- MAIN ARTICLES CONTENT -->
+            <div class="privacy-content" style="flex:1; max-width:800px;">
+                
+                <!-- MOBILE TOC DROPDOWN -->
+                <div class="mobile-toc-wrapper" style="display:none; margin-bottom:30px;">
+                    <button type="button" class="mobile-toc-toggle" onclick="toggleTermsMobileToc()" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:16px 20px; font-weight:800; color:#1a202c; cursor:pointer;">
+                        <span><i class="fas fa-list" style="color:var(--primary); margin-right:8px;"></i> Jump to Section</span>
+                        <i class="fas fa-chevron-down" id="termsMobileTocIcon"></i>
+                    </button>
+                    <div id="termsMobileTocDropdown" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; margin-top:8px; padding:16px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+                            <li><a href="#sec-1" class="privacy-toc-link" onclick="toggleTermsMobileToc()">01. Binding Agreement</a></li>
+                            <li><a href="#sec-2" class="privacy-toc-link" onclick="toggleTermsMobileToc()">02. Informational Purpose</a></li>
+                            <li><a href="#sec-3" class="privacy-toc-link" onclick="toggleTermsMobileToc()">03. User Eligibility</a></li>
+                            <li><a href="#sec-4" class="privacy-toc-link" onclick="toggleTermsMobileToc()">04. User Conduct</a></li>
+                            <li><a href="#sec-5" class="privacy-toc-link" onclick="toggleTermsMobileToc()">05. AI Tool Boundaries</a></li>
+                            <li><a href="#sec-6" class="privacy-toc-link" onclick="toggleTermsMobileToc()">06. Intellectual Property</a></li>
+                            <li><a href="#sec-7" class="privacy-toc-link" onclick="toggleTermsMobileToc()">07. Prohibited Uses</a></li>
+                            <li><a href="#sec-8" class="privacy-toc-link" onclick="toggleTermsMobileToc()">08. External Links</a></li>
+                            <li><a href="#sec-9" class="privacy-toc-link" onclick="toggleTermsMobileToc()">09. Warranty Disclaimer</a></li>
+                            <li><a href="#sec-10" class="privacy-toc-link" onclick="toggleTermsMobileToc()">10. Liability Limits</a></li>
+                            <li><a href="#sec-11" class="privacy-toc-link" onclick="toggleTermsMobileToc()">11. Indemnification</a></li>
+                            <li><a href="#sec-12" class="privacy-toc-link" onclick="toggleTermsMobileToc()">12. Governing Law</a></li>
+                            <li><a href="#faq" class="privacy-toc-link" onclick="toggleTermsMobileToc()">13. Terms FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SECTION 1 -->
+                <article class="privacy-section-card" id="sec-1" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 01</span>
+                        <h2 class="privacy-title">Acceptance of Terms & Binding Digital Agreement</h2>
+                    </div>
+                    <p class="privacy-text">
+                        Welcome to NYAYI (accessible at <strong>https://nyayi.in</strong> and related sub-domains). By browsing, viewing, querying, or using this platform, you acknowledge that you have read, understood, and agreed to be legally bound by these Terms of Use, our <a href="./privacy.html" style="color:var(--primary-dark); font-weight:700;">Privacy Policy</a>, and our <a href="./disclaimer.html" style="color:var(--primary-dark); font-weight:700;">Legal Disclaimer</a>.
+                    </p>
+                    <p class="privacy-text">
+                        This digital agreement is executed in conformity with the provisions of the <strong>Information Technology Act, 2000</strong>, the rules framed thereunder, and the <strong>Indian Contract Act, 1872</strong>. If you do not agree with any provision of these Terms, you must immediately discontinue your use of NYAYI.
+                    </p>
+                </article>
+
+                <!-- SECTION 2 -->
+                <article class="privacy-section-card" id="sec-2" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 02</span>
+                        <h2 class="privacy-title">Nature of Platform — Educational & Informational Technology</h2>
+                    </div>
+                    <p class="privacy-text">
+                        NYAYI is an independent technology and legal literacy initiative founded by Farhan Khan and Kamran Sheikh. Its sole objective is to democratize legal comprehension across India by providing organized summaries of statutory provisions, procedural outlines, terminology explainers, and AI-assisted legal research.
+                    </p>
+                    <p class="privacy-text">
+                        <strong>NYAYI is NOT a law firm and does NOT practice law.</strong> Nothing on this platform establishes an advocate-client relationship, a fiduciary engagement, or a solicitation for legal employment under the Bar Council of India Rules. Communications with NYAYI are not protected by advocate-client statutory privilege under Section 126 of the Indian Evidence Act, 1872 (or Section 132 of the Bharatiya Sakshya Adhiniyam, 2023).
+                    </p>
+                </article>
+
+                <!-- SECTION 3 -->
+                <article class="privacy-section-card" id="sec-3" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 03</span>
+                        <h2 class="privacy-title">Eligibility & User Capacity</h2>
+                    </div>
+                    <p class="privacy-text">
+                        By accessing this platform, you affirm that you are at least 18 years of age and are legally competent to enter into a binding contract under Section 11 of the Indian Contract Act, 1872. If you are accessing this website on behalf of a company, corporate body, or institution, you represent and warrant that you possess full legal authority to bind that entity to these Terms.
+                    </p>
+                </article>
+
+                <!-- SECTION 4 -->
+                <article class="privacy-section-card" id="sec-4" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 04</span>
+                        <h2 class="privacy-title">Acceptable Use & User Obligations</h2>
+                    </div>
+                    <p class="privacy-text">
+                        You agree to use NYAYI exclusively for lawful, non-commercial, educational, and research purposes. You warrant that you will not:
+                    </p>
+                    <ul class="privacy-list" style="padding-left:22px; margin:14px 0; font-size:14.5px; color:#4a5568; line-height:1.75;">
+                        <li>Use the platform to draft deceptive, fraudulent, defamatory, or unlawful documents intended to deceive any judicial authority or private party.</li>
+                        <li>Misrepresent AI-generated informational summaries as formal legal opinions issued by a licensed advocate.</li>
+                        <li>Interfere with or disrupt the security, integrity, or operational performance of the website or its underlying server infrastructure.</li>
+                        <li>Submit malicious scripts, computer viruses, Trojan horses, or harmful code designed to impair site availability.</li>
+                    </ul>
+                </article>
+
+                <!-- SECTION 5 -->
+                <article class="privacy-section-card" id="sec-5" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 05</span>
+                        <h2 class="privacy-title">Artificial Intelligence & Automated Guidance Boundaries</h2>
+                    </div>
+                    <p class="privacy-text">
+                        NYAYI integrates computational linguistic models and automated search engines to assist citizens in discovering relevant statutory codes (such as BNS 2023, BNSS 2023, BSA 2023, and IPC equivalents). You acknowledge that:
+                    </p>
+                    <ul class="privacy-list" style="padding-left:22px; margin:14px 0; font-size:14.5px; color:#4a5568; line-height:1.75;">
+                        <li>AI models operate on probabilistic pattern recognition and may generate inaccurate, incomplete, or outdated correlations.</li>
+                        <li>Automated responses cannot consider the nuanced facts, local judicial practice, evidence rules, or procedural strategies of individual court cases.</li>
+                        <li>You bear sole and absolute responsibility for verifying any AI-suggested statutory references with the official gazette before taking any action.</li>
+                    </ul>
+                </article>
+
+                <!-- SECTION 6 -->
+                <article class="privacy-section-card" id="sec-6" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 06</span>
+                        <h2 class="privacy-title">Intellectual Property & Permitted Uses</h2>
+                    </div>
+                    <p class="privacy-text">
+                        All original website architecture, design layouts, visual styles, UI components, codebases, custom explanations, and editorial compilations on NYAYI are the exclusive intellectual property of NYAYI and its creator Farhan Khan, protected under the <strong>Copyright Act, 1957</strong> and relevant international conventions.
+                    </p>
+                    <p class="privacy-text">
+                        Primary statutory texts of Indian enactments (e.g., Acts of Parliament, state regulations, and official notifications) are public domain records under Section 52(1)(q) of the Copyright Act, 1957. You are permitted to cite or reproduce statutory texts, provided that proprietary platform branding, original guides, UI assets, and dictionary syntheses are not mirrored, duplicated, or republished without written consent.
+                    </p>
+                </article>
+
+                <!-- SECTION 7 -->
+                <article class="privacy-section-card" id="sec-7" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 07</span>
+                        <h2 class="privacy-title">Prohibited Activities — Scraping & Platform Abuse</h2>
+                    </div>
+                    <p class="privacy-text">
+                        To preserve fair bandwidth for all Indian citizens and protect our curated database, the following activities are strictly prohibited without prior written authorization from NYAYI:
+                    </p>
+                    <ul class="privacy-list" style="padding-left:22px; margin:14px 0; font-size:14.5px; color:#4a5568; line-height:1.75;">
+                        <li>Employing automated spiders, web scrapers, crawlers, or extraction algorithms to harvest dictionary terms, law cards, or guides in bulk.</li>
+                        <li>Bypassing or attempting to circumvent rate-limiting mechanisms, robot exclusions, or authentication controls.</li>
+                        <li>Framing, embedding, or white-labeling NYAYI pages within any third-party commercial legal portal or mobile application without attribution.</li>
+                    </ul>
+                </article>
+
+                <!-- SECTION 8 -->
+                <article class="privacy-section-card" id="sec-8" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 08</span>
+                        <h2 class="privacy-title">External Links & Third-Party Portals</h2>
+                    </div>
+                    <p class="privacy-text">
+                        NYAYI frequently provides outbound hyperlinks to government databases, court portals (e.g., e-Courts, Supreme Court of India, India Code, NALSA), and official police helplines. These links are furnished solely for citizen convenience. NYAYI exercises no editorial or operational control over third-party domains and assumes no responsibility for their content, uptime, security, or data handling practices.
+                    </p>
+                </article>
+
+                <!-- SECTION 9 -->
+                <article class="privacy-section-card" id="sec-9" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 09</span>
+                        <h2 class="privacy-title">Disclaimer of Warranties</h2>
+                    </div>
+                    <p class="privacy-text">
+                        THE NYAYI PLATFORM AND ALL ASSOCIATED CONTENT, ALGORITHMS, CALCULATORS, AND PROCEDURAL GUIDES ARE PROVIDED STRICTLY ON AN <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+                    </p>
+                    <p class="privacy-text">
+                        TO THE FULLEST EXTENT PERMISSIBLE UNDER APPLICABLE INDIAN LAW, NYAYI DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR LEGAL PURPOSE, ACCURACY, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE WEBSITE WILL BE UNINTERRUPTED, ERROR-FREE, OR VIRUS-FREE.
+                    </p>
+                </article>
+
+                <!-- SECTION 10 -->
+                <article class="privacy-section-card" id="sec-10" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 10</span>
+                        <h2 class="privacy-title">Limitation of Liability & Exclusion of Damages</h2>
+                    </div>
+                    <p class="privacy-text">
+                        UNDER NO CIRCUMSTANCES SHALL NYAYI, ITS FOUNDERS (FARHAN KHAN & KAMRAN SHEIKH), CONTRIBUTORS, AFFILIATES, OR TECHNOLOGY PARTNERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNITIVE, OR EXEMPLARY DAMAGES WHATSOEVER—INCLUDING BUT NOT LIMITED TO LOSS OF LEGAL RIGHTS, COURT EXPENSES, FINES, ADVERSE JUDGMENTS, LOSS OF PROFITS, OR BUSINESS INTERRUPTION—ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR INABILITY TO USE THIS WEBSITE OR ITS INFORMATIONAL CONTENT.
+                    </p>
+                </article>
+
+                <!-- SECTION 11 -->
+                <article class="privacy-section-card" id="sec-11" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 11</span>
+                        <h2 class="privacy-title">Indemnification by User</h2>
+                    </div>
+                    <p class="privacy-text">
+                        You agree to defend, indemnify, and hold harmless NYAYI, its founders, editors, and developers against any claims, liabilities, damages, losses, costs, or expenses (including reasonable legal fees) arising from: (a) your violation of these Terms of Use; (b) your misuse of information obtained from NYAYI; or (c) your infringement of any intellectual property or privacy rights of any third party.
+                    </p>
+                </article>
+
+                <!-- SECTION 12 -->
+                <article class="privacy-section-card" id="sec-12" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 12</span>
+                        <h2 class="privacy-title">Governing Law, Jurisdiction & Dispute Resolution</h2>
+                    </div>
+                    <p class="privacy-text">
+                        These Terms of Use shall be governed by and construed in accordance with the substantive laws of the <strong>Republic of India</strong>, without regard to its conflict of law principles.
+                    </p>
+                    <p class="privacy-text">
+                        Any legal action, suit, or proceeding arising out of or relating to these Terms or the NYAYI platform shall be instituted exclusively in the competent civil courts situated at <strong>New Delhi, India</strong>. Both parties hereby consent to the exclusive territorial and personal jurisdiction of such courts.
+                    </p>
+                </article>
+
+                <!-- 04 — TERMS FAQ -->
+                <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent; scroll-margin-top: 110px;" data-aos="fade-up">
+                    <div class="section-title">
+                        <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
+                            <i class="fas fa-circle-question"></i> TERMS QUESTIONS
+                        </span>
+                        <h2>Frequently Asked Questions About Terms</h2>
+                        <p>Clear explanations regarding your rights and platform boundaries on NYAYI.</p>
+                    </div>
+
+                    <div class="faq-accordion" style="max-width:900px; margin:0 auto;">
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Can I use NYAYI legal guides in a real legal proceeding?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    Our guides are designed for procedural understanding and citizen literacy. In actual court filings, pleadings, or trial advocacy, you must always consult a practicing advocate to ensure conformity with local High Court rules, limitation periods, and evidentiary requirements.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Does NYAYI charge fees for accessing legal statutes?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    No. The core legal dictionary, rights directory, statutory libraries, and procedural guides on nyayi.in are accessible free of charge as part of our civic legal literacy mission.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Can educational institutions cite NYAYI?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    Yes. Academic scholars, law students, and researchers may freely cite NYAYI's explainers and statutory comparisons with standard academic attribution to "NYAYI Legal Knowledge Platform (https://nyayi.in)".
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>How can I report a copyright or terms violation?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    Please submit details to our official team via our <a href="./contact.html" style="color:var(--primary-dark); font-weight:700;">Contact Us</a> page or call our official desk at +91 9598042676. We investigate and resolve legitimate notices expeditiously.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 05 — CONTACT PANEL -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:36px; margin-top:60px; box-shadow:0 8px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h3 style="font-size:20px; font-weight:900; color:var(--dark); margin:0 0 10px;">Questions Regarding These Terms?</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0 0 20px;">
+                        Reach out directly to Farhan Khan & Kamran Sheikh, creators of NYAYI, for any licensing inquiries, institutional partnerships, or clarifications.
+                    </p>
+                    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                        <a href="./contact.html" class="btn-launch" style="padding:12px 28px; font-size:14px;">
+                            <i class="fas fa-envelope"></i> Contact Founders
+                        </a>
+                        <a href="tel:9598042676" class="btn-outline" style="padding:12px 24px; font-size:14px; color:var(--dark); border-color:#cbd5e1;">
+                            <i class="fas fa-phone-alt" style="color:var(--primary);"></i> +91 9598042676
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTermsMobileToc() {
+            const dd = document.getElementById('termsMobileTocDropdown');
+            const icon = document.getElementById('termsMobileTocIcon');
+            if (dd) {
+                const isOpen = dd.style.display === 'block';
+                dd.style.display = isOpen ? 'none' : 'block';
+                if (icon) icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        // Active TOC spy
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('#termsDesktopToc .privacy-toc-link, #termsMobileTocDropdown .privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card, #faq');
+
+            function updateTermsToc() {
+                let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const absoluteTop = rect.top + scrollPos - 140;
+                    if (scrollPos >= absoluteTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (current && link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateTermsToc, { passive: true });
+            updateTermsToc();
+        });
+    </script>
+
+    ${renderFooter(0)}
+    `;
+
+
+    // Cookie Policy Schema
+    const cookieSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Cookie Policy | NYAYI",
+        "url": "https://nyayi.in/cookie-policy.html",
+        "description": "Learn about NYAYI's zero first-party tracking cookie architecture, essential browser local storage, and privacy safeguards under Indian IT Act 2000.",
+        "inLanguage": "en-IN",
+        "publisher": {
+            "@type": "Organization",
+            "name": "NYAYI Legal Knowledge Foundation",
+            "url": "https://nyayi.in/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
+                { "@type": "ListItem", "position": 2, "name": "Cookie Policy", "item": "https://nyayi.in/cookie-policy.html" }
+            ]
+        }
+    };
+
+
+    const cookiePolicyHub = `
+    ${renderHead('Cookie Policy | NYAYI', 'Learn about NYAYI\'s zero first-party tracking cookie architecture, essential browser local storage, and privacy safeguards under Indian IT Act 2000.', 'NYAYI cookie policy, zero tracking cookies, privacy by design, browser local storage legal tech, cookie policy India', '/cookie-policy.html', 0)}
+    ${renderHeader('home', 0)}
+
+    <script type="application/ld+json">
+    ${JSON.stringify(cookieSchema, null, 2)}
+    </script>
+
+    <!-- 01 — HERO SECTION -->
+    <section class="page-header" id="hero" style="padding: 165px 0 60px; background: radial-gradient(circle at 50% 0%, #e8f5e9 0%, #ffffff 80%);">
+        <div class="container" style="max-width: 960px;" data-aos="zoom-in">
+            <span class="cp-role" style="display:inline-block; margin-bottom:14px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800; border:1px solid rgba(0,200,83,0.25);">
+                <i class="fas fa-cookie-bite" style="color:var(--primary);"></i> TRANSPARENCY & TRACKING DISCLOSURE
+            </span>
+            <h1 style="font-size:3.5rem; font-weight:900; line-height:1.15; letter-spacing:-1.5px; margin-bottom:18px;">
+                Cookie & Storage <span style="background: linear-gradient(135deg, var(--primary), #009624); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Policy.</span><br>Zero Unnecessary Tracking.
+            </h1>
+            <p style="max-width:820px; margin:0 auto 24px; font-size:1.18rem; color:#4a5568; line-height:1.75;">
+                NYAYI operates under a strict privacy-first architecture. We do NOT deploy advertising cookies, cross-site trackers, or commercial profiling beacons.
+            </p>
+
+            <!-- METADATA BADGES -->
+            <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-shield-halved" style="color:#00C853;"></i> Zero Third-Party Ad Cookies
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-database" style="color:#00C853;"></i> Essential Client State Only
+                </span>
+                <span style="background:#ffffff; border:1px solid #e2e8f0; border-radius:30px; padding:7px 18px; font-size:13px; font-weight:800; color:#2d3748; box-shadow:0 2px 8px rgba(0,0,0,0.03); display:inline-flex; align-items:center; gap:7px;">
+                    <i class="fas fa-calendar-check" style="color:#00C853;"></i> Last Updated: September 13, 2026
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 — COOKIE SUMMARY -->
+    <section style="padding:60px 0; background:#f8fafc; border-top:1px solid #edf2f7; border-bottom:1px solid #edf2f7;" id="glance">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="margin-bottom:32px;">
+                <h2>Cookie Policy at a <span>Glance</span></h2>
+                <p>Everything you need to know about our data storage footprint.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;" data-aos="fade-up">
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">01</span>
+                        <i class="fas fa-ban" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">NO AD TRACKERS</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">We never use Facebook Pixels, Google Remarketing, or third-party ad networks to monitor your legal inquiries.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">02</span>
+                        <i class="fas fa-sliders" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">FUNCTIONAL STORAGE</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Browser localStorage is used solely for client features, such as your font size, UI themes, or local search caching.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">03</span>
+                        <i class="fas fa-network-wired" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">CDN EDGE CACHING</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">Third-party CDNs (Cloudflare, cdnjs) may log standard IP headers solely for DDoS mitigation and speed optimization.</p>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 15px rgba(0,0,0,0.02); transition:0.3s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='translateY(0)'">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; font-weight:900; color:#00C853; letter-spacing:1px; background:rgba(0,200,83,0.1); padding:4px 10px; border-radius:14px;">04</span>
+                        <i class="fas fa-trash-can" style="color:#00C853; font-size:16px;"></i>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:800; color:var(--dark); margin:0 0 8px;">USER CONTROL</h3>
+                    <p style="font-size:13.5px; color:#555; line-height:1.65; margin:0;">You can clear or disable browser storage at any time through your browser settings without losing access to legal guides.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — MAIN POLICY SECTIONS WITH SIDEBAR -->
+    <section class="privacy-layout" style="padding: 80px 0 120px;">
+        <div class="container" style="display:flex; gap:50px; align-items:flex-start;">
+            
+            <!-- STICKY SIDEBAR -->
+            <aside class="privacy-sidebar" id="cookieDesktopToc">
+                <div class="privacy-sidebar-inner" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:20px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,0.03);">
+                    <div style="font-size:12px; font-weight:900; color:#00C853; letter-spacing:1px; margin-bottom:14px; text-transform:uppercase;">Sections</div>
+                    <ul class="privacy-toc-list" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+                        <li><a href="#sec-1" class="privacy-toc-link active"><span class="toc-num">01</span> What Are Cookies</a></li>
+                        <li><a href="#sec-2" class="privacy-toc-link"><span class="toc-num">02</span> Zero Tracking Policy</a></li>
+                        <li><a href="#sec-3" class="privacy-toc-link"><span class="toc-num">03</span> Functional Storage</a></li>
+                        <li><a href="#sec-4" class="privacy-toc-link"><span class="toc-num">04</span> Third-Party CDNs</a></li>
+                        <li><a href="#sec-5" class="privacy-toc-link"><span class="toc-num">05</span> Analytics Transparency</a></li>
+                        <li><a href="#sec-6" class="privacy-toc-link"><span class="toc-num">06</span> How to Clear Cookies</a></li>
+                        <li><a href="#sec-7" class="privacy-toc-link"><span class="toc-num">07</span> Policy Updates</a></li>
+                        <li><a href="#sec-8" class="privacy-toc-link"><span class="toc-num">08</span> Privacy Inquiry Desk</a></li>
+                        <li><a href="#faq" class="privacy-toc-link"><span class="toc-num">09</span> Cookie FAQ</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <div class="privacy-content" style="flex:1; max-width:800px;">
+                
+                <!-- MOBILE TOC DROPDOWN -->
+                <div class="mobile-toc-wrapper" style="display:none; margin-bottom:30px;">
+                    <button type="button" class="mobile-toc-toggle" onclick="toggleCookieMobileToc()" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:16px 20px; font-weight:800; color:#1a202c; cursor:pointer;">
+                        <span><i class="fas fa-list" style="color:var(--primary); margin-right:8px;"></i> Jump to Section</span>
+                        <i class="fas fa-chevron-down" id="cookieMobileTocIcon"></i>
+                    </button>
+                    <div id="cookieMobileTocDropdown" style="display:none; background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; margin-top:8px; padding:16px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+                            <li><a href="#sec-1" class="privacy-toc-link" onclick="toggleCookieMobileToc()">01. What Are Cookies</a></li>
+                            <li><a href="#sec-2" class="privacy-toc-link" onclick="toggleCookieMobileToc()">02. Zero Tracking Policy</a></li>
+                            <li><a href="#sec-3" class="privacy-toc-link" onclick="toggleCookieMobileToc()">03. Functional Storage</a></li>
+                            <li><a href="#sec-4" class="privacy-toc-link" onclick="toggleCookieMobileToc()">04. Third-Party CDNs</a></li>
+                            <li><a href="#sec-5" class="privacy-toc-link" onclick="toggleCookieMobileToc()">05. Analytics Transparency</a></li>
+                            <li><a href="#sec-6" class="privacy-toc-link" onclick="toggleCookieMobileToc()">06. How to Clear Cookies</a></li>
+                            <li><a href="#sec-7" class="privacy-toc-link" onclick="toggleCookieMobileToc()">07. Policy Updates</a></li>
+                            <li><a href="#sec-8" class="privacy-toc-link" onclick="toggleCookieMobileToc()">08. Privacy Inquiry Desk</a></li>
+                            <li><a href="#faq" class="privacy-toc-link" onclick="toggleCookieMobileToc()">09. Cookie FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SECTION 1 -->
+                <article class="privacy-section-card" id="sec-1" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 01</span>
+                        <h2 class="privacy-title">What Are Cookies & Local Browser Storage</h2>
+                    </div>
+                    <p class="privacy-text">
+                        A cookie is a small alphanumeric text file stored on your computer or mobile device by a web server when you visit an online portal. Web technologies also utilize HTML5 <strong>localStorage</strong> and <strong>sessionStorage</strong> to retain temporary client preferences directly within your browser without sending them across every network request.
+                    </p>
+                </article>
+
+                <!-- SECTION 2 -->
+                <article class="privacy-section-card" id="sec-2" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 02</span>
+                        <h2 class="privacy-title">NYAYI's Zero First-Party Tracking Standard</h2>
+                    </div>
+                    <p class="privacy-text">
+                        Legal inquiries often involve sensitive, personal, or urgent circumstances—such as marital disputes, criminal accusations, employment grievances, or financial fraud. Citizens seeking legal knowledge must have confidence that their browsing habits are not being monetized or profiled.
+                    </p>
+                    <p class="privacy-text">
+                        <strong>NYAYI does not set any first-party advertising or tracking cookies.</strong> When you explore legal terms in our dictionary, examine rights under the Constitution, or compare BNS and IPC codes, your search queries are not tied to an advertising identifier or sold to data brokers.
+                    </p>
+                </article>
+
+                <!-- SECTION 3 -->
+                <article class="privacy-section-card" id="sec-3" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 03</span>
+                        <h2 class="privacy-title">Essential Functional Storage</h2>
+                    </div>
+                    <p class="privacy-text">
+                        We may store minimal, non-personally identifiable keys inside your browser's local storage solely to provide core interface convenience, including:
+                    </p>
+                    <ul class="privacy-list" style="padding-left:22px; margin:14px 0; font-size:14.5px; color:#4a5568; line-height:1.75;">
+                        <li><strong>UI Preference State:</strong> Retaining theme preferences (e.g., dark/light view modes if selected) or accordion collapse states.</li>
+                        <li><strong>Search Engine Cache:</strong> Client-side indexing caches to ensure instantaneous dictionary filtering without unnecessary server latency.</li>
+                    </ul>
+                </article>
+
+                <!-- SECTION 4 -->
+                <article class="privacy-section-card" id="sec-4" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 04</span>
+                        <h2 class="privacy-title">Third-Party CDNs & Edge Infrastructure</h2>
+                    </div>
+                    <p class="privacy-text">
+                        To guarantee sub-second load speeds across all 28 Indian states and Union Territories, NYAYI utilizes globally distributed Content Delivery Networks (CDNs), including <strong>Google Fonts</strong>, <strong>cdnjs (Cloudflare)</strong>, and <strong>FontAwesome CDN</strong>.
+                    </p>
+                    <p class="privacy-text">
+                        When your browser fetches style files or font packages from these edge providers, their network servers process standard HTTP request headers (including IP address and user-agent) strictly for secure transport and caching. These providers do not plant commercial advertising cookies via NYAYI.
+                    </p>
+                </article>
+
+                <!-- SECTION 5 -->
+                <article class="privacy-section-card" id="sec-5" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 05</span>
+                        <h2 class="privacy-title">Analytics & Telemetry Transparency</h2>
+                    </div>
+                    <p class="privacy-text">
+                        If server analytics or edge telemetry tools are active, they evaluate strictly aggregated metrics (e.g., page view volumes, server error codes, response latencies) without recording personal identifiers or private statutory searches. We do not utilize cross-app tracking SDKs or session recording scripts.
+                    </p>
+                </article>
+
+                <!-- SECTION 6 -->
+                <article class="privacy-section-card" id="sec-6" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 06</span>
+                        <h2 class="privacy-title">How to Block or Clear Browser Storage</h2>
+                    </div>
+                    <p class="privacy-text">
+                        You have total autonomy over browser storage. You can configure your browser (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge) to reject all cookies or clear local storage upon exiting:
+                    </p>
+                    <ul class="privacy-list" style="padding-left:22px; margin:14px 0; font-size:14.5px; color:#4a5568; line-height:1.75;">
+                        <li><strong>Google Chrome:</strong> Settings &rarr; Privacy and security &rarr; Third-party cookies &rarr; Clear browsing data.</li>
+                        <li><strong>Mozilla Firefox:</strong> Settings &rarr; Privacy & Security &rarr; Cookies and Site Data &rarr; Clear Data.</li>
+                        <li><strong>Apple Safari:</strong> Preferences &rarr; Privacy &rarr; Manage Website Data &rarr; Remove All.</li>
+                    </ul>
+                    <p class="privacy-text" style="font-size:13.5px; color:#64748b;">
+                        <em>Note: Clearing local storage will not affect your ability to browse statutes, dictionary terms, or procedural guides on NYAYI.</em>
+                    </p>
+                </article>
+
+                <!-- SECTION 7 -->
+                <article class="privacy-section-card" id="sec-7" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 07</span>
+                        <h2 class="privacy-title">Updates to This Policy</h2>
+                    </div>
+                    <p class="privacy-text">
+                        We periodically review this Cookie Policy to reflect technical upgrades, security enhancements, or statutory guidelines issued by the Ministry of Electronics and Information Technology (MeitY) under the Digital Personal Data Protection Act, 2023. Any modifications become effective immediately upon being published on this page with an updated timestamp.
+                    </p>
+                </article>
+
+                <!-- SECTION 8 -->
+                <article class="privacy-section-card" id="sec-8" data-aos="fade-up">
+                    <div class="privacy-header">
+                        <span class="privacy-badge">SECTION 08</span>
+                        <h2 class="privacy-title">Privacy Inquiry & Contact Desk</h2>
+                    </div>
+                    <p class="privacy-text">
+                        If you have inquiries regarding our cookie standards, local storage handling, or data security practices, please contact our team directly via our <a href="./contact.html" style="color:var(--primary-dark); font-weight:700;">Contact Us</a> page or call +91 9598042676.
+                    </p>
+                </article>
+
+                <!-- FAQ ACCORDION -->
+                <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent; scroll-margin-top: 110px;" data-aos="fade-up">
+                    <div class="section-title">
+                        <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
+                            <i class="fas fa-circle-question"></i> COOKIE CLARIFICATIONS
+                        </span>
+                        <h2>Cookie Policy FAQ</h2>
+                        <p>Common questions answered regarding website tracking and storage.</p>
+                    </div>
+
+                    <div class="faq-accordion" style="max-width:900px; margin:0 auto;">
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Does NYAYI require me to accept tracking cookies to read laws?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    No. Unlike commercial portals that force cookie banners and wall content behind tracking consent, all public legal statutes, guides, and dictionary definitions on nyayi.in are accessible without accepting any tracking cookies.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Does NYAYI sell user data to advertising brokers?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    Never. NYAYI does not monetize citizen inquiries, sell analytics profiles, or share IP logs with commercial advertising brokers.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <h3>Can I use NYAYI in Private / Incognito mode?</h3>
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">
+                                    Yes! NYAYI functions completely in Private or Incognito browsing modes across all major mobile and desktop browsers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACT BOX -->
+                <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:36px; margin-top:60px; box-shadow:0 8px 30px rgba(0,0,0,0.03);" data-aos="fade-up">
+                    <h3 style="font-size:20px; font-weight:900; color:var(--dark); margin:0 0 10px;">Contact Our Technical & Privacy Desk</h3>
+                    <p style="font-size:14px; color:#555; line-height:1.6; margin:0 0 20px;">
+                        Reach out directly to Farhan Khan & Kamran Sheikh regarding our data privacy standard.
+                    </p>
+                    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                        <a href="./contact.html" class="btn-launch" style="padding:12px 28px; font-size:14px;">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                        <a href="./privacy.html" class="btn-outline" style="padding:12px 24px; font-size:14px; color:var(--dark); border-color:#cbd5e1;">
+                            <i class="fas fa-shield-halved" style="color:var(--primary);"></i> View Privacy Policy
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleCookieMobileToc() {
+            const dd = document.getElementById('cookieMobileTocDropdown');
+            const icon = document.getElementById('cookieMobileTocIcon');
+            if (dd) {
+                const isOpen = dd.style.display === 'block';
+                dd.style.display = isOpen ? 'none' : 'block';
+                if (icon) icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('#cookieDesktopToc .privacy-toc-link, #cookieMobileTocDropdown .privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card, #faq');
+
+            function updateCookieToc() {
+                let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const absoluteTop = rect.top + scrollPos - 140;
+                    if (scrollPos >= absoluteTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (current && link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateCookieToc, { passive: true });
+            updateCookieToc();
+        });
+    </script>
+
+    ${renderFooter(0)}
+    `;
+
 
     const disclaimerHub = `
     ${renderHead('Legal Disclaimer | NYAYI', 'NYAYI Legal Disclaimer. NYAYI provides technology-assisted legal information and educational tools, not formal advocate representation or legal advice.', 'NYAYI legal disclaimer, legal information India, AI legal disclaimer, advocate consultation, Indian law guidance, BNS disclaimer', '/disclaimer.html', 0)}
@@ -6874,26 +7729,26 @@ function buildFeaturesAndOther() {
 
                         <!-- EMERGENCY GRID -->
                         <div class="emergency-grid">
-                            <div class="emergency-card">
+                            <a href="tel:112" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">112</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">National Emergency</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Police, Fire & Medical Support (All India)</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Police, Fire & Medical Support (Tap to Call)</p>
+                            </a>
+                            <a href="tel:1090" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1090 / 181</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">Women Helpline</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Women in Distress & Domestic Safety</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Women in Distress & Safety (Tap to Call)</p>
+                            </a>
+                            <a href="tel:1930" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#dc2626; margin-bottom:4px;">1930</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">Cyber Crime Helpline</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Financial Frauds & Cyber Harassment</p>
-                            </div>
-                            <div class="emergency-card">
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Financial Frauds & Cyber Report (Tap to Call)</p>
+                            </a>
+                            <a href="tel:15100" class="emergency-card" style="text-decoration:none; display:block;">
                                 <div style="font-size:28px; font-weight:900; color:#00C853; margin-bottom:4px;">15100</div>
                                 <div style="font-weight:800; color:#1a202c; font-size:15px;">NALSA Legal Aid</div>
-                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Free Legal Services for Eligible Citizens</p>
-                            </div>
+                                <p style="font-size:12px; color:#64748b; margin:4px 0 0;">Free Legal Aid Toll-Free (Tap to Call)</p>
+                            </a>
                         </div>
 
                         <p class="privacy-text" style="font-size:13.5px; color:#7f1d1d; margin-top:10px;">
@@ -7132,7 +7987,7 @@ function buildFeaturesAndOther() {
             </section>
 
             <!-- 05 — FREQUENTLY ASKED QUESTIONS (10 ACCORDION ITEMS) -->
-            <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent;" data-aos="fade-up">
+            <section class="faq" id="faq" style="margin-top:70px; padding:0; background:transparent; scroll-margin-top: 110px;" data-aos="fade-up">
                 <div class="section-title">
                     <span class="cp-role" style="display:inline-block; margin-bottom:12px; background:rgba(0,200,83,0.12); color:var(--primary-dark); font-weight:800;">
                         <i class="fas fa-circle-question"></i> CLARIFICATIONS & ANSWERS
@@ -7359,25 +8214,30 @@ function buildFeaturesAndOther() {
 
         // Active Section Highlight on Scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const tocLinks = document.querySelectorAll('.privacy-sidebar .privacy-toc-link');
-            const sections = document.querySelectorAll('.privacy-section-card');
+            const tocLinks = document.querySelectorAll('.privacy-sidebar .privacy-toc-link, #disclaimerMobileTocDropdown .privacy-toc-link');
+            const sections = document.querySelectorAll('.privacy-section-card, #lawyer-scenarios, #faq');
 
-            window.addEventListener('scroll', function() {
+            function updateDisclaimerToc() {
                 let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 140;
-                    if (window.pageYOffset >= sectionTop) {
+                    const rect = section.getBoundingClientRect();
+                    const absoluteTop = rect.top + scrollPos - 140;
+                    if (scrollPos >= absoluteTop) {
                         current = section.getAttribute('id');
                     }
                 });
 
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
+                    if (current && link.getAttribute('href') === '#' + current) {
                         link.classList.add('active');
                     }
                 });
-            });
+            }
+
+            window.addEventListener('scroll', updateDisclaimerToc, { passive: true });
+            updateDisclaimerToc();
         });
 
         // FAQ Accordion
@@ -7429,8 +8289,8 @@ function buildFeaturesAndOther() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'disclaimer.html'), disclaimerHub, 'utf8');
     fs.writeFileSync(path.join(ROOT_DIR, 'legal-disclaimer.html'), disclaimerHub, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), disclaimerHtml, 'utf8');
-    fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), disclaimerHtml, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'terms-of-use.html'), termsOfUseHub, 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'cookie-policy.html'), cookiePolicyHub, 'utf8');
     console.log('Generated: disclaimer.html & legal-disclaimer.html');
 
 
@@ -9741,9 +10601,14 @@ function buildFeaturesAndOther() {
 
     function handleArticleSearch() { runArticleSearch(); }
     function filterArticleCat(catKey, el) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         if (el) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
+        } else {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                const oc = b.getAttribute('onclick') || '';
+                if (oc.includes("'" + catKey + "'")) b.classList.add('active');
+            });
         }
         runArticleSearch();
     }
@@ -9779,6 +10644,7 @@ function buildFeaturesAndOther() {
 
     fs.writeFileSync(path.join(ROOT_DIR, 'articles.html'), articlesHub, 'utf8');
     let blogSubfolderHub = articlesHub
+        .replace(/href="\.\/"/g, 'href="../"')
         .replace(/href="\.\/css\//g, 'href="../css/')
         .replace(/href="\.\/favicon/g, 'href="../favicon')
         .replace(/href="\.\/apple/g, 'href="../apple')
@@ -9795,6 +10661,7 @@ function buildFeaturesAndOther() {
         .replace(/href="\.\/legal-disclaimer\.html"/g, 'href="../legal-disclaimer.html"')
         .replace(/href="\.\/disclaimer\.html"/g, 'href="../disclaimer.html"')
         .replace(/href="\.\/terms-of-use\.html"/g, 'href="../terms-of-use.html"')
+        .replace(/href="\.\/cookie-policy\.html"/g, 'href="../cookie-policy.html"')
         .replace(/href="articles\//g, 'href="');
     fs.writeFileSync(path.join(ROOT_DIR, 'blog/index.html'), blogSubfolderHub, 'utf8');
 
@@ -9919,11 +10786,14 @@ function buildFeaturesAndOther() {
         'https://nyayi.in/app.html',
         'https://nyayi.in/privacy.html',
         'https://nyayi.in/disclaimer.html',
-        'https://nyayi.in/legal-disclaimer.html',
+        'https://nyayi.in/terms-of-use.html',
+        'https://nyayi.in/cookie-policy.html',
         ...dictionary.map(d => `https://nyayi.in/dictionary/${d.slug}.html`),
         ...rights.map(r => `https://nyayi.in/know-your-rights/${r.slug}.html`),
         ...laws.map(l => `https://nyayi.in/laws/${l.slug}.html`),
-        ...guides.map(g => `https://nyayi.in/legal-guides/${g.slug}.html`)
+        ...guides.map(g => `https://nyayi.in/legal-guides/${g.slug}.html`),
+        ...expandedArticles.map(a => `https://nyayi.in/articles/${a.slug}.html`),
+        ...expandedArticles.map(a => `https://nyayi.in/blog/${a.slug}.html`)
     ];
 
     const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

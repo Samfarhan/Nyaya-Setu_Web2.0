@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=10.0">
+    <link rel="stylesheet" href="../css/styles.css?v=11.0">
     
     <script type="application/ld+json">
 {
@@ -83,7 +83,7 @@
     
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-        <a href="./" onclick="toggleMenu()" class="">Home</a>
+        <a href="../" onclick="toggleMenu()" class="">Home</a>
         <a href="../features.html" onclick="toggleMenu()" class="">Features</a>
         <a href="../dictionary.html" onclick="toggleMenu()" class="">Legal Dictionary</a>
         <a href="../rights.html" onclick="toggleMenu()" class="">Know Your Rights</a>
@@ -105,12 +105,12 @@
 
     <header>
         <div class="nav-capsule">
-            <a href="./" class="logo">
+            <a href="../" class="logo">
                 <i class="fas fa-scale-balanced" style="color:var(--primary);"></i> NYAYI<span>.</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="./" class="">Home</a></li>
+                <li><a href="../" class="">Home</a></li>
                 <li><a href="../features.html" class="">Features</a></li>
                 <li><a href="../dictionary.html" class="">Dictionary</a></li>
                 <li><a href="../rights.html" class="">Rights</a></li>
@@ -1238,9 +1238,14 @@
 
     function handleArticleSearch() { runArticleSearch(); }
     function filterArticleCat(catKey, el) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         if (el) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
+        } else {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                const oc = b.getAttribute('onclick') || '';
+                if (oc.includes("'" + catKey + "'")) b.classList.add('active');
+            });
         }
         runArticleSearch();
     }
@@ -1286,7 +1291,7 @@
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
-                    <li><a href="./">Home</a></li>
+                    <li><a href="../">Home</a></li>
                     <li><a href="../features.html">Features</a></li>
                     <li><a href="../app.html">Mobile App</a></li>
                     <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
@@ -1312,6 +1317,7 @@
                     <li><a href="../privacy.html">Privacy Policy</a></li>
                     <li><a href="../terms-of-use.html">Terms of Use</a></li>
                     <li><a href="../disclaimer.html">Legal Disclaimer</a></li>
+                    <li><a href="../cookie-policy.html">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -1343,20 +1349,33 @@
         }
 
         function toggleFaq(element) {
-            const faqItem = element.closest ? element.closest('.faq-item') : element.parentElement;
-            if (!faqItem) return;
-            const body = faqItem.querySelector('.faq-body');
-            const isActive = faqItem.classList.contains('active');
-
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                const b = item.querySelector('.faq-body');
-                if (b) b.style.maxHeight = null;
-            });
-
-            if (!isActive && body) {
-                faqItem.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
+            // Pattern 1: .faq-item with .faq-body (used by index, dictionary, rights, laws, articles)
+            const faqItem = element.closest ? element.closest('.faq-item') : null;
+            if (faqItem) {
+                const body = faqItem.querySelector('.faq-body');
+                const isActive = faqItem.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const b = item.querySelector('.faq-body');
+                    if (b) b.style.maxHeight = null;
+                });
+                if (!isActive && body) {
+                    faqItem.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+                return;
+            }
+            // Pattern 2: button > nextElementSibling (used by guides, privacy, disclaimer FAQs)
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            if (content) {
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
             }
         }
 
