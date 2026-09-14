@@ -166,9 +166,7 @@ function renderHeader(activePage = '', depth = 0) {
             </ul>
 
             <div style="display:flex; align-items:center; gap:8px;">
-                <a href="${p}auth.html" class="btn-auth-nav" style="padding: 9px 18px; border-radius: 20px; font-weight: 700; font-size: 13.5px; text-decoration: none; color: #fff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 6px; transition: all 0.2s;">
-                    <i class="fas fa-user-circle" style="color:var(--primary);"></i> Login
-                </a>
+                <a href="${p}auth.html" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
                     <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
