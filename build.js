@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 
 const ROOT_DIR = __dirname;
@@ -133,6 +133,9 @@ function renderHeader(activePage = '', depth = 0) {
         </div>
 
         <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="${p}auth.html" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;">
+            <i class="fas fa-user-circle"></i> Login / Sign Up
+        </a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
             <i class="fas fa-rocket"></i> Launch Web AI
         </a>
@@ -162,7 +165,10 @@ function renderHeader(activePage = '', depth = 0) {
                 <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
 
-            <div style="display:flex; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <a href="${p}auth.html" class="btn-auth-nav" style="padding: 9px 18px; border-radius: 20px; font-weight: 700; font-size: 13.5px; text-decoration: none; color: #fff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 6px; transition: all 0.2s;">
+                    <i class="fas fa-user-circle" style="color:var(--primary);"></i> Login
+                </a>
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
                     <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
