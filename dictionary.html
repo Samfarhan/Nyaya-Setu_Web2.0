@@ -2,6 +2,14 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Clean URL Script for Extensionless URLs & SEO -->
+    <script>
+        if (window.location.pathname.endsWith('.html')) {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            if (!cleanPath) cleanPath = '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQN8MSMZE"></script>
     <script>
@@ -19,11 +27,11 @@
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
-    <link rel="canonical" href="https://nyayi.in/dictionary.html">
+    <link rel="canonical" href="https://nyayi.in/dictionary">
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nyayi.in/dictionary.html">
+    <meta property="og:url" content="https://nyayi.in/dictionary">
     <meta property="og:title" content="Indian Legal Dictionary – 1,200+ Legal Terms Explained | NYAYI">
     <meta property="og:description" content="Explore the comprehensive Indian Legal Dictionary by NYAYI. Instant search and plain-language legal definitions across Criminal Law, BNS 2023, BNSS, Evidence, Civil Code, Constitutional Writs, Property, Contracts, and Latin Maxims.">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
@@ -80,7 +88,7 @@
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://nyayi.in/dictionary.html?q={search_term_string}",
+    "target": "https://nyayi.in/dictionary?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -93,21 +101,21 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
         <a href="./" onclick="toggleMenu()" class="">Home</a>
-        <a href="./features.html" onclick="toggleMenu()" class="">Features</a>
-        <a href="./dictionary.html" onclick="toggleMenu()" class="active">Legal Dictionary</a>
-        <a href="./rights.html" onclick="toggleMenu()" class="">Know Your Rights</a>
+        <a href="./features" onclick="toggleMenu()" class="">Features</a>
+        <a href="./dictionary" onclick="toggleMenu()" class="active">Legal Dictionary</a>
+        <a href="./rights" onclick="toggleMenu()" class="">Know Your Rights</a>
         
         <div class="mobile-group">
             <span class="mobile-group-label"><i class="fas fa-newspaper" style="color:var(--primary);"></i> Blog & Resources</span>
             <div class="mobile-group-links">
-                <a href="./laws.html" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                <a href="./guides.html" onclick="toggleMenu()" class=""><i class="fas fa-compass"></i> Legal Guides</a>
-                <a href="./articles.html" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                <a href="./laws" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                <a href="./guides" onclick="toggleMenu()" class=""><i class="fas fa-compass"></i> Legal Guides</a>
+                <a href="./articles" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
             </div>
         </div>
 
-        <a href="./app.html" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
-        <a href="./auth.html" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;"><i class="fas fa-user-circle"></i> Login / Sign Up</a>
+        <a href="./app" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="./auth" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;"><i class="fas fa-user-circle"></i> Login / Sign Up</a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
             <i class="fas fa-rocket"></i> Launch Web AI
         </a>
@@ -130,24 +138,24 @@
             
             <ul class="nav-links">
                 <li><a href="./" class="">Home</a></li>
-                <li><a href="./features.html" class="">Features</a></li>
-                <li><a href="./dictionary.html" class="active">Dictionary</a></li>
-                <li><a href="./rights.html" class="">Rights</a></li>
+                <li><a href="./features" class="">Features</a></li>
+                <li><a href="./dictionary" class="active">Dictionary</a></li>
+                <li><a href="./rights" class="">Rights</a></li>
                 <li class="nav-dropdown" id="blogDropdown">
                     <button type="button" class="dropdown-toggle " onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-panel">
-                        <a href="./laws.html" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                        <a href="./guides.html" class=""><i class="fas fa-compass"></i> Legal Guides</a>
-                        <a href="./articles.html" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                        <a href="./laws" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                        <a href="./guides" class=""><i class="fas fa-compass"></i> Legal Guides</a>
+                        <a href="./articles" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
                     </div>
                 </li>
-                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
+                <li><a href="./app" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center; gap:8px;">
-                <a href="./auth.html" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
+                <a href="./auth" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
                     <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
@@ -238,7 +246,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Latin Legal Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/ab-initio.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ab-initio" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -257,7 +265,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Civil Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/abatement-of-suit.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/abatement-of-suit" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -276,7 +284,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/abduction.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/abduction" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -295,7 +303,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/abetment.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/abetment" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -314,7 +322,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Administrative Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/abeyance.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/abeyance" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -333,7 +341,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/absconding-accused.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/absconding-accused" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -352,7 +360,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Civil Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/absolute-privilege.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/absolute-privilege" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -371,7 +379,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/acceptance.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/acceptance" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -390,7 +398,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/accessory-after-the-fact.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/accessory-after-the-fact" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -409,7 +417,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Evidence Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/accomplice.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/accomplice" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -428,7 +436,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/accord-and-satisfaction.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/accord-and-satisfaction" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -447,7 +455,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/accused.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/accused" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -466,7 +474,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/acquittal.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/acquittal" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -485,7 +493,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Civil Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/act-of-god.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/act-of-god" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -504,7 +512,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Property Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/actionable-claim.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/actionable-claim" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -523,7 +531,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Latin Legal Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/actus-reus.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/actus-reus" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -542,7 +550,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Latin Legal Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/ad-hoc.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ad-hoc" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -561,7 +569,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Latin Legal Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/ad-idem.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ad-idem" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -580,7 +588,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Civil Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/ad-interim-injunction.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ad-interim-injunction" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -599,7 +607,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Court Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/adjournment.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/adjournment" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -618,7 +626,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Court Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/adjournment-sine-die.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/adjournment-sine-die" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -637,7 +645,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Litigation Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/adjudication.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/adjudication" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -656,7 +664,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Court Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/administering-oath.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/administering-oath" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -675,7 +683,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Administrative Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/administrative-law.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/administrative-law" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -694,7 +702,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Property Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/administrator.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/administrator" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -713,7 +721,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Evidence Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/admissibility-of-evidence.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/admissibility-of-evidence" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -732,7 +740,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Evidence Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/admission.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/admission" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -751,7 +759,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Family Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/adoption.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/adoption" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -770,7 +778,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Property Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/adverse-possession.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/adverse-possession" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -789,7 +797,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Litigation Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/advocate.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/advocate" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -808,7 +816,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Constitutional Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/advocate-general.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/advocate-general" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -827,7 +835,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Litigation Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/advocate-on-record.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/advocate-on-record" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -846,7 +854,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Legal Drafting</span>
                 </div>
                 <div>
-                    <a href="dictionary/affidavit.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/affidavit" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -865,7 +873,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Court Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/affirmation.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/affirmation" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -884,7 +892,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/age-of-consent.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/age-of-consent" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -903,7 +911,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/agent.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/agent" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -922,7 +930,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Litigation Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/aggrieved-person.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/aggrieved-person" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -941,7 +949,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/agreement.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/agreement" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -960,7 +968,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/agreement-in-restraint-of-legal-proceedings.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/agreement-in-restraint-of-legal-proceedings" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -979,7 +987,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/agreement-in-restraint-of-marriage.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/agreement-in-restraint-of-marriage" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -998,7 +1006,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/agreement-in-restraint-of-trade.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/agreement-in-restraint-of-trade" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1017,7 +1025,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/aid-and-abet.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/aid-and-abet" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1036,7 +1044,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/aleatory-contract.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/aleatory-contract" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1055,7 +1063,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Evidence Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/alibi.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/alibi" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1074,7 +1082,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Property Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/alienation-of-property.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/alienation-of-property" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1093,7 +1101,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Family Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/alimony.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/alimony" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1112,7 +1120,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Litigation Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/allegation.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/allegation" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1131,7 +1139,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Constitutional Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/allegiance.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/allegiance" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1150,7 +1158,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Corporate & Commercial</span>
                 </div>
                 <div>
-                    <a href="dictionary/allocation-of-shares.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/allocation-of-shares" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1169,7 +1177,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Corporate & Commercial</span>
                 </div>
                 <div>
-                    <a href="dictionary/alter-ego.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/alter-ego" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1188,7 +1196,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Arbitration & ADR</span>
                 </div>
                 <div>
-                    <a href="dictionary/alternative-dispute-resolution.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/alternative-dispute-resolution" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1207,7 +1215,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Contract Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/ambiguity.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ambiguity" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1226,7 +1234,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Latin Legal Terms</span>
                 </div>
                 <div>
-                    <a href="dictionary/amicus-curiae.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/amicus-curiae" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1245,7 +1253,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Family Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/ancillary-relief.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/ancillary-relief" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1264,7 +1272,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Environmental Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/animal-welfare-laws.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/animal-welfare-laws" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1283,7 +1291,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Family Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/annulment-of-marriage.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/annulment-of-marriage" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1302,7 +1310,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Corporate & Commercial</span>
                 </div>
                 <div>
-                    <a href="dictionary/anti-competitive-agreement.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/anti-competitive-agreement" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1321,7 +1329,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Constitutional Law</span>
                 </div>
                 <div>
-                    <a href="dictionary/anti-defection-law.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/anti-defection-law" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1340,7 +1348,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Banking & Finance</span>
                 </div>
                 <div>
-                    <a href="dictionary/anti-money-laundering.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/anti-money-laundering" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1359,7 +1367,7 @@
                     <span><i class="fas fa-tag" style="color:#a0aec0;"></i> Criminal Procedure</span>
                 </div>
                 <div>
-                    <a href="dictionary/anticipatory-bail.html" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary/anticipatory-bail" class="card-link" style="font-size:14px; font-weight:800;">Read Full Explanation <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1659,32 +1667,32 @@
                 <h4>Platform</h4>
                 <ul>
                     <li><a href="./">Home</a></li>
-                    <li><a href="./features.html">Features</a></li>
-                    <li><a href="./app.html">Mobile App</a></li>
+                    <li><a href="./features">Features</a></li>
+                    <li><a href="./app">Mobile App</a></li>
                     <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="./dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="./rights.html">Know Rights</a></li>
-                    <li><a href="./laws.html">Laws Library</a></li>
-                    <li><a href="./guides.html">Legal Guides</a></li>
-                    <li><a href="./articles.html">Articles & Updates</a></li>
+                    <li><a href="./dictionary">Legal Dictionary</a></li>
+                    <li><a href="./rights">Know Rights</a></li>
+                    <li><a href="./laws">Laws Library</a></li>
+                    <li><a href="./guides">Legal Guides</a></li>
+                    <li><a href="./articles">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact & Support</h4>
                 <ul>
-                    <li><a href="./contact.html">Contact Us</a></li>
+                    <li><a href="./contact">Contact Us</a></li>
                     <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
-                    <li><a href="./privacy.html">Privacy Policy</a></li>
-                    <li><a href="./terms-of-use.html">Terms of Use</a></li>
-                    <li><a href="./disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="./cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="./privacy">Privacy Policy</a></li>
+                    <li><a href="./terms-of-use">Terms of Use</a></li>
+                    <li><a href="./disclaimer">Legal Disclaimer</a></li>
+                    <li><a href="./cookie-policy">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>

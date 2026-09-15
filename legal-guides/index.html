@@ -2,6 +2,14 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Clean URL Script for Extensionless URLs & SEO -->
+    <script>
+        if (window.location.pathname.endsWith('.html')) {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            if (!cleanPath) cleanPath = '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Legal Guides & Practical How-To Hub | NYAYI Legal AI</title>
@@ -10,11 +18,11 @@
     <meta name="author" content="Farhan Khan">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English, Hindi">
-    <link rel="canonical" href="https://nyayi.in/guides.html">
+    <link rel="canonical" href="https://nyayi.in/guides">
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nyayi.in/guides.html">
+    <meta property="og:url" content="https://nyayi.in/guides">
     <meta property="og:title" content="Legal Guides & Practical How-To Hub | NYAYI Legal AI">
     <meta property="og:description" content="Step-by-step guides on filing FIRs, reporting cyber crimes, obtaining bail, consumer complaints, and court procedures in India.">
     <meta property="og:image" content="https://nyayi.in/images/logo.png">
@@ -71,7 +79,7 @@
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://nyayi.in/dictionary.html?q={search_term_string}",
+    "target": "https://nyayi.in/dictionary?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -84,20 +92,20 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
         <a href="../" onclick="toggleMenu()" class="">Home</a>
-        <a href="../features.html" onclick="toggleMenu()" class="">Features</a>
-        <a href="../dictionary.html" onclick="toggleMenu()" class="">Legal Dictionary</a>
-        <a href="../rights.html" onclick="toggleMenu()" class="">Know Your Rights</a>
+        <a href="../features" onclick="toggleMenu()" class="">Features</a>
+        <a href="../dictionary" onclick="toggleMenu()" class="">Legal Dictionary</a>
+        <a href="../rights" onclick="toggleMenu()" class="">Know Your Rights</a>
         
         <div class="mobile-group">
             <span class="mobile-group-label"><i class="fas fa-newspaper" style="color:var(--primary);"></i> Blog & Resources</span>
             <div class="mobile-group-links">
-                <a href="../laws.html" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                <a href="../guides.html" onclick="toggleMenu()" class="active"><i class="fas fa-compass"></i> Legal Guides</a>
-                <a href="../articles.html" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                <a href="../laws" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                <a href="../guides" onclick="toggleMenu()" class="active"><i class="fas fa-compass"></i> Legal Guides</a>
+                <a href="../articles" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
             </div>
         </div>
 
-        <a href="../app.html" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="../app" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
             <i class="fas fa-rocket"></i> Launch Web AI
         </a>
@@ -111,20 +119,20 @@
             
             <ul class="nav-links">
                 <li><a href="../" class="">Home</a></li>
-                <li><a href="../features.html" class="">Features</a></li>
-                <li><a href="../dictionary.html" class="">Dictionary</a></li>
-                <li><a href="../rights.html" class="">Rights</a></li>
+                <li><a href="../features" class="">Features</a></li>
+                <li><a href="../dictionary" class="">Dictionary</a></li>
+                <li><a href="../rights" class="">Rights</a></li>
                 <li class="nav-dropdown" id="blogDropdown">
                     <button type="button" class="dropdown-toggle active" onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-panel">
-                        <a href="../laws.html" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                        <a href="../guides.html" class="active"><i class="fas fa-compass"></i> Legal Guides</a>
-                        <a href="../articles.html" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                        <a href="../laws" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                        <a href="../guides" class="active"><i class="fas fa-compass"></i> Legal Guides</a>
+                        <a href="../articles" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
                     </div>
                 </li>
-                <li><a href="../app.html" style="color:var(--primary);" class="">Mobile App</a></li>
+                <li><a href="../app" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center;">
@@ -299,7 +307,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="how-to-file-an-fir.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="how-to-file-an-fir" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -336,7 +344,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="police-refused-fir-remedies.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="police-refused-fir-remedies" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -373,7 +381,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="zero-fir-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="zero-fir-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -410,7 +418,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="efir-registration-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="efir-registration-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -447,7 +455,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="police-arrest-rights-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="police-arrest-rights-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -484,7 +492,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="bail-procedure-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="bail-procedure-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -521,7 +529,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="summons-vs-warrant-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="summons-vs-warrant-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -558,7 +566,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="online-police-complaint.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="online-police-complaint" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -595,7 +603,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="cyber-fraud-reporting-1930.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="cyber-fraud-reporting-1930" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -632,7 +640,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="bank-financial-fraud-recovery.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="bank-financial-fraud-recovery" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -669,7 +677,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="digital-arrest-scam-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="digital-arrest-scam-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -706,7 +714,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="cyberstalking-harassment-remedies.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="cyberstalking-harassment-remedies" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -743,7 +751,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="online-shopping-ecommerce-scam.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="online-shopping-ecommerce-scam" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -780,7 +788,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="sextortion-loan-app-blackmail.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="sextortion-loan-app-blackmail" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -817,7 +825,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="consumer-court-complaint-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="consumer-court-complaint-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -854,7 +862,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="defective-product-refund-claim.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="defective-product-refund-claim" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -891,7 +899,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="rera-builder-delay-complaint.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="rera-builder-delay-complaint" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -928,7 +936,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="medical-negligence-remedies.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="medical-negligence-remedies" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -965,7 +973,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="airline-passenger-rights-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="airline-passenger-rights-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1002,7 +1010,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="tenant-rights-security-deposit.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="tenant-rights-security-deposit" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1039,7 +1047,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="tenant-eviction-legal-notice.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="tenant-eviction-legal-notice" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1076,7 +1084,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="illegal-construction-encroachment.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="illegal-construction-encroachment" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1113,7 +1121,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="housing-society-dispute-resolution.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="housing-society-dispute-resolution" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1150,7 +1158,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="mutual-consent-divorce-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="mutual-consent-divorce-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1187,7 +1195,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="child-custody-guardianship-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="child-custody-guardianship-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1224,7 +1232,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="maintenance-claim-bnss-144.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="maintenance-claim-bnss-144" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1261,7 +1269,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="domestic-violence-protection-order.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="domestic-violence-protection-order" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1298,7 +1306,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="will-estate-planning-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="will-estate-planning-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1335,7 +1343,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="drafting-sending-legal-notice.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="drafting-sending-legal-notice" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1372,7 +1380,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="breach-of-contract-remedies.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="breach-of-contract-remedies" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1409,7 +1417,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="cheque-bounce-138-ni-act.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="cheque-bounce-138-ni-act" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1446,7 +1454,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="trademark-copyright-infringement.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="trademark-copyright-infringement" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1483,7 +1491,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="unpaid-salary-termination-remedies.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="unpaid-salary-termination-remedies" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1520,7 +1528,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="posh-act-workplace-complaint.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="posh-act-workplace-complaint" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1557,7 +1565,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="provident-fund-pf-dispute.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="provident-fund-pf-dispute" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1594,7 +1602,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="gratuity-maternity-benefit-claim.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="gratuity-maternity-benefit-claim" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1631,7 +1639,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="how-to-file-rti-application.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="how-to-file-rti-application" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1668,7 +1676,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="habeas-corpus-writ-petitions.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="habeas-corpus-writ-petitions" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1705,7 +1713,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="free-legal-aid-lsa-act.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="free-legal-aid-lsa-act" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1742,7 +1750,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="traffic-challan-contest-virtual-court.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="traffic-challan-contest-virtual-court" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1779,7 +1787,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="motor-accident-mact-compensation.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="motor-accident-mact-compensation" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1816,7 +1824,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="vehicle-impoundment-license-rights.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="vehicle-impoundment-license-rights" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1853,7 +1861,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="ancestral-property-partition-guide.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="ancestral-property-partition-guide" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1890,7 +1898,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="land-title-verification-checklist.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="land-title-verification-checklist" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1927,7 +1935,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="property-registration-stamp-duty.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="property-registration-stamp-duty" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1964,7 +1972,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="senior-citizen-maintenance-claim.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="senior-citizen-maintenance-claim" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -2001,7 +2009,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="women-sakhi-one-stop-legal-aid.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="women-sakhi-one-stop-legal-aid" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -2382,22 +2390,22 @@
                 <h2 style="font-size:24px; font-weight:900; color:#111;">Explore More NYAYI Knowledge Resources</h2>
             </div>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
-                <a href="../dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="../dictionary" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-book-open" style="font-size:28px; color:#00C853; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Dictionary</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Search 1,000+ Indian legal terms & definitions.</p>
                 </a>
-                <a href="../laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="../laws" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-gavel" style="font-size:28px; color:#3182ce; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Indian Laws Library</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Browse BNS 2023, BNSS 2023, BSA 2023 codes.</p>
                 </a>
-                <a href="../rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="../rights" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-shield-alt" style="font-size:28px; color:#e53e3e; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Know Your Rights</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Citizen rights guide for police, workplace, & family.</p>
                 </a>
-                <a href="../articles.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="../articles" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-newspaper" style="font-size:28px; color:#805ad5; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Articles</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Editorial updates and legal analysis.</p>
@@ -2538,7 +2546,7 @@
                 <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:16px; box-shadow:0 4px 20px rgba(0,200,83,0.4);">
                     <i class="fas fa-robot"></i> Ask NYAYI AI Assistant
                 </a>
-                <a href="../rights.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 30px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                <a href="../rights" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 30px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
                     Explore Citizen Rights
                 </a>
             </div>
@@ -2799,32 +2807,32 @@
                 <h4>Platform</h4>
                 <ul>
                     <li><a href="../">Home</a></li>
-                    <li><a href="../features.html">Features</a></li>
-                    <li><a href="../app.html">Mobile App</a></li>
+                    <li><a href="../features">Features</a></li>
+                    <li><a href="../app">Mobile App</a></li>
                     <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="../dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="../rights.html">Know Rights</a></li>
-                    <li><a href="../laws.html">Laws Library</a></li>
-                    <li><a href="../guides.html">Legal Guides</a></li>
-                    <li><a href="../articles.html">Articles & Updates</a></li>
+                    <li><a href="../dictionary">Legal Dictionary</a></li>
+                    <li><a href="../rights">Know Rights</a></li>
+                    <li><a href="../laws">Laws Library</a></li>
+                    <li><a href="../guides">Legal Guides</a></li>
+                    <li><a href="../articles">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact & Support</h4>
                 <ul>
-                    <li><a href="../contact.html">Contact Us</a></li>
+                    <li><a href="../contact">Contact Us</a></li>
                     <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
-                    <li><a href="../terms-of-use.html">Terms of Use</a></li>
-                    <li><a href="../disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="../privacy">Privacy Policy</a></li>
+                    <li><a href="../terms-of-use">Terms of Use</a></li>
+                    <li><a href="../disclaimer">Legal Disclaimer</a></li>
+                    <li><a href="../cookie-policy">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>

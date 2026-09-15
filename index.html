@@ -2,6 +2,14 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Clean URL Script for Extensionless URLs & SEO -->
+    <script>
+        if (window.location.pathname.endsWith('.html')) {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            if (!cleanPath) cleanPath = '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQN8MSMZE"></script>
     <script>
@@ -80,7 +88,7 @@
   "url": "https://nyayi.in/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://nyayi.in/dictionary.html?q={search_term_string}",
+    "target": "https://nyayi.in/dictionary?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -194,21 +202,21 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
         <a href="./" onclick="toggleMenu()" class="active">Home</a>
-        <a href="./features.html" onclick="toggleMenu()" class="">Features</a>
-        <a href="./dictionary.html" onclick="toggleMenu()" class="">Legal Dictionary</a>
-        <a href="./rights.html" onclick="toggleMenu()" class="">Know Your Rights</a>
+        <a href="./features" onclick="toggleMenu()" class="">Features</a>
+        <a href="./dictionary" onclick="toggleMenu()" class="">Legal Dictionary</a>
+        <a href="./rights" onclick="toggleMenu()" class="">Know Your Rights</a>
         
         <div class="mobile-group">
             <span class="mobile-group-label"><i class="fas fa-newspaper" style="color:var(--primary);"></i> Blog & Resources</span>
             <div class="mobile-group-links">
-                <a href="./laws.html" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                <a href="./guides.html" onclick="toggleMenu()" class=""><i class="fas fa-compass"></i> Legal Guides</a>
-                <a href="./articles.html" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                <a href="./laws" onclick="toggleMenu()" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                <a href="./guides" onclick="toggleMenu()" class=""><i class="fas fa-compass"></i> Legal Guides</a>
+                <a href="./articles" onclick="toggleMenu()" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
             </div>
         </div>
 
-        <a href="./app.html" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
-        <a href="./auth.html" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;">
+        <a href="./app" onclick="toggleMenu()" class="" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="./auth" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;">
             <i class="fas fa-user-circle"></i> Login / Sign Up
         </a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
@@ -233,24 +241,24 @@
             
             <ul class="nav-links">
                 <li><a href="./" class="active">Home</a></li>
-                <li><a href="./features.html" class="">Features</a></li>
-                <li><a href="./dictionary.html" class="">Dictionary</a></li>
-                <li><a href="./rights.html" class="">Rights</a></li>
+                <li><a href="./features" class="">Features</a></li>
+                <li><a href="./dictionary" class="">Dictionary</a></li>
+                <li><a href="./rights" class="">Rights</a></li>
                 <li class="nav-dropdown" id="blogDropdown">
                     <button type="button" class="dropdown-toggle " onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-panel">
-                        <a href="./laws.html" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
-                        <a href="./guides.html" class=""><i class="fas fa-compass"></i> Legal Guides</a>
-                        <a href="./articles.html" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                        <a href="./laws" class=""><i class="fas fa-book-scale"></i> Laws Library</a>
+                        <a href="./guides" class=""><i class="fas fa-compass"></i> Legal Guides</a>
+                        <a href="./articles" class=""><i class="fas fa-newspaper"></i> Articles & Updates</a>
                     </div>
                 </li>
-                <li><a href="./app.html" style="color:var(--primary);" class="">Mobile App</a></li>
+                <li><a href="./app" style="color:var(--primary);" class="">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center; gap:8px;">
-                <a href="./auth.html" id="mainSiteAuthBtn" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
+                <a href="./auth" id="mainSiteAuthBtn" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
                     <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
@@ -339,7 +347,7 @@
                         <h3>Legal Dictionary</h3>
                         <p>Simplified explanations for Latin maxims, BNS/IPC sections, procedural terms, and court jargon in plain English.</p>
                     </div>
-                    <a href="dictionary.html" class="card-link">Explore Dictionary <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary" class="card-link">Explore Dictionary <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
@@ -348,7 +356,7 @@
                         <h3>Know Your Rights</h3>
                         <p>Actionable constitutional safeguards and statutory protections against arbitrary detention, police overreach, and fraud.</p>
                     </div>
-                    <a href="rights.html" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="rights" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
@@ -357,7 +365,7 @@
                         <h3>Indian Laws</h3>
                         <p>Structured breakdowns of major Indian acts, BNS 2023, BNSS 2023, BSA 2023, and the Constitution of India.</p>
                     </div>
-                    <a href="laws.html" class="card-link">Explore Indian Laws <i class="fas fa-arrow-right"></i></a>
+                    <a href="laws" class="card-link">Explore Indian Laws <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
@@ -366,7 +374,7 @@
                         <h3>Legal Guides</h3>
                         <p>Step-by-step practical walk-throughs breaking down police FIRs, bail procedures, cyber fraud reports, and notices.</p>
                     </div>
-                    <a href="guides.html" class="card-link">Explore Guides <i class="fas fa-arrow-right"></i></a>
+                    <a href="guides" class="card-link">Explore Guides <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -382,15 +390,15 @@
 
             <div class="search-box" data-aos="fade-up" style="margin-bottom:30px;">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search legal terms (e.g. FIR, Bail, Injunction, Affidavit)..." onclick="window.location.href='dictionary.html'">
+                <input type="text" placeholder="Search legal terms (e.g. FIR, Bail, Injunction, Affidavit)..." onclick="window.location.href="dictionary"">
             </div>
 
             <div class="terms-preview-grid" data-aos="fade-up" data-aos-delay="100">
-                <a href="dictionary/fir.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> FIR</a><a href="dictionary/bail.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Bail</a><a href="dictionary/arrest.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Arrest</a><a href="dictionary/anticipatory-bail.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Anticipatory Bail</a><a href="dictionary/legal-notice.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Legal Notice</a><a href="dictionary/injunction.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Injunction</a><a href="dictionary/affidavit.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Affidavit</a><a href="dictionary/jurisdiction.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Jurisdiction</a><a href="dictionary/appeal.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Appeal</a><a href="dictionary/warrant.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Warrant</a><a href="dictionary/consumer-complaint.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Complaint</a><a href="dictionary/evidence.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Evidence</a>
+                <a href="dictionary/fir" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> FIR</a><a href="dictionary/bail" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Bail</a><a href="dictionary/arrest" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Arrest</a><a href="dictionary/anticipatory-bail" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Anticipatory Bail</a><a href="dictionary/legal-notice" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Legal Notice</a><a href="dictionary/injunction" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Injunction</a><a href="dictionary/affidavit" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Affidavit</a><a href="dictionary/jurisdiction" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Jurisdiction</a><a href="dictionary/appeal" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Appeal</a><a href="dictionary/warrant" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Warrant</a><a href="dictionary/consumer-complaint" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Complaint</a><a href="dictionary/evidence" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> Evidence</a>
             </div>
 
             <div style="text-align:center; margin-top:20px;" data-aos="fade-up">
-                <a href="dictionary.html" class="btn-outline">
+                <a href="dictionary" class="btn-outline">
                     <i class="fas fa-book-open"></i> Explore Full Legal Dictionary <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -412,7 +420,7 @@
                         <h3>Police & Arrest Rights</h3>
                         <p>Statutory rights during arrest: grounds of arrest notification (BNSS Sec 35), right to inform family within 12h, and medical exam mandates.</p>
                     </div>
-                    <a href="know-your-rights/arrest-rights.html" class="card-link">Read Arrest Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/arrest-rights" class="card-link">Read Arrest Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="info-card" data-aos="fade-up" data-aos-delay="100">
@@ -421,7 +429,7 @@
                         <h3>Women's Legal Safeguards</h3>
                         <p>Special constitutional protections, prohibition of arrest after sunset without Magistrate approval, Zero FIR rights, and POSH Act mandates.</p>
                     </div>
-                    <a href="know-your-rights/womens-rights.html" class="card-link">Read Women's Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/womens-rights" class="card-link">Read Women's Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="info-card" data-aos="fade-up" data-aos-delay="200">
@@ -430,12 +438,12 @@
                         <h3>Cyber & Digital Privacy</h3>
                         <p>Right to data privacy under Article 21, financial fraud emergency reporting (National Helpline 1930), and IT Act protections.</p>
                     </div>
-                    <a href="know-your-rights/cyber-rights.html" class="card-link">Read Cyber Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/cyber-rights" class="card-link">Read Cyber Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="rights.html" class="btn-outline">
+                <a href="rights" class="btn-outline">
                     <i class="fas fa-shield-halved"></i> Explore All Rights Guides <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -457,7 +465,7 @@
                         <h3 style="margin-top:10px;">Constitution of India</h3>
                         <p>The supreme legal document establishing fundamental rights, state directive principles, and governance frameworks.</p>
                     </div>
-                    <a href="laws/constitution.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                    <a href="laws/constitution" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="law-card" data-aos="fade-up" data-aos-delay="100">
@@ -466,7 +474,7 @@
                         <h3 style="margin-top:10px;">Bharatiya Nyaya Sanhita (BNS)</h3>
                         <p>The modern criminal code replacing the Indian Penal Code 1860, modernizing offences, punishments, and cyber laws.</p>
                     </div>
-                    <a href="laws/bns.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                    <a href="laws/bns" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="law-card" data-aos="fade-up" data-aos-delay="200">
@@ -475,12 +483,12 @@
                         <h3 style="margin-top:10px;">Bharatiya Nagarik Suraksha Sanhita (BNSS)</h3>
                         <p>Replaces the CrPC 1973, establishing timelines for trial, digital FIR registration, and arrest protocols.</p>
                     </div>
-                    <a href="laws/bnss.html" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
+                    <a href="laws/bnss" class="card-link">View Act Analysis <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="laws.html" class="btn-outline">
+                <a href="laws" class="btn-outline">
                     <i class="fas fa-landmark"></i> Explore Laws Library <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -502,7 +510,7 @@
                         <h3 style="margin-top:8px;">How to File an FIR</h3>
                         <p>Complete step-by-step process for registering a First Information Report at a police station or online portal.</p>
                     </div>
-                    <a href="legal-guides/how-to-file-an-fir.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/how-to-file-an-fir" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="guide-card" data-aos="fade-up" data-aos-delay="100">
@@ -511,7 +519,7 @@
                         <h3 style="margin-top:8px;">Understanding Bail</h3>
                         <p>Clear explainer on bailable vs non-bailable offences, anticipatory bail applications under BNSS 482, and bond requirements.</p>
                     </div>
-                    <a href="legal-guides/understanding-anticipatory-bail.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/understanding-anticipatory-bail" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="guide-card" data-aos="fade-up" data-aos-delay="200">
@@ -520,12 +528,12 @@
                         <h3 style="margin-top:8px;">What to Do After Online Fraud</h3>
                         <p>Immediate steps to freeze bank transfers via 1930 helpline and lodge official reports on cybercrime.gov.in.</p>
                     </div>
-                    <a href="legal-guides/how-to-report-cyber-crime.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/how-to-report-cyber-crime" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="guides.html" class="btn-outline">
+                <a href="guides" class="btn-outline">
                     <i class="fas fa-file-lines"></i> View All Practical Guides <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -570,7 +578,7 @@
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="features.html" class="btn-outline">
+                <a href="features" class="btn-outline">
                     <i class="fas fa-layer-group"></i> Explore All Features <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -727,12 +735,12 @@
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
                     <div class="faq-header"><h3>How can I explore legal terms?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>You can visit our dedicated <a href="dictionary.html" style="color:var(--primary); font-weight:700;">Legal Dictionary</a> page to search terms live or filter by categories like Criminal, Civil, Constitutional, or Cyber law.</p></div>
+                    <div class="faq-body"><p>You can visit our dedicated <a href="dictionary" style="color:var(--primary); font-weight:700;">Legal Dictionary</a> page to search terms live or filter by categories like Criminal, Civil, Constitutional, or Cyber law.</p></div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
                     <div class="faq-header"><h3>Is NYAYI available on mobile?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>Yes, NYAYI is fully responsive and optimized for mobile devices. You can also explore our <a href="app.html" style="color:var(--primary); font-weight:700;">Mobile App</a> page for direct smartphone access.</p></div>
+                    <div class="faq-body"><p>Yes, NYAYI is fully responsive and optimized for mobile devices. You can also explore our <a href="app" style="color:var(--primary); font-weight:700;">Mobile App</a> page for direct smartphone access.</p></div>
                 </div>
             </div>
         </div>
@@ -786,32 +794,32 @@
                 <h4>Platform</h4>
                 <ul>
                     <li><a href="./">Home</a></li>
-                    <li><a href="./features.html">Features</a></li>
-                    <li><a href="./app.html">Mobile App</a></li>
+                    <li><a href="./features">Features</a></li>
+                    <li><a href="./app">Mobile App</a></li>
                     <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="./dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="./rights.html">Know Rights</a></li>
-                    <li><a href="./laws.html">Laws Library</a></li>
-                    <li><a href="./guides.html">Legal Guides</a></li>
-                    <li><a href="./articles.html">Articles & Updates</a></li>
+                    <li><a href="./dictionary">Legal Dictionary</a></li>
+                    <li><a href="./rights">Know Rights</a></li>
+                    <li><a href="./laws">Laws Library</a></li>
+                    <li><a href="./guides">Legal Guides</a></li>
+                    <li><a href="./articles">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact & Support</h4>
                 <ul>
-                    <li><a href="./contact.html">Contact Us</a></li>
+                    <li><a href="./contact">Contact Us</a></li>
                     <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
-                    <li><a href="./privacy.html">Privacy Policy</a></li>
-                    <li><a href="./terms-of-use.html">Terms of Use</a></li>
-                    <li><a href="./disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="./cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="./privacy">Privacy Policy</a></li>
+                    <li><a href="./terms-of-use">Terms of Use</a></li>
+                    <li><a href="./disclaimer">Legal Disclaimer</a></li>
+                    <li><a href="./cookie-policy">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>

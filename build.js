@@ -53,7 +53,7 @@ const webSiteSchema = {
     "url": "https://nyayi.in/",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://nyayi.in/dictionary.html?q={search_term_string}",
+        "target": "https://nyayi.in/dictionary?q={search_term_string}",
         "query-input": "required name=search_term_string"
     }
 };
@@ -119,21 +119,21 @@ function renderHeader(activePage = '', depth = 0) {
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
         <a href="${homeUrl}" onclick="toggleMenu()" class="${activePage === 'home' ? 'active' : ''}">Home</a>
-        <a href="${p}features.html" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
-        <a href="${p}dictionary.html" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
-        <a href="${p}rights.html" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
+        <a href="${p}features" onclick="toggleMenu()" class="${activePage === 'features' ? 'active' : ''}">Features</a>
+        <a href="${p}dictionary" onclick="toggleMenu()" class="${activePage === 'dictionary' ? 'active' : ''}">Legal Dictionary</a>
+        <a href="${p}rights" onclick="toggleMenu()" class="${activePage === 'rights' ? 'active' : ''}">Know Your Rights</a>
         
         <div class="mobile-group">
             <span class="mobile-group-label"><i class="fas fa-newspaper" style="color:var(--primary);"></i> Blog & Resources</span>
             <div class="mobile-group-links">
-                <a href="${p}laws.html" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
-                <a href="${p}guides.html" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
-                <a href="${p}articles.html" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                <a href="${p}laws" onclick="toggleMenu()" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
+                <a href="${p}guides" onclick="toggleMenu()" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
+                <a href="${p}articles" onclick="toggleMenu()" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
             </div>
         </div>
 
-        <a href="${p}app.html" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
-        <a href="${p}auth.html" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;">
+        <a href="${p}app" onclick="toggleMenu()" class="${activePage === 'app' ? 'active' : ''}" style="color:var(--primary); font-weight:800;"><i class="fas fa-mobile-screen"></i> Mobile App</a>
+        <a href="${p}auth" onclick="toggleMenu()" style="display:flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; background:rgba(16,185,129,0.12); color:var(--primary); font-weight:800; text-decoration:none; margin: 8px 0;">
             <i class="fas fa-user-circle"></i> Login / Sign Up
         </a>
         <a href="https://ai.nyayi.in" target="_blank" class="mobile-launch-btn">
@@ -149,24 +149,24 @@ function renderHeader(activePage = '', depth = 0) {
             
             <ul class="nav-links">
                 <li><a href="${homeUrl}" class="${activePage === 'home' ? 'active' : ''}">Home</a></li>
-                <li><a href="${p}features.html" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
-                <li><a href="${p}dictionary.html" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
-                <li><a href="${p}rights.html" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
+                <li><a href="${p}features" class="${activePage === 'features' ? 'active' : ''}">Features</a></li>
+                <li><a href="${p}dictionary" class="${activePage === 'dictionary' ? 'active' : ''}">Dictionary</a></li>
+                <li><a href="${p}rights" class="${activePage === 'rights' ? 'active' : ''}">Rights</a></li>
                 <li class="nav-dropdown" id="blogDropdown">
                     <button type="button" class="dropdown-toggle ${isBlogActive ? 'active' : ''}" onclick="toggleBlogDropdown(event)">
                         Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-panel">
-                        <a href="${p}laws.html" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
-                        <a href="${p}guides.html" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
-                        <a href="${p}articles.html" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
+                        <a href="${p}laws" class="${activePage === 'laws' ? 'active' : ''}"><i class="fas fa-book-scale"></i> Laws Library</a>
+                        <a href="${p}guides" class="${activePage === 'guides' ? 'active' : ''}"><i class="fas fa-compass"></i> Legal Guides</a>
+                        <a href="${p}articles" class="${activePage === 'articles' ? 'active' : ''}"><i class="fas fa-newspaper"></i> Articles & Updates</a>
                     </div>
                 </li>
-                <li><a href="${p}app.html" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
+                <li><a href="${p}app" style="color:var(--primary);" class="${activePage === 'app' ? 'active' : ''}">Mobile App</a></li>
             </ul>
 
             <div style="display:flex; align-items:center; gap:8px;">
-                <a href="${p}auth.html" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
+                <a href="${p}auth" class="btn-auth-nav"><i class="fas fa-user-circle"></i> Login / Signup</a>
                 <a href="https://ai.nyayi.in" target="_blank" class="btn-launch">
                     <i class="fas fa-rocket"></i> Launch Web AI
                 </a>
@@ -229,32 +229,32 @@ function renderFooter(depth = 0) {
                 <h4>Platform</h4>
                 <ul>
                     <li><a href="${homeUrl}">Home</a></li>
-                    <li><a href="${p}features.html">Features</a></li>
-                    <li><a href="${p}app.html">Mobile App</a></li>
+                    <li><a href="${p}features">Features</a></li>
+                    <li><a href="${p}app">Mobile App</a></li>
                     <li><a href="https://ai.nyayi.in" target="_blank" style="color:var(--primary); font-weight:700;">Launch Web AI</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Knowledge</h4>
                 <ul>
-                    <li><a href="${p}dictionary.html">Legal Dictionary</a></li>
-                    <li><a href="${p}rights.html">Know Rights</a></li>
-                    <li><a href="${p}laws.html">Laws Library</a></li>
-                    <li><a href="${p}guides.html">Legal Guides</a></li>
-                    <li><a href="${p}articles.html">Articles & Updates</a></li>
+                    <li><a href="${p}dictionary">Legal Dictionary</a></li>
+                    <li><a href="${p}rights">Know Rights</a></li>
+                    <li><a href="${p}laws">Laws Library</a></li>
+                    <li><a href="${p}guides">Legal Guides</a></li>
+                    <li><a href="${p}articles">Articles & Updates</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact & Support</h4>
                 <ul>
-                    <li><a href="${p}contact.html">Contact Us</a></li>
+                    <li><a href="${p}contact">Contact Us</a></li>
                     <li><a href="tel:9598042676"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 9598042676</a></li>
                     <li><a href="tel:7393905299"><i class="fas fa-phone-alt" style="color:var(--primary); font-size:12px;"></i> +91 7393905299</a></li>
                     <li><a href="https://instagram.com/nyayi.ai" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size:12px;"></i> Instagram @nyayi.ai</a></li>
-                    <li><a href="${p}privacy.html">Privacy Policy</a></li>
-                    <li><a href="${p}terms-of-use.html">Terms of Use</a></li>
-                    <li><a href="${p}disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="${p}cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="${p}privacy">Privacy Policy</a></li>
+                    <li><a href="${p}terms-of-use">Terms of Use</a></li>
+                    <li><a href="${p}disclaimer">Legal Disclaimer</a></li>
+                    <li><a href="${p}cookie-policy">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -386,7 +386,7 @@ function buildHomepage() {
     };
     const popularTermsPills = popularTermNames.map(termName => {
         const slug = popularTermMap[termName] || (dictionary.find(d => d.term.toLowerCase() === termName.toLowerCase()) || {}).slug || 'fir';
-        return `<a href="dictionary/${slug}.html" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${termName}</a>`;
+        return `<a href="dictionary/${slug}" class="term-pill"><i class="fas fa-book-bookmark" style="color:var(--primary);"></i> ${termName}</a>`;
     }).join('');
 
     const html = `
@@ -473,7 +473,7 @@ function buildHomepage() {
                         <h3>Legal Dictionary</h3>
                         <p>Simplified explanations for Latin maxims, BNS/IPC sections, procedural terms, and court jargon in plain English.</p>
                     </div>
-                    <a href="dictionary.html" class="card-link">Explore Dictionary <i class="fas fa-arrow-right"></i></a>
+                    <a href="dictionary" class="card-link">Explore Dictionary <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
@@ -482,7 +482,7 @@ function buildHomepage() {
                         <h3>Know Your Rights</h3>
                         <p>Actionable constitutional safeguards and statutory protections against arbitrary detention, police overreach, and fraud.</p>
                     </div>
-                    <a href="rights.html" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="rights" class="card-link">Explore Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
@@ -491,7 +491,7 @@ function buildHomepage() {
                         <h3>Indian Laws</h3>
                         <p>Structured breakdowns of major Indian acts, BNS 2023, BNSS 2023, BSA 2023, and the Constitution of India.</p>
                     </div>
-                    <a href="laws.html" class="card-link">Explore Indian Laws <i class="fas fa-arrow-right"></i></a>
+                    <a href="laws" class="card-link">Explore Indian Laws <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
@@ -500,7 +500,7 @@ function buildHomepage() {
                         <h3>Legal Guides</h3>
                         <p>Step-by-step practical walk-throughs breaking down police FIRs, bail procedures, cyber fraud reports, and notices.</p>
                     </div>
-                    <a href="guides.html" class="card-link">Explore Guides <i class="fas fa-arrow-right"></i></a>
+                    <a href="guides" class="card-link">Explore Guides <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -524,7 +524,7 @@ function buildHomepage() {
             </div>
 
             <div style="text-align:center; margin-top:20px;" data-aos="fade-up">
-                <a href="dictionary.html" class="btn-outline">
+                <a href="dictionary" class="btn-outline">
                     <i class="fas fa-book-open"></i> Explore Full Legal Dictionary <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -546,7 +546,7 @@ function buildHomepage() {
                         <h3>Police & Arrest Rights</h3>
                         <p>Statutory rights during arrest: grounds of arrest notification (BNSS Sec 35), right to inform family within 12h, and medical exam mandates.</p>
                     </div>
-                    <a href="know-your-rights/arrest-rights.html" class="card-link">Read Arrest Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/arrest-rights" class="card-link">Read Arrest Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="info-card" data-aos="fade-up" data-aos-delay="100">
@@ -555,7 +555,7 @@ function buildHomepage() {
                         <h3>Women's Legal Safeguards</h3>
                         <p>Special constitutional protections, prohibition of arrest after sunset without Magistrate approval, Zero FIR rights, and POSH Act mandates.</p>
                     </div>
-                    <a href="know-your-rights/womens-rights.html" class="card-link">Read Women's Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/womens-rights" class="card-link">Read Women's Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="info-card" data-aos="fade-up" data-aos-delay="200">
@@ -564,12 +564,12 @@ function buildHomepage() {
                         <h3>Cyber & Digital Privacy</h3>
                         <p>Right to data privacy under Article 21, financial fraud emergency reporting (National Helpline 1930), and IT Act protections.</p>
                     </div>
-                    <a href="know-your-rights/cyber-rights.html" class="card-link">Read Cyber Rights <i class="fas fa-arrow-right"></i></a>
+                    <a href="know-your-rights/cyber-rights" class="card-link">Read Cyber Rights <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="rights.html" class="btn-outline">
+                <a href="rights" class="btn-outline">
                     <i class="fas fa-shield-halved"></i> Explore All Rights Guides <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -614,7 +614,7 @@ function buildHomepage() {
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="laws.html" class="btn-outline">
+                <a href="laws" class="btn-outline">
                     <i class="fas fa-landmark"></i> Explore Laws Library <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -636,7 +636,7 @@ function buildHomepage() {
                         <h3 style="margin-top:8px;">How to File an FIR</h3>
                         <p>Complete step-by-step process for registering a First Information Report at a police station or online portal.</p>
                     </div>
-                    <a href="legal-guides/how-to-file-an-fir.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/how-to-file-an-fir" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="guide-card" data-aos="fade-up" data-aos-delay="100">
@@ -645,7 +645,7 @@ function buildHomepage() {
                         <h3 style="margin-top:8px;">Understanding Bail</h3>
                         <p>Clear explainer on bailable vs non-bailable offences, anticipatory bail applications under BNSS 482, and bond requirements.</p>
                     </div>
-                    <a href="legal-guides/understanding-anticipatory-bail.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/understanding-anticipatory-bail" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="guide-card" data-aos="fade-up" data-aos-delay="200">
@@ -654,12 +654,12 @@ function buildHomepage() {
                         <h3 style="margin-top:8px;">What to Do After Online Fraud</h3>
                         <p>Immediate steps to freeze bank transfers via 1930 helpline and lodge official reports on cybercrime.gov.in.</p>
                     </div>
-                    <a href="legal-guides/how-to-report-cyber-crime.html" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="legal-guides/how-to-report-cyber-crime" class="card-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="guides.html" class="btn-outline">
+                <a href="guides" class="btn-outline">
                     <i class="fas fa-file-lines"></i> View All Practical Guides <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -704,7 +704,7 @@ function buildHomepage() {
             </div>
 
             <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
-                <a href="features.html" class="btn-outline">
+                <a href="features" class="btn-outline">
                     <i class="fas fa-layer-group"></i> Explore All Features <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -831,12 +831,12 @@ function buildHomepage() {
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
                     <div class="faq-header"><h3>How can I explore legal terms?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>You can visit our dedicated <a href="dictionary.html" style="color:var(--primary); font-weight:700;">Legal Dictionary</a> page to search terms live or filter by categories like Criminal, Civil, Constitutional, or Cyber law.</p></div>
+                    <div class="faq-body"><p>You can visit our dedicated <a href="dictionary" style="color:var(--primary); font-weight:700;">Legal Dictionary</a> page to search terms live or filter by categories like Criminal, Civil, Constitutional, or Cyber law.</p></div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
                     <div class="faq-header"><h3>Is NYAYI available on mobile?</h3><i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-body"><p>Yes, NYAYI is fully responsive and optimized for mobile devices. You can also explore our <a href="app.html" style="color:var(--primary); font-weight:700;">Mobile App</a> page for direct smartphone access.</p></div>
+                    <div class="faq-body"><p>Yes, NYAYI is fully responsive and optimized for mobile devices. You can also explore our <a href="app" style="color:var(--primary); font-weight:700;">Mobile App</a> page for direct smartphone access.</p></div>
                 </div>
             </div>
         </div>
@@ -1302,7 +1302,7 @@ function buildDictionary() {
             "@type": "DefinedTerm",
             "name": item.term,
             "description": item.simpleDef,
-            "inDefinedTermSet": "https://nyayi.in/dictionary.html",
+            "inDefinedTermSet": "https://nyayi.in/dictionary",
             "termCode": item.slug
         };
 
@@ -1311,7 +1311,7 @@ function buildDictionary() {
             "@type": "BreadcrumbList",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
-                { "@type": "ListItem", "position": 2, "name": "Legal Dictionary", "item": "https://nyayi.in/dictionary.html" },
+                { "@type": "ListItem", "position": 2, "name": "Legal Dictionary", "item": "https://nyayi.in/dictionary" },
                 { "@type": "ListItem", "position": 3, "name": item.term, "item": `https://nyayi.in/dictionary/${item.slug}.html` }
             ]
         };
@@ -2337,7 +2337,7 @@ function buildRights() {
             </div>
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;" data-aos="fade-up">
-                <a href="dictionary.html" class="right-cat-tile">
+                <a href="dictionary" class="right-cat-tile">
                     <div>
                         <div class="tile-icon"><i class="fas fa-book-bookmark"></i></div>
                         <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Legal Dictionary</h3>
@@ -2346,7 +2346,7 @@ function buildRights() {
                     <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Dictionary <i class="fas fa-arrow-right"></i></div>
                 </a>
 
-                <a href="laws.html" class="right-cat-tile">
+                <a href="laws" class="right-cat-tile">
                     <div>
                         <div class="tile-icon"><i class="fas fa-landmark"></i></div>
                         <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Indian Laws Library</h3>
@@ -2355,7 +2355,7 @@ function buildRights() {
                     <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Laws Library <i class="fas fa-arrow-right"></i></div>
                 </a>
 
-                <a href="guides.html" class="right-cat-tile">
+                <a href="guides" class="right-cat-tile">
                     <div>
                         <div class="tile-icon"><i class="fas fa-file-lines"></i></div>
                         <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Legal Guides</h3>
@@ -2364,7 +2364,7 @@ function buildRights() {
                     <div style="margin-top:16px; font-size:13px; font-weight:800; color:var(--primary);">Open Legal Guides <i class="fas fa-arrow-right"></i></div>
                 </a>
 
-                <a href="features.html" class="right-cat-tile">
+                <a href="features" class="right-cat-tile">
                     <div>
                         <div class="tile-icon"><i class="fas fa-layer-group"></i></div>
                         <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin-bottom:6px;">Platform Features</h3>
@@ -2384,8 +2384,8 @@ function buildRights() {
                 <h2 style="font-size:2.8rem; font-weight:900; color:white; margin-bottom:16px; letter-spacing:-1px;">Know Your Rights.<br><span>Take Your Next Step With Clarity.</span></h2>
                 <p style="font-size:1.15rem; color:#aaa; max-width:700px; margin:0 auto 30px; line-height:1.8;">Explore legal knowledge, practical guides, and technology-assisted tools built around Indian legal needs.</p>
                 <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-                    <a href="dictionary.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Explore Legal Dictionary</a>
-                    <a href="guides.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-file-lines"></i> Explore Legal Guides</a>
+                    <a href="dictionary" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Explore Legal Dictionary</a>
+                    <a href="guides" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-file-lines"></i> Explore Legal Guides</a>
                     <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:16px 36px; font-size:15px;"><i class="fas fa-robot"></i> Launch NYAYI AI</a>
                 </div>
             </div>
@@ -2782,7 +2782,7 @@ function buildFeaturesAndOther() {
                     <h2 style="font-size:2.4rem; font-weight:900; margin:15px 0 20px; line-height:1.2;">Search legal concepts in plain language.</h2>
                     <p style="color:#555; font-size:16.5px; line-height:1.8; margin-bottom:24px;">Describe a real-world legal situation naturally—without memorizing statute numbers or complex advocate jargon. NYAYI's computational engine analyzes the factual context and explores relevant provisions across Indian criminal, civil, and cyber laws.</p>
                     <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
-                        <a href="dictionary.html" class="btn-outline"><i class="fas fa-magnifying-glass"></i> Explore Legal Terms</a>
+                        <a href="dictionary" class="btn-outline"><i class="fas fa-magnifying-glass"></i> Explore Legal Terms</a>
                         <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="font-weight:800; font-size:14px;">Try Live AI Search <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -3200,7 +3200,7 @@ function buildFeaturesAndOther() {
                     <a href="https://ai.nyayi.in" target="_blank" class="btn-launch" style="display:inline-flex; font-size:17px; padding:16px 40px;">
                         <i class="fas fa-rocket"></i> Launch NYAYI AI
                     </a>
-                    <a href="dictionary.html" class="btn-outline" style="background:#ffffff; color:#111 !important; border-color:#ffffff; font-size:15px; padding:16px 32px;">
+                    <a href="dictionary" class="btn-outline" style="background:#ffffff; color:#111 !important; border-color:#ffffff; font-size:15px; padding:16px 32px;">
                         <i class="fas fa-book"></i> Explore Legal Knowledge
                     </a>
                 </div>
@@ -3858,7 +3858,7 @@ function buildFeaturesAndOther() {
                     <button onclick="openLawModal('${item.slug}')" class="btn-outline" style="padding:8px 18px; font-size:13px; border-radius:30px; font-weight:700; cursor:pointer;">
                         <i class="fas fa-book-open"></i> Quick Explorer &rarr;
                     </button>
-                    <a href="laws/${item.slug}.html" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <a href="laws/${item.slug}" style="font-size:12.5px; font-weight:800; color:var(--primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
                         Full Act Guide <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -3874,13 +3874,13 @@ function buildFeaturesAndOther() {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Indian Laws Library",
-        "url": "https://nyayi.in/laws.html",
+        "url": "https://nyayi.in/laws",
         "description": "Comprehensive Indian Laws Library by NYAYI. Explore major Indian statutes, Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, Bharatiya Sakshya Adhiniyam, IT Act, Consumer Protection Act, and Constitutional frameworks.",
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nyayi.in/" },
-                { "@type": "ListItem", "position": 2, "name": "Indian Laws Library", "item": "https://nyayi.in/laws.html" }
+                { "@type": "ListItem", "position": 2, "name": "Indian Laws Library", "item": "https://nyayi.in/laws" }
             ]
         }
     };
@@ -4076,7 +4076,7 @@ function buildFeaturesAndOther() {
                     </a>
                 </div>
                 <div style="text-align:center; margin-top:24px;">
-                    <a href="rights.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
+                    <a href="rights" class="btn-ai" style="padding:12px 28px; font-size:14px;">
                         <i class="fas fa-graduation-cap"></i> Study Full Constitutional Rights Hub &rarr;
                     </a>
                 </div>
@@ -4252,7 +4252,7 @@ function buildFeaturesAndOther() {
                     <span style="font-size:11.5px; font-weight:800; color:#dc2626; text-transform:uppercase; letter-spacing:0.5px;">CRIMINAL OFFENCE & ARREST</span>
                     <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Filing an FIR or Facing Charges</h3>
                     <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>BNS 2023</strong> for criminal charges, and <strong>BNSS 2023</strong> for mandatory arrest memos, bail eligibility, and magistrate presentation within 24 hours.</p>
-                    <a href="legal-guides/how-to-file-an-fir.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Step-by-Step FIR Guide &rarr;</a>
+                    <a href="legal-guides/how-to-file-an-fir" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Step-by-Step FIR Guide &rarr;</a>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
@@ -4262,7 +4262,7 @@ function buildFeaturesAndOther() {
                     <span style="font-size:11.5px; font-weight:800; color:#2563eb; text-transform:uppercase; letter-spacing:0.5px;">CYBER & FINANCIAL SCAMS</span>
                     <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Online Bank & Identity Theft</h3>
                     <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>IT Act 2000 (Sec 66C/D)</strong>, <strong>BNS 2023 (Sec 318 Cheating)</strong>, and National Cyber Helpline 1930 for golden-hour account freeze.</p>
-                    <a href="legal-guides/cyber-fraud-reporting-1930.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Cyber Scam 1930 Guide &rarr;</a>
+                    <a href="legal-guides/cyber-fraud-reporting-1930" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Cyber Scam 1930 Guide &rarr;</a>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
@@ -4272,7 +4272,7 @@ function buildFeaturesAndOther() {
                     <span style="font-size:11.5px; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.5px;">CONSUMER & E-COMMERCE</span>
                     <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Defective Product or Service Fraud</h3>
                     <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>Consumer Protection Act 2019</strong>. Entitles buyer to refund, replacement, and compensation via CCPA and online e-Daakhil filing.</p>
-                    <a href="legal-guides/consumer-court-complaint-guide.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Consumer Court Guide &rarr;</a>
+                    <a href="legal-guides/consumer-court-complaint-guide" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Consumer Court Guide &rarr;</a>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px; box-shadow:0 8px 25px rgba(0,0,0,0.03); transition:0.3s;" onmouseenter="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-5px)'" onmouseleave="this.style.borderColor='#e2e8f0'; this.style.transform='translateY(0)'">
@@ -4282,7 +4282,7 @@ function buildFeaturesAndOther() {
                     <span style="font-size:11.5px; font-weight:800; color:#166534; text-transform:uppercase; letter-spacing:0.5px;">TRAFFIC & ROAD SAFETY</span>
                     <h3 style="font-size:18px; font-weight:800; color:var(--dark); margin:8px 0 10px;">Traffic Challans & Accident Claims</h3>
                     <p style="font-size:13.5px; color:#555; line-height:1.65; margin-bottom:16px;">Governed by <strong>Motor Vehicles Act 1988 (Amended 2019)</strong>. Defines DigiLocker validity, Virtual Courts for challan disposal, and MACT compensation.</p>
-                    <a href="legal-guides/traffic-challan-contest-virtual-court.html" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Contest Traffic Challan &rarr;</a>
+                    <a href="legal-guides/traffic-challan-contest-virtual-court" style="font-size:13px; font-weight:800; color:var(--primary); text-decoration:none;">Contest Traffic Challan &rarr;</a>
                 </div>
             </div>
         </div>
@@ -4345,18 +4345,18 @@ function buildFeaturesAndOther() {
             </div>
 
             <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;" data-aos="fade-up">
-                <a href="dictionary.html?q=FIR" class="topic-chip"><i class="fas fa-file-shield" style="color:var(--primary);"></i> FIR</a>
+                <a href="dictionary?q=FIR" class="topic-chip"><i class="fas fa-file-shield" style="color:var(--primary);"></i> FIR</a>
                 <a href="rights.html#police-rights" class="topic-chip"><i class="fas fa-handcuffs" style="color:var(--primary);"></i> Arrest Rights</a>
-                <a href="dictionary.html?q=Bail" class="topic-chip"><i class="fas fa-key" style="color:var(--primary);"></i> Bail</a>
-                <a href="legal-guides/cheque-bounce-138-ni-act.html" class="topic-chip"><i class="fas fa-money-check-dollar" style="color:var(--primary);"></i> Cheque Bounce (Sec 138)</a>
+                <a href="dictionary?q=Bail" class="topic-chip"><i class="fas fa-key" style="color:var(--primary);"></i> Bail</a>
+                <a href="legal-guides/cheque-bounce-138-ni-act" class="topic-chip"><i class="fas fa-money-check-dollar" style="color:var(--primary);"></i> Cheque Bounce (Sec 138)</a>
                 <a href="rights.html#cyber-rights" class="topic-chip"><i class="fas fa-headset" style="color:var(--primary);"></i> Cyber Fraud</a>
                 <a href="rights.html#womens-rights" class="topic-chip"><i class="fas fa-person-dress" style="color:var(--primary);"></i> Domestic Violence</a>
                 <a href="rights.html#consumer-rights" class="topic-chip"><i class="fas fa-bag-shopping" style="color:var(--primary);"></i> Consumer Complaints</a>
                 <a href="rights.html#tenant-rights" class="topic-chip"><i class="fas fa-building" style="color:var(--primary);"></i> Tenant Disputes</a>
                 <a href="rights.html#workplace-rights" class="topic-chip"><i class="fas fa-briefcase" style="color:var(--primary);"></i> Workplace POSH</a>
-                <a href="legal-guides/how-to-file-rti-application.html" class="topic-chip"><i class="fas fa-file-signature" style="color:var(--primary);"></i> RTI Application</a>
-                <a href="legal-guides/ancestral-property-partition-guide.html" class="topic-chip"><i class="fas fa-house-user" style="color:var(--primary);"></i> Property Partition</a>
-                <a href="legal-guides/mutual-consent-divorce-guide.html" class="topic-chip"><i class="fas fa-heart-crack" style="color:var(--primary);"></i> Mutual Divorce</a>
+                <a href="legal-guides/how-to-file-rti-application" class="topic-chip"><i class="fas fa-file-signature" style="color:var(--primary);"></i> RTI Application</a>
+                <a href="legal-guides/ancestral-property-partition-guide" class="topic-chip"><i class="fas fa-house-user" style="color:var(--primary);"></i> Property Partition</a>
+                <a href="legal-guides/mutual-consent-divorce-guide" class="topic-chip"><i class="fas fa-heart-crack" style="color:var(--primary);"></i> Mutual Divorce</a>
             </div>
         </div>
     </section>
@@ -4381,7 +4381,7 @@ function buildFeaturesAndOther() {
                         <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Habeas Corpus</span>
                         <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Prima Facie</span>
                     </div>
-                    <a href="dictionary.html" class="btn-ai" style="padding:12px 28px; font-size:14px;">
+                    <a href="dictionary" class="btn-ai" style="padding:12px 28px; font-size:14px;">
                         <i class="fas fa-book-bookmark"></i> Explore 1,200+ Terms &rarr;
                     </a>
                 </div>
@@ -4401,7 +4401,7 @@ function buildFeaturesAndOther() {
                         <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Tenant Rights</span>
                         <span style="background:#f8fafc; border:1px solid #edf2f7; padding:4px 10px; border-radius:14px; font-size:12px; font-weight:700; color:#4a5568;">Cyber Privacy</span>
                     </div>
-                    <a href="rights.html" class="btn-outline" style="padding:12px 28px; font-size:14px; border-color:var(--primary); color:var(--primary-dark) !important;">
+                    <a href="rights" class="btn-outline" style="padding:12px 28px; font-size:14px; border-color:var(--primary); color:var(--primary-dark) !important;">
                         <i class="fas fa-compass"></i> Explore Know Your Rights &rarr;
                     </a>
                 </div>
@@ -4489,8 +4489,8 @@ function buildFeaturesAndOther() {
                 <h2 style="font-size:2.8rem; font-weight:900; color:white; margin-bottom:16px; letter-spacing:-1px;">Understand the Law.<br><span>Navigate Life With Clarity.</span></h2>
                 <p style="font-size:1.15rem; color:#aaa; margin:0 auto 30px; line-height:1.8;">Explore laws, constitutional principles, and practical legal knowledge — all in one place.</p>
                 <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-                    <a href="rights.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-shield-halved"></i> Explore Know Your Rights</a>
-                    <a href="dictionary.html" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Open Legal Dictionary</a>
+                    <a href="rights" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-shield-halved"></i> Explore Know Your Rights</a>
+                    <a href="dictionary" class="btn-outline" style="color:white; border-color:#444; padding:16px 32px; font-size:15px;"><i class="fas fa-book-bookmark"></i> Open Legal Dictionary</a>
                     <a href="https://ai.nyayi.in" target="_blank" class="btn-ai" style="padding:16px 36px; font-size:15px;"><i class="fas fa-robot"></i> Launch NYAYI Web AI</a>
                 </div>
             </div>
@@ -5598,7 +5598,7 @@ function buildFeaturesAndOther() {
                                 </ul>
                             </div>
                         </div>
-                        <a href="legal-guides/${item.slug}.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                        <a href="legal-guides/${item.slug}" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                             <span>Read Full Guide</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -5979,22 +5979,22 @@ function buildFeaturesAndOther() {
                 <h2 style="font-size:24px; font-weight:900; color:#111;">Explore More NYAYI Knowledge Resources</h2>
             </div>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
-                <a href="dictionary.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="dictionary" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-book-open" style="font-size:28px; color:#00C853; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Dictionary</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Search 1,000+ Indian legal terms & definitions.</p>
                 </a>
-                <a href="laws.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="laws" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-gavel" style="font-size:28px; color:#3182ce; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Indian Laws Library</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Browse BNS 2023, BNSS 2023, BSA 2023 codes.</p>
                 </a>
-                <a href="rights.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="rights" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-shield-alt" style="font-size:28px; color:#e53e3e; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Know Your Rights</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Citizen rights guide for police, workplace, & family.</p>
                 </a>
-                <a href="articles.html" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
+                <a href="articles" style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; text-decoration:none; display:block; transition:all 0.3s ease;">
                     <i class="fas fa-newspaper" style="font-size:28px; color:#805ad5; margin-bottom:12px; display:block;"></i>
                     <h3 style="font-size:16px; font-weight:800; color:#111; margin-bottom:6px;">Legal Articles</h3>
                     <p style="font-size:13px; color:#666; margin:0;">Editorial updates and legal analysis.</p>
@@ -6135,7 +6135,7 @@ function buildFeaturesAndOther() {
                 <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#00C853; color:#fff; padding:16px 36px; border-radius:12px; font-weight:800; text-decoration:none; font-size:16px; box-shadow:0 4px 20px rgba(0,200,83,0.4);">
                     <i class="fas fa-robot"></i> Ask NYAYI AI Assistant
                 </a>
-                <a href="rights.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 30px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                <a href="rights" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 30px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
                     Explore Citizen Rights
                 </a>
             </div>
@@ -8975,7 +8975,7 @@ function buildFeaturesAndOther() {
                         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:18px; padding:24px; text-align:center;">
                             <h4 style="font-size:16px; font-weight:800; color:var(--dark); margin:0 0 8px;">Have a Privacy Question or Request?</h4>
                             <p style="font-size:13.5px; color:#666; margin:0 0 16px;">Reach out directly to the NYAYI Legal Team with your specific query.</p>
-                            <a href="contact.html" class="btn-ai" style="padding:10px 24px; font-size:13.5px; display:inline-flex; align-items:center; gap:8px;">
+                            <a href="contact" class="btn-ai" style="padding:10px 24px; font-size:13.5px; display:inline-flex; align-items:center; gap:8px;">
                                 <i class="fas fa-envelope"></i> Contact NYAYI Legal Team &rarr;
                             </a>
                         </div>
@@ -9162,7 +9162,7 @@ function buildFeaturesAndOther() {
                     <a href="https://instagram.com/nyayi.ai" target="_blank" class="btn-outline" style="padding:12px 24px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
                         <i class="fab fa-instagram" style="color:#e1306c;"></i> @nyayi.ai
                     </a>
-                    <a href="contact.html" class="btn-ai" style="padding:12px 28px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
+                    <a href="contact" class="btn-ai" style="padding:12px 28px; font-size:14px; font-weight:800; border-radius:30px; display:inline-flex; align-items:center; gap:8px;">
                         <i class="fas fa-paper-plane"></i> Contact Us &rarr;
                     </a>
                 </div>
@@ -10165,7 +10165,7 @@ function buildFeaturesAndOther() {
                                 <span><i class="fas fa-user-edit" style="color:#00C853;"></i> ${item.author}</span>
                                 <span><i class="far fa-clock"></i> ${item.readTime}</span>
                             </div>
-                            <a href="articles/${item.slug}.html" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; width:100%; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
+                            <a href="articles/${item.slug}" class="card-link" style="display:inline-flex; align-items:center; justify-content:space-between; width:100%; background:#111; color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; text-decoration:none; transition:all 0.3s ease;">
                                 <span>Read Full Article</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
@@ -10289,22 +10289,22 @@ function buildFeaturesAndOther() {
                 <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
                     <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Bail</h3>
                     <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Provisional release of an accused person pending trial upon executing bail bond or surety.</p>
-                    <a href="dictionary.html?q=Bail" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                    <a href="dictionary?q=Bail" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
                 </div>
                 <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
                     <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">FIR (First Information Report)</h3>
                     <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Document recorded by police under BNSS Sec 173 for cognizable offences.</p>
-                    <a href="dictionary.html?q=FIR" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                    <a href="dictionary?q=FIR" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
                 </div>
                 <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
                     <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Cognizable Offence</h3>
                     <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Serious crime where police officer has statutory authority to arrest without warrant.</p>
-                    <a href="dictionary.html?q=Cognizable" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                    <a href="dictionary?q=Cognizable" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
                 </div>
                 <div style="background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px;" data-aos="fade-up">
                     <h3 style="font-size:17px; font-weight:800; color:#111; margin-bottom:6px;">Jurisdiction</h3>
                     <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.5;">Official authority of a court or police station to hear cases based on territory or pecuniary value.</p>
-                    <a href="dictionary.html?q=Jurisdiction" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
+                    <a href="dictionary?q=Jurisdiction" style="font-size:13px; font-weight:800; color:#00C853; text-decoration:none;">View Dictionary Definition &rarr;</a>
                 </div>
             </div>
         </div>
@@ -10534,13 +10534,13 @@ function buildFeaturesAndOther() {
                 Explore laws, fundamental rights, practical guides, and legal developments through the NYAYI knowledge platform.
             </p>
             <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-                <a href="laws.html" class="card-link" style="background:#00C853; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                <a href="laws" class="card-link" style="background:#00C853; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
                     Explore Laws Library
                 </a>
-                <a href="rights.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                <a href="rights" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
                     Know Your Rights
                 </a>
-                <a href="guides.html" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
+                <a href="guides" class="card-link" style="background:transparent; border:2px solid #fff; color:#fff; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
                     Read Legal Guides
                 </a>
                 <a href="https://ai.nyayi.in" target="_blank" class="card-link" style="background:#fff; color:#111; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; font-size:15px;">
@@ -10780,14 +10780,14 @@ function buildFeaturesAndOther() {
     // Sitemap & Robots
     const urls = [
         'https://nyayi.in/',
-        'https://nyayi.in/features.html',
-        'https://nyayi.in/dictionary.html',
-        'https://nyayi.in/rights.html',
-        'https://nyayi.in/laws.html',
-        'https://nyayi.in/guides.html',
-        'https://nyayi.in/articles.html',
-        'https://nyayi.in/contact.html',
-        'https://nyayi.in/app.html',
+        'https://nyayi.in/features',
+        'https://nyayi.in/dictionary',
+        'https://nyayi.in/rights',
+        'https://nyayi.in/laws',
+        'https://nyayi.in/guides',
+        'https://nyayi.in/articles',
+        'https://nyayi.in/contact',
+        'https://nyayi.in/app',
         'https://nyayi.in/privacy.html',
         'https://nyayi.in/disclaimer.html',
         'https://nyayi.in/terms-of-use.html',
@@ -10795,9 +10795,9 @@ function buildFeaturesAndOther() {
         ...dictionary.map(d => `https://nyayi.in/dictionary/${d.slug}.html`),
         ...rights.map(r => `https://nyayi.in/know-your-rights/${r.slug}.html`),
         ...laws.map(l => `https://nyayi.in/laws/${l.slug}.html`),
-        ...guides.map(g => `https://nyayi.in/legal-guides/${g.slug}.html`),
-        ...expandedArticles.map(a => `https://nyayi.in/articles/${a.slug}.html`),
-        ...expandedArticles.map(a => `https://nyayi.in/blog/${a.slug}.html`)
+        ...guides.map(g => `https://nyayi.in/legal-guides/${g.slug}`),
+        ...expandedArticles.map(a => `https://nyayi.in/articles/${a.slug}`),
+        ...expandedArticles.map(a => `https://nyayi.in/blog/${a.slug}`)
     ];
 
     const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
