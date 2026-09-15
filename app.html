@@ -300,7 +300,9 @@
             if (isMobile) {
                 cursorDot.style.display = 'none';
                 cursorOutline.style.display = 'none';
+                document.documentElement.classList.remove('custom-cursor-enabled');
             } else {
+                document.documentElement.classList.add('custom-cursor-enabled');
                 let mouseX = -100, mouseY = -100;
                 let outlineX = -100, outlineY = -100;
                 let isVisible = false;
@@ -347,6 +349,7 @@
                 window.addEventListener('touchstart', function() {
                     cursorDot.style.display = 'none';
                     cursorOutline.style.display = 'none';
+                    document.documentElement.classList.remove('custom-cursor-enabled');
                     if (rafId) cancelAnimationFrame(rafId);
                 }, { passive: true });
 
@@ -354,9 +357,11 @@
                     if (window.innerWidth < 992) {
                         cursorDot.style.display = 'none';
                         cursorOutline.style.display = 'none';
+                        document.documentElement.classList.remove('custom-cursor-enabled');
                     } else if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                         cursorDot.style.display = 'block';
                         cursorOutline.style.display = 'block';
+                        document.documentElement.classList.add('custom-cursor-enabled');
                     }
                 });
             }

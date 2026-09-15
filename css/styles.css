@@ -68,12 +68,26 @@ body.hovering .cursor-outline {
     background-color: rgba(0, 200, 83, 0.1); 
     border-color: transparent;
 }
+/* Hide default computer/OS cursor on desktop & laptop so ONLY the custom cursor is visible */
+@media (min-width: 992px) {
+    *, *::before, *::after {
+        cursor: none !important;
+    }
+}
+html.custom-cursor-enabled,
+html.custom-cursor-enabled * {
+    cursor: none !important;
+}
+
 @media (max-width: 991px), (hover: none), (pointer: coarse) {
     .cursor-dot, .cursor-outline {
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
+    }
+    *, *::before, *::after {
+        cursor: auto !important;
     }
 }
 
