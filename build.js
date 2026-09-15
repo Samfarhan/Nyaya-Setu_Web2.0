@@ -514,11 +514,6 @@ function buildHomepage() {
                 <p>Legal terminology can feel overwhelming. NYAYI explains important legal terms in accessible language.</p>
             </div>
 
-            <div class="search-box" data-aos="fade-up" style="margin-bottom:30px;">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search legal terms (e.g. FIR, Bail, Injunction, Affidavit)..." onclick="window.location.href='dictionary.html'">
-            </div>
-
             <div class="terms-preview-grid" data-aos="fade-up" data-aos-delay="100">
                 ${popularTermsPills}
             </div>
