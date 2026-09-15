@@ -70,16 +70,21 @@ body.hovering .cursor-outline {
 }
 /* Hide default computer/OS cursor on desktop & laptop so ONLY the custom cursor is visible */
 @media (min-width: 992px) {
-    *, *::before, *::after {
+    *, *::before, *::after,
+    html, body, a, button, input, select, textarea, label, [role="button"],
+    .btn, .btn-primary, .btn-outline, .hero-btns, .hero-btns a, .term-pill, .cp-btn, .filter-btn, .search-box input {
         cursor: none !important;
     }
 }
 html.custom-cursor-enabled,
-html.custom-cursor-enabled * {
+html.custom-cursor-enabled body,
+html.custom-cursor-enabled *,
+html.custom-cursor-enabled *::before,
+html.custom-cursor-enabled *::after {
     cursor: none !important;
 }
 
-@media (max-width: 991px), (hover: none), (pointer: coarse) {
+@media (max-width: 991px) {
     .cursor-dot, .cursor-outline {
         display: none !important;
         opacity: 0 !important;
@@ -122,7 +127,7 @@ html.custom-cursor-enabled * {
 }
 .action-modal-content button, 
 .action-modal-content a {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 /* ---- FLOATING NAVBAR ---- */
@@ -1778,15 +1783,12 @@ footer {
     .footer-brand { display: flex; flex-direction: column; align-items: center; }
 }
 
-@media (max-width: 991px), (hover: none), (pointer: coarse) {
+@media (max-width: 991px) {
     .cursor-dot, .cursor-outline {
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
-    }
-    * {
-        cursor: auto !important;
     }
 }
 
@@ -3804,7 +3806,7 @@ header {
     background: none !important;
     border: none !important;
     color: #a0aec0 !important;
-    cursor: pointer !important;
+    cursor: pointer;
     font-size: 20px !important;
     display: none;
     transition: color 0.2s ease !important;
@@ -3864,7 +3866,7 @@ header {
     border-radius: 50% !important;
     font-size: 18px !important;
     color: #64748b !important;
-    cursor: pointer !important;
+    cursor: pointer;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -3957,7 +3959,7 @@ header {
     background: none !important;
     border: none !important;
     color: #a0aec0 !important;
-    cursor: pointer !important;
+    cursor: pointer;
     font-size: 20px !important;
     display: none;
     transition: color 0.2s ease !important;

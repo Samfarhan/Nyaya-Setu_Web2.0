@@ -42,7 +42,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css?v=11.0">
+    <link rel="stylesheet" href="../css/styles.css?v=12.0">
+    <style id="nyayi-cursor-style">
+        @media (min-width: 992px) {
+            html, body, *, *::before, *::after {
+                cursor: none !important;
+            }
+            .cursor-dot, .cursor-outline {
+                position: fixed !important;
+                pointer-events: none !important;
+                user-select: none !important;
+                z-index: 99999999 !important;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                will-change: left, top;
+            }
+            .cursor-dot {
+                width: 8px !important;
+                height: 8px !important;
+                background-color: var(--primary, #00C853) !important;
+            }
+            .cursor-outline {
+                width: 40px !important;
+                height: 40px !important;
+                border: 1px solid var(--primary, #00C853) !important;
+                transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+            }
+            body.hovering .cursor-outline {
+                width: 60px !important;
+                height: 60px !important;
+                background-color: rgba(0, 200, 83, 0.12) !important;
+                border-color: rgba(0, 200, 83, 0.5) !important;
+            }
+        }
+        @media (max-width: 991px) {
+            .cursor-dot, .cursor-outline {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+            *, *::before, *::after {
+                cursor: auto !important;
+            }
+        }
+    </style>
     
     <script type="application/ld+json">
 {
@@ -1411,8 +1455,16 @@
                 cursorDot.style.display = 'none';
                 cursorOutline.style.display = 'none';
                 document.documentElement.classList.remove('custom-cursor-enabled');
+                const dyn = document.getElementById('nyayi-dynamic-cursor-css');
+                if (dyn) dyn.remove();
             } else {
                 document.documentElement.classList.add('custom-cursor-enabled');
+                if (!document.getElementById('nyayi-dynamic-cursor-css')) {
+                    const dynStyle = document.createElement('style');
+                    dynStyle.id = 'nyayi-dynamic-cursor-css';
+                    dynStyle.textContent = '*, *::before, *::after, html, body, a, button, input, select, textarea, label, [role="button"], .btn, .btn-primary, .btn-outline, .hero-btns a, .term-pill, .cp-btn, .filter-btn, .search-box input { cursor: none !important; }';
+                    document.head.appendChild(dynStyle);
+                }
                 let mouseX = -100, mouseY = -100;
                 let outlineX = -100, outlineY = -100;
                 let isVisible = false;
@@ -1460,6 +1512,8 @@
                     cursorDot.style.display = 'none';
                     cursorOutline.style.display = 'none';
                     document.documentElement.classList.remove('custom-cursor-enabled');
+                    const dyn = document.getElementById('nyayi-dynamic-cursor-css');
+                    if (dyn) dyn.remove();
                     if (rafId) cancelAnimationFrame(rafId);
                 }, { passive: true });
 
@@ -1468,10 +1522,18 @@
                         cursorDot.style.display = 'none';
                         cursorOutline.style.display = 'none';
                         document.documentElement.classList.remove('custom-cursor-enabled');
+                        const dyn = document.getElementById('nyayi-dynamic-cursor-css');
+                        if (dyn) dyn.remove();
                     } else if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                         cursorDot.style.display = 'block';
                         cursorOutline.style.display = 'block';
                         document.documentElement.classList.add('custom-cursor-enabled');
+                        if (!document.getElementById('nyayi-dynamic-cursor-css')) {
+                            const dynStyle = document.createElement('style');
+                            dynStyle.id = 'nyayi-dynamic-cursor-css';
+                            dynStyle.textContent = '*, *::before, *::after, html, body, a, button, input, select, textarea, label, [role="button"], .btn, .btn-primary, .btn-outline, .hero-btns a, .term-pill, .cp-btn, .filter-btn, .search-box input { cursor: none !important; }';
+                            document.head.appendChild(dynStyle);
+                        }
                     }
                 });
             }
