@@ -258,13 +258,72 @@
         const cursorOutline = document.querySelector('.cursor-outline');
 
         if (cursorDot && cursorOutline) {
-            window.addEventListener('mousemove', function(e) {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-            });
+            const isMobile = (window.innerWidth < 992) ||
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                cursorDot.style.display = 'none';
+                cursorOutline.style.display = 'none';
+            } else {
+                let mouseX = -100, mouseY = -100;
+                let outlineX = -100, outlineY = -100;
+                let isVisible = false;
+                let rafId = null;
+
+                function renderCursor() {
+                    outlineX += (mouseX - outlineX) * 0.2;
+                    outlineY += (mouseY - outlineY) * 0.2;
+                    cursorOutline.style.left = outlineX + 'px';
+                    cursorOutline.style.top = outlineY + 'px';
+                    rafId = requestAnimationFrame(renderCursor);
+                }
+
+                window.addEventListener('mousemove', function(e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    cursorDot.style.left = mouseX + 'px';
+                    cursorDot.style.top = mouseY + 'px';
+
+                    if (!isVisible) {
+                        isVisible = true;
+                        outlineX = mouseX;
+                        outlineY = mouseY;
+                        cursorDot.style.opacity = '1';
+                        cursorOutline.style.opacity = '1';
+                        if (!rafId) rafId = requestAnimationFrame(renderCursor);
+                    }
+                });
+
+                document.addEventListener('mouseleave', function() {
+                    isVisible = false;
+                    cursorDot.style.opacity = '0';
+                    cursorOutline.style.opacity = '0';
+                });
+
+                document.addEventListener('mouseenter', function() {
+                    if (mouseX > 0 && mouseY > 0) {
+                        isVisible = true;
+                        cursorDot.style.opacity = '1';
+                        cursorOutline.style.opacity = '1';
+                    }
+                });
+
+                window.addEventListener('touchstart', function() {
+                    cursorDot.style.display = 'none';
+                    cursorOutline.style.display = 'none';
+                    if (rafId) cancelAnimationFrame(rafId);
+                }, { passive: true });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth < 992) {
+                        cursorDot.style.display = 'none';
+                        cursorOutline.style.display = 'none';
+                    } else if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                        cursorDot.style.display = 'block';
+                        cursorOutline.style.display = 'block';
+                    }
+                });
+            }
         }
 
         const hoverElements = document.querySelectorAll('a, button, .b-card, .creator-profile, .faq-item, .chat-ui, .info-card, .feature-card, .dict-card, .law-card, .guide-card, .rights-card, .article-card, .cp-btn, .filter-btn, .search-box input, .scenario-header, .pillar-card, .term-pill, .step-card, .philosophy-card');
