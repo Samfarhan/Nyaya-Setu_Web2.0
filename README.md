@@ -67,7 +67,8 @@ BCA (Bachelor of Computer Applications)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:samexists4real@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Samfarhan)
 
-**Co-Architect:** Kamran Sheikh
+**CEO:** Kamran Sheikh  
+**Co-Founder & UI/UX Designer:** Harsh Rawat
 
 </div>
 

@@ -13,12 +13,21 @@
     },
     {
       "name": "Kamran Sheikh",
-      "role": "Co-Founder & Lead Legal Researcher",
+      "role": "CEO",
       "tagline": "Ensuring structural precision & domain integrity across Indian legal codes.",
       "description": "Specialist in Indian constitutional law, BNS framework mapping, and procedural legal synthesis to maintain absolute informational integrity.",
       "instagram": "https://instagram.com/kamran.irll",
       "phone": "7393905299",
       "icon": "fa-scale-balanced"
+    },
+    {
+      "name": "Harsh Rawat",
+      "role": "Co-Founder & UI/UX Designer",
+      "tagline": "Crafting intuitive, accessible, and human-centric visual interfaces for legal tech.",
+      "description": "Product and UI/UX designer dedicated to transforming complex legal workflows into seamless, elegant digital experiences for everyday citizens.",
+      "instagram": "",
+      "phone": "8470879970",
+      "icon": "fa-palette"
     }
   ]
 }
