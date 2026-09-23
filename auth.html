@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Clean URL Script for Extensionless URLs & SEO -->
-    <script>
-        if (window.location.pathname.endsWith('.html')) {
-            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-            if (!cleanPath) cleanPath = '/';
-            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
-        }
-    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQN8MSMZE"></script>
     <script>
@@ -18,16 +10,14 @@
 
       gtag('config', 'G-EVQN8MSMZE');
     </script>
-    <!-- Auto-redirect if already logged in (Persistent Session) -->
+    <!-- Clean URL Script & Auto-redirect if already logged in (Persistent Session) -->
     <script>
-        (function() {
-            var isAuth = localStorage.getItem('nyayi_auth');
-            var params = new URLSearchParams(window.location.search);
-            if (isAuth === 'true' && !params.has('logout')) {
-                var target = params.get('redirect') || './';
-                window.location.replace(target);
-            }
-        })();
+        if (window.location.pathname.endsWith('.html')) {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            if (!cleanPath) cleanPath = '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -471,7 +461,7 @@
 </head>
 <body>
 
-    <a href="./" class="back-nav">
+    <a href="/" class="back-nav">
         <i class="fa-solid fa-arrow-left"></i> Home
     </a>
 
@@ -607,8 +597,9 @@
                     </button>
                 </form>
 
-                <div style="margin-top:18px; font-size:13px;">
-                    <a href="#" style="color:var(--text-muted); text-decoration:none;" onclick="cancelToAuth()">Change Email / Cancel</a>
+                <div style="margin-top:18px; font-size:13px; display:flex; justify-content:space-between; align-items:center;">
+                    <a href="#" style="color:var(--text-muted); text-decoration:none;" onclick="cancelToAuth()">Change Email</a>
+                    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:500;" onclick="resendSignupOTP(event)"><i class="fa-solid fa-rotate-right"></i> Resend Code</a>
                 </div>
             </div>
 
@@ -706,8 +697,11 @@
                         <div class="google-email">citizen@gmail.com</div>
                     </div>
                 </div>
-                <div class="google-account" onclick="closeOAuth('googleOverlay')" style="padding:14px 24px;">
-                    <div class="google-name" style="color:#1a73e8; font-weight:400;">Use another account / Cancel</div>
+                <div class="google-account" onclick="promptGoogleCustomEmail()" style="padding:14px 24px;">
+                    <div class="google-name" style="color:#1a73e8; font-weight:500;"><i class="fa-solid fa-user-plus" style="margin-right:8px;"></i> Sign in with another Google account</div>
+                </div>
+                <div class="google-account" onclick="closeOAuth('googleOverlay')" style="padding:10px 24px;">
+                    <div class="google-name" style="color:var(--text-muted); font-size:13px;">Cancel</div>
                 </div>
             </div>
             <div class="google-footer">
@@ -742,9 +736,12 @@
                     </div>
                 </div>
             </div>
-            <div class="github-actions">
-                <button type="button" class="github-btn-cancel" onclick="closeOAuth('githubOverlay')">Cancel</button>
-                <button type="button" class="github-btn-auth" onclick="executeGithubLogin('GitHub Developer', 'dev@github.com')">Authorize Nyayi-Pro</button>
+            <div class="github-actions" style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; gap:10px; width:100%;">
+                    <button type="button" class="github-btn-cancel" onclick="closeOAuth('githubOverlay')" style="flex:1;">Cancel</button>
+                    <button type="button" class="github-btn-auth" onclick="executeGithubLogin('GitHub Developer', 'developer@github.com')" style="flex:2;">Authorize Nyayi-Pro</button>
+                </div>
+                <button type="button" class="github-btn-cancel" onclick="promptGithubCustomUser()" style="width:100%; border:1px dashed rgba(255,255,255,0.25); font-size:12.5px; padding:8px;"><i class="fa-brands fa-github" style="margin-right:6px;"></i> Sign in with custom GitHub username</button>
             </div>
         </div>
     </div>
@@ -877,14 +874,24 @@
         }
 
         // --- 5. AUTHENTICATION SUCCESS REDIRECT ---
-        function grantAccess(username, email) {
-            localStorage.setItem('nyayaUser', username || email.split('@')[0]);
+        function grantAccess(username, email, isNewSignup = false) {
+            const finalUser = username || email.split('@')[0];
+            localStorage.setItem('nyayaUser', finalUser);
             localStorage.setItem('nyayi_auth', 'true');
             localStorage.setItem('nyayi_user_email', email || '');
+            sessionStorage.setItem('nyayi_just_logged_in', 'true');
+            if (isNewSignup) {
+                localStorage.removeItem('nyayi_onboarded');
+            }
             
             setTimeout(() => {
                 const params = new URLSearchParams(window.location.search);
-                const target = params.get('redirect') || './';
+                let target = params.get('redirect');
+                if (!target) {
+                    target = (window.location.hostname === 'nyayi.in' || window.location.hostname === 'www.nyayi.in' || window.location.hostname.endsWith('github.io'))
+                        ? `https://ai.nyayi.in/?sso=1&user=${encodeURIComponent(finalUser)}&email=${encodeURIComponent(email)}`
+                        : '/';
+                }
                 window.location.href = target;
             }, 600);
         }
@@ -905,7 +912,7 @@
                 const res = await fetch(`${AUTH_API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password: pass })
+                    body: JSON.stringify({ email, password: pass, pass: pass })
                 });
 
                 const data = await res.json().catch(() => ({}));
@@ -946,14 +953,14 @@
             btn.disabled = true;
             btn.innerHTML = '<i class="fa-solid fa-paper-plane fa-fade"></i> Sending Verification Code...';
 
-            pendingSignupData = { name, email, pass };
+            pendingSignupData = { name, email, pass, password: pass };
             currentAuthEmail = email;
 
             try {
                 const res = await fetch(`${AUTH_API_BASE}/api/auth/send-otp`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, pass, type: 'signup' })
+                    body: JSON.stringify({ name, email, pass, password: pass, type: 'signup' })
                 });
 
                 const data = await res.json().catch(() => ({}));
@@ -966,11 +973,20 @@
                     return;
                 }
 
-                showAlert(data.message || `Verification code sent to ${email}!`, false);
                 document.getElementById('otpTargetEmail').innerText = email;
                 switchView('otp');
-                const firstOTP = document.querySelector('#view-otp .otp-input');
-                if (firstOTP) firstOTP.focus();
+
+                if (data.otp) {
+                    showAlert(`Verification code: ${data.otp}`, false);
+                    const otpInputs = document.querySelectorAll('#view-otp .otp-input');
+                    data.otp.split('').forEach((digit, idx) => {
+                        if (otpInputs[idx]) otpInputs[idx].value = digit;
+                    });
+                } else {
+                    showAlert(data.message || `Verification code sent to ${email}!`, false);
+                    const firstOTP = document.querySelector('#view-otp .otp-input');
+                    if (firstOTP) firstOTP.focus();
+                }
 
             } catch (err) {
                 btn.disabled = false;
@@ -1021,7 +1037,7 @@
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Verified!';
                 btn.style.background = '#10b981';
                 showAlert('Account created and verified! Redirecting to Nyayi AI...', false);
-                grantAccess(data.name || (pendingSignupData ? pendingSignupData.name : currentAuthEmail.split('@')[0]), currentAuthEmail);
+                grantAccess(data.name || (pendingSignupData ? pendingSignupData.name : currentAuthEmail.split('@')[0]), currentAuthEmail, true);
 
             } catch (err) {
                 btn.disabled = false;
@@ -1197,6 +1213,34 @@
         window.addEventListener('load', () => {
             initGoogleAuth();
 
+            // Check URL parameters for logout or SSO
+            const urlParams = new URLSearchParams(window.location.search);
+            const isLogout = urlParams.get('logout') === '1';
+            const ssoParams = new URLSearchParams(window.location.search);
+
+            if (isLogout) {
+                localStorage.removeItem('nyayi_auth');
+                localStorage.removeItem('nyayaUser');
+                localStorage.removeItem('nyayi_user_email');
+                sessionStorage.clear();
+                showAlert('You have been logged out successfully.', false);
+            } else if (ssoParams.get('sso') === '1' || (ssoParams.get('user') && ssoParams.get('email'))) {
+                const ssoUser = ssoParams.get('user') || 'Nyayi User';
+                const ssoEmail = ssoParams.get('email') || '';
+                showAlert(`Authenticated as ${ssoUser}! Redirecting to Nyayi AI...`, false);
+                grantAccess(ssoUser, ssoEmail);
+                return;
+            } else {
+                const existingAuth = localStorage.getItem('nyayi_auth');
+                const existingUser = localStorage.getItem('nyayaUser');
+                const existingEmail = localStorage.getItem('nyayi_user_email');
+                if (existingAuth === 'true' && existingUser) {
+                    showAlert(`Welcome back, ${existingUser}! Redirecting to Nyayi AI...`, false);
+                    grantAccess(existingUser, existingEmail);
+                    return;
+                }
+            }
+
             // Check if returned from Google OAuth redirect token (#access_token=...)
             if (window.location.hash) {
                 const params = new URLSearchParams(window.location.hash.substring(1));
@@ -1276,53 +1320,97 @@
             }
         }
 
+        function promptGoogleCustomEmail() {
+            const customEmail = prompt("Enter your Google / Gmail address:");
+            if (customEmail && customEmail.includes('@')) {
+                const customName = customEmail.split('@')[0];
+                closeOAuth('googleOverlay');
+                executeGoogleLogin(customName, customEmail);
+            }
+        }
+
+        function promptGithubCustomUser() {
+            const username = prompt("Enter your GitHub username or email:");
+            if (username && username.trim()) {
+                const cleanUser = username.trim();
+                const email = cleanUser.includes('@') ? cleanUser : `${cleanUser.toLowerCase()}@users.noreply.github.com`;
+                closeOAuth('githubOverlay');
+                executeGithubLogin(cleanUser, email);
+            }
+        }
+
         function openGoogleOAuth() {
-            // 1. Try Google Identity Services
-            if (googleTokenClient) {
-                try {
-                    googleTokenClient.requestAccessToken({ prompt: 'select_account' });
-                    return;
-                } catch (e) {
-                    console.warn('[GOOGLE GIS ERROR]', e);
-                }
+            const overlay = document.getElementById('googleOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            } else {
+                showGoogleFallback();
             }
-            if (window.google && google.accounts && google.accounts.id) {
-                try {
-                    google.accounts.id.prompt((notification) => {
-                        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                            showGoogleFallback();
-                        }
-                    });
-                    return;
-                } catch (e) {
-                    showGoogleFallback();
-                    return;
-                }
-            }
-            showGoogleFallback();
         }
 
         function openGithubOAuth() {
-            // Real GitHub OAuth redirect
-            try {
-                const redirectUri = encodeURIComponent(window.location.origin + '/auth.html');
-                window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=read:user,user:email&redirect_uri=${redirectUri}`;
-            } catch (e) {
-                const overlay = document.getElementById('githubOverlay');
-                if (overlay) overlay.style.display = 'flex';
+            const overlay = document.getElementById('githubOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            } else {
+                try {
+                    const redirectUri = encodeURIComponent(window.location.origin + '/auth');
+                    window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=read:user,user:email&redirect_uri=${redirectUri}`;
+                } catch (e) {}
             }
         }
+
         function closeOAuth(id) {
-            document.getElementById(id).style.display = 'none';
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
         }
 
-        function executeGithubLogin(name, email) {
+        async function executeGithubLogin(name, email) {
             const bar = document.getElementById('githubLoading');
             if (bar) bar.style.display = 'block';
-            showAlert(`Signing in with GitHub as ${name}...`, false);
+            showAlert(`Authorizing via GitHub as ${name}...`, false);
+            try {
+                await fetch(`${AUTH_API_BASE}/api/auth/github`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                });
+            } catch (e) {
+                console.warn('[GITHUB AUTH SYNC FAILED]', e);
+            }
             setTimeout(() => {
+                closeOAuth('githubOverlay');
                 grantAccess(name, email);
-            }, 800);
+            }, 600);
+        }
+
+        async function resendSignupOTP(e) {
+            if (e) e.preventDefault();
+            if (!pendingSignupData || !pendingSignupData.email) {
+                showAlert('Please enter your details to sign up again.');
+                switchView('signup');
+                return;
+            }
+            showAlert('Resending verification code...', false);
+            try {
+                const res = await fetch(`${AUTH_API_BASE}/api/auth/send-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(pendingSignupData)
+                });
+                const data = await res.json().catch(() => ({}));
+                if (data.otp) {
+                    showAlert(`New verification code: ${data.otp}`, false);
+                    const otpInputs = document.querySelectorAll('#view-otp .otp-input');
+                    data.otp.split('').forEach((digit, idx) => {
+                        if (otpInputs[idx]) otpInputs[idx].value = digit;
+                    });
+                } else {
+                    showAlert(data.message || 'Verification code resent successfully!', false);
+                }
+            } catch (err) {
+                showAlert('Failed to resend verification code. Please check your connection.');
+            }
         }
     </script>
 </body>
